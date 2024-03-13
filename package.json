@@ -8,9 +8,14 @@
     "clean": "turbo clean",
 	"postinstall": "symlink-dir ./public ./apps/app/public"
   },
+  "prisma": {
+    "schema": "packages/database/prisma/schema.prisma",
+    "seed": "tsx packages/database/src/seed.ts"
+  },
   "devDependencies": {
     "@repo/typescript-config": "*",
     "eslint": "^8.57.0",
+    "tsx": "^4.7.1",
     "turbo": "latest"
   },
   "engines": {
