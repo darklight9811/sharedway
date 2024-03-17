@@ -1,3 +1,4 @@
+import { Button } from "@repo/ds/ui/button";
 import { Card } from "@repo/ds/ui/card";
 
 const LINKS = [
@@ -18,6 +19,8 @@ export default function Page(): JSX.Element {
           </Card>
         ))}
       </div>
+
+	  <Button>Teste</Button>
     </main>
   );
 }

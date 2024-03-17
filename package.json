@@ -6,6 +6,7 @@
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean",
+	"component": "cd packages/ds && npx shadcn-ui@latest add",
 	"postinstall": "symlink-dir ./public ./apps/app/public"
   },
   "prisma": {
