@@ -6,7 +6,7 @@
   ],
   "exports": {
     "./*": "./src/components/*.tsx",
-    "./utils": "./src/lib/utils.tsx",
+    "./utils": "./src/lib/utils.ts",
     "./tw": "./tailwind.config.ts"
   },
   "license": "MIT",
