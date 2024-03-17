@@ -5,14 +5,12 @@
     "**/*.css"
   ],
   "exports": {
-    "./*": "./src/*.tsx"
+    "./*": "./src/*.tsx",
+	"./tw": "./tailwind.config.ts"
   },
   "license": "MIT",
   "scripts": {
-    "build": "tailwindcss -i ./src/styles.css -o dist/index.css",
-    "lint": "eslint src/",
-    "dev": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
-    "type-check": "tsc --noEmit"
+    "lint": "eslint src/"
   },
   "peerDependencies": {
     "react": "^18.2.0"
