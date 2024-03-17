@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["@repo/eslint-config/eslint/react.js"],
+  extends: ["@repo/config/eslint/react.js"],
 };

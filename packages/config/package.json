@@ -1,9 +1,13 @@
 {
-  "name": "@repo/eslint-config",
+  "name": "@repo/config",
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
     "@vercel/style-guide": "^5.2.0",
     "eslint-config-turbo": "^1.12.4"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   }
 }
