@@ -1,0 +1,28 @@
+{
+	"name": "@repo/services",
+	"version": "1.0.0",
+	"exports": {
+		"./*": "./src/services/*.ts"
+	},
+	"scripts": {
+	  "db:migrate:deploy": "prisma migrate deploy",
+	  "db:migrate:dev": "prisma migrate dev",
+	  "db:push": "prisma db push",
+	  "db:seed": "tsx src/seed.ts",
+	  "format": "prisma format",
+	  "generate": "prisma generate",
+	  "lint": "eslint . --max-warnings 0",
+	  "studio": "prisma studio"
+	},
+	"dependencies": {
+	  "@prisma/client": "^5.10.2"
+	},
+	"devDependencies": {
+	  "eslint": "^8.57.0",
+	  "prisma": "^5.10.2",
+	  "@repo/config": "*",
+	  "tsx": "^4.7.1",
+	  "typescript": "^5.3.3"
+	}
+  }
+  
