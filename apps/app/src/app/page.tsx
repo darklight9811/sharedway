@@ -1,4 +1,4 @@
-import { Card } from "@repo/ui/ui/card";
+import { Card } from "@repo/ds/ui/card";
 
 const LINKS = [
   {
