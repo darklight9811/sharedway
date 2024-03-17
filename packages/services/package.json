@@ -5,10 +5,10 @@
 		"./*": "./src/services/*.ts"
 	},
 	"scripts": {
-	  "db:migrate:deploy": "prisma migrate deploy",
-	  "db:migrate:dev": "prisma migrate dev",
-	  "db:push": "prisma db push",
-	  "db:seed": "tsx src/seed.ts",
+	  "migrate:deploy": "prisma migrate deploy",
+	  "migrate:dev": "prisma migrate dev",
+	  "push": "prisma db push",
+	  "seed": "tsx src/seed.ts",
 	  "format": "prisma format",
 	  "generate": "prisma generate",
 	  "lint": "eslint . --max-warnings 0",

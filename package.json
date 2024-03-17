@@ -1,13 +1,14 @@
 {
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
+    "build": "dotenv -- turbo build",
+    "dev": "dotenv -- turbo dev",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean",
-	"component": "cd packages/ds && npx shadcn-ui@latest add",
-	"postinstall": "symlink-dir ./public ./apps/app/public"
+    "component": "cd packages/ds && npx shadcn-ui@latest add",
+	"db": "cd packages/services && dotenv -e ../../.env -- yarn ",
+    "postinstall": "symlink-dir ./public ./apps/app/public"
   },
   "prisma": {
     "schema": "packages/database/prisma/schema.prisma",
@@ -28,6 +29,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "dotenv-cli": "^7.4.1",
     "symlink-dir": "^5.2.1"
   }
 }
