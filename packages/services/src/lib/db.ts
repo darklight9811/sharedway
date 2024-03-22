@@ -43,7 +43,7 @@ function getPrisma () {
 							skip: (page - 1) * limit,
 							take: limit,
 							...(order ? { orderBy: { [order]: sort || "asc" } } : {}),
-						}).then(function (result: any) {
+						}).then(function x (result: any) {
 							return args.map ? Promise.all(result.map(args.map)) : result
 						}),
 						(this as any).aggregate({
