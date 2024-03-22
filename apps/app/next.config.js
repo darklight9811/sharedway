@@ -1,8 +1,11 @@
-
-console.log(process.env.DATABASE_URL)
+const createNextIntlPlugin = require('next-intl/plugin');
 
 /** @type {import('next').NextConfig} */
-module.exports = {
+const config = {
   reactStrictMode: true,
   transpilePackages: ["@repo/ds"],
-};
+}; 
+
+const withNextIntl = createNextIntlPlugin();
+
+module.exports = [withNextIntl].reduce((prev, curr) => curr(prev), config)
