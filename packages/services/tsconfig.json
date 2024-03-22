@@ -1,6 +1,9 @@
 {
 	"extends": "@repo/config/typescript/base.json",
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-	"exclude": ["node_modules"]
-  }
-  
+	"include": [
+		"."
+	],
+	"exclude": [
+		"node_modules"
+	]
+}

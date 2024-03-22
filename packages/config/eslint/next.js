@@ -1,4 +1,5 @@
 const { resolve } = require("node:path");
+const rules = require("./rules");
 
 const project = resolve(process.cwd(), "tsconfig.json");
 
@@ -12,35 +13,39 @@ const project = resolve(process.cwd(), "tsconfig.json");
  */
 
 module.exports = {
-  extends: [
-    "@vercel/style-guide/eslint/node",
-    "@vercel/style-guide/eslint/typescript",
-    "@vercel/style-guide/eslint/browser",
-    "@vercel/style-guide/eslint/react",
-    "@vercel/style-guide/eslint/next",
-    "eslint-config-turbo",
-  ].map(require.resolve),
-  parserOptions: {
-    project,
-  },
-  globals: {
-    React: true,
-    JSX: true,
-  },
-  settings: {
-    "import/resolver": {
-      typescript: {
-        project,
-      },
-      node: {
-        extensions: [".mjs", ".js", ".jsx", ".ts", ".tsx"],
-      },
-    },
-  },
-  ignorePatterns: ["node_modules/", "dist/"],
-  // add rules configurations here
-  rules: {
-    "import/no-default-export": "off",
-	"no-html-link-for-pages": "off"
-  },
+	extends: [
+		...[
+			"@vercel/style-guide/eslint/node",
+			"@vercel/style-guide/eslint/browser",
+			"@vercel/style-guide/eslint/react",
+			"@vercel/style-guide/eslint/next",
+			"eslint-config-turbo",
+		].map(require.resolve),
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	parser: "@typescript-eslint/parser",
+	plugins: [
+		"@typescript-eslint",
+	],
+	parserOptions: {
+		project,
+	},
+	globals: {
+		React: true,
+		JSX: true,
+	},
+	settings: {
+		"import/resolver": {
+			typescript: {
+				project,
+			},
+			node: {
+				extensions: [".mjs", ".js", ".jsx", ".ts", ".tsx"],
+			},
+		},
+	},
+	ignorePatterns: ["node_modules/", "dist/"],
+	// add rules configurations here
+	rules,
 };
