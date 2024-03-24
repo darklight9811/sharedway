@@ -1,10 +1,9 @@
 import { Button } from "@repo/ds/ui/button"
-import users from "@repo/services/user"
+import entityService from "@repo/services/entity"
 import { getTranslations } from "next-intl/server"
 
-
 export default async function Page() {
-	const data = await users.index()
+	const data = await entityService.index()
 	const t = await getTranslations("")
 
 	return (
