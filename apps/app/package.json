@@ -10,6 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.29.9",
     "@repo/ds": "*",
     "@repo/services": "*",
     "next": "^14.1.1",
