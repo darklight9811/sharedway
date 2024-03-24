@@ -2,17 +2,45 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
+}
+
+enum EntityType {
+    Person
+    Animal
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
+    id            String    @id @default(cuid())
+    name          String?
+    email         String?   @unique
+    emailVerified DateTime?
+}
+
+model Entity {
+    id String @id @default(cuid())
+
+    type        EntityType
+    name        String
+    description String     @db.Text
+
+    date_created  DateTime        @default(now())
+    date_updated  DateTime        @updatedAt
+    date_found    DateTime?
+	
+    EntityPicture EntityPicture[]
+}
+
+model EntityPicture {
+    id String @id @default(cuid())
+
+    id_picture String
+    id_entity  String
+
+    entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
 }
