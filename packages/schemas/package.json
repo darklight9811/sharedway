@@ -1,0 +1,18 @@
+{
+	"name": "@repo/schemas",
+	"version": "1.0.0",
+	"exports": {
+		"./*": "./src/schemas/*.ts"
+	},
+	"scripts": {
+		"lint": "eslint . --max-warnings 0"
+	},
+	"devDependencies": {
+		"@repo/config": "*",
+		"eslint": "^8.57.0",
+		"typescript": "^5.3.3"
+	},
+	"dependencies": {
+		"zod": "^3.22.4"
+	}
+}
