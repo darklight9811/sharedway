@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client"
 
 import type { Prisma} from "@prisma/client"
-import type { Paginated } from "../types/pagination"
+import type { Paginated } from "../types/paginated"
 
 // -------------------------------------------------
 // Types
