@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.9",
+    "@repo/schemas": "*",
     "@repo/ds": "*",
     "@repo/services": "*",
     "next": "^14.1.1",

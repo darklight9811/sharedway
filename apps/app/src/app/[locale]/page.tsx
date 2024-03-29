@@ -1,15 +1,14 @@
-import { Button } from "@repo/ds/ui/button"
 import entityService from "@repo/services/entity"
-import { getTranslations } from "next-intl/server"
+import parallel from "../../lib/parallel"
+import type { Pagination } from "@repo/schemas/pagination"
 
-export default async function Page() {
-	const data = await entityService.index()
-	const t = await getTranslations("")
+export default async function Page(props: { params: Pagination }) {
+	const [data] = await parallel(
+		entityService.index(props.params),
+	)
 
 	return (
 		<main className="">
-			<Button>{t("he")}</Button>
-
 			<pre>{JSON.stringify(data, null, 4)}</pre>
 		</main>
 	)
