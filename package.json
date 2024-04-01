@@ -8,6 +8,7 @@
     "clean": "turbo clean",
     "component": "cd packages/ds && npx shadcn-ui@latest add",
 	"db": "cd packages/services && dotenv -e ../../.env -- yarn ",
+	"storybook": "cd packages/ds && yarn storybook",
     "postinstall": "symlink-dir ./public ./apps/app/public"
   },
   "prisma": {
