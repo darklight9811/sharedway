@@ -1,11 +1,11 @@
-const createNextIntlPlugin = require('next-intl/plugin');
+const createNextIntlPlugin = require("next-intl/plugin")
 
 /** @type {import('next').NextConfig} */
 const config = {
-  reactStrictMode: true,
-  transpilePackages: ["@repo/ds"],
-}; 
+	reactStrictMode: true,
+	transpilePackages: ["@repo/ds"],
+}
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin()
 
 module.exports = [withNextIntl].reduce((prev, curr) => curr(prev), config)

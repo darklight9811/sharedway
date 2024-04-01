@@ -44,4 +44,5 @@ module.exports = {
 
 	// React eslint
 	"react/no-unescaped-entities": [0],
+	"react/no-array-index-key": "off",
 }
