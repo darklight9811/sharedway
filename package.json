@@ -1,12 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "build": "dotenv -- turbo build",
-    "dev": "dotenv -- turbo dev",
+    "build": "turbo build",
+    "dev": "turbo dev",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean",
-    "component": "cd packages/ds && npx shadcn-ui@latest add",
+    "component": "cd packages/ds && bunx shadcn-ui add",
 	"db": "cd packages/services && dotenv -e ../../.env -- yarn ",
 	"storybook": "cd packages/ds && yarn storybook",
     "postinstall": "symlink-dir ./public ./apps/app/public"
@@ -30,7 +30,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "dotenv-cli": "^7.4.1",
     "symlink-dir": "^5.2.1"
   }
 }
