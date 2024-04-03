@@ -14,13 +14,13 @@
     "@repo/schemas": "*",
     "@repo/ds": "*",
     "@repo/services": "*",
-    "next": "^14.1.1",
+    "next": "^14.1.4",
     "next-intl": "^3.9.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^14.1.1",
+    "@next/eslint-plugin-next": "^14.1.4",
     "@repo/config": "*",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",

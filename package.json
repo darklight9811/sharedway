@@ -7,8 +7,8 @@
     "type-check": "turbo type-check",
     "clean": "turbo clean",
     "component": "cd packages/ds && bunx shadcn-ui add",
-	"db": "cd packages/services && dotenv -e ../../.env -- yarn ",
-	"storybook": "cd packages/ds && yarn storybook",
+	"db": "cd packages/services && bun ",
+	"storybook": "cd packages/ds && bun storybook",
     "postinstall": "symlink-dir ./public ./apps/app/public"
   },
   "prisma": {
@@ -21,10 +21,7 @@
     "tsx": "^4.7.1",
     "turbo": "latest"
   },
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "bun@1.1.0",
   "workspaces": [
     "apps/*",
     "packages/*"
