@@ -1,32 +1,36 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "type-check": "turbo type-check",
-    "clean": "turbo clean",
-    "component": "cd packages/ds && npx shadcn-ui add",
-	"db": "cd packages/services && yarn ",
-	"storybook": "cd packages/ds && yarn storybook",
-    "postinstall": "symlink-dir ./public ./apps/app/public"
-  },
-  "prisma": {
-    "schema": "packages/database/prisma/schema.prisma",
-    "seed": "tsx packages/database/src/seed.ts"
-  },
-  "devDependencies": {
-    "@repo/config": "*",
-    "eslint": "^8.57.0",
-    "tsx": "^4.7.1",
-    "turbo": "latest"
-  },
-  "packageManager": "yarn@1.22.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "dependencies": {
-    "symlink-dir": "^5.2.1"
-  }
+	"private": true,
+	"scripts": {
+		"build": "dotenv -- turbo build",
+		"dev": "dotenv -- turbo dev",
+		"lint": "turbo lint",
+		"type-check": "turbo type-check",
+		"clean": "turbo clean",
+		"component": "cd packages/ds && npx shadcn-ui@latest add",
+		"db": "cd packages/services && dotenv -e ../../.env -- yarn ",
+		"storybook": "cd packages/ds && yarn storybook",
+		"postinstall": "symlink-dir ./public ./apps/app/public"
+	},
+	"prisma": {
+		"schema": "packages/database/prisma/schema.prisma",
+		"seed": "tsx packages/database/src/seed.ts"
+	},
+	"devDependencies": {
+		"@repo/config": "*",
+		"eslint": "^8.57.0",
+		"tsx": "^4.7.1",
+		"turbo": "latest"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"packageManager": "yarn@1.22.19",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"dependencies": {
+		"dotenv-cli": "^7.4.1",
+		"symlink-dir": "^5.2.1"
+	}
 }

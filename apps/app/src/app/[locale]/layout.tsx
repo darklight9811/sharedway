@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import { cn } from "@repo/ds/utils"
 import { ClerkProvider } from "@clerk/nextjs"
 import { getTranslations } from "next-intl/server"
+import Navbar from "./_components/navbar"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -27,7 +28,11 @@ export default function RootLayout({
 		<html className="h-full" lang={params.locale}>
 			<body className={cn(inter.className, "flex flex-col")}>
 				<ClerkProvider>
-					{children}
+					<Navbar />
+
+					<div>
+						{children}
+					</div>
 				</ClerkProvider>
 			</body>
 		</html>

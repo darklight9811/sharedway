@@ -1,5 +1,6 @@
 import type { NextMiddlewareResult } from "next/dist/server/web/types"
-import type { NextResponse , NextFetchEvent, NextRequest } from "next/server"
+import type { NextFetchEvent, NextRequest } from "next/server"
+import { NextResponse  } from "next/server"
 
 export type CustomMiddleware = (
 	request: NextRequest,
@@ -27,4 +28,20 @@ export function chain(
 	) => {
 		return response
 	}
+}
+
+chain.middleware = function middleware (handler: (next: CustomMiddleware, request: NextRequest,
+	event: NextFetchEvent,
+	response: NextResponse) => Promise<NextMiddlewareResult> | NextMiddlewareResult) {
+	return function handle (next: CustomMiddleware) {
+		return async function handleRunner (request: NextRequest, event: NextFetchEvent, response: NextResponse) {
+			return handler(next, request, event, response)
+		}
+	}
+}
+
+chain.start = function start () {
+	return chain.middleware(function startMiddleware (next, req, event) {
+		return next(req, event, NextResponse.next())
+	})
 }
