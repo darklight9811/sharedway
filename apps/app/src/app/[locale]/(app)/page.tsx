@@ -1,5 +1,5 @@
 import entityService from "@repo/services/entity"
-import parallel from "../../lib/parallel"
+import parallel from "../../../lib/parallel"
 import type { Pagination } from "@repo/schemas/pagination"
 
 export default async function Page(props: { params: Pagination }) {

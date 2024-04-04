@@ -1,32 +1,23 @@
 import createMiddleware from "next-intl/middleware"
 import { authMiddleware } from "@clerk/nextjs"
-import { chain } from "./lib/middleware"
 
-export default chain([
-	chain.start(),
-	chain.middleware(async function localeMiddleware(next, req, event) {
-		const response = await createMiddleware({
-			// A list of all locales that are supported
-			locales: ["pt-BR", "en-US"],
+const languages = ["en-US", "pt-BR"]
 
-			// Used when no locale matches
-			defaultLocale: "en-US",
-		})(req)
+const intl = createMiddleware({
+	locales: languages,
+	defaultLocale: languages[0],
+})
 
-		return next(req, event, response)
-	}),
-	chain.middleware(async function authenticationMiddleware(next, req, event) {
-		const response = await authMiddleware({
-			publicRoutes: [
-				"/(pt-BR|en-US)",
-			],
-		})(req, event)
+export default authMiddleware({
+	beforeAuth(request) {
+		return intl(request)
+	},
 
-		return next(req, event, response as any)
-	}),
-])
+	publicRoutes: ["/:locale", "/:locale/sign-in", "/:locale/sign-up"],
+	signInUrl: "/sign-in",
+})
 
 export const config = {
 	// Match only internationalized pathnames
-	matcher: ["/", "/(en-US|pt-BR)/:path*", "/((?!.+\\.[\\w]+$|_next).*)"],
+	matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/"],
 }
