@@ -4,6 +4,14 @@ const createNextIntlPlugin = require("next-intl/plugin")
 const config = {
 	reactStrictMode: true,
 	transpilePackages: ["@repo/ds"],
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "img.clerk.com",
+			},
+		],
+	},
 }
 
 const withNextIntl = createNextIntlPlugin()
