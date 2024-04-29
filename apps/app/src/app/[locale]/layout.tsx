@@ -31,7 +31,9 @@ export default function RootLayout({
 					signInUrl={`/${params.locale}/sign-in`}
 					signUpUrl={`/${params.locale}/sign-up`}
 				>
-					{children}
+					<div className="flex-grow w-full flex flex-col child:animate-fade-in">
+						{children}
+					</div>
 				</ClerkProvider>
 			</body>
 		</html>

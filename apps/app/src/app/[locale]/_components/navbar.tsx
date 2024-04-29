@@ -1,9 +1,10 @@
-import { currentUser } from "@clerk/nextjs"
+import { SignOutButton, currentUser } from "@clerk/nextjs"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@repo/ds/ui/dropdown-menu"
 import { User } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 import Image from "next/image"
 import { Link } from "../../../lib/navigation"
+import { buttonVariants } from "@repo/ds/ui/button"
 
 export default async function Navbar () {
 	const [user, t] = await Promise.all([
@@ -13,7 +14,10 @@ export default async function Navbar () {
 
 	return (
 		<nav className="sticky shadow w-full py-2 px-4 flex justify-between items-center">
-			<Link href="/">{t("title")}</Link>
+			<div className="flex gap-2 items-center">
+				<Link href="/">{t("title")}</Link>
+				<Link className={buttonVariants({ size: "sm" })} href="/register">+</Link>
+			</div>
 
 			<div>
 				{
@@ -31,15 +35,17 @@ export default async function Navbar () {
 
 							<DropdownMenuContent>
 								<DropdownMenuItem>
-									<Link href="/profile">profile</Link>
+									<Link className="w-full" href="/profile">profile</Link>
 								</DropdownMenuItem>
-								<DropdownMenuItem asChild>
-									{/* <button className="w-full hover:cursor-pointer" onClick={() => clerk.signOut()}>Sair</button> */}
+								<DropdownMenuItem asChild className="w-full">
+									<SignOutButton>
+										Sair
+									</SignOutButton>
 								</DropdownMenuItem>
 							</DropdownMenuContent>
 						</DropdownMenu>
 					) : (
-						<Link href="/sign-in">login</Link>
+						<Link href="/sign-in">Login</Link>
 					)
 				}
 			</div>

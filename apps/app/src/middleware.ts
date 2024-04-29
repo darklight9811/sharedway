@@ -13,11 +13,16 @@ export default authMiddleware({
 		return intl(request)
 	},
 
-	publicRoutes: ["/:locale", "/:locale/sign-in", "/:locale/sign-up"],
+	publicRoutes: [
+		"/:locale",
+		"/:locale/entities/:entity",
+		"/:locale/sign-in",
+		"/:locale/sign-up",
+	],
 	signInUrl: "/sign-in",
 })
 
 export const config = {
 	// Match only internationalized pathnames
-	matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/"],
+	matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)", "/(de|en)/:path*"],
 }

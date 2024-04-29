@@ -11,8 +11,8 @@ generator client {
 }
 
 enum EntityType {
-    Person
-    Animal
+    person
+    animal
 }
 
 model User {
