@@ -5,6 +5,7 @@
 		"dev": "dotenv -- turbo dev",
 		"lint": "turbo lint",
 		"type-check": "turbo type-check",
+		"sync": "syncpack fix-mismatches --indent \t",
 		"clean": "turbo clean",
 		"component": "cd packages/ds && npx shadcn-ui@latest add",
 		"db": "cd packages/services && dotenv -e ../../.env -- yarn ",
@@ -31,6 +32,7 @@
 	],
 	"dependencies": {
 		"dotenv-cli": "^7.4.1",
-		"symlink-dir": "^5.2.1"
+		"symlink-dir": "^5.2.1",
+		"syncpack": "^12.3.2"
 	}
 }
