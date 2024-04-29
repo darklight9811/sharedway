@@ -5,7 +5,7 @@
 		"dev": "dotenv -- turbo dev",
 		"lint": "turbo lint",
 		"type-check": "turbo type-check",
-		"sync": "syncpack fix-mismatches --indent \t",
+		"sync": "syncpack fix-mismatches --indent \"\t\"",
 		"clean": "turbo clean",
 		"component": "cd packages/ds && npx shadcn-ui@latest add",
 		"db": "cd packages/services && dotenv -e ../../.env -- yarn ",
@@ -17,7 +17,7 @@
 		"seed": "tsx packages/database/src/seed.ts"
 	},
 	"devDependencies": {
-		"@repo/config": "*",
+		"@repo/config": "0.0.0",
 		"eslint": "^8.57.0",
 		"tsx": "^4.7.1",
 		"turbo": "latest"

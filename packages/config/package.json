@@ -1,15 +1,16 @@
 {
-  "name": "@repo/config",
-  "version": "0.0.0",
-  "private": true,
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.3.1",
-    "@typescript-eslint/parser": "^7.3.1",
-    "@vercel/style-guide": "^5.2.0",
-    "eslint-config-turbo": "^1.12.4"
-  },
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "@repo/config",
+	"version": "0.0.0",
+	"private": true,
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^7.3.1",
+		"@typescript-eslint/parser": "^7.3.1",
+		"@vercel/style-guide": "^5.2.0",
+		"eslint-config-turbo": "^1.12.4",
+		"typescript": "^5.3.3"
+	},
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	}
 }
