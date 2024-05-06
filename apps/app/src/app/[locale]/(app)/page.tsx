@@ -4,9 +4,9 @@ import type { Pagination as PaginationType } from "@repo/schemas/pagination"
 import { Pagination } from "@repo/ds/ui/pagination"
 import Card from "@repo/ds/ui/card"
 
-export default async function Page(props: { params: PaginationType }) {
+export default async function Page(props: { searchParams: PaginationType }) {
 	const [[data, pagination]] = await parallel(
-		entityService.index(props.params),
+		entityService.index(props.searchParams),
 	)
 
 	return (

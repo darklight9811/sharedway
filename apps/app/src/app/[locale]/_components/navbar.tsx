@@ -15,7 +15,7 @@ export default async function Navbar () {
 	return (
 		<nav className="sticky shadow w-full py-2 px-4 flex justify-between items-center">
 			<div className="flex gap-2 items-center">
-				<Link href="/">{t("title")}</Link>
+				<Link className="flex gap-2" href="/"><Image alt="logo" height={20} src="/logo/favicon.svg" width={20} /> {t("title")}</Link>
 				<Link className={buttonVariants({ size: "sm" })} href="/register">+</Link>
 			</div>
 

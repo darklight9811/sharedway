@@ -3,6 +3,8 @@ import { PrismaClient } from "@prisma/client"
 import type { Prisma} from "@prisma/client"
 import type { Paginated } from "../types/paginated"
 
+import { env } from "@repo/env"
+
 // -------------------------------------------------
 // Types
 // -------------------------------------------------
@@ -23,7 +25,7 @@ type PaginationArgs<Input, Output extends Record<string, any> = {}> = {
 function getPrisma () {
 	return (new PrismaClient({
 		log:
-			process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
+			env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
 	})).$extends({
 		name: "paginate",
 		model: {
@@ -72,4 +74,4 @@ const globalForPrisma = globalThis as unknown as { db: ReturnType<typeof getPris
 
 export const db = globalForPrisma.db || getPrisma()
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.db = db
+if (env.NODE_ENV !== "production") globalForPrisma.db = db

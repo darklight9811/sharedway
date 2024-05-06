@@ -15,6 +15,7 @@
 		"studio": "prisma studio"
 	},
 	"dependencies": {
+		"@repo/env": "1.0.0",
 		"@repo/schemas": "1.0.0",
 		"@prisma/client": "^5.10.2"
 	},

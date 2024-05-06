@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@clerk/localizations": "^1.28.0",
 		"@clerk/nextjs": "^4.29.10",
+		"@repo/env": "1.0.0",
 		"@repo/ds": "1.0.0",
 		"@repo/schemas": "1.0.0",
 		"@repo/services": "1.0.0",
