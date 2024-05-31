@@ -21,10 +21,17 @@ const entityService = service({
 		})
 	},
 
-	async store (input: Entity) {
+	async store (input: Entity, { user }) {
 		const data = entity.parse(input)
 		const response = await db.entity.create({
-			data,
+			data: {
+				...data,
+				user_created: {
+					connect: {
+						id: user,
+					},
+				},
+			},
 		})
 
 		return response
@@ -33,7 +40,10 @@ const entityService = service({
 	show (id: string) {
 		return db.entity.findUnique({
 			where: { id },
-		}).then(t => ({ ...t, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Tabby_Kitten_on_Blue_Throw.jpg/220px-Tabby_Kitten_on_Blue_Throw.jpg" }))
+		}).then(t => t ? ({
+			...t,
+			img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Tabby_Kitten_on_Blue_Throw.jpg/220px-Tabby_Kitten_on_Blue_Throw.jpg",
+		}) : null)
 	},
 })
 

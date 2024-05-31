@@ -24,8 +24,7 @@ type PaginationArgs<Input, Output extends Record<string, any> = {}> = {
 
 function getPrisma () {
 	return (new PrismaClient({
-		log:
-			env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
+		log: env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
 	})).$extends({
 		name: "paginate",
 		model: {

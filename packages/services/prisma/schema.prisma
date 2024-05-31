@@ -20,6 +20,9 @@ model User {
     name          String?
     email         String?   @unique
     emailVerified DateTime?
+    entity        Entity[]
+
+	@@map("users")
 }
 
 model Entity {
@@ -29,11 +32,16 @@ model Entity {
     name        String
     description String     @db.Text
 
-    date_created  DateTime        @default(now())
-    date_updated  DateTime        @updatedAt
-    date_found    DateTime?
-	
-    EntityPicture EntityPicture[]
+    date_created DateTime  @default(now())
+    date_updated DateTime  @updatedAt
+    date_found   DateTime?
+
+    id_user_created String
+
+    user_created  User            @relation(fields: [id_user_created], references: [id], onDelete: Cascade)
+    pictures EntityPicture[]
+
+	@@map("entities")
 }
 
 model EntityPicture {
@@ -43,4 +51,6 @@ model EntityPicture {
     id_entity  String
 
     entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
+
+	@@map("entity_pictures")
 }
