@@ -1,4 +1,5 @@
-import { SignOutButton, currentUser } from "@clerk/nextjs"
+import { SignOutButton } from "@clerk/nextjs"
+import { currentUser } from "@clerk/nextjs/server"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@repo/ds/ui/dropdown-menu"
 import { User } from "lucide-react"
 import { getTranslations } from "next-intl/server"

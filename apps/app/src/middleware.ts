@@ -1,5 +1,5 @@
 import createMiddleware from "next-intl/middleware"
-import { authMiddleware } from "@clerk/nextjs"
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 
 const languages = ["en-US", "pt-BR"]
 
@@ -8,18 +8,16 @@ const intl = createMiddleware({
 	defaultLocale: languages[0],
 })
 
-export default authMiddleware({
-	beforeAuth(request) {
-		return intl(request)
-	},
+const isProtectedRoute = createRouteMatcher([
+	'dashboard/(.*)',
+]);
 
-	publicRoutes: [
-		"/:locale",
-		"/:locale/entities/:entity",
-		"/:locale/sign-in",
-		"/:locale/sign-up",
-	],
-	signInUrl: "/sign-in",
+export default clerkMiddleware((auth, req) => {
+	if (isProtectedRoute(req)) auth().protect();
+  
+	return intl(req);
+}, {
+	signInUrl: "/sign-in"
 })
 
 export const config = {
