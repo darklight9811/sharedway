@@ -1,11 +1,43 @@
-import { Suspense } from "react"
+import { buttonVariants } from "@repo/ds/ui/button"
+import Image from "next/image"
+import { Suspense, createElement } from "react"
+import { Link } from "@/lib/navigation"
+import { Loader } from "lucide-react"
+import parallel from "@/lib/parallel"
+import userService from "@repo/services/user"
+import { currentUser } from "@clerk/nextjs/server"
 
-export default async function Page () {
+export default async function Page ({ searchParams }: { searchParams: { redirect?: string } }) {
 	return (
-		<div className="flex grow justify-center items-center">
-			<Suspense fallback={<div>yay</div>}>
-				what
+		<div className="flex grow flex-col justify-center items-center">
+			<Suspense fallback={<LoadingCallback />}>
+				{createElement(async function GenerateUser () {
+					const user = await currentUser()
+					await parallel(userService.create(user!))
+
+					return (
+						<>
+							<Image alt="logo" height={56} src="/logo/favicon.svg" width={56} />
+
+							<h1 className="text-2xl font-bold my-2">Configurações feitas! Você pode voltar a usar o app agora</h1>
+
+							<Link className={buttonVariants()} href={searchParams.redirect || "/"}>Voltar</Link>
+						</>
+					)
+				})}
 			</Suspense>
 		</div>
+	)
+}
+
+function LoadingCallback () {
+	return (
+		<>
+			<Loader size="56" className="animate-spin" />
+
+			<h1 className="text-2xl font-bold my-2">Configurando sua conta</h1>
+
+			<p>Enquanto isso, gostariamos de dizer que vai ficar tudo bem</p>
+		</>
 	)
 }

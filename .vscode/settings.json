@@ -63,5 +63,8 @@
 		"**/app/**/layout.tsx": "${dirname} - Layout",
 		"**/app/**/template.tsx": "${dirname} - Template",
 		"**/components/**/index.tsx": "${dirname} - Component",
+	},
+	"[prisma]": {
+		"editor.defaultFormatter": "Prisma.prisma"
 	}
 }

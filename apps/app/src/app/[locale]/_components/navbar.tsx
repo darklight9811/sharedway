@@ -6,6 +6,7 @@ import { getTranslations } from "next-intl/server"
 import Image from "next/image"
 import { Link } from "../../../lib/navigation"
 import { buttonVariants } from "@repo/ds/ui/button"
+import { env } from "@repo/env"
 
 export default async function Navbar () {
 	const [user, t] = await Promise.all([
@@ -16,7 +17,7 @@ export default async function Navbar () {
 	return (
 		<nav className="sticky shadow w-full py-2 px-4 flex justify-between items-center">
 			<div className="flex gap-2 items-center">
-				<Link className="flex gap-2" href="/"><Image alt="logo" height={20} src="/logo/favicon.svg" width={20} /> {t("title")}</Link>
+				<Link className="flex gap-2" href="/"><Image alt="logo" height={20} src="/logo/favicon.svg" width={20} /> {env.APP_NAME}</Link>
 				<Link className={buttonVariants({ size: "sm" })} href="/register">+</Link>
 			</div>
 
@@ -34,7 +35,7 @@ export default async function Navbar () {
 								}
 							</DropdownMenuTrigger>
 
-							<DropdownMenuContent>
+							<DropdownMenuContent className="mr-2">
 								<DropdownMenuItem>
 									<Link className="w-full" href="/profile">profile</Link>
 								</DropdownMenuItem>

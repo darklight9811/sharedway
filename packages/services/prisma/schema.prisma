@@ -20,9 +20,12 @@ model User {
     name          String?
     email         String?   @unique
     emailVerified DateTime?
-    entity        Entity[]
+    entities      Entity[]
 
-	@@map("users")
+    auth_provider String @default("password")
+    auth_value    String
+
+    @@map("users")
 }
 
 model Entity {
@@ -38,10 +41,10 @@ model Entity {
 
     id_user_created String
 
-    user_created  User            @relation(fields: [id_user_created], references: [id], onDelete: Cascade)
-    pictures EntityPicture[]
+    user_created User            @relation(fields: [id_user_created], references: [id], onDelete: Cascade)
+    pictures     EntityPicture[]
 
-	@@map("entities")
+    @@map("entities")
 }
 
 model EntityPicture {
@@ -52,5 +55,5 @@ model EntityPicture {
 
     entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
 
-	@@map("entity_pictures")
+    @@map("entity_pictures")
 }

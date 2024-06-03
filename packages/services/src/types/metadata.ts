@@ -1,5 +1,7 @@
 interface Metadata {
-	user?: string;
+	auth: {
+		userId: string;
+	};
 }
 
 export default Metadata

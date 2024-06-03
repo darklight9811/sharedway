@@ -6,11 +6,19 @@ import { ClerkProvider } from "@clerk/nextjs"
 import { getLocale, getTranslations } from "next-intl/server"
 import { ptBR, enUS } from "@clerk/localizations"
 import { base } from "../../lib/url"
+import { auth } from "@clerk/nextjs/server"
+import userService from "@repo/services/user"
+import parallel from "../../lib/parallel"
+import { headers } from "next/headers"
+import { redirect } from "next/navigation"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export async function generateMetadata (params: { locale: string }) {
-	const t = await getTranslations({ locale: params.locale, namespace: "metadata" })
+	const [t, locale] = await Promise.all([
+		getTranslations({ locale: params.locale, namespace: "metadata" }),
+		getLocale(),
+	])
 
 	return {
 		metadataBase: new URL(base()),
@@ -53,7 +61,7 @@ export async function generateMetadata (params: { locale: string }) {
 			url: base(),
 			siteName: t("title"),
 			type: "website",
-			locale: await getLocale(),
+			locale: locale,
 			images: ["/opengraph-image.png"],
 			alternateLocale: ["pt_BR", "en_US"],
 		},
@@ -79,13 +87,23 @@ export async function generateViewport () {
 	} satisfies Viewport
 }
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 	params,
 }: {
 	children: React.ReactNode;
 	params: { locale: string };
-}): JSX.Element {
+}) {
+	const { userId } = auth()
+	const pathname = headers().get("x-pathname")!
+	const [user] = await parallel(
+		userService.show(userId),
+	)
+
+	if (userId && !user && !pathname.includes("/callback")) {
+		return redirect("/callback?redirect" + pathname)
+	}
+
 	return (
 		<html className="h-full" lang={params.locale}>
 			<body className={cn(inter.className, "flex flex-col h-full")}>

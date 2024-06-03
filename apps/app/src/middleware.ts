@@ -8,10 +8,13 @@ const intl = createMiddleware({
 })
 
 const isProtectedRoute = createRouteMatcher([
+	`/(${locales.join("|")})/callback`,
 	`/(${locales.join("|")})/register`,
 ]);
 
 export default clerkMiddleware((auth, req) => {
+	req.headers.set("x-pathname", req.nextUrl.pathname)
+
 	if (isProtectedRoute(req)) auth().protect();
   
 	return intl(req);

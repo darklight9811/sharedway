@@ -28,9 +28,6 @@ module.exports = {
 	plugins: [
 		"@typescript-eslint",
 	],
-	parserOptions: {
-		project,
-	},
 	globals: {
 		React: true,
 		JSX: true,
