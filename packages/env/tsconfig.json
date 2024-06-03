@@ -1,9 +1,10 @@
 {
 	"extends": "@repo/config/typescript/base.json",
+	"compilerOptions": {
+		"allowJs": true
+	},
 	"include": [
-		"."
-	],
-	"exclude": [
-		"node_modules"
+		".",
+		"./.eslintrc.js"
 	]
 }
