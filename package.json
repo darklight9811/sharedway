@@ -10,7 +10,8 @@
 		"component": "cd packages/ds && npx shadcn-ui@latest add",
 		"db": "cd packages/services && dotenv -e ../../.env -- yarn ",
 		"storybook": "cd packages/ds && yarn storybook",
-		"postinstall": "symlink-dir ./public ./apps/app/public"
+		"symlink": "symlink-dir ./public ./apps/app/public",
+		"postinstall": "yarn symlink && yarn db generate"
 	},
 	"prisma": {
 		"schema": "packages/database/prisma/schema.prisma",
