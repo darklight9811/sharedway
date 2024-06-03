@@ -11,11 +11,12 @@ const userService = service({
 		})
 	},
 
-	create (data: User) {
+	create (data: User & { emailVerified: Date }) {
 		return db.user.create({
 			data: {
 				name: data.name,
 				email: data.email,
+				emailVerified: data.emailVerified,
 
 				auth_provider: "clerk",
 				auth_value: data.id,
@@ -27,6 +28,17 @@ const userService = service({
 		if (!id) return undefined
 
 		return db.user.findUnique({ where: { id } })
+	},
+
+	byProvider ({ provider, value }: { provider: string; value: string }) {
+		if (!value) return undefined
+
+		return db.user.findFirst({
+			where: {
+				auth_provider: provider,
+				auth_value: value,
+			},
+		})
 	},
 })
 

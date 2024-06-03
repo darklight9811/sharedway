@@ -13,7 +13,12 @@ export default async function Page ({ searchParams }: { searchParams: { redirect
 			<Suspense fallback={<LoadingCallback />}>
 				{createElement(async function GenerateUser () {
 					const user = await currentUser()
-					await parallel(userService.create(user!))
+					await parallel(userService.create({
+						id: user!.id,
+						name: user!.fullName || user!.username!,
+						email: user!.emailAddresses.at(0)?.emailAddress,
+						emailVerified: user!.emailAddresses.at(0)?.verification?.status === "verified" ? new Date() : undefined,
+					}))
 
 					return (
 						<>

@@ -61,7 +61,7 @@ export async function generateMetadata (params: { locale: string }) {
 			url: base(),
 			siteName: t("title"),
 			type: "website",
-			locale: locale,
+			locale,
 			images: ["/opengraph-image.png"],
 			alternateLocale: ["pt_BR", "en_US"],
 		},
@@ -97,11 +97,11 @@ export default async function RootLayout({
 	const { userId } = auth()
 	const pathname = headers().get("x-pathname")!
 	const [user] = await parallel(
-		userService.show(userId),
+		userService.byProvider({ provider: "clerk", value: userId! }),
 	)
 
 	if (userId && !user && !pathname.includes("/callback")) {
-		return redirect("/callback?redirect" + pathname)
+		return redirect(`/callback?redirect${pathname}`)
 	}
 
 	return (
