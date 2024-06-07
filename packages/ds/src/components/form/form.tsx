@@ -3,8 +3,9 @@
 import { useForm, FormProvider } from "react-hook-form"
 
 interface FormProps {
-	onSubmit: (data: any) => void | Promise<void>;
+	onSubmit: (data: any) => any | Promise<any>;
 	children?: React.ReactNode;
+	className?: string;
 }
 
 export default function Form (props: FormProps) {
@@ -14,7 +15,7 @@ export default function Form (props: FormProps) {
 
 	return (
 		<FormProvider {...form}>
-			<form onSubmit={form.handleSubmit(data => props.onSubmit(data))}>
+			<form onSubmit={form.handleSubmit(data => props.onSubmit(data))} className={props.className}>
 				{props.children}
 			</form>
 		</FormProvider>

@@ -1,6 +1,7 @@
 {
 	"private": true,
 	"scripts": {
+		"i": "yarn --frozen-lockfile --ignore-optional",
 		"build": "dotenv -- turbo build",
 		"dev": "dotenv -- turbo dev",
 		"lint": "turbo lint",
