@@ -3,14 +3,15 @@ import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { cn } from "@repo/ds/utils"
 import { ClerkProvider } from "@clerk/nextjs"
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale, getMessages, getTranslations } from "next-intl/server"
 import { ptBR, enUS } from "@clerk/localizations"
 import { base } from "../../lib/url"
 import { auth } from "@clerk/nextjs/server"
-import userService from "@repo/services/user"
 import parallel from "../../lib/parallel"
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
+import {NextIntlClientProvider} from "next-intl"
+import { currentUser } from "@/modules/user/loaders"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -96,26 +97,30 @@ export default async function RootLayout({
 }) {
 	const { userId } = auth()
 	const pathname = headers().get("x-pathname")!
-	const [user] = await parallel(
-		userService.byProvider({ provider: "clerk", value: userId! }),
+	const [user, messages] = await parallel(
+		currentUser(),
+		getMessages(),
 	)
 
 	if (userId && !user && !pathname.includes("/callback")) {
-		return redirect(`/callback?redirect${pathname}`)
+		return redirect(`/callback?redirect=${pathname}`)
 	}
 
 	return (
 		<html className="h-full" lang={params.locale}>
 			<body className={cn(inter.className, "flex flex-col h-full")}>
-				<ClerkProvider
-					localization={{ "pt-BR": ptBR, "en-US": enUS }[params.locale]}
-					signInUrl={`/${params.locale}/sign-in`}
-					signUpUrl={`/${params.locale}/sign-up`}
-				>
-					<div className="flex-grow w-full flex flex-col child:animate-fade-in">
-						{children}
-					</div>
-				</ClerkProvider>
+				<NextIntlClientProvider messages={messages}>
+					<ClerkProvider
+						polling={false}
+						localization={{ "pt-BR": ptBR, "en-US": enUS }[params.locale]}
+						signInUrl={`/${params.locale}/sign-in`}
+						signUpUrl={`/${params.locale}/sign-up`}
+					>
+						<div className="flex-grow w-full flex flex-col child:animate-fade-in">
+							{children}
+						</div>
+					</ClerkProvider>
+				</NextIntlClientProvider>
 			</body>
 		</html>
 	)

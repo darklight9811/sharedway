@@ -1,11 +1,16 @@
-import { auth } from "@clerk/nextjs/server"
+import { currentUser } from "@/modules/user/loaders"
+import type Metadata from "@repo/services/types/metadata"
 
-export default function parallel <T extends any[]>(...props: T) {
-	const metadata = {
-		auth: auth(),
-	}
+export async function buildMetadata() {
+	return {
+		user: await currentUser(),
+	} satisfies Metadata
+}
 
-	return Promise.all(props.map(prop => prop(metadata))) as {
-		[key in keyof T]: Awaited<ReturnType<Awaited<T[key]>>>
+export default async function parallel <T extends any[]>(...props: T) {
+	const metadata = await buildMetadata()
+
+	return Promise.all(props.map(prop => typeof prop === "function" ? prop(metadata) : prop)) as {
+		[key in keyof T]: T[key] extends Function ? Awaited<ReturnType<T[key]>> : Awaited<T[key]>;
 	}
 }

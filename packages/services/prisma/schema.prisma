@@ -15,6 +15,12 @@ enum EntityType {
     animal
 }
 
+enum Gender {
+    male
+    female
+    other
+}
+
 model User {
     id            String    @id @default(cuid())
     name          String?
@@ -43,15 +49,47 @@ model Entity {
 
     user_created User            @relation(fields: [id_user_created], references: [id], onDelete: Cascade)
     pictures     EntityPicture[]
+    addresses    EntityAddress[]
+    data         EntityData?
 
     @@map("entities")
+}
+
+model EntityData {
+    id String @id @default(cuid())
+
+    age    Int
+    race   String
+    gender Gender
+
+    id_entity String @unique
+
+    entity Entity @relation(fields: [id_entity], references: [id])
+
+    @@map("entity_data")
+}
+
+model EntityAddress {
+    id String @id @default(cuid())
+
+    district String?
+    city     String?
+    state    String?
+    country  String  @default("brazil")
+
+    id_entity String
+
+    entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
+
+    @@map("entity_addresses")
 }
 
 model EntityPicture {
     id String @id @default(cuid())
 
-    id_picture String
-    id_entity  String
+    url String
+
+    id_entity String
 
     entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
 

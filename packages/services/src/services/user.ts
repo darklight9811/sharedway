@@ -11,7 +11,9 @@ const userService = service({
 		})
 	},
 
-	create (data: User & { emailVerified: Date }) {
+	create (data: User & { emailVerified: Date }, { user }) {
+		if (user?.id) return user
+
 		return db.user.create({
 			data: {
 				name: data.name,
@@ -37,6 +39,13 @@ const userService = service({
 			where: {
 				auth_provider: provider,
 				auth_value: value,
+			},
+
+			select: {
+				id: true,
+				name: true,
+				email: true,
+				emailVerified: true,
 			},
 		})
 	},

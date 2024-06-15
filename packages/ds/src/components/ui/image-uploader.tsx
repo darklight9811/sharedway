@@ -1,8 +1,12 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { Camera, X } from "lucide-react"
+import { useUpdate } from "../../lib/react"
+import { useTranslations } from "next-intl"
 
 interface Props {
+	onChange?(files: File[]): void;
+
 	max?: number;
 	size?: number;
 
@@ -10,6 +14,8 @@ interface Props {
 }
 
 export default function ImageUploader(props: Props) {
+	const t = useTranslations("form.errors")
+	const collapse = useRef(false)
 	const [files, setFiles] = useState<(File & { id: string; preview: string })[]>([])
 	const { getRootProps, getInputProps, open, fileRejections } = useDropzone({
 		noClick: true,
@@ -22,7 +28,7 @@ export default function ImageUploader(props: Props) {
 				})),
 			])
 		},
-		maxSize: props.size,
+		maxSize: (props.size || 2) * 1_000_000,
 		multiple: true,
 		maxFiles: props.max,
 		accept: {
@@ -31,6 +37,12 @@ export default function ImageUploader(props: Props) {
 			"img/jpeg": [".jpeg"],
 		},
 	})
+
+	useUpdate(function triggerEvent () {
+		props.onChange?.(files)
+	}, [files])
+
+	collapse.current = false
 
 	return (
 		<div {...getRootProps({ className: "relative" })}>
@@ -55,7 +67,11 @@ export default function ImageUploader(props: Props) {
 				})}
 
 				{(!props.max || files.length < props.max) && (
-					<button onClick={() => open()} type="button" className=" pb-2 pr-2 relative aspect-square w-full text-border max-w-24 rounded-lg border-4 border-dashed flex justify-center items-center">
+					<button
+						onClick={() => open()}
+						type="button"
+						className=" pb-2 pr-2 relative aspect-square w-full text-border max-w-24 rounded-lg border-4 border-dashed flex justify-center items-center"
+					>
 						<Camera size="52" />
 
 						<span className="text-5xl absolute bottom-1 right-1">+</span>
@@ -63,12 +79,27 @@ export default function ImageUploader(props: Props) {
 				)}
 			</div>
 
-			<div
-				className="mt-4 bg-red-300 border-2 border-red-400 rounded p-2"
-				style={{ opacity: (fileRejections.length > 0 || props.max === files.length) && props.maxQuantityError ? 1 : 0 }}
-			>
-				{props.maxQuantityError}
-			</div>
+			{
+				fileRejections.map(function (rejection, index) {
+					if (rejection.errors.at(0)!.code === "too-many-files") {
+						if (collapse.current === true) return null
+						collapse.current = true
+					}
+
+					return (
+						<div
+							key={`${index}${rejection.file.name}`}
+							className="mt-4 bg-red-300 border-2 border-red-400 rounded p-2"
+						>
+							{t(rejection.errors.at(0)!.code || rejection.errors.at(0)!.message, {
+								name: rejection.file.name,
+								size: props.size || 2,
+							})}
+						</div>
+					)
+				})
+			}
+
 		</div>
 	)
 }

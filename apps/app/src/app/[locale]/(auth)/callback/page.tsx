@@ -1,11 +1,11 @@
 import { buttonVariants } from "@repo/ds/ui/button"
 import Image from "next/image"
 import { Suspense, createElement } from "react"
-import { Link } from "@/lib/navigation"
 import { Loader } from "lucide-react"
 import parallel from "@/lib/parallel"
 import userService from "@repo/services/user"
 import { currentUser } from "@clerk/nextjs/server"
+import Link from "next/link"
 
 export default async function Page ({ searchParams }: { searchParams: { redirect?: string } }) {
 	return (

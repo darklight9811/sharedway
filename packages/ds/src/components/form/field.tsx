@@ -1,6 +1,7 @@
 "use client"
 
-import { Controller, useFormContext } from "react-hook-form"
+import { Controller } from "react-hook-form"
+import { useTranslations } from "next-intl"
 import { cn } from "../../lib/utils"
 import { Label } from "../ui/label"
 
@@ -9,17 +10,31 @@ interface FieldProps {
 	render: Parameters<typeof Controller>[0]["render"];
 
 	label?: React.ReactNode;
+	description?: React.ReactNode;
 	className?: string;
 }
 
-export default function Field (props: FieldProps) {
-	const { control } = useFormContext()
+export default function Field(props: FieldProps) {
+	const t = useTranslations("form.errors")
 
 	return (
-		<fieldset className={cn("mb-4", props.className)}>
-			{props.label ? <Label htmlFor={props.name}>{props.label}</Label> : null}
+		<Controller
+			name={props.name}
+			render={function (context) {
+				return (
+					<fieldset className={cn("mb-4", props.className)}>
+						{props.label ? <Label htmlFor={props.name}>{props.label}</Label> : null}
 
-			<Controller name={props.name} render={props.render} />
-		</fieldset>
+						{props.render(context)}
+
+						{props.description ? <p className="text-sm text-muted-foreground">{props.description}</p> : null}
+
+						<p className="mt-2 text-sm font-medium text-destructive">
+							{context.fieldState.error ? t(context.fieldState.error?.type || context.fieldState.error?.message) : " "}
+						</p>
+					</fieldset>
+				)
+			}}
+		/>
 	)
 }

@@ -3,5 +3,11 @@
 		"title": "Reencontre-me",
 		"description": "",
 		"keywords": ""
+	},
+	"form": {
+		"errors": {
+			"file-too-large": "O arquivo \"{name}\" carregado é maior do que {size}mb",
+			"too-many-files": "Arquivos demais foram carregados de uma vez"
+		}
 	}
 }

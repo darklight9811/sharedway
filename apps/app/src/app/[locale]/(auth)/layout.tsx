@@ -1,6 +1,6 @@
-import { env } from "@repo/env";
-import Image from "next/image";
-import Footer from "../_components/footer";
+import { env } from "@repo/env"
+import Image from "next/image"
+import Footer from "../_components/footer"
 
 export default function Layout ({ children }: { children: React.ReactNode }) {
 	return (

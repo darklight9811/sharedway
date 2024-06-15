@@ -11,9 +11,10 @@
 	"devDependencies": {
 		"@repo/config": "0.0.0",
 		"eslint": "^8.56.0",
-		"typescript": "^5.3.3"
+		"typescript": "^5.4.5"
 	},
 	"dependencies": {
-		"zod": "^3.22.4"
+		"zod": "^3.22.4",
+		"zod-form-data": "^2.0.2"
 	}
 }

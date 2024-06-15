@@ -1,4 +1,4 @@
-import createNextIntlPlugin  from "next-intl/plugin"
+import createNextIntlPlugin from "next-intl/plugin"
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
@@ -15,6 +15,11 @@ const config = {
 			{
 				protocol: "https",
 				hostname: "img.clerk.com",
+			},
+			{
+				protocol: "https",
+				hostname: "utfs.io",
+				pathname: "/a/tc1gytk5ch/*",
 			},
 		],
 	},
