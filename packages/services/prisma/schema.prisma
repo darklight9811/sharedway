@@ -87,7 +87,8 @@ model EntityAddress {
 model EntityPicture {
     id String @id @default(cuid())
 
-    url String
+	key String @unique
+    url String @unique
 
     id_entity String
 

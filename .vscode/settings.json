@@ -6,6 +6,7 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll": "explicit"
 	},
+	"editor.minimap.renderCharacters": false,
 	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
 	"git.autofetch": true,
 	"files.watcherExclude": {

@@ -21,11 +21,13 @@ export default function Field(props: FieldProps) {
 		<Controller
 			name={props.name}
 			render={function (context) {
+				const { ref: _, ...rest } = context.field
+
 				return (
 					<fieldset className={cn("mb-4", props.className)}>
 						{props.label ? <Label htmlFor={props.name}>{props.label}</Label> : null}
 
-						{props.render(context)}
+						{props.render({ ...context, field: rest as any })}
 
 						{props.description ? <p className="text-sm text-muted-foreground">{props.description}</p> : null}
 

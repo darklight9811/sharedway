@@ -9,7 +9,7 @@ import { cn } from "../../lib/utils"
 const Select = React.forwardRef<
 React.ElementRef<typeof SelectPrimitive.Root>,
 React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> & { onChange(value: string): void }
->(({ onChange, ...props }) => SelectPrimitive.Root({ ...props, onValueChange: onChange }))
+>(({ onChange, ...props }, ref) => SelectPrimitive.Root({ ...props, ref, onValueChange: onChange } as any))
 Select.displayName = SelectPrimitive.Root.displayName
 
 const SelectGroup = SelectPrimitive.Group

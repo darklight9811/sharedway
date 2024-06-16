@@ -9,10 +9,11 @@ import ImageUploader from "@repo/ds/ui/image-uploader"
 import { Input } from "@repo/ds/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@repo/ds/ui/select"
 import { Textarea } from "@repo/ds/ui/textarea"
-import { entityStoreSchema } from "@repo/schemas/entity"
+import { entityStoreSchema, entityUpdateSchema } from "@repo/schemas/entity"
 
 interface Props {
 	onSubmit (data: any): Promise<any>;
+	schema?: "store" | "update";
 	data?: any;
 }
 
@@ -21,7 +22,7 @@ export default function EntityForm (props: Props) {
 
 		<Form
 			data={props.data}
-			schema={entityStoreSchema}
+			schema={props.schema === "update" ? entityUpdateSchema : entityStoreSchema}
 			onSubmit={props.onSubmit}
 			className="w-full max-w-5xl flex gap-8 flex-col"
 		>
@@ -86,13 +87,12 @@ export default function EntityForm (props: Props) {
 					<h2 className="text-2xl mb-4">Fotos</h2>
 
 					<Field
-						name="images"
+						name="pictures"
 						render={({ field }) => {
 							return (
 								<ImageUploader
 									max={5}
-									onChange={field.onChange}
-									maxQuantityError="Por enquanto só aceitamos até 5 imagens por desaparecido"
+									{...field}
 								/>
 							)
 						}}

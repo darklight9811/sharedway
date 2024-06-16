@@ -3,7 +3,7 @@ import type { ZodSchema, z } from "zod"
 import type Metadata from "../types/metadata"
 
 // -------------------------------------------------
-// Type
+// MARK: Types
 // -------------------------------------------------
 
 type Config<Bind extends Record<string, any>> = {
@@ -84,13 +84,13 @@ export type PrepareApi<
 		metadataBuilder: () => Metadata | Promise<Metadata>,
 	): PrepareApi<
 	Bound,
-	Result,
+	Input,
 	Result
 	>;
 };
 
 // -------------------------------------------------
-// Main
+// MARK: Main
 // -------------------------------------------------
 
 export default function createApi<Bind extends Record<string, any>>(config: Config<Bind>) {
@@ -178,3 +178,7 @@ export default function createApi<Bind extends Record<string, any>>(config: Conf
 
 	return prepare()
 }
+
+// -------------------------------------------------
+// MARK: Helpers
+// -------------------------------------------------

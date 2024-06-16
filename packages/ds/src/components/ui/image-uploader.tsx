@@ -4,19 +4,26 @@ import { Camera, X } from "lucide-react"
 import { useUpdate } from "../../lib/react"
 import { useTranslations } from "next-intl"
 
+interface Filesque extends File {
+	id: string;
+	url: string;
+
+	_upload?: boolean;
+	remove?: boolean;
+}
+
 interface Props {
-	onChange?(files: File[]): void;
+	onChange?(files: Filesque[]): void;
+	value?: Filesque[];
 
 	max?: number;
 	size?: number;
-
-	maxQuantityError?: string;
 }
 
 export default function ImageUploader(props: Props) {
 	const t = useTranslations("form.errors")
 	const collapse = useRef(false)
-	const [files, setFiles] = useState<(File & { id: string; preview: string })[]>([])
+	const [files, setFiles] = useState(props.value || [])
 	const { getRootProps, getInputProps, open, fileRejections } = useDropzone({
 		noClick: true,
 		onDrop(income) {
@@ -24,7 +31,8 @@ export default function ImageUploader(props: Props) {
 				...prev,
 				...income.map(file => Object.assign(file, {
 					id: `${Math.ceil(Math.random() * 10000)}`,
-					preview: URL.createObjectURL(file),
+					url: URL.createObjectURL(file),
+					_upload: true,
 				})),
 			])
 		},
@@ -48,17 +56,24 @@ export default function ImageUploader(props: Props) {
 		<div {...getRootProps({ className: "relative" })}>
 			<input {...getInputProps()} />
 			<div className="flex flex-wrap mt-4 gap-2">
-				{files.map((file, index) => {
+				{files.filter(t => !t.remove).map((file, index) => {
 					return (
 						<div
-							key={file.name + index}
+							key={`${file.name}${index}`}
 							className="aspect-square w-full max-w-24 rounded-lg bg-cover relative overflow-hidden"
-							style={{ backgroundImage: `url(${file.preview})` }}
+							style={{ backgroundImage: `url(${file.url})` }}
 						>
 							<button
 								type="button"
 								className="absolute w-full h-full top-0 left-0 p-1 flex text-white bg-gradient-to-br from-[rgba(0,0,0,0.7)] via-[rgba(0,0,0,0)] to-[rgba(0,0,0,0)]"
-								onClick={() => setFiles(prev => prev.filter(t => t.id !== file.id))}
+								onClick={() =>{
+									setFiles(prev => {
+										if (file._upload !== false)
+											return prev.map(t => t.id === file.id ? { ...t, remove: true } : t)
+
+										return prev.filter(t => t.id !== file.id)
+									})
+								}}
 							>
 								<X />
 							</button>

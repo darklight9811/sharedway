@@ -1,5 +1,5 @@
 import type { Pagination } from "@repo/schemas/pagination"
-import type { EntityStoreSchema } from "@repo/schemas/entity"
+import type { EntityStoreSchema, EntityUpdateSchema } from "@repo/schemas/entity"
 import { db } from "../lib/db"
 import service from "../lib/service"
 import pagination from "@repo/schemas/pagination"
@@ -7,25 +7,44 @@ import { entityStoreSchema } from "@repo/schemas/entity"
 import uploader from "../lib/uploader"
 
 const entityService = service({
+	/**
+	 * ### MARK: Index
+	 *
+	 * Display a paginable list of entities
+	 *
+	 * @param input
+	 * @returns
+	 */
 	index (input?: Pagination) {
 		const { page, limit } = pagination.parse(input)
 
 		return db.entity.paginate({
 			page,
 			limit,
-			map(entry) {
-				return {
-					...entry,
-					img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Tabby_Kitten_on_Blue_Throw.jpg/220px-Tabby_Kitten_on_Blue_Throw.jpg",
-				}
+			select: {
+				id: true,
+				date_created: true,
+				name: true,
+				pictures: {
+					take: 1,
+				},
 			},
 		})
 	},
 
+	/**
+	 * ### MARK: Store
+	 *
+	 * Stores an entity with all information on it
+	 *
+	 * @param input
+	 * @param metadata
+	 * @returns
+	 */
 	async store (input: EntityStoreSchema, { user }) {
 		const data = entityStoreSchema.parse(input)
 
-		const files = await uploader.uploadFiles(data.images)
+		const files = await uploader.uploadFiles(data.pictures)
 
 		const response = await db.entity.create({
 			data: {
@@ -53,6 +72,7 @@ const entityService = service({
 					createMany: {
 						data: files.filter(t => t).map(function (file) {
 							return {
+								key: file.data!.key,
 								url: file.data!.url,
 							}
 						}),
@@ -68,6 +88,11 @@ const entityService = service({
 		return response
 	},
 
+	/**
+	 * ### MARK: Show
+	 *
+	 * Display full information about an entity
+	 */
 	show (id: string) {
 		return db.entity.findUnique({
 			where: { id },
@@ -92,6 +117,96 @@ const entityService = service({
 				},
 			},
 		})
+	},
+
+	/**
+	 * ### MARK: Update
+	 *
+	 * Update parts of the field of the entity
+	 */
+	async update (payload: { id: string; data: Partial<EntityUpdateSchema> }) {
+		const add_files: File[] = []
+		const remove_files: { id: string; remove: boolean }[] = []
+
+		payload.data.pictures?.forEach((value) => {
+			if ((value as { remove: boolean }).remove) remove_files.push(value as (typeof remove_files)[number])
+			if ((value as File).size) add_files.push(value as File)
+		})
+
+		await Promise.all([
+			// add pictures
+			add_files.length > 0 && db.$transaction(async tx => {
+				const files = await uploader.uploadFiles(add_files)
+
+				await tx.entity.update({
+					where: { id: payload.id },
+					data: {
+						pictures: {
+							createMany: {
+								data: files.filter(t => t).map(function (file) {
+									return {
+										key: file.data!.key,
+										url: file.data!.url,
+									}
+								}),
+							},
+						},
+					},
+				})
+			}),
+			// remove pictures
+			remove_files.length > 0 && db.$transaction(async tx => {
+				const key_files = await tx.entityPicture.findMany({ where: { id: { in: remove_files.map(t => t.id) } } })
+				await uploader.deleteFiles(key_files.map(t => t.key))
+
+				await tx.entity.update({
+					where: { id: payload.id },
+					data: {
+						pictures: {
+							deleteMany: {
+								id: { in: key_files.map(t => t.id) },
+							},
+						},
+					},
+				})
+			}),
+			// handle data
+			db.entity.update({
+				where: { id: payload.id },
+				data: {
+					name: payload.data.name,
+					description: payload.data.description,
+					data: {
+						update: payload.data.data,
+					},
+					addresses: {
+						update: {
+							where: { id: payload.data.addresses![0].id },
+							data: payload.data.addresses![0],
+						},
+					},
+				},
+			}),
+		])
+	},
+
+	/**
+	 * ### MARK: Delete
+	 *
+	 * Remove an entity permanently
+	 *
+	 * @param id
+	 * @param param1
+	 */
+	async delete (id: string, { user }) {
+		const data = await db.entity.findFirst({
+			where: {
+				id,
+				id_user_created: user!.id,
+			},
+		})
+
+		await Promise.all([])
 	},
 })
 

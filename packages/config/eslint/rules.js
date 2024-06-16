@@ -4,6 +4,7 @@ module.exports = {
 	"@next/next/no-html-link-for-pages": "off",
 
 	// Eslint
+	"camelcase": 0,
 	"func-names": 0,
 	"no-inner-declarations": 0,
 	"import/no-anonymous-default-export": 0,
