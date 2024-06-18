@@ -23,3 +23,13 @@ export const update = api
 			reload: true,
 		}
 	})
+
+export const remove = api
+	.zod(z.string())
+	.service(entityService.delete, buildMetadata)
+	.action(async function () {
+		return {
+			redirect: "/",
+			message: "Apagado com sucesso"
+		}
+	})

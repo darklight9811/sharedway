@@ -64,7 +64,7 @@ model EntityData {
 
     id_entity String @unique
 
-    entity Entity @relation(fields: [id_entity], references: [id])
+    entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
 
     @@map("entity_data")
 }

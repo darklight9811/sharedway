@@ -204,9 +204,24 @@ const entityService = service({
 				id,
 				id_user_created: user!.id,
 			},
+			select: {
+				id: true,
+				pictures: {
+					select: {
+						key: true,
+					},
+				},
+			},
 		})
 
-		await Promise.all([])
+		if (!data) throw new Error("no")
+
+		return db.$transaction(async tx => {
+			return Promise.all([
+				tx.entity.delete({ where: { id } }),
+				uploader.deleteFiles(data?.pictures.map(t => t.key)),
+			])
+		})
 	},
 })
 
