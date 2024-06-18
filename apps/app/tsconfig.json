@@ -22,5 +22,6 @@
 		"./.eslintrc.js",
 		"./tailwind.config.ts",
 		"./postcss.config.js"
-	]
+	],
+	"exclude": [".next/*"]
 }
