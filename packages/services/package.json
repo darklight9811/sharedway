@@ -28,6 +28,6 @@
 		"eslint": "^8.56.0",
 		"prisma": "^5.15.0",
 		"@repo/config": "0.0.0",
-		"typescript": "^5.4.5"
+		"typescript": "^5.5.2"
 	}
 }
