@@ -8,7 +8,7 @@
 		"start": "next start",
 		"lint": "next lint",
 		"type-check": "tsc --noEmit",
-		"symlink": "symlink-dir ./apps/app/public ./public",
+		"symlink": "symlink-dir ../../public ./public",
 		"db": "cd ../../packages/services && dotenv -e ../../.env -- yarn ",
 		"postinstall": "yarn symlink && yarn db generate"
 	},
