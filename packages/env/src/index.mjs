@@ -14,6 +14,11 @@ const server = z.object({
 
 	UPLOADTHING_SECRET: z.string().min(1),
 	UPLOADTHING_APP_ID: z.string().min(1),
+
+	KV_URL: z.string().min(1),
+	KV_REST_API_URL: z.string().min(1),
+	KV_REST_API_TOKEN: z.string().min(1),
+	KV_REST_API_READ_ONLY_TOKEN: z.string().min(1),
 })
 
 /**
@@ -41,6 +46,11 @@ const processEnv = {
 
 	UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
 	UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
+
+	KV_URL: process.env.KV_URL,
+	KV_REST_API_URL: process.env.KV_REST_API_URL,
+	KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
+	KV_REST_API_READ_ONLY_TOKEN: process.env.KV_REST_API_READ_ONLY_TOKEN,
 }
 
 // Don't touch the part below

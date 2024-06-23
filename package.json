@@ -1,5 +1,5 @@
 {
-	"name": "reencontre-me",
+	"name": "sharedway",
 	"private": true,
 	"scripts": {
 		"i": "yarn --frozen-lockfile --ignore-optional",
