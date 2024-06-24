@@ -26,10 +26,10 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 	if (!data || data.user_created.id !== user?.id) return notFound();
 
-	async function update(data: EntityUpdateSchema) {
+	async function update(data: unknown) {
 		"use server";
 
-		return actions.update({ id: params.id, data });
+		return actions.update({ id: params.id, data: data as EntityUpdateSchema });
 	}
 
 	async function remove() {

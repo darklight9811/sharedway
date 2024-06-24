@@ -18,7 +18,8 @@ import { Textarea } from "@repo/ds/ui/textarea";
 import { entityStoreSchema, entityUpdateSchema } from "@repo/schemas/entity";
 
 interface Props {
-	onSubmit(data: FormData): Promise<Record<string, unknown>>;
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	onSubmit(data: any): Promise<Record<string, unknown>>;
 	schema?: "store" | "update";
 	data?: Record<string, unknown>;
 }
