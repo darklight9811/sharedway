@@ -1,12 +1,12 @@
-import { buttonVariants } from "@repo/ds/ui/button";
-import Image from "next/image";
-import { Suspense, createElement } from "react";
-import { Loader } from "lucide-react";
 import parallel from "@/lib/parallel";
-import userService from "@repo/services/user";
 import { currentUser } from "@clerk/nextjs/server";
+import { buttonVariants } from "@repo/ds/ui/button";
+import userService from "@repo/services/user";
+import { Loader } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense, createElement } from "react";
 
 export default async function Page({
 	searchParams,

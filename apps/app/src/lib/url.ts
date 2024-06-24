@@ -1,5 +1,5 @@
-import { headers } from "next/headers";
 import { env } from "@repo/env";
+import { headers } from "next/headers";
 
 export function base(port?: number) {
 	if (typeof window !== "undefined") return document.URL; // browser should use relative url

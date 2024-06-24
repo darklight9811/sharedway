@@ -1,17 +1,17 @@
 import "./globals.css";
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import { cn } from "@repo/ds/utils";
+import { currentUser } from "@/modules/user/loaders";
+import { enUS, ptBR } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
-import { getLocale, getMessages, getTranslations } from "next-intl/server";
-import { ptBR, enUS } from "@clerk/localizations";
-import { base } from "../../lib/url";
 import { auth } from "@clerk/nextjs/server";
-import parallel from "../../lib/parallel";
+import { cn } from "@repo/ds/utils";
+import type { Metadata, Viewport } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { NextIntlClientProvider } from "next-intl";
-import { currentUser } from "@/modules/user/loaders";
+import parallel from "../../lib/parallel";
+import { base } from "../../lib/url";
 
 const inter = Inter({ subsets: ["latin"] });
 

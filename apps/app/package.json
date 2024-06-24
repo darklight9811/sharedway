@@ -8,6 +8,7 @@
 		"start": "next start",
 		"lint": "biome lint --error-on-warnings ./src",
 		"format": "biome format --error-on-warnings ./src",
+		"verify": "biome check --error-on-warnings ./src",
 		"type-check": "tsc --noEmit",
 		"postinstall": "cd ../../ && yarn postinstall"
 	},

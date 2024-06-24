@@ -1,7 +1,7 @@
 "use client";
 
-import { Controller } from "react-hook-form";
 import { useTranslations } from "next-intl";
+import { Controller } from "react-hook-form";
 import { cn } from "../../lib/utils";
 import { Label } from "../ui/label";
 

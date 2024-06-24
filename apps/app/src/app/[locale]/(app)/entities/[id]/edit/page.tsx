@@ -1,11 +1,9 @@
-import entityService from "@repo/services/entity";
 import parallel from "@/lib/parallel";
-import { notFound } from "next/navigation";
-import { currentUser } from "@/modules/user/loaders";
-import EntityForm from "@/modules/entity/components/entity-form";
 import * as actions from "@/modules/entity/actions";
+import EntityForm from "@/modules/entity/components/entity-form";
+import { currentUser } from "@/modules/user/loaders";
+import Form from "@repo/ds/form/form";
 import { Button } from "@repo/ds/ui/button";
-import { Trash } from "lucide-react";
 import {
 	Dialog,
 	DialogContent,
@@ -15,8 +13,10 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@repo/ds/ui/dialog";
-import Form from "@repo/ds/form/form";
 import type { EntityUpdateSchema } from "@repo/schemas/entity";
+import entityService from "@repo/services/entity";
+import { Trash } from "lucide-react";
+import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {
 	const [data, user] = await parallel(

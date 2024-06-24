@@ -1,11 +1,11 @@
-import entityService from "@repo/services/entity";
-import parallel from "@/lib/parallel";
-import { notFound } from "next/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
-import { User, Cat, Edit } from "lucide-react";
 import { Link } from "@/lib/navigation";
-import { buttonVariants } from "@repo/ds/ui/button";
+import parallel from "@/lib/parallel";
 import { currentUser } from "@/modules/user/loaders";
+import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
+import { buttonVariants } from "@repo/ds/ui/button";
+import entityService from "@repo/services/entity";
+import { Cat, Edit, User } from "lucide-react";
+import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {
 	const [data, user] = await parallel(

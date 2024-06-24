@@ -8,7 +8,8 @@
 	},
 	"overrides": [
 		{
-			"include": ["@repo/config/eslint/general.json"]
+			"include": ["@repo/config/eslint/general.json"],
+			"ignore": ["./next"]
 		}
 	]
 }

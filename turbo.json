@@ -24,6 +24,7 @@
 			"outputs": ["dist/**", ".next/**", "!.next/cache/**"]
 		},
 		"lint": {},
+		"verify": {},
 		"format": {},
 		"type-check": {},
 		"db:migrate:deploy": {},

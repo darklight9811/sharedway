@@ -1,10 +1,10 @@
-import createMiddleware from "next-intl/middleware";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-import { locales } from "./i18n";
-import { NextResponse } from "next/server";
 import { Ratelimit } from "@upstash/ratelimit";
-import { kv } from "@vercel/kv";
 import { ipAddress } from "@vercel/edge";
+import { kv } from "@vercel/kv";
+import createMiddleware from "next-intl/middleware";
+import { NextResponse } from "next/server";
+import { locales } from "./i18n";
 
 /**
  * MARK: Route matchers

@@ -1,8 +1,8 @@
+import { Camera, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { Camera, X } from "lucide-react";
 import { useUpdate } from "../../lib/react";
-import { useTranslations } from "next-intl";
 
 interface Filesque extends File {
 	id: string;

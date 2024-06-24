@@ -1,17 +1,17 @@
 import { SignOutButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
+import { buttonVariants } from "@repo/ds/ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@repo/ds/ui/dropdown-menu";
+import { env } from "@repo/env";
 import { User } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "../../../lib/navigation";
-import { buttonVariants } from "@repo/ds/ui/button";
-import { env } from "@repo/env";
 
 export default async function Navbar() {
 	const [user, t] = await Promise.all([
