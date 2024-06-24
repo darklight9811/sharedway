@@ -18,9 +18,9 @@ import { Textarea } from "@repo/ds/ui/textarea";
 import { entityStoreSchema, entityUpdateSchema } from "@repo/schemas/entity";
 
 interface Props {
-	onSubmit(data: unknown): Promise<unknown>;
+	onSubmit(data: FormData): Promise<Record<string, unknown>>;
 	schema?: "store" | "update";
-	data?: unknown;
+	data?: Record<string, unknown>;
 }
 
 export default function EntityForm(props: Props) {
