@@ -1,7 +1,5 @@
-import { UTApi } from "uploadthing/server"
+import { UTApi } from "uploadthing/server";
 
-const uploader = new UTApi({
+const uploader = new UTApi({});
 
-})
-
-export default uploader
+export default uploader;

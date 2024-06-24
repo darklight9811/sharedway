@@ -7,4 +7,4 @@ interface Metadata {
 	} | null;
 }
 
-export default Metadata
+export default Metadata;
