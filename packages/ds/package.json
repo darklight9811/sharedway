@@ -17,6 +17,11 @@
 		"format": "biome format --error-on-warnings ./src",
 		"build-storybook": "storybook build"
 	},
+	"overrides": {
+		"@storybook/nextjs@^8.1.10": {
+			"sharp": "0.32.6"
+		}
+	},
 	"devDependencies": {
 		"@chromatic-com/storybook": "1.5.0",
 		"@repo/config": "0.0.0",
