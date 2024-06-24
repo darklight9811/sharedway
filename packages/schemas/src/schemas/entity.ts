@@ -38,7 +38,7 @@ export const entityStoreSchema = zfd.formData({
 
 	description: z.string().default(""),
 
-	pictures: zfd.repeatableOfType(z.any().transform(t => t as File)),
+	pictures: zfd.repeatableOfType(z.any().transform(t => t as File)).innerType().max(5),
 
 	addresses: z.array(address.omit({ id: true })),
 })
@@ -52,7 +52,7 @@ export const entityUpdateSchema = zfd.formData(z.object({
 
 	description: z.string().default(""),
 
-	pictures: zfd.repeatableOfType(z.any().transform(t => t as File | { id: string; remove: boolean })),
+	pictures: zfd.repeatableOfType(z.any().transform(t => t as File | { id: string; remove: boolean })).innerType().max(5),
 
 	addresses: z.array(address),
 }).partial())

@@ -44,6 +44,12 @@ const entityService = service({
 	async store (input: EntityStoreSchema, { user }) {
 		const data = entityStoreSchema.parse(input)
 
+		// TODO remove hardlimit into a feature flag
+		const count = await db.entity.count({ where: { id_user_created: user!.id } })
+		if (count >= 5) {
+			throw new Error("Max entity quantity created")
+		}
+
 		const files = await uploader.uploadFiles(data.pictures)
 
 		const response = await db.entity.create({
