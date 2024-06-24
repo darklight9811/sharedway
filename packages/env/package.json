@@ -5,12 +5,8 @@
 	"exports": {
 		".": "./src/index.mjs"
 	},
-	"scripts": {
-		"lint": "eslint . --max-warnings 0"
-	},
 	"devDependencies": {
 		"@repo/config": "0.0.0",
-		"eslint": "^8.56.0",
 		"typescript": "^5.5.2"
 	},
 	"dependencies": {

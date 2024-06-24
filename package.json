@@ -21,17 +21,13 @@
 	},
 	"devDependencies": {
 		"@repo/config": "0.0.0",
-		"eslint": "^8.56.0",
 		"turbo": "2.0.4"
 	},
 	"engines": {
 		"node": ">=18"
 	},
 	"packageManager": "yarn@1.22.19",
-	"workspaces": [
-		"apps/*",
-		"packages/*"
-	],
+	"workspaces": ["apps/*", "packages/*"],
 	"dependencies": {
 		"dotenv-cli": "^7.4.1",
 		"symlink-dir": "^6.0.0",

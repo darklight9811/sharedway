@@ -1,57 +1,12 @@
 {
-	"[json]": {
-		"editor.wordWrap": "on",
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
-	},
-	"editor.codeActionsOnSave": {
-		"source.fixAll": "explicit"
-	},
-	"editor.minimap.renderCharacters": false,
-	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
-	"git.autofetch": true,
-	"files.watcherExclude": {
-		"**/.git/objects/**": true,
-		"**/.git/subtree-cache/**": true,
-		"**/node_modules/*/**": true,
-		"**/.hg/store/**": true
-	},
+	"editor.defaultFormatter": "biomejs.biome",
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"javascript.updateImportsOnFileMove.enabled": "always",
-	"[javascript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
-	},
-	"[jsonc]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
-	},
-	"extensions.ignoreRecommendations": true,
-	"git.confirmSync": false,
-	"[html]": {
-		"editor.defaultFormatter": "vscode.html-language-features"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
-	},
 	"files.associations": {
 		"*.json": "jsonc",
 		".env.local": "env"
 	},
-	"editor.detectIndentation": false,
-	"editor.insertSpaces": false,
-	"editor.tabCompletion": "on",
-	"workbench.iconTheme": "material-icon-theme",
-	"material-icon-theme.folders.associations": {
-		"foundation": "config",
-		"react": "React-Components",
-		".next": "vercel",
-		"storage": "Database"
-	},
-	"diffEditor.ignoreTrimWhitespace": false,
-	"explorer.confirmDelete": false,
-	"files.eol": "\n",
-	"editor.codeLens": false,
-	"workbench.startupEditor": "none",
 	"typescript.tsdk": "node_modules\\typescript\\lib",
-	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"tailwindCSS.experimental.classRegex": [
 		[
 			"cva\\(([^)]*)\\)",

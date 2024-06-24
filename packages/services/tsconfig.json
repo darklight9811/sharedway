@@ -1,7 +1,4 @@
 {
 	"extends": "@repo/config/typescript/nextjs.json",
-	"include": [
-		".",
-		"./.eslintrc.js"
-	]
+	"include": ["."]
 }
