@@ -1,8 +1,6 @@
 {
 	"$schema": "https://turbo.build/schema.json",
-	"globalDependencies": [
-		"**/.env.*local"
-	],
+	"globalDependencies": ["**/.env.*local"],
 	"globalEnv": [
 		"APP_NAME",
 		"APP_SECRET",
@@ -22,16 +20,11 @@
 	],
 	"tasks": {
 		"build": {
-			"dependsOn": [
-				"^build"
-			],
-			"outputs": [
-				"dist/**",
-				".next/**",
-				"!.next/cache/**"
-			]
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**", ".next/**", "!.next/cache/**"]
 		},
 		"lint": {},
+		"format": {},
 		"type-check": {},
 		"db:migrate:deploy": {},
 		"db:push": {},

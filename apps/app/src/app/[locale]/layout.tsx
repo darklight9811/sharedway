@@ -1,25 +1,25 @@
-import "./globals.css"
-import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
-import { cn } from "@repo/ds/utils"
-import { ClerkProvider } from "@clerk/nextjs"
-import { getLocale, getMessages, getTranslations } from "next-intl/server"
-import { ptBR, enUS } from "@clerk/localizations"
-import { base } from "../../lib/url"
-import { auth } from "@clerk/nextjs/server"
-import parallel from "../../lib/parallel"
-import { headers } from "next/headers"
-import { redirect } from "next/navigation"
-import {NextIntlClientProvider} from "next-intl"
-import { currentUser } from "@/modules/user/loaders"
+import "./globals.css";
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import { cn } from "@repo/ds/utils";
+import { ClerkProvider } from "@clerk/nextjs";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { ptBR, enUS } from "@clerk/localizations";
+import { base } from "../../lib/url";
+import { auth } from "@clerk/nextjs/server";
+import parallel from "../../lib/parallel";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
+import { currentUser } from "@/modules/user/loaders";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata (params: { locale: string }) {
+export async function generateMetadata(params: { locale: string }) {
 	const [t, locale] = await Promise.all([
 		getTranslations({ locale: params.locale, namespace: "metadata" }),
 		getLocale(),
-	])
+	]);
 
 	return {
 		metadataBase: new URL(base()),
@@ -76,16 +76,16 @@ export async function generateMetadata (params: { locale: string }) {
 			creator: "@darklight9811",
 		},
 		manifest: "/site.webmanifest",
-	} satisfies Metadata
+	} satisfies Metadata;
 }
 
-export async function generateViewport () {
+export async function generateViewport() {
 	return {
 		themeColor: [
 			{ media: "(prefers-color-scheme: light)", color: "#FEFEFE" },
 			{ media: "(prefers-color-scheme: dark)", color: "#1A2634" },
 		],
-	} satisfies Viewport
+	} satisfies Viewport;
 }
 
 export default async function RootLayout({
@@ -95,15 +95,12 @@ export default async function RootLayout({
 	children: React.ReactNode;
 	params: { locale: string };
 }) {
-	const { userId } = auth()
-	const pathname = headers().get("x-pathname")!
-	const [user, messages] = await parallel(
-		currentUser(),
-		getMessages(),
-	)
+	const { userId } = auth();
+	const pathname = headers().get("x-pathname") || "/";
+	const [user, messages] = await parallel(currentUser(), getMessages());
 
 	if (userId && !user && !pathname.includes("/callback")) {
-		return redirect(`/callback?redirect=${pathname}`)
+		return redirect(`/callback?redirect=${pathname}`);
 	}
 
 	return (
@@ -123,5 +120,5 @@ export default async function RootLayout({
 				</NextIntlClientProvider>
 			</body>
 		</html>
-	)
+	);
 }

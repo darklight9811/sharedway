@@ -12,8 +12,9 @@
 		"migrate:dev": "prisma migrate dev",
 		"push": "prisma db push",
 		"seed": "tsx src/seed.ts",
-		"format": "prisma format",
 		"generate": "prisma generate",
+		"format": "biome format --error-on-warnings ./src",
+		"lint": "biome lint --error-on-warnings ./src",
 		"studio": "prisma studio"
 	},
 	"dependencies": {

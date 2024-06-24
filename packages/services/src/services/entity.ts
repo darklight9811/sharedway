@@ -1,10 +1,13 @@
-import type { Pagination } from "@repo/schemas/pagination"
-import type { EntityStoreSchema, EntityUpdateSchema } from "@repo/schemas/entity"
-import { db } from "../lib/db"
-import service from "../lib/service"
-import pagination from "@repo/schemas/pagination"
-import { entityStoreSchema } from "@repo/schemas/entity"
-import uploader from "../lib/uploader"
+import type { Pagination } from "@repo/schemas/pagination";
+import type {
+	EntityStoreSchema,
+	EntityUpdateSchema,
+} from "@repo/schemas/entity";
+import { db } from "../lib/db";
+import service from "../lib/service";
+import pagination from "@repo/schemas/pagination";
+import { entityStoreSchema } from "@repo/schemas/entity";
+import uploader from "../lib/uploader";
 
 const entityService = service({
 	/**
@@ -15,8 +18,8 @@ const entityService = service({
 	 * @param input
 	 * @returns
 	 */
-	index (input?: Pagination) {
-		const { page, limit } = pagination.parse(input)
+	index(input?: Pagination) {
+		const { page, limit } = pagination.parse(input);
 
 		return db.entity.paginate({
 			page,
@@ -29,7 +32,7 @@ const entityService = service({
 					take: 1,
 				},
 			},
-		})
+		});
 	},
 
 	/**
@@ -41,16 +44,19 @@ const entityService = service({
 	 * @param metadata
 	 * @returns
 	 */
-	async store (input: EntityStoreSchema, { user }) {
-		const data = entityStoreSchema.parse(input)
+	async store(input: EntityStoreSchema, { user }) {
+		const data = entityStoreSchema.parse(input);
+		if (!user) return null;
 
 		// TODO remove hardlimit into a feature flag
-		const count = await db.entity.count({ where: { id_user_created: user!.id } })
+		const count = await db.entity.count({
+			where: { id_user_created: user.id },
+		});
 		if (count >= 5) {
-			throw new Error("Max entity quantity created")
+			throw new Error("Max entity quantity created");
 		}
 
-		const files = await uploader.uploadFiles(data.pictures)
+		const files = await uploader.uploadFiles(data.pictures);
 
 		const response = await db.entity.create({
 			data: {
@@ -59,7 +65,7 @@ const entityService = service({
 				description: data.description,
 				user_created: {
 					connect: {
-						id: user!.id,
+						id: user.id,
 					},
 				},
 				data: {
@@ -76,12 +82,12 @@ const entityService = service({
 				},
 				pictures: {
 					createMany: {
-						data: files.filter(t => t).map(function (file) {
-							return {
-								key: file.data!.key,
-								url: file.data!.url,
-							}
-						}),
+						data: files
+							.filter((t) => t?.data)
+							.map((file) => ({
+								key: file.data?.key || "",
+								url: file.data?.url || "",
+							})),
 					},
 				},
 			},
@@ -89,9 +95,9 @@ const entityService = service({
 			select: {
 				id: true,
 			},
-		})
+		});
 
-		return response
+		return response;
 	},
 
 	/**
@@ -99,7 +105,7 @@ const entityService = service({
 	 *
 	 * Display full information about an entity
 	 */
-	show (id: string) {
+	show(id: string) {
 		return db.entity.findUnique({
 			where: { id },
 			select: {
@@ -122,7 +128,7 @@ const entityService = service({
 					take: 10,
 				},
 			},
-		})
+		});
 	},
 
 	/**
@@ -130,52 +136,61 @@ const entityService = service({
 	 *
 	 * Update parts of the field of the entity
 	 */
-	async update (payload: { id: string; data: Partial<EntityUpdateSchema> }) {
-		const add_files: File[] = []
-		const remove_files: { id: string; remove: boolean }[] = []
+	async update(payload: { id: string; data: Partial<EntityUpdateSchema> }) {
+		const add_files: File[] = [];
+		const remove_files: { id: string; remove: boolean }[] = [];
 
-		payload.data.pictures?.forEach((value) => {
-			if ((value as { remove: boolean }).remove) remove_files.push(value as (typeof remove_files)[number])
-			if ((value as File).size) add_files.push(value as File)
-		})
+		if (payload.data.pictures) {
+			for (let i = 0; i < payload.data.pictures.length; i++) {
+				const value = payload.data.pictures[i];
+
+				if ((value as { remove: boolean }).remove)
+					remove_files.push(value as (typeof remove_files)[number]);
+				if ((value as File).size) add_files.push(value as File);
+			}
+		}
 
 		await Promise.all([
 			// add pictures
-			add_files.length > 0 && db.$transaction(async tx => {
-				const files = await uploader.uploadFiles(add_files)
+			add_files.length > 0 &&
+				db.$transaction(async (tx) => {
+					const files = await uploader.uploadFiles(add_files);
 
-				await tx.entity.update({
-					where: { id: payload.id },
-					data: {
-						pictures: {
-							createMany: {
-								data: files.filter(t => t).map(function (file) {
-									return {
-										key: file.data!.key,
-										url: file.data!.url,
-									}
-								}),
+					await tx.entity.update({
+						where: { id: payload.id },
+						data: {
+							pictures: {
+								createMany: {
+									data: files
+										.filter((t) => t?.data)
+										.map((file) => ({
+											key: file.data?.key || "",
+											url: file.data?.url || "",
+										})),
+								},
 							},
 						},
-					},
-				})
-			}),
+					});
+				}),
 			// remove pictures
-			remove_files.length > 0 && db.$transaction(async tx => {
-				const key_files = await tx.entityPicture.findMany({ where: { id: { in: remove_files.map(t => t.id) } } })
-				await uploader.deleteFiles(key_files.map(t => t.key))
+			remove_files.length > 0 &&
+				db.$transaction(async (tx) => {
+					const key_files = await tx.entityPicture.findMany({
+						where: { id: { in: remove_files.map((t) => t.id) } },
+					});
+					await uploader.deleteFiles(key_files.map((t) => t.key));
 
-				await tx.entity.update({
-					where: { id: payload.id },
-					data: {
-						pictures: {
-							deleteMany: {
-								id: { in: key_files.map(t => t.id) },
+					await tx.entity.update({
+						where: { id: payload.id },
+						data: {
+							pictures: {
+								deleteMany: {
+									id: { in: key_files.map((t) => t.id) },
+								},
 							},
 						},
-					},
-				})
-			}),
+					});
+				}),
 			// handle data
 			db.entity.update({
 				where: { id: payload.id },
@@ -187,13 +202,13 @@ const entityService = service({
 					},
 					addresses: {
 						update: {
-							where: { id: payload.data.addresses![0].id },
-							data: payload.data.addresses![0],
+							where: { id: payload.data.addresses?.[0].id || "" },
+							data: payload.data.addresses?.[0] || "",
 						},
 					},
 				},
 			}),
-		])
+		]);
 	},
 
 	/**
@@ -204,11 +219,13 @@ const entityService = service({
 	 * @param id
 	 * @param param1
 	 */
-	async delete (id: string, { user }) {
+	async delete(id: string, { user }) {
+		if (!user) return null;
+
 		const data = await db.entity.findFirst({
 			where: {
 				id,
-				id_user_created: user!.id,
+				id_user_created: user.id,
 			},
 			select: {
 				id: true,
@@ -218,17 +235,17 @@ const entityService = service({
 					},
 				},
 			},
-		})
+		});
 
-		if (!data) throw new Error("no")
+		if (!data) throw new Error("no");
 
-		return db.$transaction(async tx => {
+		return db.$transaction(async (tx) => {
 			return Promise.all([
 				tx.entity.delete({ where: { id } }),
-				uploader.deleteFiles(data?.pictures.map(t => t.key)),
-			])
-		})
+				uploader.deleteFiles(data?.pictures.map((t) => t.key)),
+			]);
+		});
 	},
-})
+});
 
-export default entityService
+export default entityService;

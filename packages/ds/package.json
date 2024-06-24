@@ -12,6 +12,8 @@
 	"license": "MIT",
 	"scripts": {
 		"storybook": "storybook dev -p 6006",
+		"lint": "biome lint --error-on-warnings ./src",
+		"format": "biome format --error-on-warnings ./src",
 		"build-storybook": "storybook build"
 	},
 	"devDependencies": {

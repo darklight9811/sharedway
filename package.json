@@ -5,7 +5,8 @@
 		"i": "yarn --frozen-lockfile --ignore-optional",
 		"build": "dotenv -- turbo build",
 		"dev": "dotenv -- turbo dev",
-		"lint": "turbo lint",
+		"lint": "turbo lint --",
+		"format": "turbo format --",
 		"type-check": "turbo type-check",
 		"sync": "syncpack fix-mismatches --indent \"\t\"",
 		"clean": "turbo clean",
@@ -20,6 +21,7 @@
 		"seed": "tsx packages/database/src/seed.ts"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "1.8.2",
 		"@repo/config": "0.0.0",
 		"turbo": "2.0.4"
 	},

@@ -5,6 +5,10 @@
 	"exports": {
 		".": "./src/index.mjs"
 	},
+	"scripts": {
+		"format": "biome format --error-on-warnings ./src",
+		"lint": "biome lint --error-on-warnings ./src"
+	},
 	"devDependencies": {
 		"@repo/config": "0.0.0",
 		"typescript": "^5.5.2"

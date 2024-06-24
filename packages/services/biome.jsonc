@@ -1,4 +1,5 @@
 {
+	"$schema": "https://biomejs.dev/schemas/1.8.2/schema.json",
 	"linter": {
 		"enabled": true,
 		"rules": {
@@ -7,7 +8,8 @@
 	},
 	"overrides": [
 		{
-			"include": ["@repo/config/eslint/general.json"]
+			"include": ["@repo/config/eslint/general.json"],
+			"ignore": ["./src/lib/api.ts"]
 		}
 	]
 }

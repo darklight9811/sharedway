@@ -1,41 +1,64 @@
-import { buttonVariants } from "@repo/ds/ui/button"
-import Image from "next/image"
-import { Suspense, createElement } from "react"
-import { Loader } from "lucide-react"
-import parallel from "@/lib/parallel"
-import userService from "@repo/services/user"
-import { currentUser } from "@clerk/nextjs/server"
-import Link from "next/link"
+import { buttonVariants } from "@repo/ds/ui/button";
+import Image from "next/image";
+import { Suspense, createElement } from "react";
+import { Loader } from "lucide-react";
+import parallel from "@/lib/parallel";
+import userService from "@repo/services/user";
+import { currentUser } from "@clerk/nextjs/server";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-export default async function Page ({ searchParams }: { searchParams: { redirect?: string } }) {
+export default async function Page({
+	searchParams,
+}: { searchParams: { redirect?: string } }) {
 	return (
 		<div className="flex grow flex-col justify-center items-center">
 			<Suspense fallback={<LoadingCallback />}>
-				{createElement(async function GenerateUser () {
-					const user = await currentUser()
-					await parallel(userService.create({
-						id: user!.id,
-						name: user!.fullName || user!.username!,
-						email: user!.emailAddresses.at(0)?.emailAddress,
-						emailVerified: user!.emailAddresses.at(0)?.verification?.status === "verified" ? new Date() : undefined,
-					}))
+				{createElement(async function GenerateUser() {
+					const user = await currentUser();
+
+					if (!user) return notFound();
+
+					await parallel(
+						userService.create({
+							id: user.id,
+							name: user.fullName || user.username || "",
+							email: user.emailAddresses.at(0)?.emailAddress,
+							emailVerified:
+								user.emailAddresses.at(0)?.verification?.status === "verified"
+									? new Date()
+									: undefined,
+						}),
+					);
 
 					return (
 						<>
-							<Image alt="logo" height={56} src="/logo/favicon.svg" width={56} />
+							<Image
+								alt="logo"
+								height={56}
+								src="/logo/favicon.svg"
+								width={56}
+							/>
 
-							<h1 className="text-2xl font-bold my-2">Configurações feitas! Você pode voltar a usar o app agora</h1>
+							<h1 className="text-2xl font-bold my-2">
+								Configurações feitas! Você pode voltar a usar o app agora
+							</h1>
 
-							<Link className={buttonVariants()} href={searchParams.redirect || "/"}>Voltar</Link>
+							<Link
+								className={buttonVariants()}
+								href={searchParams.redirect || "/"}
+							>
+								Voltar
+							</Link>
 						</>
-					)
+					);
 				})}
 			</Suspense>
 		</div>
-	)
+	);
 }
 
-function LoadingCallback () {
+function LoadingCallback() {
 	return (
 		<>
 			<Loader size="56" className="animate-spin" />
@@ -44,5 +67,5 @@ function LoadingCallback () {
 
 			<p>Enquanto isso, gostariamos de dizer que vai ficar tudo bem</p>
 		</>
-	)
+	);
 }

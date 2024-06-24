@@ -6,7 +6,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
+		"lint": "biome lint --error-on-warnings ./src",
+		"format": "biome format --error-on-warnings ./src",
 		"type-check": "tsc --noEmit",
 		"postinstall": "cd ../../ && yarn postinstall"
 	},

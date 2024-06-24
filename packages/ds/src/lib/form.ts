@@ -1,33 +1,32 @@
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function appendFormData(data: any, root: string, formData: FormData) {
-	if (data instanceof File)
-		return formData.append(root, data)
+	if (data instanceof File) return formData.append(root, data);
 	if (Array.isArray(data)) {
 		for (let i = 0; i < data.length; i++) {
-			appendFormData(data[i], `${root}[${i}]`, formData)
+			appendFormData(data[i], `${root}[${i}]`, formData);
 		}
 
-		return
+		return;
 	}
 	if (typeof data === "object" && data) {
 		for (const key in data) {
+			// biome-ignore lint/suspicious/noPrototypeBuiltins: <explanation>
 			if (data.hasOwnProperty(key)) {
-				if (root === "")
-					appendFormData(data[key], key, formData)
-				else
-					appendFormData(data[key], `${root}.${key}`, formData)
+				if (root === "") appendFormData(data[key], key, formData);
+				else appendFormData(data[key], `${root}.${key}`, formData);
 			}
 		}
 
-		return
+		return;
 	}
 	if (data !== null && typeof data !== "undefined")
-		return formData.append(root, data)
+		return formData.append(root, data);
 }
 
-export function objectToFormData(obj: any, rootName: string = "") {
-	const formData = new FormData()
+export function objectToFormData(obj: unknown, rootName = "") {
+	const formData = new FormData();
 
-	appendFormData(obj, rootName, formData)
+	appendFormData(obj, rootName, formData);
 
-	return formData
+	return formData;
 }

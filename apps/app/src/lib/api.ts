@@ -1,9 +1,7 @@
-import createApi from "@repo/services/api"
+import createApi from "@repo/services/api";
 
 const api = createApi({
-	bind: {
+	bind: {},
+});
 
-	},
-})
-
-export default api
+export default api;

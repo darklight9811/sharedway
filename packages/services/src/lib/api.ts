@@ -1,11 +1,12 @@
 // Types
-import type { ZodSchema, z } from "zod"
-import type Metadata from "../types/metadata"
+import type { ZodSchema, z } from "zod";
+import type Metadata from "../types/metadata";
 
 // -------------------------------------------------
 // MARK: Types
 // -------------------------------------------------
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 type Config<Bind extends Record<string, any>> = {
 	/**
 	 * ### Bind
@@ -13,27 +14,37 @@ type Config<Bind extends Record<string, any>> = {
 	 * Add utility methods to the request object
 	 */
 	bind?: Bind;
-}
+};
 
 export type PrepareApi<
-	Bound extends Record<string, any> = {},
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	Bound extends Record<string, any> = Record<string, any>,
 	Input = void,
 	Output = Input,
-	Service = Bound & { input: Input }
+	Service = Bound & { input: Input },
 > = {
 	/**
 	 * ### Parse
 	 *
 	 * Run the piped value
 	 */
-	(data: Input): Promise<{ data: Output; ok: true; errors: void } | { errors: any; ok: false; data: void }>;
+	(
+		data: Input,
+	): Promise<
+		| { data: Output; ok: true; errors: undefined }
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		| { errors: any; ok: false; data: undefined }
+	>;
 
 	/**
 	 * ### Auth
 	 *
 	 * Make sure authentication is according to type
 	 */
-	auth(callback: (data: Service) => Promise<any | void>): PrepareApi<Bound, Input, Output>;
+	auth(
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		callback: (data: Service) => Promise<any | undefined>,
+	): PrepareApi<Bound, Input, Output>;
 
 	/**
 	 * ### ZOD
@@ -41,142 +52,137 @@ export type PrepareApi<
 	 * Parse data coming through the last item in the pipe
 	 */
 	zod<Schema extends ZodSchema, Result = z.infer<Schema>>(
-		schema: Schema
-	): PrepareApi<
-	Bound,
-	Input extends void ? Result : Input,
-	Result
-	>;
+		schema: Schema,
+	): PrepareApi<Bound, Input extends void ? Result : Input, Result>;
 
 	/**
 	 * ### Map
 	 *
 	 * Run code without delivering it to API
 	 */
-	map<Callback extends (data: Service) => Promise<any>, Result = Awaited<ReturnType<Callback>>>(
-		cb: Callback
-	): PrepareApi<
-	Bound,
-	Result,
-	Result
-	>;
+	map<
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		Callback extends (data: Service) => Promise<any>,
+		Result = Awaited<ReturnType<Callback>>,
+	>(cb: Callback): PrepareApi<Bound, Result, Result>;
 
 	/**
 	 * ### Action
 	 *
 	 * Run code as a server action
 	 */
-	action<Callback extends (data: Service) => Promise<any>, Result = Awaited<ReturnType<Callback>>>(
-		cb: Callback
-	): PrepareApi<
-	Bound,
-	Input,
-	Result
-	>;
+	action<
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		Callback extends (data: Service) => Promise<any>,
+		Result = Awaited<ReturnType<Callback>>,
+	>(cb: Callback): PrepareApi<Bound, Input, Result>;
 
 	/**
 	 * ### Service
 	 *
 	 * Run code as a server action
 	 */
-	service<Callback extends (data: Output) => (metadata: Metadata) => Promise<any>, Result = Awaited<ReturnType<ReturnType<Callback>>>>(
+	service<
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		Callback extends (data: Output) => (metadata: Metadata) => Promise<any>,
+		Result = Awaited<ReturnType<ReturnType<Callback>>>,
+	>(
 		cb: Callback,
 		metadataBuilder: () => Metadata | Promise<Metadata>,
-	): PrepareApi<
-	Bound,
-	Input,
-	Result
-	>;
+	): PrepareApi<Bound, Input, Result>;
 };
 
 // -------------------------------------------------
 // MARK: Main
 // -------------------------------------------------
 
-export default function createApi<Bind extends Record<string, any>>(config: Config<Bind>) {
-	const bound = (config.bind || {}) as Bind
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+export default function createApi<Bind extends Record<string, any>>(
+	config: Config<Bind>,
+) {
+	const bound = (config.bind || {}) as Bind;
 
 	function prepare<Input = void, Output = Input>(
-		cb: (input: { input: Input } & Bind) => Promise<Output> = async (t) => t as any,
+		cb: (input: { input: Input } & Bind) => Promise<Output> = async (t) =>
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			t as any,
 	): PrepareApi<Bind, Input, Output> {
 		const parse: PrepareApi<Bind, Input, Output> = async function parse(
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			data: any,
 		): Promise<Output> {
 			return Promise.resolve(cb({ ...bound, input: data }))
-				.then(function (data) {
-					return { ok: true, data }
-				})
-				.catch(function (err) {
-					if (
-						["ZodError", "AuthError"].includes(err.name)
-					) {
+				.then((data) => ({ ok: true, data }))
+				.catch((err) => {
+					if (["ZodError", "AuthError"].includes(err.name)) {
 						return {
 							ok: false,
+							// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 							errors: err.errors.map((error: any) => ({
 								field: error.path,
 								message: error.message,
 							})),
-						} as any
+							// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						} as any;
 					}
 
-
 					// we want to unexpected errors to throw the app flow so the dev can fix them
-					throw err
-				})
-		} as any
+					throw err;
+				});
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		} as any;
 
 		parse.zod = function zod(schema: ZodSchema) {
-			return prepare<any, z.infer<typeof schema>>(async function (data) {
-				return schema.parse(data.input)
-			})
-		}
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			return prepare<any, z.infer<typeof schema>>(async (data) =>
+				schema.parse(data.input),
+			);
+		};
 
-		parse.map = function (callback) {
-			return prepare<any, any>(function (data) {
-				return Promise.resolve(callback({ ...bound, input: data as any })).then(function (response) {
-					return cb({ ...bound, input: response })
-				})
-			})
-		}
+		parse.map = (callback) =>
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			prepare<any, any>((data) =>
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+				Promise.resolve(callback({ ...bound, input: data as any })).then(
+					(response) => cb({ ...bound, input: response }),
+				),
+			);
 
-		parse.action = function (callback) {
-			return prepare(function (data) {
-				return cb(data).then(function (response) {
-					return callback({ ...bound, input: response as any })
-				})
-			})
-		}
+		parse.action = (callback) =>
+			prepare((data) =>
+				cb(data).then((response) =>
+					// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+					callback({ ...bound, input: response as any }),
+				),
+			);
 
-		parse.auth = function (callback) {
-			return prepare(function (data) {
-				return callback(data as any).then(function (response) {
+		parse.auth = (callback) =>
+			prepare((data) =>
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+				callback(data as any).then((response) => {
 					if (response) {
 						throw {
 							name: "AuthError",
 							errors: [response],
-						}
+						};
 					}
 
-					return cb(data)
-				})
-			})
-		}
+					return cb(data);
+				}),
+			);
 
-		parse.service = function (callback, metadata) {
-			return prepare(function (data) {
-				return Promise.all([
-					cb(data as any),
-					metadata(),
-				]).then(function ([response, metadata]) {
-					return callback(response)(metadata)
-				})
-			})
-		}
+		parse.service = (callback, metadata) =>
+			prepare((data) =>
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+				Promise.all([cb(data as any), metadata()]).then(
+					([response, metadata]) => callback(response)(metadata),
+				),
+			);
 
-		return parse as PrepareApi<typeof bound, Input, Output>
+		return parse as PrepareApi<typeof bound, Input, Output>;
 	}
 
-	return prepare()
+	return prepare();
 }
 
 // -------------------------------------------------
