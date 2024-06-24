@@ -6,11 +6,12 @@
 		"./*": "./src/schemas/*.ts"
 	},
 	"scripts": {
-		"lint": "eslint . --max-warnings 0"
+		"format": "biome format --error-on-warnings ./src",
+		"verify": "biome check --error-on-warnings ./src",
+		"lint": "biome lint --error-on-warnings ./src"
 	},
 	"devDependencies": {
 		"@repo/config": "0.0.0",
-		"eslint": "^8.56.0",
 		"typescript": "^5.5.2"
 	},
 	"dependencies": {

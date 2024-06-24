@@ -1,28 +1,36 @@
-"use client"
+"use client";
 
-import states from "@/constants/state"
-import { Link } from "@/lib/navigation"
-import Field from "@repo/ds/form/field"
-import Form from "@repo/ds/form/form"
-import { Button, buttonVariants } from "@repo/ds/ui/button"
-import ImageUploader from "@repo/ds/ui/image-uploader"
-import { Input } from "@repo/ds/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@repo/ds/ui/select"
-import { Textarea } from "@repo/ds/ui/textarea"
-import { entityStoreSchema, entityUpdateSchema } from "@repo/schemas/entity"
+import states from "@/constants/state";
+import { Link } from "@/lib/navigation";
+import Field from "@repo/ds/form/field";
+import Form from "@repo/ds/form/form";
+import { Button, buttonVariants } from "@repo/ds/ui/button";
+import ImageUploader from "@repo/ds/ui/image-uploader";
+import { Input } from "@repo/ds/ui/input";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@repo/ds/ui/select";
+import { Textarea } from "@repo/ds/ui/textarea";
+import { entityStoreSchema, entityUpdateSchema } from "@repo/schemas/entity";
 
 interface Props {
-	onSubmit (data: any): Promise<any>;
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	onSubmit(data: any): Promise<Record<string, unknown>>;
 	schema?: "store" | "update";
-	data?: any;
+	data?: Record<string, unknown>;
 }
 
-export default function EntityForm (props: Props) {
+export default function EntityForm(props: Props) {
 	return (
-
 		<Form
 			data={props.data}
-			schema={props.schema === "update" ? entityUpdateSchema : entityStoreSchema}
+			schema={
+				props.schema === "update" ? entityUpdateSchema : entityStoreSchema
+			}
 			onSubmit={props.onSubmit}
 			className="w-full max-w-5xl flex gap-8 flex-col"
 		>
@@ -34,7 +42,7 @@ export default function EntityForm (props: Props) {
 						label="Nome"
 						name="name"
 						render={({ field }) => {
-							return <Input {...field} />
+							return <Input {...field} />;
 						}}
 					/>
 
@@ -42,7 +50,7 @@ export default function EntityForm (props: Props) {
 						label="Idade"
 						name="data.age"
 						render={({ field }) => {
-							return <Input {...field} />
+							return <Input {...field} />;
 						}}
 					/>
 
@@ -50,7 +58,7 @@ export default function EntityForm (props: Props) {
 						label="Raça"
 						name="data.race"
 						render={({ field }) => {
-							return <Input {...field} />
+							return <Input {...field} />;
 						}}
 					/>
 
@@ -70,7 +78,7 @@ export default function EntityForm (props: Props) {
 										<SelectItem value="other">Outros</SelectItem>
 									</SelectContent>
 								</Select>
-							)
+							);
 						}}
 					/>
 
@@ -78,7 +86,7 @@ export default function EntityForm (props: Props) {
 						label="Descrição geral"
 						name="description"
 						render={({ field }) => {
-							return <Textarea {...field} />
+							return <Textarea {...field} />;
 						}}
 					/>
 				</div>
@@ -89,12 +97,7 @@ export default function EntityForm (props: Props) {
 					<Field
 						name="pictures"
 						render={({ field }) => {
-							return (
-								<ImageUploader
-									max={5}
-									{...field}
-								/>
-							)
+							return <ImageUploader max={5} {...field} />;
 						}}
 					/>
 				</div>
@@ -108,7 +111,7 @@ export default function EntityForm (props: Props) {
 					name="addresses.0.district"
 					className="w-full md:w-2/5"
 					render={({ field }) => {
-						return <Input {...field} />
+						return <Input {...field} />;
 					}}
 				/>
 
@@ -117,7 +120,7 @@ export default function EntityForm (props: Props) {
 					name="addresses.0.city"
 					className="w-full md:w-2/5"
 					render={({ field }) => {
-						return <Input {...field} />
+						return <Input {...field} />;
 					}}
 				/>
 
@@ -133,20 +136,26 @@ export default function EntityForm (props: Props) {
 								</SelectTrigger>
 
 								<SelectContent>
-									{states.map(function (state) {
-										return <SelectItem value={state.sigla} key={state.id}>{state.nome}</SelectItem>
-									})}
+									{states.map((state) => (
+										<SelectItem value={state.sigla} key={state.id}>
+											{state.nome}
+										</SelectItem>
+									))}
 								</SelectContent>
 							</Select>
-						)
+						);
 					}}
 				/>
 			</div>
 
 			<div className="mt-2 flex gap-2">
-				<Link href="/" className={buttonVariants({ variant: "outline" })}>Voltar</Link>
-				<Button type="submit" className="w-full max-w-[180px]">Criar</Button>
+				<Link href="/" className={buttonVariants({ variant: "outline" })}>
+					Voltar
+				</Link>
+				<Button type="submit" className="w-full max-w-[180px]">
+					Criar
+				</Button>
 			</div>
 		</Form>
-	)
+	);
 }

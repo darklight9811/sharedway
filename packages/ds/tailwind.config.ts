@@ -1,10 +1,8 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
 	darkMode: ["class"],
-	content: [
-		"./src/**/*.{ts,tsx}",
-	],
+	content: ["./src/**/*.{ts,tsx}"],
 	theme: {
 		container: {
 			center: true,
@@ -74,16 +72,19 @@ const config = {
 				"accordion-up": "accordion-up 0.2s ease-out",
 			},
 			aspectRatio: {
-				"card": "3/4",
+				card: "3/4",
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate"),
-		function childVariant ({ addVariant }: { addVariant (...args: string[]): void }) {
-			addVariant("child", "& > *")
-			addVariant("child-hover", "&:hover > *")
+	plugins: [
+		require("tailwindcss-animate"),
+		function childVariant({
+			addVariant,
+		}: { addVariant(...args: string[]): void }) {
+			addVariant("child", "& > *");
+			addVariant("child-hover", "&:hover > *");
 		},
 	],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

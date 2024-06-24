@@ -1,11 +1,14 @@
-import { env } from "@repo/env"
-import Image from "next/image"
-import Footer from "../_components/footer"
+import { env } from "@repo/env";
+import Image from "next/image";
+import Footer from "../_components/footer";
 
-export default function Layout ({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="relative grow flex flex-col justify-center items-center overflow-hidden w-screen h-screen animate-fade-in">
-			<span className="absolute top-1 left-1 flex gap-2 opacity-30"><Image alt="logo" height={20} src="/logo/favicon.svg" width={20} /> {env.APP_NAME}</span>
+			<span className="absolute top-1 left-1 flex gap-2 opacity-30">
+				<Image alt="logo" height={20} src="/logo/favicon.svg" width={20} />{" "}
+				{env.APP_NAME}
+			</span>
 
 			{children}
 
@@ -15,5 +18,5 @@ export default function Layout ({ children }: { children: React.ReactNode }) {
 
 			<Footer />
 		</div>
-	)
+	);
 }

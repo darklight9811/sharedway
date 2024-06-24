@@ -8,9 +8,7 @@
 		],
 		"baseUrl": ".",
 		"paths": {
-			"@/*": [
-				"./src/*"
-			]
+			"@/*": ["./src/*"]
 		}
 	},
 	"include": [
@@ -19,7 +17,6 @@
 		"./src/**/*.ts",
 		"./src/**/*.tsx",
 		".next/types/**/*.ts",
-		"./.eslintrc.js",
 		"./tailwind.config.ts",
 		"./postcss.config.js"
 	],

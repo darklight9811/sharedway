@@ -1,0 +1,14 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.8.2/schema.json",
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		}
+	},
+	"overrides": [
+		{
+			"include": ["@repo/config/eslint/react.json"]
+		}
+	]
+}

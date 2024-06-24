@@ -1,7 +1,5 @@
-import { SignUp } from "@clerk/nextjs"
+import { SignUp } from "@clerk/nextjs";
 
-export default async function Page () {
-	return (
-		<SignUp />
-	)
+export default async function Page() {
+	return <SignUp />;
 }

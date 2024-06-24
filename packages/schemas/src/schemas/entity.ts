@@ -1,19 +1,19 @@
-import { z } from "zod"
-import { zfd } from "zod-form-data"
+import { z } from "zod";
+import { zfd } from "zod-form-data";
 
 const entityData = z.object({
 	id: z.string().cuid(),
 	age: z.coerce.number(),
 	race: z.string(),
 	gender: z.enum(["male", "female", "other"]),
-})
+});
 
 const address = z.object({
 	id: z.string().cuid(),
 	district: z.string(),
 	city: z.string(),
 	state: z.string(),
-})
+});
 
 const entity = z.object({
 	name: z.string(),
@@ -22,14 +22,14 @@ const entity = z.object({
 
 	description: z.string().default(""),
 
-	pictures: zfd.repeatableOfType(z.any().transform(t => t as File)),
+	pictures: zfd.repeatableOfType(z.any().transform((t) => t as File)),
 
 	addresses: z.array(address),
-})
+});
 
-export default entity
+export default entity;
 
-export type EntitySchema = z.infer<typeof entity>
+export type EntitySchema = z.infer<typeof entity>;
 
 export const entityStoreSchema = zfd.formData({
 	name: z.string(),
@@ -38,23 +38,35 @@ export const entityStoreSchema = zfd.formData({
 
 	description: z.string().default(""),
 
-	pictures: zfd.repeatableOfType(z.any().transform(t => t as File)).innerType().max(5),
+	pictures: zfd
+		.repeatableOfType(z.any().transform((t) => t as File))
+		.innerType()
+		.max(5),
 
 	addresses: z.array(address.omit({ id: true })),
-})
+});
 
-export type EntityStoreSchema = z.infer<typeof entityStoreSchema>
+export type EntityStoreSchema = z.infer<typeof entityStoreSchema>;
 
-export const entityUpdateSchema = zfd.formData(z.object({
-	name: z.string(),
+export const entityUpdateSchema = zfd.formData(
+	z
+		.object({
+			name: z.string(),
 
-	data: entityData.omit({ id: true }),
+			data: entityData.omit({ id: true }),
 
-	description: z.string().default(""),
+			description: z.string().default(""),
 
-	pictures: zfd.repeatableOfType(z.any().transform(t => t as File | { id: string; remove: boolean })).innerType().max(5),
+			pictures: zfd
+				.repeatableOfType(
+					z.any().transform((t) => t as File | { id: string; remove: boolean }),
+				)
+				.innerType()
+				.max(5),
 
-	addresses: z.array(address),
-}).partial())
+			addresses: z.array(address),
+		})
+		.partial(),
+);
 
-export type EntityUpdateSchema = z.infer<typeof entityUpdateSchema>
+export type EntityUpdateSchema = z.infer<typeof entityUpdateSchema>;

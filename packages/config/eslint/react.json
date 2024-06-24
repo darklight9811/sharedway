@@ -1,0 +1,93 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.8.2/schema.json",
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": false,
+			"complexity": {
+				"noBannedTypes": "off",
+				"noExtraBooleanCast": "error",
+				"noMultipleSpacesInRegularExpressionLiterals": "error",
+				"noUselessCatch": "error",
+				"noUselessTypeConstraint": "error",
+				"noWith": "error"
+			},
+			"correctness": {
+				"noConstAssign": "error",
+				"noConstantCondition": "error",
+				"noEmptyCharacterClassInRegex": "error",
+				"noEmptyPattern": "error",
+				"noGlobalObjectCalls": "error",
+				"noInnerDeclarations": "off",
+				"noInvalidConstructorSuper": "error",
+				"noNewSymbol": "error",
+				"noNonoctalDecimalEscape": "error",
+				"noPrecisionLoss": "error",
+				"noSelfAssign": "error",
+				"noSetterReturn": "error",
+				"noSwitchDeclarations": "error",
+				"noUndeclaredVariables": "error",
+				"noUnreachable": "error",
+				"noUnreachableSuper": "error",
+				"noUnsafeFinally": "error",
+				"noUnsafeOptionalChaining": "error",
+				"noUnusedLabels": "error",
+				"noUnusedVariables": "error",
+				"useArrayLiterals": "off",
+				"useIsNan": "error",
+				"useValidForDirection": "error",
+				"useYield": "error"
+			},
+			"style": {
+				"noDefaultExport": "off",
+				"noNamespace": "error",
+				"noNonNullAssertion": "off",
+				"useAsConstAssertion": "error"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "off",
+				"noAsyncPromiseExecutor": "error",
+				"noCatchAssign": "error",
+				"noClassAssign": "error",
+				"noCompareNegZero": "error",
+				"noControlCharactersInRegex": "error",
+				"noDebugger": "error",
+				"noDuplicateCase": "error",
+				"noDuplicateClassMembers": "error",
+				"noDuplicateObjectKeys": "error",
+				"noDuplicateParameters": "error",
+				"noEmptyBlockStatements": "off",
+				"noExplicitAny": "off",
+				"noExtraNonNullAssertion": "error",
+				"noFallthroughSwitchClause": "error",
+				"noFunctionAssign": "error",
+				"noGlobalAssign": "error",
+				"noImportAssign": "error",
+				"noMisleadingCharacterClass": "error",
+				"noMisleadingInstantiator": "off",
+				"noPrototypeBuiltins": "off",
+				"noRedeclare": "error",
+				"noShadowRestrictedNames": "error",
+				"noUnsafeDeclarationMerging": "error",
+				"noUnsafeNegation": "error",
+				"useGetterReturn": "error",
+				"useValidTypeof": "error"
+			}
+		},
+		"ignore": ["**/node_modules/", "**/dist/", "**/*.css"]
+	},
+	"javascript": { "globals": ["JSX"] },
+	"overrides": [
+		{
+			"include": [
+				"*.stories.@(ts|tsx|js|jsx|mjs|cjs)",
+				"*.story.@(ts|tsx|js|jsx|mjs|cjs)"
+			],
+			"linter": { "rules": { "correctness": { "useHookAtTopLevel": "off" } } }
+		},
+		{
+			"include": [".storybook/main.@(js|cjs|mjs|ts)"],
+			"linter": { "rules": {} }
+		}
+	]
+}

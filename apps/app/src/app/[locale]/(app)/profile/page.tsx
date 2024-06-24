@@ -1,8 +1,8 @@
-import { UserProfile } from "@clerk/nextjs"
+import { UserProfile } from "@clerk/nextjs";
 
-import "./override.css"
+import "./override.css";
 
-export default function Page () {
+export default function Page() {
 	return (
 		<div className="flex justify-center my-2">
 			<UserProfile
@@ -13,5 +13,5 @@ export default function Page () {
 				}}
 			/>
 		</div>
-	)
+	);
 }

@@ -1,6 +1,6 @@
-import { Ghost } from "lucide-react"
-import Navbar from "./_components/navbar"
-import Footer from "./_components/footer"
+import { Ghost } from "lucide-react";
+import Footer from "./_components/footer";
+import Navbar from "./_components/navbar";
 
 export default function NotFoundPage() {
 	return (
@@ -15,5 +15,5 @@ export default function NotFoundPage() {
 
 			<Footer />
 		</>
-	)
+	);
 }

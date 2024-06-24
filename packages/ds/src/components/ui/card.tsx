@@ -1,5 +1,5 @@
-import { Flag, Home } from "lucide-react"
-import Link from "next/link"
+import { Flag, Home } from "lucide-react";
+import Link from "next/link";
 
 interface CardProps {
 	id: string;
@@ -7,7 +7,7 @@ interface CardProps {
 	pictures: { url: string }[];
 }
 
-export default function Card (props: CardProps) {
+export default function Card(props: CardProps) {
 	return (
 		<div
 			className="relative overflow-hidden flex flex-col justify-end shadow rounded-lg bg-gray-400 max-w-[320px] sm:max-w-[210px] w-full aspect-card bg-cover bg-center hover:-translate-y-0.5 transition-transform"
@@ -21,10 +21,20 @@ export default function Card (props: CardProps) {
 				<span>{props.name}</span>
 
 				<div className="flex w-full mt-1 gap-4">
-					<Link className="transition-colors hover:text-green-300" href={`/report?entity=${props.id}`}><Home /></Link>
-					<Link className="transition-colors hover:text-red-300" href={`/report?entity=${props.id}`}><Flag /></Link>
+					<Link
+						className="transition-colors hover:text-green-300"
+						href={`/report?entity=${props.id}`}
+					>
+						<Home />
+					</Link>
+					<Link
+						className="transition-colors hover:text-red-300"
+						href={`/report?entity=${props.id}`}
+					>
+						<Flag />
+					</Link>
 				</div>
 			</div>
 		</div>
-	)
+	);
 }

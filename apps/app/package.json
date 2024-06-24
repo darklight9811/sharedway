@@ -6,7 +6,9 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
+		"lint": "biome lint --error-on-warnings ./src",
+		"format": "biome format --error-on-warnings ./src",
+		"verify": "biome check --error-on-warnings ./src",
 		"type-check": "tsc --noEmit",
 		"postinstall": "cd ../../ && yarn postinstall"
 	},
@@ -28,7 +30,6 @@
 		"zod": "^3.22.4"
 	},
 	"devDependencies": {
-		"@next/eslint-plugin-next": "^14.2.4",
 		"@repo/config": "0.0.0",
 		"@types/node": "^20.14.4",
 		"@types/react": "^18.2.61",
