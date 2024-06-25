@@ -29,7 +29,11 @@ export default async function Navbar() {
 					<Image alt="logo" height={20} src="/logo/favicon.svg" width={20} />{" "}
 					{env.APP_NAME}
 				</Link>
-				<Link className={buttonVariants({ size: "sm" })} href="/register">
+				<Link
+					className={buttonVariants({ size: "sm" })}
+					href="/register"
+					prefetch={false}
+				>
 					+
 				</Link>
 			</div>

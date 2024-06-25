@@ -15,8 +15,12 @@ export default function Footer(props: Props) {
 				© {new Date().getFullYear()} {env.APP_NAME}. All rights reserved.
 			</Link>
 
-			<Link href="/terms">Terms of use</Link>
-			<Link href="/privacy">Privacy term</Link>
+			<Link prefetch={false} href="/terms">
+				Terms of use
+			</Link>
+			<Link prefetch={false} href="/privacy">
+				Privacy term
+			</Link>
 		</footer>
 	);
 }
