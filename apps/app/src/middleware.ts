@@ -10,7 +10,11 @@ import { locales } from "./i18n";
  * MARK: Route matchers
  */
 
-const isAssetRoute = createRouteMatcher(["/(images|logo|locales|_next)/(.*)"]);
+const isAssetRoute = createRouteMatcher([
+	"/(images|logo|locales|_next)/(.*)",
+	"/sitemap.xml",
+	"/robots.txt",
+]);
 
 const isProtectedRoute = createRouteMatcher([
 	`/(${locales.join("|")})/callback`,
