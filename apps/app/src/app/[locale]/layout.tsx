@@ -11,7 +11,7 @@ import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import parallel from "../../lib/parallel";
-import { url } from "../../lib/url";
+import { baseUrl } from "../../lib/url";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +22,7 @@ export async function generateMetadata(params: { locale: string }) {
 	]);
 
 	return {
-		metadataBase: new URL(url()),
+		metadataBase: new URL(baseUrl()),
 		robots: "/robots.txt",
 		alternates: {
 			canonical: "/",
@@ -59,7 +59,7 @@ export async function generateMetadata(params: { locale: string }) {
 		openGraph: {
 			title: t("title"),
 			description: t("description"),
-			url: url(),
+			url: baseUrl(),
 			siteName: t("title"),
 			type: "website",
 			locale,
@@ -69,7 +69,7 @@ export async function generateMetadata(params: { locale: string }) {
 		creator: "Yamiassu Softworks",
 		twitter: {
 			card: "summary_large_image",
-			site: url(),
+			site: baseUrl(),
 			title: t("title"),
 			description: t("description"),
 			images: ["/opengraph-image.png"],

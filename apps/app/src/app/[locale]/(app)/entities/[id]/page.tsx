@@ -1,9 +1,10 @@
 import { Link } from "@/lib/navigation";
 import parallel from "@/lib/parallel";
-import { url } from "@/lib/url";
+import { baseUrl } from "@/lib/url";
 import { currentUser } from "@/modules/user/loaders";
 import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
 import { buttonVariants } from "@repo/ds/ui/button";
+import { env } from "@repo/env";
 import entityService from "@repo/services/entity";
 import { Cat, Edit, User } from "lucide-react";
 import type { Metadata } from "next";
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 		getLocale(),
 	);
 
-	console.log(url());
+	console.log(baseUrl());
 
 	return {
 		title: data?.name,
@@ -24,10 +25,13 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 			type: "profile",
 			locale: locale,
 			title: `Encontre ${data?.name}`,
-			description: data?.description,
+			siteName: env.APP_NAME,
+			description:
+				data?.description ||
+				`Ajude a encontrar ${data?.name}, ele está perdido desde ${data?.date_created.toLocaleDateString()}`,
 			images: data?.pictures[0].url,
-			logo: new URL("/logo/favicon.svg", url()),
-			url: new URL(`/entities/${data?.id}`, url()),
+			logo: new URL("/logo/favicon.svg", baseUrl()),
+			url: new URL(`/entities/${data?.id}`, baseUrl()),
 		},
 	} as Metadata;
 }
