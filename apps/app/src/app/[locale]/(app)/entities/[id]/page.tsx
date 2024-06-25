@@ -17,8 +17,6 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 		getLocale(),
 	);
 
-	console.log(baseUrl());
-
 	return {
 		title: data?.name,
 		openGraph: {
@@ -28,7 +26,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 			siteName: env.APP_NAME,
 			description:
 				data?.description ||
-				`Ajude a encontrar ${data?.name}, ele está perdido desde ${data?.date_created.toLocaleDateString()}`,
+				`Ajude a encontrar ${data?.name}, ele está perdido desde ${data?.date_created.toLocaleDateString(locale)}`,
 			images: data?.pictures[0].url,
 			logo: new URL("/logo/favicon.svg", baseUrl()),
 			url: new URL(`/entities/${data?.id}`, baseUrl()),
