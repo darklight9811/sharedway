@@ -4,6 +4,8 @@ import { enUS, ptBR } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { cn } from "@repo/ds/utils";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
@@ -113,6 +115,9 @@ export default async function RootLayout({
 						signInUrl={`/${params.locale}/sign-in`}
 						signUpUrl={`/${params.locale}/sign-up`}
 					>
+						<SpeedInsights />
+						<Analytics />
+
 						<div className="flex-grow w-full flex flex-col child:animate-fade-in">
 							{children}
 						</div>
