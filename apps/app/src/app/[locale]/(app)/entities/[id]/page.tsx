@@ -1,11 +1,36 @@
 import { Link } from "@/lib/navigation";
 import parallel from "@/lib/parallel";
+import { url } from "@/lib/url";
 import { currentUser } from "@/modules/user/loaders";
 import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
 import { buttonVariants } from "@repo/ds/ui/button";
 import entityService from "@repo/services/entity";
 import { Cat, Edit, User } from "lucide-react";
+import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+	const [data, locale] = await parallel(
+		entityService.show(params.id),
+		getLocale(),
+	);
+
+	console.log(url());
+
+	return {
+		title: data?.name,
+		openGraph: {
+			type: "profile",
+			locale: locale,
+			title: `Encontre ${data?.name}`,
+			description: data?.description,
+			images: data?.pictures[0].url,
+			logo: new URL("/logo/favicon.svg", url()),
+			url: new URL(`/entities/${data?.id}`, url()),
+		},
+	} as Metadata;
+}
 
 export default async function Page({ params }: { params: { id: string } }) {
 	const [data, user] = await parallel(
