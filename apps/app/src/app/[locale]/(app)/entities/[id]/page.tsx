@@ -31,6 +31,10 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 			logo: new URL("/logo/favicon.svg", baseUrl()),
 			url: new URL(`/entities/${data?.id}`, baseUrl()),
 		},
+		twitter: {
+			images: data?.pictures[0].url,
+			title: `Encontre ${data?.name}`,
+		},
 	} as Metadata;
 }
 
