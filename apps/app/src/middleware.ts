@@ -10,7 +10,11 @@ import { locales } from "./i18n";
  * MARK: Route matchers
  */
 
-const isAssetRoute = createRouteMatcher(["/(images|logo|locales|_next)/(.*)"]);
+const isAssetRoute = createRouteMatcher([
+	"/(images|logo|locales|_next)/(.*)",
+	"/sitemap.xml",
+	"/robots.txt",
+]);
 
 const isProtectedRoute = createRouteMatcher([
 	`/(${locales.join("|")})/callback`,
@@ -38,11 +42,11 @@ const clerk = clerkMiddleware(
 	async (auth, req) => {
 		req.headers.set("x-pathname", req.nextUrl.pathname);
 
-		const ip = ipAddress(req) || "127.0.0.1";
-		const { success } = await ratelimit.limit(ip);
-
 		// assets are always public and not internacionalized
 		if (isAssetRoute(req)) return NextResponse.next();
+
+		const ip = ipAddress(req) || "127.0.0.1";
+		const { success } = await ratelimit.limit(ip);
 
 		// make sure the user is not rate limited or not in the rate limit screen
 		if (!success && !req.nextUrl.pathname.includes("/block"))
