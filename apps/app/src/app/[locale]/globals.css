@@ -1,1 +1,6 @@
 @import url("../../../../../packages/ds/src/styles.css");
+
+body {
+	background-image: linear-gradient(to top right, hsl(203, 88%, 90%), hsl(202.5, 100%, 96.9%));
+	background-attachment: fixed;
+}

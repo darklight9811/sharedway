@@ -65,9 +65,14 @@ const config = {
 					"0%": { opacity: "0" },
 					"100%": { opacity: "1" },
 				},
+				"top-in": {
+					"0%": { opacity: "0", transform: "translate(0, -20px)" },
+					"100%": { opacity: "1" },
+				},
 			},
 			animation: {
 				"fade-in": "fade-in 0.4s ease forwards",
+				"top-in": "top-in 0.4s ease forwards",
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 			},
@@ -83,6 +88,21 @@ const config = {
 		}: { addVariant(...args: string[]): void }) {
 			addVariant("child", "& > *");
 			addVariant("child-hover", "&:hover > *");
+		},
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		({ matchUtilities, theme }: any) => {
+			matchUtilities(
+				{
+					"animation-delay": (value: unknown) => {
+						return {
+							"animation-delay": value,
+						};
+					},
+				},
+				{
+					values: theme("transitionDelay"),
+				},
+			);
 		},
 	],
 } satisfies Config;

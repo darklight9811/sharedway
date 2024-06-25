@@ -7,6 +7,7 @@ import { Label } from "../ui/label";
 
 interface FieldProps {
 	name: string;
+	required?: boolean;
 	render: Parameters<typeof Controller>[0]["render"];
 
 	label?: React.ReactNode;
@@ -22,11 +23,15 @@ export default function Field(props: FieldProps) {
 			name={props.name}
 			render={(context) => {
 				const { ref: _, ...rest } = context.field;
+				const err =
+					context.fieldState.error?.type || context.fieldState.error?.message;
 
 				return (
 					<fieldset className={cn("mb-4", props.className)}>
 						{props.label ? (
-							<Label htmlFor={props.name}>{props.label}</Label>
+							<Label htmlFor={props.name}>
+								{props.label} {props.required ? "*" : ""}
+							</Label>
 						) : null}
 
 						{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
@@ -38,13 +43,8 @@ export default function Field(props: FieldProps) {
 							</p>
 						) : null}
 
-						<p className="mt-2 text-sm font-medium text-destructive">
-							{context.fieldState.error
-								? t(
-										context.fieldState.error?.type ||
-											context.fieldState.error?.message,
-									)
-								: " "}
+						<p className="mt-2 text-sm font-medium text-destructive h-5">
+							{err ? <span className="animate-top-in">{t(err)}</span> : " "}
 						</p>
 					</fieldset>
 				);
