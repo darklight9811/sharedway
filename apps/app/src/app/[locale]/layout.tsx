@@ -118,7 +118,7 @@ export default async function RootLayout({
 						<SpeedInsights />
 						<Analytics />
 
-						<div className="flex-grow w-full flex flex-col child:animate-fade-in">
+						<div className="flex-grow w-full h-screen flex flex-col child:animate-fade-in">
 							{children}
 						</div>
 					</ClerkProvider>
