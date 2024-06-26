@@ -43,13 +43,13 @@ export async function generateMetadata(params: { locale: string }) {
 			icon: [
 				{
 					media: "(prefers-color-scheme: light)",
-					url: "/logo/favicon.svg",
-					href: "/logo/favicon.svg",
+					url: "/images/logo/favicon.svg",
+					href: "/images/logo/favicon.svg",
 				},
 				{
 					media: "(prefers-color-scheme: dark)",
-					url: "/logo/favicon-light.svg",
-					href: "/logo/favicon-light.svg",
+					url: "/images/logo/favicon-light.svg",
+					href: "/images/logo/favicon-light.svg",
 				},
 			],
 		},

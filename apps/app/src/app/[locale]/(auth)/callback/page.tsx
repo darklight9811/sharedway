@@ -36,7 +36,7 @@ export default async function Page({
 							<Image
 								alt="logo"
 								height={56}
-								src="/logo/favicon.svg"
+								src="/images/logo/favicon.svg"
 								width={56}
 							/>
 

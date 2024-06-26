@@ -26,7 +26,12 @@ export default async function Navbar() {
 
 			<div className="flex gap-2 items-center">
 				<Link className="flex gap-2" href="/">
-					<Image alt="logo" height={20} src="/logo/favicon.svg" width={20} />{" "}
+					<Image
+						alt="logo"
+						height={20}
+						src="/images/logo/favicon.svg"
+						width={20}
+					/>{" "}
 					{env.APP_NAME}
 				</Link>
 				<Link

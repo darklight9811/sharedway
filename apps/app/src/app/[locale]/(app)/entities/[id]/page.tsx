@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 				data?.description ||
 				`Ajude a encontrar ${data?.name}, ele está perdido desde ${data?.date_created.toLocaleDateString(locale)}`,
 			images: data?.pictures[0].url,
-			logo: new URL("/logo/favicon.svg", baseUrl()),
+			logo: new URL("/images/logo/favicon.svg", baseUrl()),
 			url: new URL(`/entities/${data?.id}`, baseUrl()),
 		},
 		twitter: {
