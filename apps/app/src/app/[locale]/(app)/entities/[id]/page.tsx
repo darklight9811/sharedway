@@ -1,3 +1,4 @@
+import Share from "@/components/share";
 import { Link } from "@/lib/navigation";
 import parallel from "@/lib/parallel";
 import { baseUrl } from "@/lib/url";
@@ -6,11 +7,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
 import { buttonVariants } from "@repo/ds/ui/button";
 import { env } from "@repo/env";
 import entityService from "@repo/services/entity";
-import { Cat, Edit, User } from "lucide-react";
+import { Edit, User } from "lucide-react";
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+/**
+ * ### MARK: Metadata
+ */
 export async function generateMetadata({ params }: { params: { id: string } }) {
 	const [data, locale] = await parallel(
 		entityService.show(params.id),
@@ -38,6 +42,9 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 	} as Metadata;
 }
 
+/**
+ * ### MARK: Page
+ */
 export default async function Page({ params }: { params: { id: string } }) {
 	const [data, user] = await parallel(
 		entityService.show(params.id),
@@ -56,8 +63,6 @@ export default async function Page({ params }: { params: { id: string } }) {
 					</AvatarFallback>
 				</Avatar>
 
-				{data.type === "person" ? <User /> : <Cat />}
-
 				{data.name}
 
 				<div className="ml-auto flex gap-2">
@@ -73,6 +78,13 @@ export default async function Page({ params }: { params: { id: string } }) {
 			</h1>
 
 			<div>Desaparecido em {data.date_created?.toLocaleDateString()}</div>
+
+			<div className="my-4">
+				<Share
+					link={`${baseUrl()}/entities/${data.id}`}
+					description={`Ajude a encontrar ${data.name}`}
+				/>
+			</div>
 
 			<div className="my-8">{data.description || "Sem descrição"}</div>
 		</main>
