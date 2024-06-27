@@ -4,8 +4,11 @@ import {
 	DialogDrawerContent,
 	DialogDrawerTrigger,
 } from "@repo/ds/ui/dialog-drawer";
+import { Input } from "@repo/ds/ui/input";
 import { cn } from "@repo/ds/utils";
-import { Facebook, Mail, Twitter } from "lucide-react";
+import { Mail } from "lucide-react";
+import Image from "next/image";
+import type { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
 
 interface Props {
 	link: string;
@@ -22,26 +25,45 @@ export default function Share(props: Props) {
 			</DialogDrawerTrigger>
 
 			<DialogDrawerContent title="Compartilhar" cancel="Cancelar">
-				<div className="flex justify-evenly my-4">
+				<Input />
+
+				<div className="flex justify-between my-4">
 					<MediaButton
 						href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(props.link)}`}
 						title="facebook"
 						className="bg-[#3B5998] text-white"
 					>
-						<Facebook />
+						<Image
+							src="/images/brands/facebook.svg"
+							width={24}
+							height={24}
+							alt="facebook logo"
+						/>
 					</MediaButton>
 					<MediaButton
 						href={`https://twitter.com/share?url=${encodeURIComponent(props.link)}`}
 						title="twitter"
-						className="bg-[#55acee] text-white"
+						className="bg-black text-white"
 					>
-						<Twitter />
+						<Image
+							src="/images/brands/x.svg"
+							width={24}
+							height={24}
+							alt="x logo"
+						/>
 					</MediaButton>
 					<MediaButton
-						href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(props.link)}`}
+						href={`whatsapp://send?text=${encodeURIComponent(props.link)}`}
 						title="whatsapp"
+						className="bg-[#25D366] text-white"
+						data-action="share/whatsapp/share"
 					>
-						<Facebook />
+						<Image
+							src="/images/brands/whatsapp.svg"
+							width={24}
+							height={24}
+							alt="whatsapp logo"
+						/>
 					</MediaButton>
 					<MediaButton
 						href={`mailto:?subject=${encodeURIComponent(props.link)}`}
@@ -56,23 +78,20 @@ export default function Share(props: Props) {
 	);
 }
 
-function MediaButton(props: {
-	href: string;
-	children: React.ReactNode;
-	title: string;
-	className?: string;
-}) {
+function MediaButton(
+	props: DetailedHTMLProps<
+		AnchorHTMLAttributes<HTMLAnchorElement>,
+		HTMLAnchorElement
+	>,
+) {
 	return (
 		<a
+			{...props}
 			className={cn(
 				"rounded-full aspect-square w-full max-w-12 flex justify-center items-center",
 				props.className,
 			)}
-			href={props.href}
 			target="blank"
-			title={props.title}
-		>
-			{props.children}
-		</a>
+		/>
 	);
 }
