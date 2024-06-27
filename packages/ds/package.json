@@ -13,34 +13,16 @@
 	},
 	"license": "MIT",
 	"scripts": {
-		"storybook": "storybook dev -p 6006",
 		"lint": "biome lint --error-on-warnings ./src",
 		"verify": "biome check --error-on-warnings ./src",
-		"format": "biome format --error-on-warnings ./src",
-		"build-storybook": "storybook build"
-	},
-	"overrides": {
-		"@storybook/nextjs@^8.1.10": {
-			"sharp": "0.32.6"
-		}
+		"format": "biome format --error-on-warnings ./src"
 	},
 	"devDependencies": {
-		"@chromatic-com/storybook": "1.5.0",
 		"@repo/config": "0.0.0",
-		"@storybook/addon-essentials": "^8.1.10",
-		"@storybook/addon-interactions": "^8.1.10",
-		"@storybook/addon-links": "^8.1.10",
-		"@storybook/addon-onboarding": "^8.1.10",
-		"@storybook/blocks": "^8.1.10",
-		"@storybook/nextjs": "^8.1.10",
-		"@storybook/react": "^8.1.10",
-		"@storybook/react-vite": "^8.1.10",
-		"@storybook/test": "^8.1.10",
 		"@types/react": "^18.2.61",
 		"autoprefixer": "^10.4.18",
 		"postcss": "^8.4.35",
 		"react": "^18.2.0",
-		"storybook": "^8.1.10",
 		"tailwindcss": "^3.4.4",
 		"tailwindcss-animate": "^1.0.7",
 		"typescript": "^5.5.2",

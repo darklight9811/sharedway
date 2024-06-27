@@ -12,7 +12,6 @@
     "clean": "turbo clean",
     "component": "cd packages/ds && npx shadcn-ui@latest add",
     "db": "cd packages/services && dotenv -e ../../.env -- bun run ",
-    "storybook": "cd packages/ds && bun run storybook",
     "symlink": "symlink-dir ./public ./apps/app/public",
     "postinstall": "bun run symlink && bun run db generate"
   },
