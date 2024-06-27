@@ -4,6 +4,8 @@ import { enUS, ptBR } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { cn } from "@repo/ds/utils";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
@@ -41,13 +43,13 @@ export async function generateMetadata(params: { locale: string }) {
 			icon: [
 				{
 					media: "(prefers-color-scheme: light)",
-					url: "/logo/favicon.svg",
-					href: "/logo/favicon.svg",
+					url: "/images/logo/favicon.svg",
+					href: "/images/logo/favicon.svg",
 				},
 				{
 					media: "(prefers-color-scheme: dark)",
-					url: "/logo/favicon-light.svg",
-					href: "/logo/favicon-light.svg",
+					url: "/images/logo/favicon-light.svg",
+					href: "/images/logo/favicon-light.svg",
 				},
 			],
 		},
@@ -113,7 +115,10 @@ export default async function RootLayout({
 						signInUrl={`/${params.locale}/sign-in`}
 						signUpUrl={`/${params.locale}/sign-up`}
 					>
-						<div className="flex-grow w-full flex flex-col child:animate-fade-in">
+						<SpeedInsights />
+						<Analytics />
+
+						<div className="flex-grow w-full h-screen flex flex-col child:animate-fade-in">
 							{children}
 						</div>
 					</ClerkProvider>

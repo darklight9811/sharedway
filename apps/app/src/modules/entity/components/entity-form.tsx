@@ -22,6 +22,8 @@ interface Props {
 	onSubmit(data: any): Promise<Record<string, unknown>>;
 	schema?: "store" | "update";
 	data?: Record<string, unknown>;
+	require?: boolean;
+	children?: React.ReactNode;
 }
 
 export default function EntityForm(props: Props) {
@@ -41,6 +43,7 @@ export default function EntityForm(props: Props) {
 					<Field
 						label="Nome"
 						name="name"
+						required={props.require}
 						render={({ field }) => {
 							return <Input {...field} />;
 						}}
@@ -49,6 +52,7 @@ export default function EntityForm(props: Props) {
 					<Field
 						label="Idade"
 						name="data.age"
+						required={props.require}
 						render={({ field }) => {
 							return <Input {...field} />;
 						}}
@@ -57,6 +61,7 @@ export default function EntityForm(props: Props) {
 					<Field
 						label="Raça"
 						name="data.race"
+						required={props.require}
 						render={({ field }) => {
 							return <Input {...field} />;
 						}}
@@ -65,6 +70,7 @@ export default function EntityForm(props: Props) {
 					<Field
 						label="Gênero"
 						name="data.gender"
+						required={props.require}
 						render={({ field }) => {
 							return (
 								<Select {...field}>
@@ -108,6 +114,7 @@ export default function EntityForm(props: Props) {
 
 				<Field
 					label="Bairro"
+					required={props.require}
 					name="addresses.0.district"
 					className="w-full md:w-2/5"
 					render={({ field }) => {
@@ -117,6 +124,7 @@ export default function EntityForm(props: Props) {
 
 				<Field
 					label="Cidade"
+					required={props.require}
 					name="addresses.0.city"
 					className="w-full md:w-2/5"
 					render={({ field }) => {
@@ -126,6 +134,7 @@ export default function EntityForm(props: Props) {
 
 				<Field
 					label="Estado"
+					required={props.require}
 					name="addresses.0.state"
 					className="w-full md:w-2/5"
 					render={({ field }) => {
@@ -148,14 +157,7 @@ export default function EntityForm(props: Props) {
 				/>
 			</div>
 
-			<div className="mt-2 flex gap-2">
-				<Link href="/" className={buttonVariants({ variant: "outline" })}>
-					Voltar
-				</Link>
-				<Button type="submit" className="w-full max-w-[180px]">
-					Criar
-				</Button>
-			</div>
+			<div className="mt-2 flex gap-2">{props.children}</div>
 		</Form>
 	);
 }

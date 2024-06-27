@@ -12,6 +12,7 @@ import { User } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "../../../lib/navigation";
+import NavbarBackground from "./navbar-background";
 
 export default async function Navbar() {
 	const [user, t] = await Promise.all([
@@ -20,13 +21,24 @@ export default async function Navbar() {
 	]);
 
 	return (
-		<nav className="sticky shadow w-full py-2 px-4 flex justify-between items-center">
+		<nav className="sticky w-full py-2 px-4 flex justify-between items-center">
+			<NavbarBackground />
+
 			<div className="flex gap-2 items-center">
 				<Link className="flex gap-2" href="/">
-					<Image alt="logo" height={20} src="/logo/favicon.svg" width={20} />{" "}
+					<Image
+						alt="logo"
+						height={20}
+						src="/images/logo/favicon.svg"
+						width={20}
+					/>{" "}
 					{env.APP_NAME}
 				</Link>
-				<Link className={buttonVariants({ size: "sm" })} href="/register">
+				<Link
+					className={buttonVariants({ size: "sm" })}
+					href="/register"
+					prefetch={false}
+				>
 					+
 				</Link>
 			</div>

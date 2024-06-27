@@ -1,9 +1,10 @@
+import { Link } from "@/lib/navigation";
 import parallel from "@/lib/parallel";
 import * as actions from "@/modules/entity/actions";
 import EntityForm from "@/modules/entity/components/entity-form";
 import { currentUser } from "@/modules/user/loaders";
 import Form from "@repo/ds/form/form";
-import { Button } from "@repo/ds/ui/button";
+import { Button, buttonVariants } from "@repo/ds/ui/button";
 import {
 	Dialog,
 	DialogContent,
@@ -72,7 +73,14 @@ export default async function Page({ params }: { params: { id: string } }) {
 				</Dialog>
 			</h1>
 
-			<EntityForm onSubmit={update} data={data} schema="update" />
+			<EntityForm onSubmit={update} data={data} schema="update" require>
+				<Link href="/" className={buttonVariants({ variant: "outline" })}>
+					Voltar
+				</Link>
+				<Button type="submit" className="w-full max-w-[180px]">
+					Atualizar
+				</Button>
+			</EntityForm>
 		</main>
 	);
 }

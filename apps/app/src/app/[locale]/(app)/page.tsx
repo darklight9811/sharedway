@@ -19,7 +19,7 @@ export default async function Page(props: { searchParams: PaginationType }) {
 					})}
 				</div>
 
-				<Pagination {...pagination} />
+				<Pagination page={pagination.page || 1} pages={pagination.pages} />
 			</main>
 		</div>
 	);
