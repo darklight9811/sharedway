@@ -1,39 +1,44 @@
 {
-	"name": "sharedway",
-	"private": true,
-	"scripts": {
-		"i": "yarn --frozen-lockfile --ignore-optional",
-		"build": "dotenv -- turbo build",
-		"dev": "dotenv -- turbo dev",
-		"lint": "turbo lint --",
-		"verify": "turbo verify --",
-		"format": "turbo format --",
-		"type-check": "turbo type-check",
-		"sync": "syncpack fix-mismatches --indent \"\t\"",
-		"clean": "turbo clean",
-		"component": "cd packages/ds && npx shadcn-ui@latest add",
-		"db": "cd packages/services && dotenv -e ../../.env -- yarn ",
-		"storybook": "cd packages/ds && yarn storybook",
-		"symlink": "symlink-dir ./public ./apps/app/public",
-		"postinstall": "yarn symlink && yarn db generate"
-	},
-	"prisma": {
-		"schema": "packages/database/prisma/schema.prisma",
-		"seed": "tsx packages/database/src/seed.ts"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.8.2",
-		"@repo/config": "0.0.0",
-		"turbo": "2.0.4"
-	},
-	"engines": {
-		"node": ">=18"
-	},
-	"packageManager": "yarn@1.22.19",
-	"workspaces": ["apps/*", "packages/*"],
-	"dependencies": {
-		"dotenv-cli": "^7.4.1",
-		"symlink-dir": "^6.0.0",
-		"syncpack": "^12.3.2"
-	}
+  "name": "sharedway",
+  "private": true,
+  "scripts": {
+    "build": "dotenv -- turbo build",
+    "dev": "dotenv -- turbo dev",
+    "lint": "turbo lint --",
+    "verify": "turbo verify --",
+    "format": "turbo format --",
+    "type-check": "turbo type-check",
+    "sync": "syncpack fix-mismatches --indent \"\t\"",
+    "clean": "turbo clean",
+    "component": "cd packages/ds && npx shadcn-ui@latest add",
+    "db": "cd packages/services && dotenv -e ../../.env -- bun run ",
+    "storybook": "cd packages/ds && bun run storybook",
+    "symlink": "symlink-dir ./public ./apps/app/public",
+    "postinstall": "bun run symlink && bun run db generate"
+  },
+  "prisma": {
+    "schema": "packages/database/prisma/schema.prisma",
+    "seed": "tsx packages/database/src/seed.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.2",
+    "@repo/config": "0.0.0",
+    "turbo": "2.0.4"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  },
+  "packageManager": "bun@1.1.19",
+  "workspaces": ["apps/*", "packages/*"],
+  "dependencies": {
+    "dotenv-cli": "^7.4.1",
+    "symlink-dir": "^6.0.0",
+    "syncpack": "^12.3.2"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "@clerk/shared",
+    "@vercel/speed-insights",
+    "core-js-pure"
+  ]
 }

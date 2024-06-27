@@ -10,7 +10,7 @@
 		"format": "biome format --error-on-warnings ./src",
 		"verify": "biome check --error-on-warnings ./src",
 		"type-check": "tsc --noEmit",
-		"postinstall": "cd ../../ && yarn postinstall"
+		"postinstall": "cd ../../ && bun run postinstall"
 	},
 	"dependencies": {
 		"@clerk/localizations": "^2.4.5",

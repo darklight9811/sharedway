@@ -7,6 +7,6 @@ An application to help find missing people and animals. Serving as a central ban
 # Installation
 
 - Clone this repository
-- Run `yarn` on the root repository
+- Run `bun install` on the root repository
 - Create `.env` file from `.env.example`
-- Run `yarn dev --scope=app`
+- Run `bun --bun run dev --scope=app`
