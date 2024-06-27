@@ -2,6 +2,7 @@
 
 import { createContext, createElement, useContext, useState } from "react";
 import { useMediaQuery } from "../../hooks/use-media-query";
+import { cn } from "../../lib/utils";
 import { Button } from "./button";
 import {
 	Dialog,
@@ -87,12 +88,13 @@ export function DialogDrawerContent(props: {
 	title?: React.ReactNode;
 	description?: React.ReactNode;
 	cancel?: React.ReactNode;
+	className?: string;
 }) {
 	const ctx = useContext(context);
 
 	if (ctx.desktop) {
 		return (
-			<DialogContent className="sm:max-w-[425px]">
+			<DialogContent className={cn("sm:max-w-[425px]", props.className)}>
 				<DialogHeader>
 					{props.title && <DialogTitle>{props.title}</DialogTitle>}
 					{props.description && (
@@ -106,7 +108,7 @@ export function DialogDrawerContent(props: {
 	}
 
 	return (
-		<DrawerContent>
+		<DrawerContent className={props.className}>
 			<DrawerHeader className="text-left">
 				{props.title && <DrawerTitle>{props.title}</DrawerTitle>}
 				{props.description && (

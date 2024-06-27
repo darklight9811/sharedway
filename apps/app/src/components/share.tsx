@@ -1,10 +1,10 @@
 import { Button } from "@repo/ds/ui/button";
+import Copy from "@repo/ds/ui/copy";
 import {
 	DialogDrawer,
 	DialogDrawerContent,
 	DialogDrawerTrigger,
 } from "@repo/ds/ui/dialog-drawer";
-import { Input } from "@repo/ds/ui/input";
 import { cn } from "@repo/ds/utils";
 import { Mail } from "lucide-react";
 import Image from "next/image";
@@ -24,8 +24,12 @@ export default function Share(props: Props) {
 				{props.children || <Button type="button">Compartilhar</Button>}
 			</DialogDrawerTrigger>
 
-			<DialogDrawerContent title="Compartilhar" cancel="Cancelar">
-				<Input />
+			<DialogDrawerContent
+				title="Compartilhar"
+				cancel="Cancelar"
+				className="px-8"
+			>
+				<Copy link={props.link} />
 
 				<div className="flex justify-between my-4">
 					<MediaButton
@@ -41,7 +45,7 @@ export default function Share(props: Props) {
 						/>
 					</MediaButton>
 					<MediaButton
-						href={`https://twitter.com/share?url=${encodeURIComponent(props.link)}`}
+						href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${props.description}\n\nLink: ${props.link}`)}`}
 						title="twitter"
 						className="bg-black text-white"
 					>
@@ -53,7 +57,7 @@ export default function Share(props: Props) {
 						/>
 					</MediaButton>
 					<MediaButton
-						href={`whatsapp://send?text=${encodeURIComponent(props.link)}`}
+						href={`whatsapp://send?text=${encodeURIComponent(`${props.description}\n\nLink: ${props.link}`)}`}
 						title="whatsapp"
 						className="bg-[#25D366] text-white"
 						data-action="share/whatsapp/share"
@@ -66,7 +70,7 @@ export default function Share(props: Props) {
 						/>
 					</MediaButton>
 					<MediaButton
-						href={`mailto:?subject=${encodeURIComponent(props.link)}`}
+						href={`mailto:?subject=${encodeURIComponent(props.description || "")}&body=${encodeURIComponent(`Link: ${props.link}`)}`}
 						title="email"
 						className="bg-[#444444] text-white"
 					>
