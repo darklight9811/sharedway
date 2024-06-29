@@ -43,12 +43,23 @@ export default async function Navbar() {
 				</Link>
 			</div>
 
-			<div>
+			<div className="flex gap-4 items-center">
+				<a
+					target="blank"
+					rel="noreferrer"
+					href="https://natural-iberis-96f.notion.site/SHAREDWAY-Build-in-Public-ea743286a9834dcb9fa682f0f2e643a9?pvs=74"
+				>
+					<Image
+						src="/images/brands/notion.svg"
+						alt="notion logo"
+						width={24}
+						height={24}
+					/>
+				</a>
+
 				{user ? (
 					<DropdownMenu>
-						<DropdownMenuTrigger className="text-sm flex gap-2 items-center pl-2 rounded-3xl">
-							{user.username || user.firstName}
-
+						<DropdownMenuTrigger className="text-sm flex gap-2 items-center rounded-3xl">
 							{user.hasImage ? (
 								<Image
 									alt="user logo"

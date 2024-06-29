@@ -27,7 +27,7 @@
   "engines": {
     "bun": ">=1.1.0"
   },
-  "packageManager": "bun@1.1.17",
+  "packageManager": "yarn@1.22.19",
   "workspaces": ["apps/*", "packages/*"],
   "dependencies": {
     "dotenv-cli": "^7.4.1",
