@@ -47,6 +47,9 @@ const config = {
 					foreground: "hsl(var(--card-foreground))",
 				},
 			},
+			fontSize: {
+				"clamp-title": "clamp(24px,3.75vw,48px)",
+			},
 			borderRadius: {
 				lg: "var(--radius)",
 				md: "calc(var(--radius) - 2px)",

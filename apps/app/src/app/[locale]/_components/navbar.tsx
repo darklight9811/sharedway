@@ -28,18 +28,20 @@ export default async function Navbar() {
 				<Link className="flex gap-2" href="/">
 					<Image
 						alt="logo"
-						height={20}
+						height={24}
 						src="/images/logo/favicon.svg"
-						width={20}
-					/>{" "}
-					{env.APP_NAME}
+						width={24}
+					/>
 				</Link>
 				<Link
-					className={buttonVariants({ size: "sm" })}
+					className={buttonVariants({
+						size: "sm",
+						variant: "primary-gradient",
+					})}
 					href="/register"
 					prefetch={false}
 				>
-					+
+					Novo desaparecido
 				</Link>
 			</div>
 

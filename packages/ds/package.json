@@ -2,13 +2,12 @@
 	"name": "@repo/ds",
 	"version": "1.0.0",
 	"private": true,
-	"sideEffects": [
-		"**/*.css"
-	],
+	"sideEffects": ["**/*.css"],
 	"exports": {
 		"./*": "./src/components/*.tsx",
 		"./utils": "./src/lib/utils.ts",
 		"./tw": "./tailwind.config.ts",
+		"./hooks/*": "./src/hooks/*.ts",
 		"./react": "./src/lib/react.ts"
 	},
 	"license": "MIT",
