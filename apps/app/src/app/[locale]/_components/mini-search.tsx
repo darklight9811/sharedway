@@ -63,7 +63,7 @@ export default function MiniSearch() {
 					<span className="my-8 font-bold text-lg">
 						Nenhum resultado encontrado
 					</span>
-					<Link href="/register" className={buttonVariants()}>
+					<Link href="/entities/new" className={buttonVariants()}>
 						Cadastrar novo desaparecido
 					</Link>
 				</>

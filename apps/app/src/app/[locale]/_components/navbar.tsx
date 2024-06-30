@@ -38,7 +38,7 @@ export default async function Navbar() {
 						size: "sm",
 						variant: "primary-gradient",
 					})}
-					href="/register"
+					href="/entities/new"
 					prefetch={false}
 				>
 					Novo desaparecido
