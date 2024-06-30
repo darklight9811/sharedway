@@ -60,21 +60,25 @@ export default function MiniSearch() {
 
 			{search && !isLoading && data.length === 0 && (
 				<>
-					nenhum resultado encontrado{" "}
-					<Link href="/register">Cadastrar novo desaparecido</Link>
+					<span className="my-8 font-bold text-lg">
+						Nenhum resultado encontrado
+					</span>
+					<Link href="/register" className={buttonVariants()}>
+						Cadastrar novo desaparecido
+					</Link>
 				</>
 			)}
 
 			{data.length > 0 && (
 				<>
-					<div className="flex flex-wrap w-full max-w-5xl justify-between mt-8">
+					<div className="flex flex-wrap w-full max-w-5xl justify-between mt-8 animate-fade-in">
 						{data.map((entry) => (
-							<Card {...entry} key={entry.id} />
+							<Card {...entry} key={entry.id} className="animate-fade-in" />
 						))}
 					</div>
 
 					<Link
-						href={`/search?q=${search}`}
+						href={`/search?q=${encodeURIComponent(search)}`}
 						className={buttonVariants({ class: "mt-8" })}
 					>
 						Pesquisar mais

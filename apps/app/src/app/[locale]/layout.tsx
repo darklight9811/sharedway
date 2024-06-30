@@ -44,11 +44,6 @@ export async function generateMetadata(params: { locale: string }) {
 					url: "/images/logo/favicon.svg",
 					href: "/images/logo/favicon.svg",
 				},
-				{
-					media: "(prefers-color-scheme: dark)",
-					url: "/images/logo/favicon-light.svg",
-					href: "/images/logo/favicon-light.svg",
-				},
 			],
 		},
 		authors: [

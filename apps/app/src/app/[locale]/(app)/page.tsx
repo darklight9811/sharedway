@@ -1,16 +1,24 @@
+import { Link } from "@/lib/navigation";
+import tailwind from "@repo/ds/tw";
+import Title from "@repo/ds/ui/title";
+import { Code, Handshake, Users } from "lucide-react";
 import Image from "next/image";
 import MiniSearch from "../_components/mini-search";
 
 export default function Page() {
 	return (
 		<>
+			{/**
+			 * ### MARK: Hero
+			 */}
+
 			<div className="flex min-h-[75vh] flex-col justify-center items-center relative pb-[20vh]">
 				<Image
 					src="/images/logo/favicon.svg"
 					alt=""
 					width={24}
 					height={24}
-					className="!w-[50vh] absolute opacity-5 z-[-1]"
+					className="!w-[50vh] top-[10vh] absolute opacity-5 z-[-1]"
 				/>
 
 				<div className="bg-secondary text-white py-1 px-4 rounded-lg animate-top-in mt-[20vh]">
@@ -18,7 +26,7 @@ export default function Page() {
 				</div>
 
 				<h1 className="text-clamp-title font-bold max-w-screen-md text-center bg-gradient-to-l from-secondary to-primary bg-clip-text text-transparent animate-top-in">
-					Ajudando a encontrar aqueles que amamos
+					Ajude a encontrar aqueles que mais amamos
 				</h1>
 				<h2 className="text-xl opacity-0 animation-delay-200 animate-top-in">
 					Ajudando aqueles que encontramos pelo caminho, esse é o nosso{" "}
@@ -26,6 +34,89 @@ export default function Page() {
 				</h2>
 
 				<MiniSearch />
+			</div>
+
+			{/**
+			 * ### MARK: About
+			 */}
+
+			<div className="container mx-auto my-[10vh]">
+				<Title anchor="about" className="font-bold text-3xl mb-8">
+					Sobre
+				</Title>
+
+				<p className="indent-4 text-xl">
+					Nós somos um projeto open source software (OSS) que ajuda a conectar
+					aqueles que desapareceram com seus amigos e familia. Tendo API pública
+					e acesso gratuito, temos a missão de centralizar e distribuir
+					informação até onde ela seja necessária.
+				</p>
+			</div>
+
+			{/**
+			 * ### MARK: Features
+			 */}
+
+			<div className="container mx-auto my-[10vh]">
+				<Title anchor="features" className="font-bold text-3xl mb-8">
+					Recursos
+				</Title>
+
+				<div className="flex flex-wrap justify-evenly my-8 gap-4">
+					<div className="flex flex-col items-center max-w-xs">
+						<Users
+							size="64"
+							color={tailwind.theme.extend.colors.primary.DEFAULT}
+						/>
+
+						<h4 className="font-semibold text-xl text-primary">Comunidade</h4>
+
+						<p className="text-center">
+							Nós estamos aqui graças à aqueles que nos ajudam, graças a
+							comunidade e pela comunidade nós estamos aqui para ajudar o
+							próximo o quanto pudermos. Melhorando a cada dia.
+						</p>
+					</div>
+
+					<div className="flex flex-col items-center max-w-xs">
+						<Code
+							size="64"
+							color={tailwind.theme.extend.colors.primary.DEFAULT}
+						/>
+
+						<h4 className="font-semibold text-xl text-primary">
+							Código aberto
+						</h4>
+
+						<p className="text-center">
+							Nosso código está inteiramente disponivel e aberto para
+							alterações, faça parte e ajude a construir um mundo melhor{" "}
+							<Link
+								href="https://github.com/darklight9811/sharedway"
+								className="text-primary"
+								target="blank"
+							>
+								aqui
+							</Link>
+							.
+						</p>
+					</div>
+
+					<div className="flex flex-col items-center max-w-xs">
+						<Handshake
+							size="64"
+							color={tailwind.theme.extend.colors.primary.DEFAULT}
+						/>
+
+						<h4 className="font-semibold text-xl text-primary">Parceiros</h4>
+
+						<p className="text-center">
+							Nossos parceiros nos permitem ir mais longe, graças as parcerias
+							pudemos distribuir o código para que pudesse chegar a todos que
+							precisassem.
+						</p>
+					</div>
+				</div>
 			</div>
 		</>
 	);
