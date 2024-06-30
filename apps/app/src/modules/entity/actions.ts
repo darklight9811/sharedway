@@ -3,8 +3,13 @@
 import api from "@/lib/api";
 import { buildMetadata } from "@/lib/parallel";
 import { entityStoreSchema, entityUpdateSchema } from "@repo/schemas/entity";
+import pagination from "@repo/schemas/pagination";
 import entityService from "@repo/services/entity";
 import { z } from "zod";
+
+export const index = api
+	.zod(pagination)
+	.service(entityService.index, buildMetadata);
 
 export const store = api
 	.zod(entityStoreSchema)

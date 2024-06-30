@@ -1,19 +1,17 @@
-import "./globals.css";
 import { currentUser } from "@/modules/user/loaders";
-import { enUS, ptBR } from "@clerk/localizations";
-import { ClerkProvider } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { cn } from "@repo/ds/utils";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import parallel from "../../lib/parallel";
 import { baseUrl } from "../../lib/url";
+import ClientProvider from "./_components/client-provider";
+import ServerProvider from "./_components/server-provider";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -99,30 +97,22 @@ export default async function RootLayout({
 }) {
 	const { userId } = auth();
 	const pathname = headers().get("x-pathname") || "/";
-	const [user, messages] = await parallel(currentUser(), getMessages());
+	const [user] = await parallel(currentUser());
 
 	if (userId && !user && !pathname.includes("/callback")) {
 		return redirect(`/callback?redirect=${pathname}`);
 	}
 
 	return (
-		<html className="h-full" lang={params.locale}>
+		<html className="h-full scroll-smooth" lang={params.locale}>
 			<body className={cn(inter.className, "flex flex-col h-full")}>
-				<NextIntlClientProvider messages={messages}>
-					<ClerkProvider
-						polling={false}
-						localization={{ "pt-BR": ptBR, "en-US": enUS }[params.locale]}
-						signInUrl={`/${params.locale}/sign-in`}
-						signUpUrl={`/${params.locale}/sign-up`}
-					>
-						<SpeedInsights />
-						<Analytics />
-
-						<div className="flex-grow w-full h-screen flex flex-col child:animate-fade-in">
-							{children}
+				<ServerProvider locale={params.locale}>
+					<ClientProvider>
+						<div className="grow w-full h-screen child:animate-fade-in">
+							<div className="flex flex-col w-full grow">{children}</div>
 						</div>
-					</ClerkProvider>
-				</NextIntlClientProvider>
+					</ClientProvider>
+				</ServerProvider>
 			</body>
 		</html>
 	);
