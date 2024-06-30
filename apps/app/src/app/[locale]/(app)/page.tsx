@@ -12,7 +12,7 @@ export default function Page() {
 			 * ### MARK: Hero
 			 */}
 
-			<div className="flex min-h-[75vh] flex-col justify-center items-center relative pb-[20vh]">
+			<div className="flex min-h-[75vh] flex-col justify-center items-center relative pb-[20vh] px-2">
 				<Image
 					src="/images/logo/favicon.svg"
 					alt=""
@@ -25,10 +25,10 @@ export default function Page() {
 					Procurando por parceiros!
 				</div>
 
-				<h1 className="text-clamp-title font-bold max-w-screen-md text-center bg-gradient-to-l from-secondary to-primary bg-clip-text text-transparent animate-top-in">
+				<h1 className="text-5xl font-bold max-w-screen-md text-center bg-gradient-to-l from-secondary to-primary bg-clip-text text-transparent animate-top-in">
 					Ajude a encontrar aqueles que mais amamos
 				</h1>
-				<h2 className="text-xl opacity-0 animation-delay-200 animate-top-in">
+				<h2 className="text-md sm:text-xl text-center opacity-0 animation-delay-200 animate-top-in">
 					Ajudando aqueles que encontramos pelo caminho, esse é o nosso{" "}
 					<span className="text-primary font-semibold">sharedway</span>
 				</h2>
