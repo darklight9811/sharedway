@@ -19,11 +19,14 @@ const entityService = service({
 	 * @returns
 	 */
 	index(input?: Pagination) {
-		const { page, limit } = pagination.parse(input);
+		const { page, limit, q } = pagination.parse(input);
 
 		return db.entity.paginate({
 			page,
 			limit,
+			where: {
+				OR: [{ name: { contains: q, mode: "insensitive" } }],
+			},
 			select: {
 				id: true,
 				date_created: true,

@@ -9,7 +9,9 @@ const buttonVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "bg-primary text-primary-foreground hover:bg-primary/90",
+				primary: "bg-primary text-primary-foreground hover:bg-primary/90",
+				"primary-gradient":
+					"bg-gradient-to-l from-secondary to-primary/50 text-white",
 				destructive:
 					"bg-destructive text-destructive-foreground hover:bg-destructive/90",
 				outline: "bg-background hover:bg-accent hover:text-accent-foreground",
@@ -26,7 +28,7 @@ const buttonVariants = cva(
 			},
 		},
 		defaultVariants: {
-			variant: "default",
+			variant: "primary",
 			size: "default",
 		},
 	},

@@ -21,34 +21,47 @@ export default async function Navbar() {
 	]);
 
 	return (
-		<nav className="sticky w-full py-2 px-4 flex justify-between items-center">
+		<nav className="sticky top-0 z-10 w-full py-2 px-4 flex justify-between items-center">
 			<NavbarBackground />
 
 			<div className="flex gap-2 items-center">
 				<Link className="flex gap-2" href="/">
 					<Image
 						alt="logo"
-						height={20}
+						height={24}
 						src="/images/logo/favicon.svg"
-						width={20}
-					/>{" "}
-					{env.APP_NAME}
+						width={24}
+					/>
 				</Link>
 				<Link
-					className={buttonVariants({ size: "sm" })}
+					className={buttonVariants({
+						size: "sm",
+						variant: "primary-gradient",
+					})}
 					href="/register"
 					prefetch={false}
 				>
-					+
+					Novo desaparecido
 				</Link>
 			</div>
 
-			<div>
+			<div className="flex gap-4 items-center">
+				<a
+					target="blank"
+					rel="noreferrer"
+					href="https://natural-iberis-96f.notion.site/SHAREDWAY-Build-in-Public-ea743286a9834dcb9fa682f0f2e643a9?pvs=74"
+				>
+					<Image
+						src="/images/brands/notion.svg"
+						alt="notion logo"
+						width={24}
+						height={24}
+					/>
+				</a>
+
 				{user ? (
 					<DropdownMenu>
-						<DropdownMenuTrigger className="text-sm flex gap-2 items-center pl-2 rounded-3xl">
-							{user.username || user.firstName}
-
+						<DropdownMenuTrigger className="text-sm flex gap-2 items-center rounded-3xl">
 							{user.hasImage ? (
 								<Image
 									alt="user logo"

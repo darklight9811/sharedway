@@ -76,18 +76,5 @@
 		},
 		"ignore": ["**/node_modules/", "**/dist/", "**/*.css"]
 	},
-	"javascript": { "globals": ["JSX"] },
-	"overrides": [
-		{
-			"include": [
-				"*.stories.@(ts|tsx|js|jsx|mjs|cjs)",
-				"*.story.@(ts|tsx|js|jsx|mjs|cjs)"
-			],
-			"linter": { "rules": { "correctness": { "useHookAtTopLevel": "off" } } }
-		},
-		{
-			"include": [".storybook/main.@(js|cjs|mjs|ts)"],
-			"linter": { "rules": {} }
-		}
-	]
+	"javascript": { "globals": ["JSX"] }
 }

@@ -9,17 +9,21 @@ interface Props {
 export default function Footer(props: Props) {
 	return (
 		<footer
-			className={cn("w-full flex justify-evenly py-1 px-2", props.className)}
+			className={cn(
+				"w-full flex flex-col sm:flex-row text-center gap-4 justify-evenly py-4 px-2",
+				props.className,
+			)}
 		>
 			<Link href="/">
-				© {new Date().getFullYear()} {env.APP_NAME}. All rights reserved.
+				© {new Date().getFullYear()} {env.APP_NAME}. Todos os direitos
+				reservados.
 			</Link>
 
 			<Link prefetch={false} href="/terms">
-				Terms of use
+				Termos de uso
 			</Link>
 			<Link prefetch={false} href="/privacy">
-				Privacy term
+				Termos de privacidade
 			</Link>
 		</footer>
 	);
