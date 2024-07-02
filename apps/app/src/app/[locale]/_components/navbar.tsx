@@ -38,7 +38,7 @@ export default async function Navbar() {
 						size: "sm",
 						variant: "primary-gradient",
 					})}
-					href="/register"
+					href="/entities/new"
 					prefetch={false}
 				>
 					Novo desaparecido
@@ -90,11 +90,11 @@ export default async function Navbar() {
 					</DropdownMenu>
 				) : (
 					<>
-						<Link href="/sign-up" className="mr-2">
-							Registrar
-						</Link>
 						<Link href="/sign-in" className={buttonVariants()}>
 							Login
+						</Link>
+						<Link href="/sign-up" className="mr-2">
+							Registrar
 						</Link>
 					</>
 				)}

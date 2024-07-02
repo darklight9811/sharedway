@@ -103,7 +103,7 @@ export default async function RootLayout({
 			<body className={cn(inter.className, "flex flex-col h-full")}>
 				<ServerProvider locale={params.locale}>
 					<ClientProvider>
-						<div className="grow w-full h-screen child:animate-fade-in">
+						<div className="grow w-full flex h-screen child:animate-fade-in">
 							<div id="content" className="flex flex-col w-full grow relative">
 								{children}
 							</div>

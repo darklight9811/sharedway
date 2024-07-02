@@ -156,25 +156,28 @@ const entityService = service({
 		await Promise.all([
 			// add pictures
 			add_files.length > 0 &&
-				db.$transaction(async (tx) => {
-					const files = await uploader.uploadFiles(add_files);
+				db.$transaction(
+					async (tx) => {
+						const files = await uploader.uploadFiles(add_files);
 
-					await tx.entity.update({
-						where: { id: payload.id },
-						data: {
-							pictures: {
-								createMany: {
-									data: files
-										.filter((t) => t?.data)
-										.map((file) => ({
-											key: file.data?.key || "",
-											url: file.data?.url || "",
-										})),
+						await tx.entity.update({
+							where: { id: payload.id },
+							data: {
+								pictures: {
+									createMany: {
+										data: files
+											.filter((t) => t?.data)
+											.map((file) => ({
+												key: file.data?.key || "",
+												url: file.data?.url || "",
+											})),
+									},
 								},
 							},
-						},
-					});
-				}),
+						});
+					},
+					{ maxWait: 5000, timeout: 10000 },
+				),
 			// remove pictures
 			remove_files.length > 0 &&
 				db.$transaction(async (tx) => {

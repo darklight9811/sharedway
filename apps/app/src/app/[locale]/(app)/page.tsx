@@ -12,7 +12,7 @@ export default function Page() {
 			 * ### MARK: Hero
 			 */}
 
-			<div className="flex min-h-[75vh] flex-col justify-center items-center relative pb-[20vh] px-2">
+			<div className="flex flex-col justify-center items-center relative pb-[20vh] px-2">
 				<Image
 					src="/images/logo/favicon.svg"
 					alt=""

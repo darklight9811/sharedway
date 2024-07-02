@@ -16,7 +16,7 @@ import {
 } from "@repo/ds/ui/dialog";
 import type { EntityUpdateSchema } from "@repo/schemas/entity";
 import entityService from "@repo/services/entity";
-import { Trash } from "lucide-react";
+import { Eye, Trash } from "lucide-react";
 import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -43,9 +43,18 @@ export default async function Page({ params }: { params: { id: string } }) {
 		<main className="grow flex flex-col justify-center items-center my-16">
 			<h1 className="w-full max-w-5xl text-3xl font-bold mb-4 flex justify-between">
 				Atualizar desaparecido
+				<Link
+					href={`/entities/${data.id}`}
+					className={buttonVariants({
+						size: "icon",
+						className: "ml-auto mr-2",
+					})}
+				>
+					<Eye />
+				</Link>
 				<Dialog>
 					<DialogTrigger asChild>
-						<Button variant="destructive" className="ml-auto" type="button">
+						<Button variant="destructive" size="icon" type="button">
 							<Trash />
 						</Button>
 					</DialogTrigger>

@@ -18,15 +18,16 @@ export default function MiniSearch() {
 	const [value, setvalue] = useState("");
 	const [search, setsearch] = useState("");
 
-	const { data, isLoading } = useQuery({
-		initialData: [],
-		queryKey: ["_", search],
+	const { data: query, isLoading } = useQuery({
+		queryKey: ["minisearch", search],
 		enabled: !!search,
 		async queryFn({ queryKey: [, search] }) {
 			const resp = await index({ limit: 12, q: search });
 			return resp.data?.[0] || [];
 		},
 	});
+
+	const data = query || [];
 
 	return (
 		<div ref={input} className="pt-8 w-full flex flex-col items-center">
@@ -38,7 +39,12 @@ export default function MiniSearch() {
 					const { value } = e.target;
 
 					if (value && reset.current === false) {
-						input.current?.scrollIntoView();
+						window.scrollTo(
+							0,
+							window.scrollY -
+								40 +
+								(input.current?.getBoundingClientRect().top || 0),
+						);
 						reset.current = true;
 					}
 
@@ -63,7 +69,7 @@ export default function MiniSearch() {
 					<span className="my-8 font-bold text-lg">
 						Nenhum resultado encontrado
 					</span>
-					<Link href="/register" className={buttonVariants()}>
+					<Link href="/entities/new" className={buttonVariants()}>
 						Cadastrar novo desaparecido
 					</Link>
 				</>
