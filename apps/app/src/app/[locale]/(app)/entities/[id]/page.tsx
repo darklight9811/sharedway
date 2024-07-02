@@ -122,7 +122,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 			<div className="w-full">
 				{data.pictures.length > 1 && (
-					<Carousel opts={{}} className="mb-8">
+					<Carousel opts={{}} className="mb-8 mt-4 md:mt-0">
 						<CarouselContent>
 							{data.pictures.map((entry) => (
 								<CarouselItem
