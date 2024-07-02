@@ -5,12 +5,15 @@ import { baseUrl } from "@/lib/url";
 import { currentUser } from "@/modules/user/loaders";
 import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
 import { Button, buttonVariants } from "@repo/ds/ui/button";
+import { Carousel, CarouselContent, CarouselItem } from "@repo/ds/ui/carousel";
 import { env } from "@repo/env";
 import entityService from "@repo/services/entity";
-import { Edit, Flag, Printer, ShareIcon, Trash, User } from "lucide-react";
+import { Edit, Flag, Printer, Share2, Trash, User } from "lucide-react";
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
+import Image from "next/image";
 import { notFound } from "next/navigation";
+import { FindDialog } from "./_components/find-dialog";
 
 /**
  * ### MARK: Metadata
@@ -71,10 +74,12 @@ export default async function Page({ params }: { params: { id: string } }) {
 				</div>
 
 				<div className="flex gap-2 mt-4">
-					<Button type="button" className="w-full">
-						Encontrado
-					</Button>
-					<Button type="button" variant="destructive">
+					<FindDialog>
+						<Button type="button" className="w-full">
+							Encontrado
+						</Button>
+					</FindDialog>
+					<Button type="button" variant="destructive" disabled>
 						<Flag />
 					</Button>
 				</div>
@@ -85,10 +90,10 @@ export default async function Page({ params }: { params: { id: string } }) {
 						description={`Ajude a encontrar ${data.name}`}
 					>
 						<Button type="button" size="icon">
-							<ShareIcon />
+							<Share2 />
 						</Button>
 					</Share>
-					<Button type="button" size="icon">
+					<Button type="button" size="icon" disabled>
 						<Printer />
 					</Button>
 					{user?.id === data.user_created.id && (
@@ -116,7 +121,27 @@ export default async function Page({ params }: { params: { id: string } }) {
 			</div>
 
 			<div className="w-full">
-				{data.pictures.length > 1 && <div>Carousel</div>}
+				{data.pictures.length > 1 && (
+					<Carousel opts={{}} className="mb-8">
+						<CarouselContent>
+							{data.pictures.map((entry) => (
+								<CarouselItem
+									key={entry.id}
+									className="max-w-[150px] aspect-square"
+								>
+									<div className="relative w-full h-full overflow-hidden rounded-lg">
+										<Image
+											src={entry.url}
+											fill
+											alt=""
+											className="min-w-full min-h-full"
+										/>
+									</div>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+					</Carousel>
+				)}
 
 				<h2 className="mb-4 font-bold text-xl">Descrição</h2>
 

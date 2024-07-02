@@ -90,11 +90,11 @@ export default async function Navbar() {
 					</DropdownMenu>
 				) : (
 					<>
-						<Link href="/sign-up" className="mr-2">
-							Registrar
-						</Link>
 						<Link href="/sign-in" className={buttonVariants()}>
 							Login
+						</Link>
+						<Link href="/sign-up" className="mr-2">
+							Registrar
 						</Link>
 					</>
 				)}
