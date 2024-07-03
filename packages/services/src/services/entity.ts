@@ -5,6 +5,7 @@ import type {
 import { entityStoreSchema } from "@repo/schemas/entity";
 import type { Pagination } from "@repo/schemas/pagination";
 import pagination from "@repo/schemas/pagination";
+import { z } from "zod";
 import { db } from "../lib/db";
 import service from "../lib/service";
 import uploader from "../lib/uploader";
@@ -18,8 +19,11 @@ const entityService = service({
 	 * @param input
 	 * @returns
 	 */
-	index(input?: Pagination) {
-		const { page, limit, q } = pagination.parse(input);
+	index(input?: Pagination & { user?: string }) {
+		const { page, limit, q } = z
+			.object({ user: z.string().optional() })
+			.merge(pagination)
+			.parse(input);
 
 		return db.entity.paginate({
 			page,

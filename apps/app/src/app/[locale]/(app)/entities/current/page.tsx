@@ -1,3 +1,4 @@
+import { auth } from "@clerk/nextjs/server";
 import Card from "@repo/ds/ui/card";
 import { Pagination } from "@repo/ds/ui/pagination";
 import type { Pagination as PaginationType } from "@repo/schemas/pagination";
@@ -6,7 +7,10 @@ import parallel from "../../../../../lib/parallel";
 
 export default async function Page(props: { searchParams: PaginationType }) {
 	const [[data, pagination]] = await parallel(
-		entityService.index(props.searchParams),
+		entityService.index({
+			...props.searchParams,
+			user: auth().userId || undefined,
+		}),
 	);
 
 	return (
