@@ -49,7 +49,8 @@ export default async function Navbar() {
 					href="/entities"
 					prefetch={false}
 				>
-					<Search /> Pesquisar
+					<Search />
+					<span className="hidden md:inline"> Pesquisar</span>
 				</Link>
 			</div>
 
