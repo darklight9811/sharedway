@@ -8,8 +8,15 @@ import { objectToFormData } from "../../lib/form";
 import type { ZodSchema } from "zod";
 
 interface FormProps {
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	onSubmit: (data: FormData) => any | Promise<any>;
+	onSubmit?: (
+		data: FormData,
+		raw: Record<string, unknown>,
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	) => any | Promise<any>;
+	onChange?: (
+		data: FormData,
+		raw: Record<string, unknown>,
+	) => void | Promise<void>;
 	onSuccess?: (data: unknown) => unknown | Promise<unknown>;
 	children?: React.ReactNode;
 	className?: string;
@@ -28,11 +35,22 @@ export default function Form(props: FormProps) {
 	return (
 		<FormProvider {...form}>
 			<form
+				onChange={
+					props.onChange
+						? () =>
+								props.onChange?.(
+									objectToFormData(form.getValues()),
+									form.getValues(),
+								)
+						: undefined
+				}
 				onSubmit={form.handleSubmit(async (payload) => {
+					if (!props.onSubmit) return;
+
 					form.clearErrors();
 
 					const response = await props
-						.onSubmit(objectToFormData(payload))
+						.onSubmit(objectToFormData(payload), payload)
 						.catch((e: unknown) => e);
 					const errors = response?.errors || response?.data?.errors;
 

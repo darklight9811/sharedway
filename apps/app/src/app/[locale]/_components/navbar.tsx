@@ -8,7 +8,7 @@ import {
 	DropdownMenuTrigger,
 } from "@repo/ds/ui/dropdown-menu";
 import { env } from "@repo/env";
-import { User } from "lucide-react";
+import { Search, User } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "../../../lib/navigation";
@@ -23,7 +23,6 @@ export default async function Navbar() {
 	return (
 		<nav className="sticky top-0 z-10 w-full py-2 px-4 flex justify-between items-center">
 			<NavbarBackground />
-
 			<div className="flex gap-2 items-center">
 				<Link className="flex gap-2" href="/">
 					<Image
@@ -42,6 +41,16 @@ export default async function Navbar() {
 					prefetch={false}
 				>
 					Novo desaparecido
+				</Link>
+				<Link
+					className={buttonVariants({
+						size: "sm",
+					})}
+					href="/entities"
+					prefetch={false}
+				>
+					<Search />
+					<span className="hidden md:inline"> Pesquisar</span>
 				</Link>
 			</div>
 
@@ -79,8 +88,13 @@ export default async function Navbar() {
 
 						<DropdownMenuContent className="mr-2">
 							<DropdownMenuItem>
+								<Link className="w-full" href="/entities/current">
+									Procurados
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem>
 								<Link className="w-full" href="/profile">
-									profile
+									Perfil
 								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild className="w-full">
