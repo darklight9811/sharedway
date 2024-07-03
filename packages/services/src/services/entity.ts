@@ -25,7 +25,7 @@ const entityService = service({
 			page,
 			limit,
 			where: {
-				OR: [{ name: { contains: q, mode: "insensitive" } }],
+				...(q ? { OR: [{ name: { contains: q, mode: "insensitive" } }] } : {}),
 			},
 			select: {
 				id: true,
