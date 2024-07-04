@@ -11,7 +11,7 @@ export default async function Page(props: { searchParams: PaginationType }) {
 	);
 
 	return (
-		<div className="flex grow container my-4 gap-4">
+		<div className="flex flex-col sm:flex-row grow container my-4 gap-4">
 			<aside className="w-full sm:w-1/3">
 				<h5 className="w-full text-xl mb-4">Filtro</h5>
 

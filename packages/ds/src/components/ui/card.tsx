@@ -24,7 +24,7 @@ export default function Card(props: CardProps) {
 			<Link className="grow z-10" href={`/entities/${props.id}`} />
 
 			<div className="p-2 text-white z-10">
-				<span>{props.name}</span>
+				<span className="pointer-events-none">{props.name}</span>
 
 				<div className="flex w-full mt-1 gap-4">
 					<Link

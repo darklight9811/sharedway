@@ -21,7 +21,7 @@ export default async function Navbar() {
 	]);
 
 	return (
-		<nav className="sticky top-0 z-10 w-full py-2 px-4 flex justify-between items-center">
+		<nav className="fixed top-0 z-10 w-full py-2 px-4 flex justify-between items-center">
 			<NavbarBackground />
 			<div className="flex gap-2 items-center">
 				<Link className="flex gap-2" href="/">
@@ -40,7 +40,8 @@ export default async function Navbar() {
 					href="/entities/new"
 					prefetch={false}
 				>
-					Novo desaparecido
+					<span className="md:hidden inline">+</span>
+					<span className="hidden md:inline">Novo desaparecido</span>
 				</Link>
 				<Link
 					className={buttonVariants({
@@ -107,7 +108,7 @@ export default async function Navbar() {
 						<Link href="/sign-in" className={buttonVariants()}>
 							Login
 						</Link>
-						<Link href="/sign-up" className="mr-2">
+						<Link href="/sign-up" className="mr-2 hidden md:inline">
 							Registrar
 						</Link>
 					</>
