@@ -27,7 +27,7 @@ export default function Share(props: Props) {
 			<DialogDrawerContent
 				title="Compartilhar"
 				cancel="Cancelar"
-				className="px-8"
+				className="px-4"
 			>
 				<Copy link={props.link} />
 
