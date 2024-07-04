@@ -5,8 +5,8 @@ import Footer from "../_components/footer";
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<>
-			<div className="relative grow flex flex-col justify-center items-center overflow-hidden animate-fade-in">
-				<span className="absolute top-1 left-1 flex gap-2 opacity-30">
+			<div className="relative grow flex flex-col justify-center items-center overflow-hidden animate-fade-in pb-[15vh]">
+				<span className="absolute top-1 left-1 flex gap-2 opacity-30 text-primary">
 					<Image
 						alt="logo"
 						height={20}

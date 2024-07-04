@@ -2,12 +2,10 @@
 
 import { buttonVariants } from "@repo/ds/ui/button";
 import {
-	Dialog,
-	DialogContent,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from "@repo/ds/ui/dialog";
+	DialogDrawer,
+	DialogDrawerContent,
+	DialogDrawerTrigger,
+} from "@repo/ds/ui/dialog-drawer";
 import { Mail, Phone } from "lucide-react";
 
 interface Props {
@@ -23,13 +21,13 @@ export function FindDialog(props: Props) {
 	const options = props.contact?.options as { type: string; value: string }[];
 
 	return (
-		<Dialog>
-			<DialogTrigger asChild>{props.children}</DialogTrigger>
+		<DialogDrawer>
+			<DialogDrawerTrigger asChild>{props.children}</DialogDrawerTrigger>
 
-			<DialogContent>
-				<DialogHeader>
-					<DialogTitle>Encontrou este desaparecido?</DialogTitle>
-				</DialogHeader>
+			<DialogDrawerContent>
+				<h1 className="text-lg font-semibold leading-none tracking-tight">
+					Encontrou este desaparecido?
+				</h1>
 
 				<div className="text-sm">
 					{!props.contact?.description && (options.length || 0) === 0
@@ -58,7 +56,7 @@ export function FindDialog(props: Props) {
 							))}
 					</ul>
 				)}
-			</DialogContent>
-		</Dialog>
+			</DialogDrawerContent>
+		</DialogDrawer>
 	);
 }
