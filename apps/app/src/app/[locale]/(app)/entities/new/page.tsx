@@ -5,7 +5,7 @@ import { Button, buttonVariants } from "@repo/ds/ui/button";
 
 export default function Page() {
 	return (
-		<main className="grow flex flex-col justify-center items-center my-16">
+		<main className="grow flex flex-col justify-center items-center my-16 px-2">
 			<h1 className="w-full max-w-5xl text-3xl font-bold mb-4 text-primary">
 				Registrar novo desaparecido
 			</h1>

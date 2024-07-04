@@ -1,6 +1,6 @@
 import { Camera, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useUpdate } from "../../lib/react";
 
@@ -48,6 +48,12 @@ export default function ImageUploader(props: Props) {
 		},
 	});
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		if (props.value && JSON.stringify(props.value) !== JSON.stringify(files))
+			setFiles(props.value);
+	}, [props.value]);
+
 	useUpdate(
 		function triggerEvent() {
 			props.onChange?.(files);
@@ -68,7 +74,7 @@ export default function ImageUploader(props: Props) {
 							<div
 								key={`${file.name}${index}`}
 								className="aspect-square w-full max-w-24 rounded-lg bg-cover relative overflow-hidden"
-								style={{ backgroundImage: `url(${file.url})` }}
+								style={{ backgroundImage: `url('${file.url}')` }}
 							>
 								<button
 									type="button"

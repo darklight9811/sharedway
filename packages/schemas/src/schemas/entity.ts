@@ -8,6 +8,17 @@ const entityData = z.object({
 	gender: z.enum(["male", "female", "other"]),
 });
 
+const contact = z.object({
+	id: z.string().cuid(),
+	description: z.string().default(""),
+	options: z.array(
+		z.object({
+			type: z.enum(["email", "phone"]),
+			value: z.string(),
+		}),
+	),
+});
+
 const address = z.object({
 	id: z.string().cuid(),
 	district: z.string(),
@@ -19,6 +30,7 @@ const entity = z.object({
 	name: z.string(),
 
 	data: entityData.omit({ id: true }),
+	contact: contact.omit({ id: true }),
 
 	description: z.string().default(""),
 
@@ -35,6 +47,7 @@ export const entityStoreSchema = zfd.formData({
 	name: z.string(),
 
 	data: entityData.omit({ id: true }),
+	contact: contact.omit({ id: true }),
 
 	description: z.string().default(""),
 
@@ -54,6 +67,7 @@ export const entityUpdateSchema = zfd.formData(
 			name: z.string(),
 
 			data: entityData.omit({ id: true }),
+			contact: contact.omit({ id: true }),
 
 			description: z.string().default(""),
 

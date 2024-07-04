@@ -7,6 +7,7 @@ import { Label } from "../ui/label";
 
 interface FieldProps {
 	name: string;
+	value?: unknown;
 	required?: boolean;
 	render: Parameters<typeof Controller>[0]["render"];
 
@@ -21,6 +22,8 @@ export default function Field(props: FieldProps) {
 	return (
 		<Controller
 			name={props.name}
+			rules={{ required: props.required }}
+			defaultValue={props.value}
 			render={(context) => {
 				const { ref: _, ...rest } = context.field;
 				const err =
@@ -43,7 +46,10 @@ export default function Field(props: FieldProps) {
 							</p>
 						) : null}
 
-						<p className="mt-2 text-sm font-medium text-destructive h-5">
+						<p
+							className="mt-2 text-sm font-medium text-destructive h-5"
+							role="alert"
+						>
 							{err ? <span className="animate-top-in">{t(err)}</span> : " "}
 						</p>
 					</fieldset>
