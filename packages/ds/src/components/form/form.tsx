@@ -22,13 +22,14 @@ interface FormProps {
 	className?: string;
 	schema?: ZodSchema;
 	data?: Record<string, unknown>;
+	defaultData?: Record<string, unknown>;
 }
 
 export default function Form(props: FormProps) {
 	const router = useRouter();
 	const pathname = usePathname();
 	const form = useForm({
-		defaultValues: props.data,
+		defaultValues: props.data || props.defaultData,
 		resolver: props.schema && zodResolver(props.schema),
 	});
 

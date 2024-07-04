@@ -1,10 +1,10 @@
 "use client";
 
 import states from "@/constants/state";
-import { Link } from "@/lib/navigation";
 import Field from "@repo/ds/form/field";
+import FieldList from "@repo/ds/form/field-list";
 import Form from "@repo/ds/form/form";
-import { Button, buttonVariants } from "@repo/ds/ui/button";
+import { Button } from "@repo/ds/ui/button";
 import ImageUploader from "@repo/ds/ui/image-uploader";
 import { Input } from "@repo/ds/ui/input";
 import {
@@ -16,6 +16,7 @@ import {
 } from "@repo/ds/ui/select";
 import { Textarea } from "@repo/ds/ui/textarea";
 import { entityStoreSchema, entityUpdateSchema } from "@repo/schemas/entity";
+import { Trash } from "lucide-react";
 
 interface Props {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -30,6 +31,7 @@ export default function EntityForm(props: Props) {
 	return (
 		<Form
 			data={props.data}
+			defaultData={{ contact: { options: [{}] } }}
 			schema={
 				props.schema === "update" ? entityUpdateSchema : entityStoreSchema
 			}
@@ -37,7 +39,7 @@ export default function EntityForm(props: Props) {
 			className="w-full max-w-5xl flex gap-8 flex-col"
 		>
 			<div className="w-full flex flex-col md:flex-row gap-4 justify-between">
-				<div className="w-full max-w-sm">
+				<div className="w-full sm:max-w-sm">
 					<h2 className="text-2xl mb-4">Informações gerais</h2>
 
 					<Field
@@ -153,6 +155,53 @@ export default function EntityForm(props: Props) {
 								</SelectContent>
 							</Select>
 						);
+					}}
+				/>
+			</div>
+
+			<div className="w-full flex flex-wrap gap-4 justify-between">
+				<h2 className="text-2xl mb-4 w-full">Contato</h2>
+
+				<FieldList
+					name="contact.options"
+					startWith={1}
+					render={({ name, remove }) => (
+						<div className="flex gap-4 w-full" key={name}>
+							<Field
+								name={`${name}.type`}
+								value="phone"
+								className="m-0 min-w-[100px]"
+								render={({ field }) => (
+									<Select {...field}>
+										<SelectTrigger>
+											<SelectValue />
+										</SelectTrigger>
+
+										<SelectContent>
+											<SelectItem value="phone">Telefone</SelectItem>
+											<SelectItem value="email">E-mail</SelectItem>
+										</SelectContent>
+									</Select>
+								)}
+							/>
+							<Field
+								name={`${name}.value`}
+								className="m-0 w-full"
+								render={({ field }) => <Input {...field} />}
+							/>
+							<Button type="button" onClick={remove} variant="destructive">
+								<Trash />
+							</Button>
+						</div>
+					)}
+				/>
+
+				<Field
+					label="Outras formas de entrar em contato"
+					name="contact.description"
+					className="w-full"
+					render={({ field }) => {
+						return <Textarea {...field} />;
 					}}
 				/>
 			</div>

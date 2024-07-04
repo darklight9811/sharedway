@@ -51,6 +51,7 @@ model Entity {
     pictures     EntityPicture[]
     addresses    EntityAddress[]
     data         EntityData?
+    contact      EntityContact?
 
     @@map("entities")
 }
@@ -87,7 +88,7 @@ model EntityAddress {
 model EntityPicture {
     id String @id @default(cuid())
 
-	key String @unique
+    key String @unique
     url String @unique
 
     id_entity String
@@ -95,4 +96,17 @@ model EntityPicture {
     entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
 
     @@map("entity_pictures")
+}
+
+model EntityContact {
+    id String @id @default(cuid())
+
+    description String @default("")
+    options     Json   @default("[]")
+
+    id_entity String @unique
+
+    entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
+
+    @@map("entity_contact")
 }

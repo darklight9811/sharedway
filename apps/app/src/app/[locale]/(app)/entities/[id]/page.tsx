@@ -74,9 +74,9 @@ export default async function Page({ params }: { params: { id: string } }) {
 				</div>
 
 				<div className="flex gap-2 mt-4">
-					<FindDialog>
+					<FindDialog contact={data.contact}>
 						<Button type="button" className="w-full">
-							Encontrado
+							Encontrou?
 						</Button>
 					</FindDialog>
 					<Button type="button" variant="destructive" disabled>
@@ -127,14 +127,14 @@ export default async function Page({ params }: { params: { id: string } }) {
 							{data.pictures.map((entry) => (
 								<CarouselItem
 									key={entry.id}
-									className="max-w-[150px] aspect-square"
+									className="max-w-[150px] pb-4 aspect-square"
 								>
 									<div className="relative w-full h-full overflow-hidden rounded-lg">
 										<Image
 											src={entry.url}
 											fill
 											alt=""
-											className="min-w-full min-h-full"
+											className="min-w-full min-h-full object-fill"
 										/>
 									</div>
 								</CarouselItem>

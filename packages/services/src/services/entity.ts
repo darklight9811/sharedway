@@ -75,6 +75,13 @@ const entityService = service({
 						id: user.id,
 					},
 				},
+				contact: {
+					create: {
+						description: input.contact.description,
+						options: input.contact.options,
+					},
+				},
+
 				data: {
 					create: {
 						age: data.data.age,
@@ -128,6 +135,7 @@ const entityService = service({
 				},
 				description: true,
 				data: true,
+				contact: true,
 				addresses: {
 					take: 10,
 				},
@@ -209,6 +217,21 @@ const entityService = service({
 					description: payload.data.description,
 					data: {
 						update: payload.data.data,
+					},
+					contact: {
+						upsert: {
+							where: {
+								id_entity: payload.id,
+							},
+							create: {
+								description: payload.data.contact?.description,
+								options: payload.data.contact?.options || [],
+							},
+							update: {
+								description: payload.data.contact?.description,
+								options: payload.data.contact?.options || [],
+							},
+						},
 					},
 					addresses: {
 						update: {
