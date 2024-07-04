@@ -24,7 +24,7 @@ export function FindDialog(props: Props) {
 		<DialogDrawer>
 			<DialogDrawerTrigger asChild>{props.children}</DialogDrawerTrigger>
 
-			<DialogDrawerContent>
+			<DialogDrawerContent className="p-2 flex flex-col gap-4">
 				<h1 className="text-lg font-semibold leading-none tracking-tight">
 					Encontrou este desaparecido?
 				</h1>
