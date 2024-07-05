@@ -69,7 +69,7 @@ export default function Page() {
 							color={tailwind.theme.extend.colors.primary.DEFAULT}
 						/>
 
-						<h4 className="font-semibold text-xl text-primary">Comunidade</h4>
+						<h3 className="font-semibold text-xl text-primary">Comunidade</h3>
 
 						<p className="text-center">
 							Nós estamos aqui graças à aqueles que nos ajudam, graças a
@@ -84,19 +84,20 @@ export default function Page() {
 							color={tailwind.theme.extend.colors.primary.DEFAULT}
 						/>
 
-						<h4 className="font-semibold text-xl text-primary">
+						<h3 className="font-semibold text-xl text-primary">
 							Código aberto
-						</h4>
+						</h3>
 
 						<p className="text-center">
 							Nosso código está inteiramente disponivel e aberto para
-							alterações, faça parte e ajude a construir um mundo melhor{" "}
+							alterações, faça parte e ajude a construir um mundo melhor através
+							do{" "}
 							<Link
 								href="https://github.com/darklight9811/sharedway"
 								className="text-primary"
 								target="blank"
 							>
-								aqui
+								nosso repositório git
 							</Link>
 							.
 						</p>
@@ -108,7 +109,7 @@ export default function Page() {
 							color={tailwind.theme.extend.colors.primary.DEFAULT}
 						/>
 
-						<h4 className="font-semibold text-xl text-primary">Parceiros</h4>
+						<h3 className="font-semibold text-xl text-primary">Parceiros</h3>
 
 						<p className="text-center">
 							Nossos parceiros nos permitem ir mais longe, graças as parcerias

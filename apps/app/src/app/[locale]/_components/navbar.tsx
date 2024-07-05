@@ -39,6 +39,7 @@ export default async function Navbar() {
 					})}
 					href="/entities/new"
 					prefetch={false}
+					aria-label="Registrar novo desaparecido"
 				>
 					<span className="md:hidden inline">+</span>
 					<span className="hidden md:inline">Novo desaparecido</span>
@@ -49,6 +50,7 @@ export default async function Navbar() {
 					})}
 					href="/entities"
 					prefetch={false}
+					aria-label="Pesquisar"
 				>
 					<Search />
 					<span className="hidden md:inline"> Pesquisar</span>

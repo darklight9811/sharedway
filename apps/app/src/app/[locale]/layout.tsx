@@ -25,7 +25,7 @@ export async function generateMetadata(params: { locale: string }) {
 		metadataBase: new URL(baseUrl()),
 		robots: "/robots.txt",
 		alternates: {
-			canonical: "/",
+			canonical: `./${locale}/`,
 			languages: {
 				"en-US": "/en-US",
 				"pt-BR": "/pt-BR",
