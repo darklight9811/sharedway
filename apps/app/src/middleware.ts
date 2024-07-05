@@ -12,8 +12,10 @@ import { locales } from "./i18n";
 
 const isAssetRoute = createRouteMatcher([
 	"/(images|logo|locales|_next)/(.*)",
+	"(.*).js.map",
 	"/sitemap.xml",
 	"/robots.txt",
+	"/manifest.webmanifest",
 ]);
 
 const isProtectedRoute = createRouteMatcher([

@@ -10,6 +10,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 const config = {
 	reactStrictMode: true,
 	transpilePackages: ["@repo/ds"],
+	productionBrowserSourceMaps: true,
 	images: {
 		remotePatterns: [
 			{
