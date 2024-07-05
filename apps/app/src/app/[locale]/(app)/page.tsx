@@ -19,6 +19,7 @@ export default function Page() {
 					width={24}
 					height={24}
 					className="!w-[50vh] top-[10vh] absolute opacity-5 z-[-1]"
+					priority
 				/>
 
 				<div className="bg-secondary text-white py-1 px-4 rounded-lg animate-top-in mt-[20vh]">
