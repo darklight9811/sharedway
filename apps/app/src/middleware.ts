@@ -13,6 +13,7 @@ import { locales } from "./i18n";
  */
 
 const isAssetRoute = createRouteMatcher([
+	"/post.png",
 	"/(images|logo|locales|_next)/(.*)",
 	"(.*).js.map",
 	"/sitemap.xml",
