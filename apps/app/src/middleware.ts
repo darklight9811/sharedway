@@ -3,7 +3,9 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { ipAddress } from "@vercel/edge";
 import { kv } from "@vercel/kv";
 import createMiddleware from "next-intl/middleware";
+import { getLocale } from "next-intl/server";
 import { NextResponse } from "next/server";
+import { generate } from "./app/manifest";
 import { locales } from "./i18n";
 
 /**
@@ -42,6 +44,17 @@ const ratelimit = new Ratelimit({
 const clerk = clerkMiddleware(
 	async (auth, req) => {
 		req.headers.set("x-pathname", req.nextUrl.pathname);
+
+		// we generate the webmanifest dinamically to allow internacionalization
+		if (req.nextUrl.pathname === "/manifest.webmanifest") {
+			const preferredLanguage = req.headers.get("Accept-Language");
+			if (!preferredLanguage) return NextResponse.json(generate("en-US"));
+			const favoriteLanguages = preferredLanguage.split(",");
+			const locale = favoriteLanguages.find((t) =>
+				["en-US", "pt-BR"].includes(t.split(";")[0]),
+			);
+			return NextResponse.json(await generate(locale || "en-US"));
+		}
 
 		// assets are always public and not internacionalized
 		if (isAssetRoute(req)) return NextResponse.next();

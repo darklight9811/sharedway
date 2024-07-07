@@ -1,8 +1,15 @@
 import type { MetadataRoute } from "next";
-import { getTranslations } from "next-intl/server";
 
-export default async function manifest(): Promise<MetadataRoute.Manifest> {
-	const [t] = await Promise.all([getTranslations({ namespace: "metadata" })]);
+// languages
+import enUS from "../../public/locales/en-US.json";
+import ptBR from "../../public/locales/pt-BR.json";
+
+export async function generate(lang: string) {
+	const file = { enUS, ptBR }[lang.replace("-", "")];
+
+	function t(key: string) {
+		return file?.metadata[key as keyof typeof file.metadata];
+	}
 
 	return {
 		name: t("title"),
@@ -20,4 +27,10 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
 			},
 		],
 	};
+}
+
+export default function manifest(): Promise<
+	Partial<Record<keyof MetadataRoute.Manifest, unknown>>
+> {
+	return generate("en-US");
 }
