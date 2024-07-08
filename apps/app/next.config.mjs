@@ -11,7 +11,9 @@ const config = {
 	reactStrictMode: true,
 	transpilePackages: ["@repo/ds"],
 	productionBrowserSourceMaps: true,
-	headers: {},
+	async headers() {
+		return [];
+	},
 	images: {
 		remotePatterns: [
 			{
