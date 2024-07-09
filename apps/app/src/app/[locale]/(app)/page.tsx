@@ -41,31 +41,10 @@ export default function Page() {
 			</div>
 
 			{/**
-			 * ### MARK: About
-			 */}
-
-			<div className="container mx-auto my-[10vh]">
-				<Title anchor="about" className="font-bold text-3xl mb-8">
-					Sobre
-				</Title>
-
-				<p className="indent-4 text-xl">
-					Nós somos um projeto open source software (OSS) que ajuda a conectar
-					aqueles que desapareceram com seus amigos e familia. Tendo API pública
-					e acesso gratuito, temos a missão de centralizar e distribuir
-					informação até onde ela seja necessária.
-				</p>
-			</div>
-
-			{/**
 			 * ### MARK: Features
 			 */}
 
-			<div className="container mx-auto my-[10vh]">
-				<Title anchor="features" className="font-bold text-3xl mb-8">
-					Recursos
-				</Title>
-
+			<div className="container mx-auto my-[5vh]">
 				<div className="flex flex-wrap justify-evenly my-8 gap-4">
 					<div className="flex flex-col items-center max-w-xs">
 						<Users
@@ -122,6 +101,30 @@ export default function Page() {
 						</p>
 					</div>
 				</div>
+			</div>
+
+			{/**
+			 * ### MARK: About
+			 */}
+
+			<div className="mx-auto max-w-md w-full my-[10vh] relative">
+				<Title
+					anchor="about"
+					className="font-bold text-3xl mb-8 text-primary text-center"
+				>
+					Sobre
+				</Title>
+
+				<h2 className="absolute top-0 w-full left-0 text-center z-[-1] text-9xl font-bold opacity-10 text-primary pointer-events-none">
+					Sobre
+				</h2>
+
+				<p className="indent-8 text-center text-xl">
+					Nós somos um projeto open source software (OSS) que ajuda a conectar
+					aqueles que desapareceram com seus amigos e familia. Tendo API pública
+					e acesso gratuito, temos a missão de centralizar e distribuir
+					informação até onde ela seja necessária.
+				</p>
 			</div>
 		</>
 	);

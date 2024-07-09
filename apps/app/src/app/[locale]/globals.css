@@ -1,7 +1,17 @@
 @import url("../../../../../packages/ds/src/styles.css");
 
 body {
+	position: relative;
 	background-color: #DBF0FD;
 	background-image: linear-gradient(to top right, hsl(203, 88%, 90%), hsl(202.5, 100%, 96.9%));
 	background-attachment: fixed;
+}
+html {
+	scrollbar-width: thin;
+	scrollbar-color: theme("colors.primary.DEFAULT") #DBF0FD;
+	scrollbar-gutter: auto;
+}
+body[data-scroll-locked] nav {
+	width: calc(100% - var(--removed-body-scroll-bar-size));
+	margin-right: 8px;
 }
