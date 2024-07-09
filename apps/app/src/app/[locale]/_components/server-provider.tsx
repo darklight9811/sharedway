@@ -9,7 +9,11 @@ export default async function ServerProvider({
 	children,
 	locale,
 }: { children: React.ReactNode; locale: string }) {
-	const messages = await getMessages();
+	/**
+	 * Legal contains a lot of unnecessary text to most pages, and
+	 * since its loaded through RSC, it wont be used client side
+	 */
+	const { legal: _, ...messages } = await getMessages();
 
 	return (
 		<NextIntlClientProvider messages={messages}>
