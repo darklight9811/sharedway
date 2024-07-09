@@ -41,6 +41,14 @@
 			"description": "Nós somos um projeto open source software (OSS) que ajuda a conectar aqueles que desapareceram com seus amigos e familia. Tendo API pública e acesso gratuito, temos a missão de centralizar e distribuir informação até onde ela seja necessária."
 		}
 	},
+	"auth": {
+		"callback": {
+			"title": "Configurando sua conta",
+			"description": "Enquanto isso, gostariamos de dizer que vai ficar tudo bem",
+			"back": "Voltar",
+			"done": "Configurações feitas! Você pode voltar a usar o app agora"
+		}
+	},
 	"entities": {
 		"filter": "Filtro",
 		"search": "Pesquisar",

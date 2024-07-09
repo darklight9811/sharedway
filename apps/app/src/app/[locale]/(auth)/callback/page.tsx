@@ -3,14 +3,29 @@ import { currentUser } from "@clerk/nextjs/server";
 import { buttonVariants } from "@repo/ds/ui/button";
 import userService from "@repo/services/user";
 import { Loader } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense, createElement } from "react";
 
-export default async function Page({
+export default function Page({
 	searchParams,
 }: { searchParams: { redirect?: string } }) {
+	const t = useTranslations("auth.callback");
+
+	function LoadingCallback() {
+		return (
+			<>
+				<Loader size="56" className="animate-spin" />
+
+				<h1 className="text-2xl font-bold my-2">{t("title")}</h1>
+
+				<p>{t("description")}</p>
+			</>
+		);
+	}
+
 	return (
 		<div className="flex grow flex-col justify-center items-center">
 			<Suspense fallback={<LoadingCallback />}>
@@ -47,32 +62,18 @@ export default async function Page({
 								width={56}
 							/>
 
-							<h1 className="text-2xl font-bold my-2">
-								Configurações feitas! Você pode voltar a usar o app agora
-							</h1>
+							<h1 className="text-2xl font-bold my-2">{t("done")}</h1>
 
 							<Link
 								className={buttonVariants()}
 								href={searchParams.redirect || "/"}
 							>
-								Voltar
+								{t("back")}
 							</Link>
 						</>
 					);
 				})}
 			</Suspense>
 		</div>
-	);
-}
-
-function LoadingCallback() {
-	return (
-		<>
-			<Loader size="56" className="animate-spin" />
-
-			<h1 className="text-2xl font-bold my-2">Configurando sua conta</h1>
-
-			<p>Enquanto isso, gostariamos de dizer que vai ficar tudo bem</p>
-		</>
 	);
 }
