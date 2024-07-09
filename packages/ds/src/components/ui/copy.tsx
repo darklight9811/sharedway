@@ -1,14 +1,22 @@
 "use client";
 
 import { Copy as CopyIcon } from "lucide-react";
+import { cn } from "../../lib/utils";
 
 interface Props {
 	link: string;
+
+	className?: string;
 }
 
 export default function Copy(props: Props) {
 	return (
-		<div className="w-full relative flex overflow-hidden border-2 rounded-xl p-2">
+		<div
+			className={cn(
+				"w-full relative flex overflow-hidden border-2 rounded-xl p-2",
+				props.className,
+			)}
+		>
 			<span className="text-ellipsis w-full text-nowrap">{props.link}</span>
 
 			<div

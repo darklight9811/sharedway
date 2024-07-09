@@ -2,10 +2,13 @@ import { Link } from "@/lib/navigation";
 import tailwind from "@repo/ds/tw";
 import Title from "@repo/ds/ui/title";
 import { Code, Handshake, Users } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import MiniSearch from "../_components/mini-search";
 
 export default function Page() {
+	const t = useTranslations("home");
+
 	return (
 		<>
 			{/**

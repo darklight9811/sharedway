@@ -11,7 +11,7 @@ export default function NavbarBackground() {
 		function onScroll(e: Event) {
 			setShadow(
 				(e.target as unknown as { scrollingElement: Element }).scrollingElement
-					.scrollTop > 75,
+					.scrollTop > 25,
 			);
 		}
 
