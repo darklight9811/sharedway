@@ -57,7 +57,42 @@
 		"help": "Ajude a encontrar {entity}.",
 		"created-by": "Criado por {by} em {date}",
 		"description": "Descrição",
-		"no-description": "Sem descrição"
+		"no-description": "Sem descrição",
+		"create-title": "Registrar novo desaparecido",
+		"back": "Voltar",
+		"create": "Criar",
+		"new": {
+			"general": {
+				"title": "Informações gerais",
+				"name": "Nome",
+				"age": "Idade",
+				"race": "Raça",
+				"gender": "Gênero",
+				"gender-options": {
+					"male": "Masculino",
+					"female": "Feminino",
+					"other": "Outros"
+				},
+				"description": "Descrição"
+			},
+			"pictures": {
+				"title": "Fotos"
+			},
+			"location": {
+				"title": "Localização",
+				"district": "Bairro",
+				"city": "Cidade",
+				"state": "Estado"
+			},
+			"contact": {
+				"title": "Contato",
+				"description": "Outras formas de entrar em contato",
+				"type-options": {
+					"phone": "Telefone",
+					"email": "E-mail"
+				}
+			}
+		}
 	},
 	"form": {
 		"errors": {
