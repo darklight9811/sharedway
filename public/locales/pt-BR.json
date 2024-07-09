@@ -4,6 +4,15 @@
 		"description": "sharedway é um site que ajuda a conectar pessoas e animais perdidos com seus ente queridos. Ajude a espalhar a palavra",
 		"keywords": ""
 	},
+	"general": {
+		"create": "Novo desaparecido",
+		"search": "Pesquisar",
+		"list": "Procurados",
+		"profile": "Perfil",
+		"logout": "Sair",
+		"login": "Login",
+		"signin": "Registrar"
+	},
 	"home": {
 		"hero": {
 			"pill": "Procurando por parceiros!",
