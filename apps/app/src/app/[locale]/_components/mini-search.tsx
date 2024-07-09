@@ -10,6 +10,7 @@ import { index } from "@/modules/entity/actions";
 import { buttonVariants } from "@repo/ds/ui/button";
 import Card from "@repo/ds/ui/card";
 import { Loader } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function MiniSearch() {
 	const reset = useRef(false);
@@ -17,6 +18,7 @@ export default function MiniSearch() {
 	const debounce = useRef<NodeJS.Timeout>();
 	const [value, setvalue] = useState("");
 	const [search, setsearch] = useState("");
+	const t = useTranslations("home.search");
 
 	const { data: query, isLoading } = useQuery({
 		queryKey: ["minisearch", search],
@@ -59,18 +61,16 @@ export default function MiniSearch() {
 
 			{isLoading && (
 				<div className="flex my-12 items-center gap-2 animate-top-in">
-					Carregando resultados
+					{t("loading")}
 					<Loader className="animate-spin" />
 				</div>
 			)}
 
 			{search && !isLoading && data.length === 0 && (
 				<>
-					<span className="my-8 font-bold text-lg">
-						Nenhum resultado encontrado
-					</span>
+					<span className="my-8 font-bold text-lg">{t("empty")}</span>
 					<Link href="/entities/new" className={buttonVariants()}>
-						Cadastrar novo desaparecido
+						{t("register")}
 					</Link>
 				</>
 			)}
@@ -87,7 +87,7 @@ export default function MiniSearch() {
 						href={`/search?q=${encodeURIComponent(search)}`}
 						className={buttonVariants({ class: "mt-8" })}
 					>
-						Pesquisar mais
+						{t("more")}
 					</Link>
 				</>
 			)}

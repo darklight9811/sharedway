@@ -7,8 +7,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@repo/ds/ui/dropdown-menu";
-import { env } from "@repo/env";
-import { Search, User } from "lucide-react";
+import { Plus, Search, User } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "../../../lib/navigation";
@@ -17,7 +16,7 @@ import NavbarBackground from "./navbar-background";
 export default async function Navbar() {
 	const [user, t] = await Promise.all([
 		currentUser(),
-		getTranslations("metadata"),
+		getTranslations("general"),
 	]);
 
 	return (
@@ -36,13 +35,16 @@ export default async function Navbar() {
 					className={buttonVariants({
 						size: "sm",
 						variant: "primary-gradient",
+						className: "pl-1",
 					})}
 					href="/entities/new"
 					prefetch={false}
-					aria-label="Registrar novo desaparecido"
+					aria-label={t("create")}
 				>
-					<span className="md:hidden inline">+</span>
-					<span className="hidden md:inline">Novo desaparecido</span>
+					<span>
+						<Plus />
+					</span>
+					<span className="hidden md:inline">{t("create")}</span>
 				</Link>
 				<Link
 					className={buttonVariants({
@@ -50,10 +52,10 @@ export default async function Navbar() {
 					})}
 					href="/entities"
 					prefetch={false}
-					aria-label="Pesquisar"
+					aria-label={t("search")}
 				>
 					<Search />
-					<span className="hidden md:inline"> Pesquisar</span>
+					<span className="hidden md:inline"> {t("search")}</span>
 				</Link>
 			</div>
 
@@ -92,26 +94,26 @@ export default async function Navbar() {
 						<DropdownMenuContent className="mr-2">
 							<DropdownMenuItem>
 								<Link className="w-full" href="/entities/current">
-									Procurados
+									{t("list")}
 								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem>
 								<Link className="w-full" href="/profile">
-									Perfil
+									{t("profile")}
 								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild className="w-full">
-								<SignOutButton>Sair</SignOutButton>
+								<SignOutButton>{t("logout")}</SignOutButton>
 							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
 				) : (
 					<>
 						<Link href="/sign-in" className={buttonVariants()}>
-							Login
+							{t("login")}
 						</Link>
 						<Link href="/sign-up" className="mr-2 hidden md:inline">
-							Registrar
+							{t("signin")}
 						</Link>
 					</>
 				)}

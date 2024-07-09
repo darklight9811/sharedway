@@ -2,18 +2,20 @@ import Card from "@repo/ds/ui/card";
 import { Pagination } from "@repo/ds/ui/pagination";
 import type { Pagination as PaginationType } from "@repo/schemas/pagination";
 import entityService from "@repo/services/entity";
+import { getTranslations } from "next-intl/server";
 import parallel from "../../../../lib/parallel";
 import { Filter } from "./_components/filter";
 
 export default async function Page(props: { searchParams: PaginationType }) {
-	const [[data, pagination]] = await parallel(
+	const [[data, pagination], t] = await parallel(
 		entityService.index(props.searchParams),
+		getTranslations("entities"),
 	);
 
 	return (
 		<div className="flex flex-col sm:flex-row grow container my-4 gap-4">
 			<aside className="w-full sm:w-1/3">
-				<h5 className="w-full text-xl mb-4">Filtro</h5>
+				<h5 className="w-full text-xl mb-4">{t("filter")}</h5>
 
 				<Filter data={props.searchParams} />
 			</aside>

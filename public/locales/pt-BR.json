@@ -4,7 +4,96 @@
 		"description": "sharedway é um site que ajuda a conectar pessoas e animais perdidos com seus ente queridos. Ajude a espalhar a palavra",
 		"keywords": ""
 	},
-	"home": {},
+	"general": {
+		"create": "Novo desaparecido",
+		"search": "Pesquisar",
+		"list": "Procurados",
+		"profile": "Perfil",
+		"logout": "Sair",
+		"login": "Login",
+		"signin": "Registrar",
+		"rights": "Todos os direitos reservados.",
+		"terms": "Termos de uso",
+		"privacy": "Termos de privacidade"
+	},
+	"home": {
+		"hero": {
+			"pill": "Procurando por parceiros!",
+			"title": "Ajude a encontrar aqueles que mais amamos",
+			"slogan": "Ajudando aqueles que encontramos pelo caminho, esse é o nosso sharedway"
+		},
+		"search": {
+			"loading": "Carregando resultados",
+			"empty": "Nenhum resultado encontrado",
+			"register": "Cadastrar novo desaparecido",
+			"more": "Pesquisar mais"
+		},
+		"features": {
+			"community": "Comunidade",
+			"community-description": "Nós estamos aqui graças à aqueles que nos ajudam, graças a comunidade e pela comunidade nós estamos aqui para ajudar o próximo o quanto pudermos. Melhorando a cada dia.",
+			"code": "Código aberto",
+			"code-description": "Nosso código está inteiramente disponivel e aberto para alterações, faça parte e ajude a construir um mundo melhor através do nosso repositório git.",
+			"partners": "Parceiros",
+			"partners-description": "Nossos parceiros nos permitem ir mais longe, graças as parcerias pudemos distribuir o código para que pudesse chegar a todos que precisassem."
+		},
+		"about": {
+			"title": "Sobre",
+			"description": "Nós somos um projeto open source software (OSS) que ajuda a conectar aqueles que desapareceram com seus amigos e familia. Tendo API pública e acesso gratuito, temos a missão de centralizar e distribuir informação até onde ela seja necessária."
+		}
+	},
+	"auth": {
+		"callback": {
+			"title": "Configurando sua conta",
+			"description": "Enquanto isso, gostariamos de dizer que vai ficar tudo bem",
+			"back": "Voltar",
+			"done": "Configurações feitas! Você pode voltar a usar o app agora"
+		}
+	},
+	"entities": {
+		"filter": "Filtro",
+		"search": "Pesquisar",
+		"date": "Desaparecido em {date}",
+		"found": "Encontrou?",
+		"help": "Ajude a encontrar {entity}.",
+		"created-by": "Criado por {by} em {date}",
+		"description": "Descrição",
+		"no-description": "Sem descrição",
+		"create-title": "Registrar novo desaparecido",
+		"back": "Voltar",
+		"create": "Criar",
+		"new": {
+			"general": {
+				"title": "Informações gerais",
+				"name": "Nome",
+				"age": "Idade",
+				"race": "Raça",
+				"gender": "Gênero",
+				"gender-options": {
+					"male": "Masculino",
+					"female": "Feminino",
+					"other": "Outros"
+				},
+				"description": "Descrição"
+			},
+			"pictures": {
+				"title": "Fotos"
+			},
+			"location": {
+				"title": "Localização",
+				"district": "Bairro",
+				"city": "Cidade",
+				"state": "Estado"
+			},
+			"contact": {
+				"title": "Contato",
+				"description": "Outras formas de entrar em contato",
+				"type-options": {
+					"phone": "Telefone",
+					"email": "E-mail"
+				}
+			}
+		}
+	},
 	"form": {
 		"errors": {
 			"file-too-large": "O arquivo \"{name}\" carregado é maior do que {size}mb",

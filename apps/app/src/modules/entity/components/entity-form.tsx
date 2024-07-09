@@ -17,6 +17,7 @@ import {
 import { Textarea } from "@repo/ds/ui/textarea";
 import { entityStoreSchema, entityUpdateSchema } from "@repo/schemas/entity";
 import { Trash } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface Props {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -28,6 +29,8 @@ interface Props {
 }
 
 export default function EntityForm(props: Props) {
+	const t = useTranslations("entities.new");
+
 	return (
 		<Form
 			data={props.data}
@@ -40,10 +43,10 @@ export default function EntityForm(props: Props) {
 		>
 			<div className="w-full flex flex-col md:flex-row gap-4 justify-between">
 				<div className="w-full sm:max-w-sm">
-					<h2 className="text-2xl mb-4">Informações gerais</h2>
+					<h2 className="text-2xl mb-4">{t("general.title")}</h2>
 
 					<Field
-						label="Nome"
+						label={t("general.name")}
 						name="name"
 						required={props.require}
 						render={({ field }) => {
@@ -52,7 +55,7 @@ export default function EntityForm(props: Props) {
 					/>
 
 					<Field
-						label="Idade"
+						label={t("general.age")}
 						name="data.age"
 						required={props.require}
 						render={({ field }) => {
@@ -61,7 +64,7 @@ export default function EntityForm(props: Props) {
 					/>
 
 					<Field
-						label="Raça"
+						label={t("general.race")}
 						name="data.race"
 						required={props.require}
 						render={({ field }) => {
@@ -70,7 +73,7 @@ export default function EntityForm(props: Props) {
 					/>
 
 					<Field
-						label="Gênero"
+						label={t("general.gender")}
 						name="data.gender"
 						required={props.require}
 						render={({ field }) => {
@@ -81,9 +84,15 @@ export default function EntityForm(props: Props) {
 									</SelectTrigger>
 
 									<SelectContent>
-										<SelectItem value="male">Masculino</SelectItem>
-										<SelectItem value="female">Feminino</SelectItem>
-										<SelectItem value="other">Outros</SelectItem>
+										<SelectItem value="male">
+											{t("general.gender-options.male")}
+										</SelectItem>
+										<SelectItem value="female">
+											{t("general.gender-options.female")}
+										</SelectItem>
+										<SelectItem value="other">
+											{t("general.gender-options.other")}
+										</SelectItem>
 									</SelectContent>
 								</Select>
 							);
@@ -91,7 +100,7 @@ export default function EntityForm(props: Props) {
 					/>
 
 					<Field
-						label="Descrição geral"
+						label={t("general.description")}
 						name="description"
 						render={({ field }) => {
 							return <Textarea {...field} />;
@@ -100,7 +109,7 @@ export default function EntityForm(props: Props) {
 				</div>
 
 				<div className="w-full max-w-[512px]">
-					<h2 className="text-2xl mb-4">Fotos</h2>
+					<h2 className="text-2xl mb-4">{t("pictures.title")}</h2>
 
 					<Field
 						name="pictures"
@@ -112,10 +121,10 @@ export default function EntityForm(props: Props) {
 			</div>
 
 			<div className="w-full flex flex-wrap gap-4 justify-between">
-				<h2 className="text-2xl mb-4 w-full">Localização</h2>
+				<h2 className="text-2xl mb-4 w-full">{t("location.title")}</h2>
 
 				<Field
-					label="Bairro"
+					label={t("location.district")}
 					required={props.require}
 					name="addresses.0.district"
 					className="w-full md:w-2/5"
@@ -125,7 +134,7 @@ export default function EntityForm(props: Props) {
 				/>
 
 				<Field
-					label="Cidade"
+					label={t("location.city")}
 					required={props.require}
 					name="addresses.0.city"
 					className="w-full md:w-2/5"
@@ -135,7 +144,7 @@ export default function EntityForm(props: Props) {
 				/>
 
 				<Field
-					label="Estado"
+					label={t("location.state")}
 					required={props.require}
 					name="addresses.0.state"
 					className="w-full md:w-2/5"
@@ -160,7 +169,7 @@ export default function EntityForm(props: Props) {
 			</div>
 
 			<div className="w-full flex flex-wrap gap-4 justify-between">
-				<h2 className="text-2xl mb-4 w-full">Contato</h2>
+				<h2 className="text-2xl mb-4 w-full">{t("contact.title")}</h2>
 
 				<FieldList
 					name="contact.options"
@@ -178,8 +187,12 @@ export default function EntityForm(props: Props) {
 										</SelectTrigger>
 
 										<SelectContent>
-											<SelectItem value="phone">Telefone</SelectItem>
-											<SelectItem value="email">E-mail</SelectItem>
+											<SelectItem value="phone">
+												{t("contact.type-options.phone")}
+											</SelectItem>
+											<SelectItem value="email">
+												{t("contact.type-options.email")}
+											</SelectItem>
 										</SelectContent>
 									</Select>
 								)}
@@ -197,7 +210,7 @@ export default function EntityForm(props: Props) {
 				/>
 
 				<Field
-					label="Outras formas de entrar em contato"
+					label={t("contact.description")}
 					name="contact.description"
 					className="w-full"
 					render={({ field }) => {

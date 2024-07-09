@@ -1,12 +1,15 @@
 import { Link } from "@/lib/navigation";
 import { cn } from "@repo/ds/utils";
 import { env } from "@repo/env";
+import { useTranslations } from "next-intl";
 
 interface Props {
 	className?: string;
 }
 
 export default function Footer(props: Props) {
+	const t = useTranslations("general");
+
 	return (
 		<footer
 			className={cn(
@@ -15,15 +18,14 @@ export default function Footer(props: Props) {
 			)}
 		>
 			<Link href="/">
-				© {new Date().getFullYear()} {env.APP_NAME}. Todos os direitos
-				reservados.
+				© {new Date().getFullYear()} {env.APP_NAME}. {t("rights")}
 			</Link>
 
 			<Link prefetch={false} href="/terms">
-				Termos de uso
+				{t("terms")}
 			</Link>
 			<Link prefetch={false} href="/privacy">
-				Termos de privacidade
+				{t("privacy")}
 			</Link>
 		</footer>
 	);
