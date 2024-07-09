@@ -26,15 +26,14 @@ export default function Page() {
 				/>
 
 				<div className="bg-secondary text-white py-1 px-4 rounded-lg animate-top-in mt-[20vh]">
-					Procurando por parceiros!
+					{t("hero.pill")}
 				</div>
 
 				<h1 className="text-5xl font-bold max-w-screen-md text-center bg-gradient-to-l from-secondary to-primary bg-clip-text text-transparent animate-top-in">
-					Ajude a encontrar aqueles que mais amamos
+					{t("hero.title")}
 				</h1>
 				<h2 className="text-md sm:text-xl text-center opacity-0 animation-delay-200 animate-top-in">
-					Ajudando aqueles que encontramos pelo caminho, esse é o nosso{" "}
-					<span className="text-primary font-semibold">sharedway</span>
+					{t("hero.slogan")}
 				</h2>
 
 				<MiniSearch />
@@ -52,13 +51,11 @@ export default function Page() {
 							color={tailwind.theme.extend.colors.primary.DEFAULT}
 						/>
 
-						<h3 className="font-semibold text-xl text-primary">Comunidade</h3>
+						<h3 className="font-semibold text-xl text-primary">
+							{t("features.community")}
+						</h3>
 
-						<p className="text-center">
-							Nós estamos aqui graças à aqueles que nos ajudam, graças a
-							comunidade e pela comunidade nós estamos aqui para ajudar o
-							próximo o quanto pudermos. Melhorando a cada dia.
-						</p>
+						<p className="text-center">{t("features.community-description")}</p>
 					</div>
 
 					<div className="flex flex-col items-center max-w-xs">
@@ -68,22 +65,10 @@ export default function Page() {
 						/>
 
 						<h3 className="font-semibold text-xl text-primary">
-							Código aberto
+							{t("features.code")}
 						</h3>
 
-						<p className="text-center">
-							Nosso código está inteiramente disponivel e aberto para
-							alterações, faça parte e ajude a construir um mundo melhor através
-							do{" "}
-							<Link
-								href="https://github.com/darklight9811/sharedway"
-								className="text-primary"
-								target="blank"
-							>
-								nosso repositório git
-							</Link>
-							.
-						</p>
+						<p className="text-center">{t("features.code-description")}</p>
 					</div>
 
 					<div className="flex flex-col items-center max-w-xs">
@@ -92,13 +77,11 @@ export default function Page() {
 							color={tailwind.theme.extend.colors.primary.DEFAULT}
 						/>
 
-						<h3 className="font-semibold text-xl text-primary">Parceiros</h3>
+						<h3 className="font-semibold text-xl text-primary">
+							{t("features.partners")}
+						</h3>
 
-						<p className="text-center">
-							Nossos parceiros nos permitem ir mais longe, graças as parcerias
-							pudemos distribuir o código para que pudesse chegar a todos que
-							precisassem.
-						</p>
+						<p className="text-center">{t("features.partners-description")}</p>
 					</div>
 				</div>
 			</div>
@@ -112,19 +95,14 @@ export default function Page() {
 					anchor="about"
 					className="font-bold text-3xl mb-8 text-primary text-center"
 				>
-					Sobre
+					{t("about.title")}
 				</Title>
 
 				<h2 className="absolute top-0 w-full left-0 text-center z-[-1] text-9xl font-bold opacity-10 text-primary pointer-events-none">
-					Sobre
+					{t("about.title")}
 				</h2>
 
-				<p className="indent-8 text-center text-xl">
-					Nós somos um projeto open source software (OSS) que ajuda a conectar
-					aqueles que desapareceram com seus amigos e familia. Tendo API pública
-					e acesso gratuito, temos a missão de centralizar e distribuir
-					informação até onde ela seja necessária.
-				</p>
+				<p className="indent-8 text-center text-xl">{t("about.description")}</p>
 			</div>
 		</>
 	);
