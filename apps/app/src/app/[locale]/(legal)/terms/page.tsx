@@ -3,8 +3,6 @@ import { useTranslations } from "next-intl";
 export default function Page() {
 	const t = useTranslations("legal");
 
-	throw new Error("yay");
-
 	return t("terms")
 		.split("\n")
 		.map((line, i) => {

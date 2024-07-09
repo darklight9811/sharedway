@@ -19,17 +19,24 @@ export default async function Page({
 
 					if (!user) return notFound();
 
-					await parallel(
-						userService.create({
-							id: user.id,
-							name: user.fullName || user.username || "",
-							email: user.emailAddresses.at(0)?.emailAddress,
-							emailVerified:
-								user.emailAddresses.at(0)?.verification?.status === "verified"
-									? new Date()
-									: undefined,
-						}),
-					);
+					if (
+						!(await userService.byProvider({
+							provider: "clerk",
+							value: user.id,
+						})({}))
+					) {
+						await parallel(
+							userService.create({
+								id: user.id,
+								name: user.fullName || user.username || "",
+								email: user.emailAddresses.at(0)?.emailAddress,
+								emailVerified:
+									user.emailAddresses.at(0)?.verification?.status === "verified"
+										? new Date()
+										: undefined,
+							}),
+						);
+					}
 
 					return (
 						<>
