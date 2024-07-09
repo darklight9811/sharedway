@@ -41,6 +41,16 @@
 			"description": "Nós somos um projeto open source software (OSS) que ajuda a conectar aqueles que desapareceram com seus amigos e familia. Tendo API pública e acesso gratuito, temos a missão de centralizar e distribuir informação até onde ela seja necessária."
 		}
 	},
+	"entities": {
+		"filter": "Filtro",
+		"search": "Pesquisar",
+		"date": "Desaparecido em {date}",
+		"found": "Encontrou?",
+		"help": "Ajude a encontrar {entity}.",
+		"created-by": "Criado por {by} em {date}",
+		"description": "Descrição",
+		"no-description": "Sem descrição"
+	},
 	"form": {
 		"errors": {
 			"file-too-large": "O arquivo \"{name}\" carregado é maior do que {size}mb",

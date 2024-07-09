@@ -4,6 +4,7 @@ import { usePathname } from "@/lib/navigation";
 import Field from "@repo/ds/form/field";
 import Form from "@repo/ds/form/form";
 import { Input } from "@repo/ds/ui/input";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
@@ -15,6 +16,7 @@ export function Filter(props: Props) {
 	const router = useRouter();
 	const pathname = usePathname();
 	const timer = useRef<NodeJS.Timeout>();
+	const t = useTranslations("entities");
 
 	return (
 		<Form
@@ -30,7 +32,7 @@ export function Filter(props: Props) {
 		>
 			<Field
 				name="q"
-				label="Pesquisar"
+				label={t("search")}
 				render={({ field }) => {
 					return <Input {...field} />;
 				}}

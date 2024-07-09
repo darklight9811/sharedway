@@ -10,7 +10,7 @@ import { env } from "@repo/env";
 import entityService from "@repo/services/entity";
 import { Edit, Flag, Printer, Share2, Trash, User } from "lucide-react";
 import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FindDialog } from "./_components/find-dialog";
@@ -19,9 +19,10 @@ import { FindDialog } from "./_components/find-dialog";
  * ### MARK: Metadata
  */
 export async function generateMetadata({ params }: { params: { id: string } }) {
-	const [data, locale] = await parallel(
+	const [data, locale, t] = await parallel(
 		entityService.show(params.id),
 		getLocale(),
+		getTranslations("entities"),
 	);
 
 	return {
@@ -29,18 +30,16 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 		openGraph: {
 			type: "profile",
 			locale: locale,
-			title: `Encontre ${data?.name}`,
+			title: t("help", { entity: data?.name }),
 			siteName: env.APP_NAME,
-			description:
-				data?.description ||
-				`Ajude a encontrar ${data?.name}, ele está perdido desde ${data?.date_created.toLocaleDateString(locale)}`,
+			description: data?.description || t("help", { entity: data?.name }),
 			images: data?.pictures[0].url,
 			logo: new URL("/images/logo/favicon.svg", baseUrl()),
 			url: new URL(`/entities/${data?.id}`, baseUrl()),
 		},
 		twitter: {
 			images: data?.pictures[0].url,
-			title: `Encontre ${data?.name}`,
+			title: t("help", { entity: data?.name }),
 		},
 	} as Metadata;
 }
@@ -49,10 +48,11 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
  * ### MARK: Page
  */
 export default async function Page({ params }: { params: { id: string } }) {
-	const [data, user, locale] = await parallel(
+	const [data, user, locale, t] = await parallel(
 		entityService.show(params.id),
 		currentUser(),
 		getLocale(),
+		getTranslations("entities"),
 	);
 
 	if (!data) return notFound();
@@ -70,13 +70,13 @@ export default async function Page({ params }: { params: { id: string } }) {
 				<h1 className="font-bold">{data.name}</h1>
 
 				<div>
-					Desaparecido em {data.date_created?.toLocaleDateString(locale)}
+					{t("date", { date: data.date_created?.toLocaleDateString(locale) })}
 				</div>
 
 				<div className="flex gap-2 mt-4">
 					<FindDialog contact={data.contact}>
 						<Button type="button" className="w-full">
-							Encontrou?
+							{t("found")}
 						</Button>
 					</FindDialog>
 					<Button type="button" variant="destructive" disabled>
@@ -87,7 +87,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 				<div className="flex gap-2 my-2 justify-between">
 					<Share
 						link={`${baseUrl()}/entities/${data.id}`}
-						description={`Ajude a encontrar ${data.name}`}
+						description={t("help", { entity: data.name })}
 					>
 						<Button type="button" size="icon">
 							<Share2 />
@@ -115,8 +115,10 @@ export default async function Page({ params }: { params: { id: string } }) {
 				</div>
 
 				<div className="text-xs">
-					Criado por {data.user_created.name} em{" "}
-					{data.date_created.toLocaleDateString(locale)}
+					{t("created-by", {
+						by: data.user_created.name,
+						date: data.date_created.toLocaleDateString(locale),
+					})}
 				</div>
 			</div>
 
@@ -143,9 +145,9 @@ export default async function Page({ params }: { params: { id: string } }) {
 					</Carousel>
 				)}
 
-				<h2 className="mb-4 font-bold text-xl">Descrição</h2>
+				<h2 className="mb-4 font-bold text-xl">{t("description")}</h2>
 
-				<div>{data.description || "Sem descrição"}</div>
+				<div>{data.description || t("no-description")}</div>
 			</div>
 		</main>
 	);
