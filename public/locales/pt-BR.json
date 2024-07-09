@@ -11,7 +11,10 @@
 		"profile": "Perfil",
 		"logout": "Sair",
 		"login": "Login",
-		"signin": "Registrar"
+		"signin": "Registrar",
+		"rights": "Todos os direitos reservados.",
+		"terms": "Termos de uso",
+		"privacy": "Termos de privacidade"
 	},
 	"home": {
 		"hero": {
