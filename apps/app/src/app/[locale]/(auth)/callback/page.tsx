@@ -15,7 +15,7 @@ export default async function Page({
 		<div className="flex grow flex-col justify-center items-center">
 			<Suspense fallback={<LoadingCallback />}>
 				{createElement(async function GenerateUser() {
-					const user = await currentUser();
+					const user = await currentUser().catch(() => {});
 
 					if (!user) return notFound();
 

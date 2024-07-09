@@ -1,5 +1,5 @@
 import { SignIn } from "@clerk/nextjs";
 
 export default async function Page() {
-	return <SignIn />;
+	return <SignIn forceRedirectUrl="/callback" />;
 }
