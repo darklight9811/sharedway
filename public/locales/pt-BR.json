@@ -50,6 +50,7 @@
 		}
 	},
 	"entities": {
+		"entities": "Desaparecidos",
 		"filter": "Filtro",
 		"search": "Pesquisar",
 		"date": "Desaparecido em {date}",
@@ -61,6 +62,9 @@
 		"create-title": "Registrar novo desaparecido",
 		"back": "Voltar",
 		"create": "Criar",
+		"date_created": "Data de criação",
+		"date_disappeared": "Data de desaparecimento",
+		"empty": "Nenhum dado encontrado",
 		"new": {
 			"general": {
 				"title": "Informações gerais",

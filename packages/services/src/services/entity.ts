@@ -20,7 +20,7 @@ const entityService = service({
 	 * @returns
 	 */
 	index(input?: Pagination & { user?: string }) {
-		const { page, limit, q } = z
+		const { page, limit, q, order, sort } = z
 			.object({ user: z.string().optional() })
 			.merge(pagination)
 			.parse(input);
@@ -28,8 +28,19 @@ const entityService = service({
 		return db.entity.paginate({
 			page,
 			limit,
+			orderBy: {
+				[order || "name"]: sort || "asc",
+			},
 			where: {
-				...(q ? { OR: [{ name: { contains: q, mode: "insensitive" } }] } : {}),
+				...(q
+					? {
+							OR: [
+								{ name: { contains: q, mode: "insensitive" } },
+								{ data: { race: { contains: q, mode: "insensitive" } } },
+								{ data: { gender: { contains: q, mode: "insensitive" } } },
+							],
+						}
+					: {}),
 			},
 			select: {
 				id: true,
