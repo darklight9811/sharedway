@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 const pagination = z.object({
-	page: z.coerce.number().default(1).optional(),
-	limit: z.coerce.number().default(25).optional(),
+	page: z.coerce.number().optional().default(1),
+	limit: z.coerce.number().optional().default(16),
 	order: z.coerce.string().optional(),
-	sort: z.enum(["asc", "desc"]).default("asc").optional(),
+	sort: z.enum(["asc", "desc"]).optional().default("asc"),
 
 	q: z.coerce.string().optional(),
 });

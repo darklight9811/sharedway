@@ -94,7 +94,18 @@ export function Filter(props: Props) {
 				<Button type="submit" className="w-full">
 					Aplicar
 				</Button>
-				<Button type="button" variant="destructive">
+				<Button
+					type="button"
+					variant="destructive"
+					onClick={() => {
+						const url = new URL(window.location.href);
+
+						url.searchParams.delete("q");
+						url.searchParams.delete("date_disppeared");
+
+						router.push(`${url.pathname}?${url.searchParams.toString()}`);
+					}}
+				>
 					<Trash />
 				</Button>
 			</div>

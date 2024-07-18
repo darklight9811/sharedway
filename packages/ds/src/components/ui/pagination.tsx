@@ -14,7 +14,11 @@ function Pagination(props: { page: number; pages: number }) {
 				)}
 
 				{Array.from(Array(props.pages)).map((_, i) => (
-					<PaginationLink href={`?page=${i + 1}`} key={`${i}${props.pages}`}>
+					<PaginationLink
+						isActive={props.page === i + 1}
+						href={`?page=${i + 1}`}
+						key={`${i}${props.pages}`}
+					>
 						{i + 1}
 					</PaginationLink>
 				))}
@@ -80,7 +84,7 @@ function PaginationLink({
 				aria-current={isActive ? "page" : undefined}
 				className={cn(
 					buttonVariants({
-						variant: isActive ? "outline" : "ghost",
+						variant: isActive ? "primary" : "ghost",
 						size,
 					}),
 					className,

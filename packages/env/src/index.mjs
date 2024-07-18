@@ -10,7 +10,9 @@ const server = z.object({
 	VERCEL_URL: z.string().optional(),
 	PORT: z.coerce.number().default(3000),
 	DATABASE_URL: z.string().url(),
-	NODE_ENV: z.enum(["development", "test", "production"]),
+	NODE_ENV: z
+		.enum(["development", "test", "production"])
+		.default("development"),
 
 	UPLOADTHING_SECRET: z.string().min(1),
 	UPLOADTHING_APP_ID: z.string().min(1),

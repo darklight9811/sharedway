@@ -23,8 +23,6 @@ const entityService = service({
 		const { page, limit, q, order, sort, date_disappeared } =
 			entityPagination.parse(input);
 
-		console.log(date_disappeared);
-
 		return db.entity.paginate({
 			page,
 			limit,
