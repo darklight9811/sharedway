@@ -3,8 +3,8 @@ import type {
 	EntityUpdateSchema,
 } from "@repo/schemas/entity";
 import { entityStoreSchema } from "@repo/schemas/entity";
-import type { Pagination } from "@repo/schemas/pagination";
-import pagination from "@repo/schemas/pagination";
+import type { EntityPagination, Pagination } from "@repo/schemas/pagination";
+import pagination, { entityPagination } from "@repo/schemas/pagination";
 import { z } from "zod";
 import { db } from "../lib/db";
 import service from "../lib/service";
@@ -19,11 +19,11 @@ const entityService = service({
 	 * @param input
 	 * @returns
 	 */
-	index(input?: Pagination & { user?: string }) {
-		const { page, limit, q, order, sort } = z
-			.object({ user: z.string().optional() })
-			.merge(pagination)
-			.parse(input);
+	index(input?: EntityPagination & { user?: string }) {
+		const { page, limit, q, order, sort, date_disappeared } =
+			entityPagination.parse(input);
+
+		console.log(date_disappeared);
 
 		return db.entity.paginate({
 			page,
@@ -36,9 +36,17 @@ const entityService = service({
 					? {
 							OR: [
 								{ name: { contains: q, mode: "insensitive" } },
-								{ data: { race: { contains: q, mode: "insensitive" } } },
-								{ data: { gender: { contains: q, mode: "insensitive" } } },
+								// { data: { race: { contains: q, mode: "insensitive" } } },
+								// { data: { gender: { contains: q, mode: "insensitive" } } },
 							],
+						}
+					: {}),
+				...(date_disappeared
+					? {
+							date_disappeared: {
+								gte: date_disappeared.from,
+								...(date_disappeared.to ? { lte: date_disappeared.to } : {}),
+							},
 						}
 					: {}),
 			},
