@@ -73,10 +73,8 @@ function getPrisma() {
 						(this as any)
 							.aggregate({
 								_count: { id: true },
-								take: limit,
 								select: { _count: true },
 								where,
-								skip: (page - 1) * limit,
 							})
 							// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 							.then((response: any) => ({

@@ -11,7 +11,7 @@
 		"migrate:deploy": "prisma migrate deploy",
 		"migrate:dev": "prisma migrate dev",
 		"push": "prisma db push",
-		"seed": "tsx src/seed.ts",
+		"seed": "bun ./src/seed.ts",
 		"generate": "prisma generate",
 		"format": "biome format --error-on-warnings ./src",
 		"verify": "biome check --error-on-warnings ./src",
