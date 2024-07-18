@@ -12,3 +12,20 @@ const pagination = z.object({
 export default pagination;
 
 export type Pagination = z.infer<typeof pagination>;
+
+export const entityPagination = pagination.extend({
+	user: z.string().optional(),
+	date_disappeared: z
+		.string()
+		.transform((t) => {
+			const [a, b] = t.replace(/\_/g, "/").split("-");
+
+			return {
+				from: a && new Date(a),
+				to: b && new Date(b),
+			};
+		})
+		.optional(),
+});
+
+export type EntityPagination = z.infer<typeof entityPagination>;

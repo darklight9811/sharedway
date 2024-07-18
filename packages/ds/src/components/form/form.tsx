@@ -55,6 +55,8 @@ export default function Form(props: FormProps) {
 						.catch((e: unknown) => e);
 					const errors = response?.errors || response?.data?.errors;
 
+					if (!response) return;
+
 					if (errors) {
 						return;
 					}

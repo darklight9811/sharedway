@@ -41,9 +41,10 @@ model Entity {
     name        String
     description String     @db.Text
 
-    date_created DateTime  @default(now())
-    date_updated DateTime  @updatedAt
-    date_found   DateTime?
+    date_created     DateTime  @default(now())
+    date_updated     DateTime  @updatedAt
+    date_disappeared DateTime?
+    date_found       DateTime?
 
     id_user_created String
 
