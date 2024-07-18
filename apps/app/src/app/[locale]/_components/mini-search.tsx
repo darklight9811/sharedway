@@ -24,7 +24,7 @@ export default function MiniSearch() {
 		queryKey: ["minisearch", search],
 		enabled: !!search,
 		async queryFn({ queryKey: [, search] }) {
-			const resp = await index({ limit: 12, q: search });
+			const resp = await index({ limit: 12, q: search, page: 1, sort: "asc" });
 			return resp.data?.[0] || [];
 		},
 	});
