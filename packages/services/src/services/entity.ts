@@ -26,9 +26,8 @@ const entityService = service({
 		return db.entity.paginate({
 			page,
 			limit,
-			orderBy: {
-				[order || "name"]: sort || "asc",
-			},
+			sort,
+			order,
 			where: {
 				...(q
 					? {
