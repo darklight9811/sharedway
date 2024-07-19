@@ -38,7 +38,7 @@ const intl = createMiddleware({
 
 const ratelimit = new Ratelimit({
 	redis: kv,
-	limiter: Ratelimit.slidingWindow(30, "60 s"),
+	limiter: Ratelimit.slidingWindow(60, "60 s"),
 });
 
 const clerk = clerkMiddleware(

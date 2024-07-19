@@ -90,7 +90,7 @@ export default function Page() {
 			 * ### MARK: About
 			 */}
 
-			<div className="mx-auto max-w-md w-full my-[10vh] relative">
+			<div className="mx-auto max-w-md w-full my-[10vh] relative px-4">
 				<Title
 					anchor="about"
 					className="font-bold text-3xl mb-8 text-primary text-center"
