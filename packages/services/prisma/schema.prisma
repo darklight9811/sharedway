@@ -10,6 +10,10 @@ generator client {
     provider = "prisma-client-js"
 }
 
+// ---------------
+// #MARK: Enums
+// ---------------
+
 enum EntityType {
     person
     animal
@@ -21,6 +25,17 @@ enum Gender {
     other
 }
 
+enum ReportReason {
+    offensive
+    not_missing
+    ownership
+    other
+}
+
+// ---------------
+// #MARK: Base models
+// ---------------
+
 model User {
     id            String    @id @default(cuid())
     name          String?
@@ -31,8 +46,15 @@ model User {
     auth_provider String @default("password")
     auth_value    String
 
+    reports_created Report[] @relation(name: "user_created")
+    reports         Report[] @relation(name: "user")
+
     @@map("users")
 }
+
+// ---------------
+// #MARK: Profile related
+// ---------------
 
 model Entity {
     id String @id @default(cuid())
@@ -53,6 +75,7 @@ model Entity {
     addresses    EntityAddress[]
     data         EntityData?
     contact      EntityContact?
+    Report       Report[]
 
     @@map("entities")
 }
@@ -110,4 +133,25 @@ model EntityContact {
     entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
 
     @@map("entity_contact")
+}
+
+// ---------------
+// #MARK: Report
+// ---------------
+
+model Report {
+    id String @id @default(cuid())
+
+    reason      ReportReason
+    description String       @default("")
+
+    id_user_created String?
+    id_entity       String?
+    id_user         String?
+
+    entity       Entity? @relation(fields: [id_entity], references: [id], onDelete: Cascade)
+    user         User?   @relation(name: "user", fields: [id_user], references: [id], onDelete: Cascade)
+    user_created User?   @relation(name: "user_created", fields: [id_user_created], references: [id], onDelete: SetNull)
+
+    @@map("reports")
 }
