@@ -51,6 +51,13 @@ export default async function Page(props: { searchParams: PaginationType }) {
 							</Link>
 						</div>
 					)}
+
+					{data.length > 0 &&
+						Array.from(new Array((pagination.limit - data.length) % 4)).map(
+							(x) => (
+								<div key={x} className="max-w-[47%] sm:max-w-[210px] w-full" />
+							),
+						)}
 				</div>
 
 				<Pagination page={pagination.page || 1} pages={pagination.pages} />

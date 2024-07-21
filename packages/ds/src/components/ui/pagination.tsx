@@ -7,7 +7,7 @@ import { type ButtonProps, buttonVariants } from "./button";
 
 function Pagination(props: { page: number; pages: number }) {
 	return (
-		<PaginationWrapper>
+		<PaginationWrapper className="mt-4">
 			<PaginationContent>
 				{props.page > 1 && (
 					<PaginationPrevious href={`?page=${props.page - 1}`} />
@@ -102,13 +102,11 @@ function PaginationPrevious({
 }: React.ComponentProps<typeof PaginationLink>) {
 	return (
 		<PaginationLink
-			aria-label="Go to previous page"
 			className={cn("gap-1 pl-2.5", className)}
 			size="default"
 			{...props}
 		>
 			<ChevronLeft className="h-4 w-4" />
-			<span>Anterior</span>
 		</PaginationLink>
 	);
 }
@@ -120,12 +118,10 @@ function PaginationNext({
 }: React.ComponentProps<typeof PaginationLink>) {
 	return (
 		<PaginationLink
-			aria-label="Go to next page"
 			className={cn("gap-1 pr-2.5", className)}
 			size="default"
 			{...props}
 		>
-			<span>Próximo</span>
 			<ChevronRight className="h-4 w-4" />
 		</PaginationLink>
 	);

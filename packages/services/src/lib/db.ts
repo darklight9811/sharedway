@@ -15,8 +15,6 @@ type PaginationArgs<
 > = {
 	page?: number;
 	limit?: number;
-	sort?: "asc" | "desc";
-	order?: string;
 
 	map?: (data: Input) => Output | Promise<Output>;
 };
@@ -50,33 +48,27 @@ function getPrisma() {
 						limit = 25,
 						select,
 						where,
-						order,
-						sort,
-						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						orderBy,
 					} = (args || {}) as any;
 
 					return Promise.all([
-						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 						(this as any)
 							.findMany({
 								select,
 								where,
 								skip: (page - 1) * limit,
 								take: limit,
-								...(order ? { orderBy: { [order]: sort || "asc" } } : {}),
+								orderBy,
 							})
-							// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 							.then(function x(result: any) {
 								return args.map ? Promise.all(result.map(args.map)) : result;
 							}),
-						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 						(this as any)
 							.aggregate({
 								_count: { id: true },
 								select: { _count: true },
 								where,
 							})
-							// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 							.then((response: any) => ({
 								page,
 								pages: Math.ceil(response._count.id / limit),
@@ -85,7 +77,6 @@ function getPrisma() {
 							})),
 					]) as Promise<
 						[
-							// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 							Options["map"] extends (...args: any[]) => any
 								? Awaited<ReturnType<Options["map"]>>[]
 								: Result,

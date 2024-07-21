@@ -3,9 +3,8 @@ import type {
 	EntityUpdateSchema,
 } from "@repo/schemas/entity";
 import { entityStoreSchema } from "@repo/schemas/entity";
-import type { EntityPagination, Pagination } from "@repo/schemas/pagination";
-import pagination, { entityPagination } from "@repo/schemas/pagination";
-import { z } from "zod";
+import type { EntityPagination } from "@repo/schemas/pagination";
+import { entityPagination } from "@repo/schemas/pagination";
 import { db } from "../lib/db";
 import service from "../lib/service";
 import uploader from "../lib/uploader";
@@ -26,16 +25,20 @@ const entityService = service({
 		return db.entity.paginate({
 			page,
 			limit,
-			sort,
-			order,
+			orderBy: [
+				{
+					reports: {
+						_count: "asc",
+					},
+				},
+				{
+					[order || "name"]: sort || "asc",
+				},
+			],
 			where: {
 				...(q
 					? {
-							OR: [
-								{ name: { contains: q, mode: "insensitive" } },
-								// { data: { race: { contains: q, mode: "insensitive" } } },
-								// { data: { gender: { contains: q, mode: "insensitive" } } },
-							],
+							OR: [{ name: { contains: q, mode: "insensitive" } }],
 						}
 					: {}),
 				...(date_disappeared
@@ -46,6 +49,11 @@ const entityService = service({
 							},
 						}
 					: {}),
+				reports: {
+					every: {
+						OR: [{ id_entity: null }, { reason: { not: "offensive" } }],
+					},
+				},
 			},
 			select: {
 				id: true,
@@ -157,6 +165,13 @@ const entityService = service({
 				},
 				pictures: {
 					take: 10,
+				},
+				reports: {
+					select: {
+						reason: true,
+						id_user_created: true,
+						ip: true,
+					},
 				},
 			},
 		});

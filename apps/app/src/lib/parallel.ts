@@ -1,9 +1,11 @@
 import { currentUser } from "@/modules/user/loaders";
 import type Metadata from "@repo/services/types/metadata";
+import { headers } from "next/headers";
 
 export async function buildMetadata() {
 	return {
 		user: await currentUser(),
+		ip: headers().get("x-ip") as string,
 	} satisfies Metadata;
 }
 

@@ -72,10 +72,15 @@ const config = {
 					"0%": { opacity: "0", transform: "translate(0, -20px)" },
 					"100%": { opacity: "1" },
 				},
+				"left-in": {
+					"0%": { opacity: "0", transform: "translate(-20px, 0)" },
+					"100%": { opacity: "1" },
+				},
 			},
 			animation: {
 				"fade-in": "fade-in 0.4s ease forwards",
 				"top-in": "top-in 0.4s ease forwards",
+				"left-in": "left-in 0.4s ease forwards",
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 			},

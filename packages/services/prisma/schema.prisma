@@ -75,7 +75,7 @@ model Entity {
     addresses    EntityAddress[]
     data         EntityData?
     contact      EntityContact?
-    Report       Report[]
+    reports      Report[]
 
     @@map("entities")
 }
@@ -144,6 +144,7 @@ model Report {
 
     reason      ReportReason
     description String       @default("")
+    ip          String?
 
     id_user_created String?
     id_entity       String?

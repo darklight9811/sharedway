@@ -11,13 +11,13 @@ const reportService = service({
 		});
 	},
 
-	create(data: Report, { user }) {
-		if (user?.id) return user;
-
+	async store(data: Report, { user, ip }) {
 		return db.report.create({
 			data: {
-				reason: data.reason,
-				description: data.description,
+				...data,
+				ip,
+
+				id_user_created: user?.id,
 			},
 		});
 	},

@@ -2,15 +2,26 @@ import Share from "@/components/share";
 import { Link } from "@/lib/navigation";
 import parallel from "@/lib/parallel";
 import { baseUrl } from "@/lib/url";
+import ReportDialog from "@/modules/report/components/report-dialog";
 import { currentUser } from "@/modules/user/loaders";
 import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
 import { Button, buttonVariants } from "@repo/ds/ui/button";
 import { Carousel, CarouselContent, CarouselItem } from "@repo/ds/ui/carousel";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@repo/ds/ui/tooltip";
 import { env } from "@repo/env";
 import entityService from "@repo/services/entity";
-import { Edit, Flag, Printer, Share2, Trash, User } from "lucide-react";
+import {
+	CircleAlert,
+	Edit,
+	Flag,
+	Printer,
+	Share2,
+	Trash,
+	User,
+} from "lucide-react";
 import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
+import { headers } from "next/headers";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FindDialog } from "./_components/find-dialog";
@@ -57,6 +68,12 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 	if (!data) return notFound();
 
+	const ip = headers().get("x-ip");
+	const canReport = !(
+		data.reports.find((t) => t.id_user_created === user?.id) ||
+		data.reports.find((t) => t.ip === ip)
+	);
+
 	return (
 		<main className="p-4 flex flex-col md:flex-row grow container gap-2">
 			<div className="md:max-w-[280px] w-full">
@@ -67,7 +84,17 @@ export default async function Page({ params }: { params: { id: string } }) {
 					</AvatarFallback>
 				</Avatar>
 
-				<h1 className="font-bold">{data.name}</h1>
+				<h1 className="font-bold flex gap-1">
+					{data.reports.length > 1 && (
+						<Tooltip>
+							<TooltipContent>{t("reported")}</TooltipContent>
+							<TooltipTrigger asChild>
+								<CircleAlert color="red" />
+							</TooltipTrigger>
+						</Tooltip>
+					)}{" "}
+					{data.name}
+				</h1>
 
 				<div>
 					{t("date", { date: data.date_created?.toLocaleDateString(locale) })}
@@ -79,9 +106,24 @@ export default async function Page({ params }: { params: { id: string } }) {
 							{t("found")}
 						</Button>
 					</FindDialog>
-					<Button type="button" variant="destructive" disabled>
-						<Flag />
-					</Button>
+					<Tooltip>
+						{!canReport && (
+							<TooltipContent>{t("already_reported")}</TooltipContent>
+						)}
+						<TooltipTrigger asChild>
+							<div>
+								<ReportDialog data={{ id_entity: data.id }}>
+									<Button
+										type="button"
+										variant="destructive"
+										disabled={!canReport}
+									>
+										<Flag />
+									</Button>
+								</ReportDialog>
+							</div>
+						</TooltipTrigger>
+					</Tooltip>
 				</div>
 
 				<div className="flex gap-2 my-2 justify-between">
