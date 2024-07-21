@@ -5,6 +5,7 @@ interface Metadata {
 		email?: string | null;
 		emailVerified: Date | null;
 	} | null;
+	ip: string;
 }
 
 export default Metadata;

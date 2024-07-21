@@ -13,6 +13,7 @@
 		"push": "prisma db push",
 		"seed": "bun ./src/seed.ts",
 		"generate": "prisma generate",
+		"test": "",
 		"format": "biome format --error-on-warnings ./src",
 		"verify": "biome check --error-on-warnings ./src",
 		"lint": "biome lint --error-on-warnings ./src",

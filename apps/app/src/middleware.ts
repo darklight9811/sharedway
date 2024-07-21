@@ -38,12 +38,14 @@ const intl = createMiddleware({
 
 const ratelimit = new Ratelimit({
 	redis: kv,
-	limiter: Ratelimit.slidingWindow(30, "60 s"),
+	limiter: Ratelimit.slidingWindow(60, "60 s"),
 });
 
 const clerk = clerkMiddleware(
 	async (auth, req) => {
+		const ip = ipAddress(req) || "127.0.0.1";
 		req.headers.set("x-pathname", req.nextUrl.pathname);
+		req.headers.set("x-ip", ip);
 
 		// we generate the webmanifest dinamically to allow internacionalization
 		if (req.nextUrl.pathname === "/manifest.webmanifest") {
@@ -59,7 +61,6 @@ const clerk = clerkMiddleware(
 		// assets are always public and not internacionalized
 		if (isAssetRoute(req)) return NextResponse.next();
 
-		const ip = ipAddress(req) || "127.0.0.1";
 		const { success } = await ratelimit.limit(ip);
 
 		// make sure the user is not rate limited or not in the rate limit screen

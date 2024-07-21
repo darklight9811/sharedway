@@ -1,11 +1,7 @@
 import type Metadata from "../types/metadata";
 
 export default function service<
-	T extends Record<
-		string,
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		(properties: any, metadata: Metadata) => unknown
-	>,
+	T extends Record<string, (properties: any, metadata: Metadata) => unknown>,
 >(props: T) {
 	return Object.fromEntries(
 		Object.entries(props).map(([key, value]) => [

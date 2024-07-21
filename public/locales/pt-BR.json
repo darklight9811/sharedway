@@ -49,6 +49,19 @@
 			"done": "Configurações feitas! Você pode voltar a usar o app agora"
 		}
 	},
+	"report": {
+		"title": "Denunciar",
+		"subtitle": "Caso esse perfil esteja infrigindo alguma clausula da nossa politica de privacidade, você pode reporta-lo por aqui.",
+		"reason": {
+			"offensive": "Conteúdo ofensivo",
+			"not_missing": "Perfil não está desaparecido",
+			"ownership": "Esse sou eu",
+			"other": "Outros motivos"
+		},
+		"description": "Mais detalhes da denuncia",
+		"success": "Perfil reportado com sucesso",
+		"action": "Denunciar"
+	},
 	"entities": {
 		"entities": "Desaparecidos",
 		"filter": "Filtro",
@@ -65,6 +78,8 @@
 		"date_created": "Data de criação",
 		"date_disappeared": "Data de desaparecimento",
 		"empty": "Nenhum dado encontrado",
+		"reported": "Perfil foi reportado",
+		"already_reported": "Você já reportou esse perfil",
 		"new": {
 			"general": {
 				"title": "Informações gerais",

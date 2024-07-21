@@ -30,6 +30,7 @@
 		"db:migrate:deploy": {},
 		"db:push": {},
 		"db:seed": {},
+		"test": {},
 		"dev": {
 			"cache": false,
 			"persistent": true

@@ -12,7 +12,6 @@ const Select = React.forwardRef<
 		onChange(value: string): void;
 	}
 >(({ onChange, ...props }, ref) =>
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	SelectPrimitive.Root({ ...props, ref, onValueChange: onChange } as any),
 );
 Select.displayName = SelectPrimitive.Root.displayName;

@@ -5,7 +5,7 @@ export default function Page() {
 
 	return t("privacy")
 		.split("\n")
-		.map((line, i) => {
+		.map((line) => {
 			if (line.startsWith("##"))
 				return <h1 className="text-xl mt-4">{line.replace("## ", "")}</h1>;
 			if (line.startsWith("#"))

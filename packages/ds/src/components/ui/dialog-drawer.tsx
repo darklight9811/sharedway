@@ -36,7 +36,7 @@ interface Props {
 /**
  * ### MARK: Context
  */
-const context = createContext({ desktop: true, setOpen(state: boolean) {} });
+const context = createContext({ desktop: true, setOpen(_state: boolean) {} });
 
 /**
  * ### MARK: Drawer Dialog

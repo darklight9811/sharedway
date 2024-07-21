@@ -5,14 +5,12 @@ import { usePathname, useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { objectToFormData } from "../../lib/form";
 
+import type React from "react";
+import { createElement, useState } from "react";
 import type { ZodSchema } from "zod";
 
 interface FormProps {
-	onSubmit?: (
-		data: FormData,
-		raw: Record<string, unknown>,
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	) => any | Promise<any>;
+	onSubmit?: (data: any, raw: Record<string, unknown>) => any | Promise<any>;
 	onChange?: (
 		data: FormData,
 		raw: Record<string, unknown>,
@@ -23,11 +21,13 @@ interface FormProps {
 	schema?: ZodSchema;
 	data?: Record<string, unknown>;
 	defaultData?: Record<string, unknown>;
+	replace?: (data: any) => React.ReactNode;
 }
 
 export default function Form(props: FormProps) {
 	const router = useRouter();
 	const pathname = usePathname();
+	const [replace, setreplace] = useState<any | undefined>(undefined);
 	const form = useForm({
 		defaultValues: props.data || props.defaultData,
 		resolver: props.schema && zodResolver(props.schema),
@@ -37,13 +37,12 @@ export default function Form(props: FormProps) {
 		<FormProvider {...form}>
 			<form
 				onChange={
-					props.onChange
-						? () =>
-								props.onChange?.(
-									objectToFormData(form.getValues()),
-									form.getValues(),
-								)
-						: undefined
+					props.onChange &&
+					(() =>
+						props.onChange?.(
+							objectToFormData(form.getValues()),
+							form.getValues(),
+						))
 				}
 				onSubmit={form.handleSubmit(async (payload) => {
 					if (!props.onSubmit) return;
@@ -65,12 +64,15 @@ export default function Form(props: FormProps) {
 
 					if (data.redirect) return router.push(data.redirect);
 					if (data.reload) return router.push(pathname);
+					if (data.replace && props.replace) return setreplace(data);
 
 					return props?.onSuccess?.(data);
 				})}
 				className={props.className}
 			>
-				{props.children}
+				{replace
+					? createElement(props.replace as () => React.ReactNode, replace)
+					: props.children}
 			</form>
 		</FormProvider>
 	);

@@ -14,7 +14,7 @@ export default function Card(props: CardProps) {
 	return (
 		<div
 			className={cn(
-				"relative overflow-hidden flex flex-col justify-end shadow rounded-lg bg-gray-400 max-w-[45%] sm:max-w-[210px] w-full aspect-card bg-cover bg-center hover:-translate-y-0.5 transition-transform",
+				"relative overflow-hidden flex flex-col justify-end shadow rounded-lg bg-gray-400 max-w-[47%] sm:max-w-[210px] w-full aspect-card bg-cover bg-center hover:-translate-y-0.5 transition-transform",
 				props.className,
 			)}
 			style={{ backgroundImage: `url(${props.pictures.at(0)?.url})` }}

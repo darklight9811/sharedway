@@ -38,7 +38,7 @@ export default function Page({
 						!(await userService.byProvider({
 							provider: "clerk",
 							value: user.id,
-						})({}))
+						})({ ip: "" }))
 					) {
 						await parallel(
 							userService.create({

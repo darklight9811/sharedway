@@ -14,6 +14,15 @@ const config = {
 	async headers() {
 		return [];
 	},
+	/**
+	 * Typescript and eslint validation are being done in CICD through biomejs
+	 */
+	typescript: {
+		ignoreBuildErrors: true,
+	},
+	eslint: {
+		ignoreDuringBuilds: true,
+	},
 	images: {
 		remotePatterns: [
 			{

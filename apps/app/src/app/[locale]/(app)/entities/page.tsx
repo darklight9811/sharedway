@@ -17,7 +17,7 @@ export default async function Page(props: { searchParams: PaginationType }) {
 	);
 
 	return (
-		<div className="flex flex-col sm:flex-row grow container my-4 gap-4">
+		<div className="flex flex-col sm:flex-row grow sm:container px-4 my-4 gap-4">
 			<aside className="w-full sm:w-1/3">
 				<h5 className="w-full text-xl py-4 pl-4 font-bold">
 					{t("entities")} - {t("filter")}
@@ -36,7 +36,7 @@ export default async function Page(props: { searchParams: PaginationType }) {
 					}}
 				/>
 
-				<div className="flex grow flex-wrap justify-center sm:justify-between gap-4 my-4">
+				<div className="flex mb-auto flex-wrap justify-between gap-4 my-4">
 					{data.map((entity) => {
 						return <Card key={entity.id} {...entity} />;
 					})}
@@ -51,6 +51,13 @@ export default async function Page(props: { searchParams: PaginationType }) {
 							</Link>
 						</div>
 					)}
+
+					{data.length > 0 &&
+						Array.from(new Array((pagination.limit - data.length) % 4)).map(
+							(x) => (
+								<div key={x} className="max-w-[47%] sm:max-w-[210px] w-full" />
+							),
+						)}
 				</div>
 
 				<Pagination page={pagination.page || 1} pages={pagination.pages} />

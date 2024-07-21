@@ -33,7 +33,6 @@ export function Filter(props: Props) {
 
 				timer.current = setTimeout(() => {
 					const url = new URL(window.location.href);
-					// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 					const payload = data as Record<string, any>;
 
 					url.searchParams.set("q", payload.q || "");
