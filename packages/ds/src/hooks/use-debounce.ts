@@ -11,7 +11,6 @@ export default function useDebounce<Value>(
 	return [
 		value,
 		function updatevalue(newvalue: Value) {
-			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			const parsed = (newvalue as any)?.target?.value || newvalue;
 
 			if (ref.current) clearTimeout(ref.current);

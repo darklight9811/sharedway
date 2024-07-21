@@ -14,7 +14,6 @@ export const index = api
 export const store = api
 	.zod(entityStoreSchema)
 	.service(entityService.store, buildMetadata)
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	.action(async ({ input }: any) => ({
 		redirect: `/entities/${input.id}`,
 	}));

@@ -1,15 +1,10 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.8.2/schema.json",
+	"extends": ["./packages/config/biome/general.json"],
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"recommended": true
 		}
-	},
-	"overrides": [
-		{
-			"include": ["./packages/config/eslint/general.json"],
-			"ignore": ["./next"]
-		}
-	]
+	}
 }

@@ -76,5 +76,5 @@
 		},
 		"ignore": ["**/node_modules/", "**/dist/", "**/*.css"]
 	},
-	"javascript": { "globals": ["JSX"] }
+	"javascript": { "globals": ["JSX", "React"] }
 }

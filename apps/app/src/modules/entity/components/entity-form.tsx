@@ -20,7 +20,6 @@ import { Trash } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface Props {
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	onSubmit(data: any): Promise<Record<string, unknown>>;
 	schema?: "store" | "update";
 	data?: Record<string, unknown>;

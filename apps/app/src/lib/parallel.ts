@@ -15,7 +15,6 @@ export default async function parallel<T extends unknown[]>(...props: T) {
 	return Promise.all(
 		props.map((prop) => (typeof prop === "function" ? prop(metadata) : prop)),
 	) as {
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		[key in keyof T]: T[key] extends (...args: any) => any
 			? Awaited<ReturnType<T[key]>>
 			: Awaited<T[key]>;

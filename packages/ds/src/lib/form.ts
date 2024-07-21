@@ -1,4 +1,3 @@
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function appendFormData(data: any, root: string, formData: FormData) {
 	if (data instanceof File) return formData.append(root, data);
 	if (Array.isArray(data)) {
@@ -10,7 +9,6 @@ export function appendFormData(data: any, root: string, formData: FormData) {
 	}
 	if (typeof data === "object" && data) {
 		for (const key in data) {
-			// biome-ignore lint/suspicious/noPrototypeBuiltins: <explanation>
 			if (data.hasOwnProperty(key)) {
 				if (root === "") appendFormData(data[key], key, formData);
 				else appendFormData(data[key], `${root}.${key}`, formData);
