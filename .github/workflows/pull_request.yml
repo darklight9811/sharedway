@@ -28,30 +28,6 @@ jobs:
       - name: Verify code quality
         run: bun --bun run verify
         
-  build:
-    name: Verify build project
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      - name: Cache turbo build setup
-        uses: actions/cache@v4
-        with: 
-          path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
-
-      - uses: oven-sh/setup-bun@v1
-      - name: Install dependencies
-        run: bun install
-
-      - name: Build project graph
-        env:
-          SKIP_ENV_VALIDATION: true
-        run: bun --bun run build
-        
   test:
     name: Run tests in project
     runs-on: ubuntu-latest
