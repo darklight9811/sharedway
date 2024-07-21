@@ -41,6 +41,14 @@ jobs:
           key: ${{ runner.os }}-turbo-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-turbo-
+            
+      - name: Cache packages
+        uses: actions/cache@v4
+        with: 
+          path: node_modules
+          key: ${{ runner.os }}-packages-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-packages-
 
       - uses: oven-sh/setup-bun@v1
 
@@ -63,6 +71,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
+      - name: Cache packages
+        uses: actions/cache@v4
+        with: 
+          path: node_modules
+          key: ${{ runner.os }}-packages-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-packages-
+
       - uses: oven-sh/setup-bun@v1
 
       - name: Verify code quality
@@ -83,6 +99,14 @@ jobs:
           key: ${{ runner.os }}-turbo-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-turbo-
+            
+      - name: Cache packages
+        uses: actions/cache@v4
+        with: 
+          path: node_modules
+          key: ${{ runner.os }}-packages-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-packages-
 
       - uses: oven-sh/setup-bun@v1
 
