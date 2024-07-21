@@ -89,7 +89,7 @@ jobs:
 
       - uses: oven-sh/setup-bun@v1
 
-      - name: Verify code quality
+      - name: Build project graph
         run: bun --bun run build
         
   test:
@@ -118,5 +118,5 @@ jobs:
 
       - uses: oven-sh/setup-bun@v1
 
-      - name: Verify code quality
+      - name: Run tests
         run: bun --bun run test
