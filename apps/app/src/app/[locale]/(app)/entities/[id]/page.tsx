@@ -11,9 +11,11 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@repo/ds/ui/tooltip";
 import { env } from "@repo/env";
 import entityService from "@repo/services/entity";
 import {
+	Building2,
 	CircleAlert,
 	Edit,
 	Flag,
+	MapPinned,
 	Printer,
 	Share2,
 	Trash,
@@ -73,7 +75,17 @@ export default async function Page({ params }: { params: { id: string } }) {
 		data.reports.find((t) => t.id_user_created === user?.id) ||
 		data.reports.find((t) => t.ip === ip)
 	);
+	const status = data.date_found
+		? "found"
+		: data.date_disappeared
+			? "disappeared"
+			: data.date_created
+				? "created"
+				: "profile";
 
+	/**
+	 * ### MARK: Render
+	 */
 	return (
 		<main className="p-4 flex flex-col md:flex-row grow container gap-2">
 			<div className="md:max-w-[280px] w-full">
@@ -97,7 +109,11 @@ export default async function Page({ params }: { params: { id: string } }) {
 				</h1>
 
 				<div>
-					{t("date", { date: data.date_created?.toLocaleDateString(locale) })}
+					{status !== "profile" &&
+						t(`entity_date_${status}`, {
+							date: data[`date_${status}`]?.toLocaleDateString(),
+							gender: data.data?.gender,
+						})}
 				</div>
 
 				<div className="flex gap-2 mt-4">
@@ -190,6 +206,62 @@ export default async function Page({ params }: { params: { id: string } }) {
 				<h2 className="mb-4 font-bold text-xl">{t("description")}</h2>
 
 				<div>{data.description || t("no-description")}</div>
+
+				<h2 className="my-4 font-bold text-xl">{t("information")}</h2>
+
+				<div className="flex flex-wrap">
+					<div className="w-1/2">
+						{t("new.general.name")}: {data.name}
+					</div>
+					<div className="w-1/2">
+						{t("new.general.age")}: {data.data?.age}
+					</div>
+					<div className="w-1/2">
+						{`${t("new.general.gender")}: ${t(`new.general.gender-options.${data.data?.gender}`)}`}
+					</div>
+					<div className="w-1/2">
+						{t("new.general.race")}: {data.data?.race}
+					</div>
+				</div>
+
+				{status === "disappeared" && data.addresses[0] && (
+					<>
+						<h2 className="my-4 font-bold text-xl">{t("location")}</h2>
+
+						<div className="flex flex-col md:flex-row gap-4">
+							<div className="w-full sm:w-1/2">
+								<h3 className="bg-white p-2 rounded-lg shadow w-full flex gap-1">
+									<Building2 />
+									{data.addresses[0]?.city} ({data.addresses[0]?.state})
+								</h3>
+
+								<div className="flex flex-wrap p-2">
+									<div className="w-1/2">
+										{`${t("new.location.district")}: ${data.addresses[0]?.district || "-"}`}
+									</div>
+									<div className="w-1/2">
+										{`${t("new.location.city")}: ${data.addresses[0]?.city || "-"}`}
+									</div>
+									<div className="w-1/2">
+										{`${t("new.location.state")}: ${data.addresses[0]?.state || "-"}`}
+									</div>
+									<div className="w-1/2">
+										{`${t("new.location.country")}: ${data.addresses[0]?.country || "-"}`}
+									</div>
+								</div>
+							</div>
+
+							<div className="w-full sm:w-1/2 aspect-video relative">
+								<Image alt="" src="/images/placeholder/maps.webp" fill />
+
+								<div className="absolute top-0 left-0 w-full h-full bg-black/50 flex flex-col justify-center items-center text-white">
+									<MapPinned size={64} />
+									<h1 className="text-xl">Mapas em breve</h1>
+								</div>
+							</div>
+						</div>
+					</>
+				)}
 			</div>
 		</main>
 	);
