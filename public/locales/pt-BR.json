@@ -66,7 +66,9 @@
 		"entities": "Desaparecidos",
 		"filter": "Filtro",
 		"search": "Pesquisar",
-		"date": "Desaparecido em {date}",
+		"entity_date_disappeared": "{gender, select, female {Desaparecida} male {Desaparecido} other {Desaparecido}} em {date}",
+		"entity_date_created": "Criado em {date}",
+		"entity_date_found": "Encontrado em {date}",
 		"found": "Encontrou?",
 		"help": "Ajude a encontrar {entity}.",
 		"created-by": "Criado por {by} em {date}",
@@ -101,7 +103,8 @@
 				"title": "Localização",
 				"district": "Bairro",
 				"city": "Cidade",
-				"state": "Estado"
+				"state": "Estado",
+				"country": "País"
 			},
 			"contact": {
 				"title": "Contato",

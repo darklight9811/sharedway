@@ -49,11 +49,13 @@ const entityService = service({
 							},
 						}
 					: {}),
+
 				reports: {
 					every: {
 						OR: [{ id_entity: null }, { reason: { not: "offensive" } }],
 					},
 				},
+				date_disappeared: { not: null },
 			},
 			select: {
 				id: true,
@@ -149,6 +151,8 @@ const entityService = service({
 			select: {
 				id: true,
 				date_created: true,
+				date_disappeared: true,
+				date_found: true,
 				name: true,
 				type: true,
 				user_created: {
