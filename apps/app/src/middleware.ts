@@ -22,7 +22,6 @@ const isAssetRoute = createRouteMatcher([
 
 const isProtectedRoute = createRouteMatcher([
 	`/(${locales.join("|")})/callback`,
-	`/(${locales.join("|")})/entities/new`,
 ]);
 
 const isApiProtectedRoute = createRouteMatcher(["/api/uploadthing(.*)"]);
