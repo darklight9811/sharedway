@@ -192,6 +192,15 @@ export default function EntityForm(props: Props) {
 											<SelectItem value="email">
 												{t("contact.type-options.email")}
 											</SelectItem>
+											<SelectItem value="whatsapp">
+												{t("contact.type-options.whatsapp")}
+											</SelectItem>
+											<SelectItem value="facebook">
+												{t("contact.type-options.facebook")}
+											</SelectItem>
+											<SelectItem value="instagram">
+												{t("contact.type-options.instagram")}
+											</SelectItem>
 										</SelectContent>
 									</Select>
 								)}
