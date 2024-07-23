@@ -1,4 +1,3 @@
-import { Link } from "@/lib/navigation";
 import tailwind from "@repo/ds/tw";
 import Title from "@repo/ds/ui/title";
 import { Code, Handshake, Users } from "lucide-react";
