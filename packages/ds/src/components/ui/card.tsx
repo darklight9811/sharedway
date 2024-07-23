@@ -21,25 +21,14 @@ export default function Card(props: CardProps) {
 		>
 			<div className="absolute bg-gradient-to-t from-black to-[rgba(0,0,0,0)] w-full h-full" />
 
-			<Link className="grow z-10" href={`/entities/${props.id}`} />
+			<Link
+				className="grow z-10"
+				href={`/entities/${props.id}`}
+				prefetch={false}
+			/>
 
 			<div className="p-2 text-white z-10">
 				<span className="pointer-events-none">{props.name}</span>
-
-				<div className="flex w-full mt-1 gap-4">
-					<Link
-						className="transition-colors hover:text-green-300"
-						href={`/report?entity=${props.id}`}
-					>
-						<Home />
-					</Link>
-					<Link
-						className="transition-colors hover:text-red-300"
-						href={`/report?entity=${props.id}`}
-					>
-						<Flag />
-					</Link>
-				</div>
 			</div>
 		</div>
 	);
