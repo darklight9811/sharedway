@@ -6,8 +6,8 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import parallel from "../../lib/parallel";
-import { baseUrl } from "../../lib/url";
+import parallel from "../lib/parallel";
+import { baseUrl } from "../lib/url";
 import ClientProvider from "./_components/client-provider";
 import ServerProvider from "./_components/server-provider";
 
@@ -25,7 +25,6 @@ export async function generateMetadata(params: { locale: string }) {
 		metadataBase: new URL(baseUrl()),
 		robots: "/robots.txt",
 		alternates: {
-			canonical: `./${locale}/`,
 			languages: {
 				"en-US": "/en-US",
 				"pt-BR": "/pt-BR",

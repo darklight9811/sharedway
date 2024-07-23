@@ -10,7 +10,7 @@ import {
 import { Plus, Search, User } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { Link } from "../../../lib/navigation";
+import { Link } from "../../lib/navigation";
 import NavbarBackground from "./navbar-background";
 
 export default async function Navbar() {

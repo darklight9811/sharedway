@@ -9,7 +9,7 @@ import entityService from "@repo/services/entity";
 import { UserRoundX } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Suspense, createElement } from "react";
-import parallel from "../../../../lib/parallel";
+import parallel from "../../../lib/parallel";
 import { Filter } from "./_components/filter";
 
 export default async function Page(props: { searchParams: PaginationType }) {
