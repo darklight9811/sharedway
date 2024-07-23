@@ -12,6 +12,8 @@ import Card from "@repo/ds/ui/card";
 import { Loader } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+const limit = 8;
+
 export default function MiniSearch() {
 	const reset = useRef(false);
 	const input = useRef<HTMLInputElement>(null);
@@ -24,7 +26,7 @@ export default function MiniSearch() {
 		queryKey: ["minisearch", search],
 		enabled: !!search,
 		async queryFn({ queryKey: [, search] }) {
-			const resp = await index({ limit: 12, q: search, page: 1, sort: "asc" });
+			const resp = await index({ limit, q: search, page: 1, sort: "asc" });
 			return resp.data?.[0] || [];
 		},
 	});
@@ -77,10 +79,14 @@ export default function MiniSearch() {
 
 			{data.length > 0 && (
 				<>
-					<div className="flex flex-wrap w-full max-w-5xl justify-between mt-8 animate-fade-in">
+					<div className="flex flex-wrap w-full max-w-5xl justify-between mt-8 animate-fade-in gap-4">
 						{data.map((entry) => (
 							<Card {...entry} key={entry.id} className="animate-fade-in" />
 						))}
+						{data.length > 0 &&
+							Array.from(new Array((limit - data.length) % 4)).map((x) => (
+								<div key={x} className="max-w-[47%] sm:max-w-[210px] w-full" />
+							))}
 					</div>
 
 					<Link
