@@ -12,12 +12,16 @@ import ClientProvider from "./_components/client-provider";
 import ServerProvider from "./_components/server-provider";
 
 import "./globals.css";
+import { getLocaleContent } from "@/lib/locale";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata(params: { locale: string }) {
+export async function generateMetadata() {
 	const [t, locale] = await Promise.all([
-		getTranslations({ locale: params.locale, namespace: "metadata" }),
+		getTranslations({
+			locale: getLocaleContent(headers().get("Accept-Language")) || "pt-BR",
+			namespace: "metadata",
+		}),
 		getLocale(),
 	]);
 
@@ -26,8 +30,8 @@ export async function generateMetadata(params: { locale: string }) {
 		robots: "/robots.txt",
 		alternates: {
 			languages: {
-				"en-US": "/en-US",
-				"pt-BR": "/pt-BR",
+				"en-US": "/",
+				"pt-BR": "/",
 			},
 		},
 		title: {
