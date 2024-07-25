@@ -66,7 +66,7 @@ export default function Page() {
 			<div className="container mx-auto flex flex-col md:flex-row gap-10">
 				<div className="w-full sm:w-1/2">
 					<Image
-						src="/images/arts/people_01.svg"
+						src="/images/arts/people_01.png"
 						alt=""
 						width={600}
 						height={479}
@@ -128,7 +128,7 @@ export default function Page() {
 				</div>
 				<div className="w-full sm:w-1/2">
 					<Image
-						src="/images/arts/phone_01.svg"
+						src="/images/arts/phone_01.png"
 						alt=""
 						width={600}
 						height={622}
