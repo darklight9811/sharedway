@@ -13,8 +13,8 @@
 		"postinstall": "cd ../../ && bun run postinstall"
 	},
 	"dependencies": {
-		"@clerk/localizations": "^2.4.5",
-		"@clerk/nextjs": "^5.2.2",
+		"@clerk/localizations": "^2.5.1",
+		"@clerk/nextjs": "^5.2.6",
 		"@repo/ds": "1.0.0",
 		"@repo/env": "1.0.0",
 		"@repo/schemas": "1.0.0",
