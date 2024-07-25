@@ -16,7 +16,7 @@ export default function Page() {
 			 * ### MARK: Hero
 			 */}
 
-			<div className="flex flex-col justify-center min-h-[1000px] items-center relative pb-[20vh] px-2 mb-[450px]">
+			<div className="flex flex-col justify-center min-h-[800px] md:min-h-[1000px] items-center relative pb-[20vh] px-2 md:mb-[450px]">
 				<Image
 					src="/images/arts/splash_01.svg"
 					alt=""
@@ -25,10 +25,10 @@ export default function Page() {
 					priority
 				/>
 
-				<h1 className="text-7xl font-bold max-w-screen-xl text-center text-white animate-top-in mb-8">
+				<h1 className="text-3xl md:text-7xl font-bold max-w-screen-xl text-center text-white animate-top-in mb-8">
 					Reencontre vidas com nossa plataforma inteligente
 				</h1>
-				<h2 className="text-2xl font-light text-center text-[#262a41] opacity-0 animation-delay-200 animate-top-in">
+				<h2 className="text-md md:text-2xl font-light text-center text-[#262a41] opacity-0 animation-delay-200 animate-top-in">
 					A plataforma centralizada para localizar pessoas e animais
 					desaparecidos com eficiência e colaboração.
 				</h2>
@@ -43,7 +43,7 @@ export default function Page() {
 				<Link
 					href="/entities"
 					className={buttonVariants({
-						className: "mt-8 !text-2xl !py-8",
+						className: "mt-8 md:!text-2xl md:!py-8",
 						variant: "secondary",
 						size: "lg",
 					})}
@@ -65,7 +65,7 @@ export default function Page() {
 			 * ### MARK: How
 			 */}
 
-			<div className="container mx-auto flex gap-10">
+			<div className="container mx-auto flex flex-col md:flex-row gap-10">
 				<div className="w-full sm:w-1/2">
 					<Image
 						src="/images/arts/people_01.svg"
@@ -74,8 +74,10 @@ export default function Page() {
 						height={479}
 					/>
 				</div>
-				<div className="text-slate-900 font-normal text-xl w-full sm:w-1/2 flex flex-col grow justify-center">
-					<h1 className="text-5xl font-extrabold mb-8">Como funciona?</h1>
+				<div className="text-slate-900 font-normal text-md md:text-xl w-full sm:w-1/2 flex flex-col grow justify-center">
+					<h1 className="text-2xl md:text-5xl font-extrabold mb-8">
+						Como funciona?
+					</h1>
 
 					<p>
 						Nossa plataforma foi projetada para tornar o processo de encontrar
@@ -94,9 +96,11 @@ export default function Page() {
 			 * ### MARK: Mobile
 			 */}
 
-			<div className="container mx-auto flex gap-10 mt-[172px]">
-				<div className="text-slate-900 font-normal text-xl w-full sm:w-1/2 flex flex-col grow justify-center">
-					<h1 className="text-5xl font-extrabold mb-8">Acompanhe os locais</h1>
+			<div className="container mx-auto flex flex-col-reverse md:flex-row gap-10 mt-[64px] md:mt-[172px]">
+				<div className="text-slate-900 font-normal text-md md:text-xl w-full sm:w-1/2 flex flex-col grow justify-center">
+					<h1 className="text-2xl md:text-5xl font-extrabold mb-8">
+						Acompanhe os locais
+					</h1>
 
 					<p>
 						Acompanhe as últimas localizações e movimentações reportadas por
@@ -140,11 +144,11 @@ export default function Page() {
 
 			<div className="bg-[#62b0f4] my-20">
 				<div className="container mx-auto flex flex-col gap-10 py-20 items-center">
-					<h1 className="text-white text-5xl font-extrabold">
+					<h1 className="text-white text-2xl md:text-5xl font-extrabold">
 						Ajude a encontrar quem está desaparecido
 					</h1>
 
-					<p className="text-2xl font-light text-black">
+					<p className="md:text-2xl font-light text-black">
 						Estamos constantemente formando parcerias com instituições e
 						organizações para fortalecer nossa rede de apoio.
 					</p>
@@ -154,7 +158,7 @@ export default function Page() {
 						className={buttonVariants({
 							variant: "secondary",
 							className:
-								"!text-2xl font-bold leading-normal tracking-wide !px-6 !py-6",
+								"md:!text-2xl font-bold leading-normal tracking-wide !px-6 !py-6",
 						})}
 					>
 						Junte-se a nós
@@ -167,17 +171,17 @@ export default function Page() {
 			 */}
 
 			<div className="container mx-auto my-[10vh] text-slate-900">
-				<h1 className="text-6xl font-extrabold text-center mb-8">
+				<h1 className="text-2xl md:text-6xl font-extrabold text-center mb-8">
 					Conecte-se para reencontrar
 				</h1>
 
-				<p className="text-xl font-normal text-center">
+				<p className="md:text-xl font-normal text-center">
 					Somos uma plataforma de código aberto (OSS) dedicada a conectar
 					pessoas e animais desaparecidos com seus entes queridos. Nossa missão
 					é centralizar e distribuir informações de forma eficiente e acessível.
 				</p>
 
-				<div className="mx-16 rounded-3xl bg-gradient-to-l from-[#6FFFE9] to-[#62B0F4] my-16 flex justify-center items-center py-12">
+				<div className="md:mx-16 rounded-3xl bg-gradient-to-l from-[#6FFFE9] to-[#62B0F4] my-16 flex justify-center items-center py-4 md:py-12">
 					<Image
 						src="/images/screenshots/search.png"
 						alt=""
@@ -231,7 +235,7 @@ export default function Page() {
 			 */}
 
 			<div className="bg-[#62b0f4] text-slate-900 mb-28">
-				<div className="mx-auto container flex my-[10vh] relative px-4">
+				<div className="mx-auto container flex flex-col-reverse md:flex-row my-[10vh] relative px-4">
 					<div className="w-full md:w-1/2 grow flex flex-col justify-center">
 						<p className="text-2xl font-normal">
 							"Estava desesperada quando meu cachorro Max desapareceu. Graças à
@@ -244,7 +248,7 @@ export default function Page() {
 						<p className="text-2xl font-bold">mãe do Max</p>
 					</div>
 
-					<div className="w-full md:w-1/2 my-[-150px]">
+					<div className="w-full md:w-1/2 mt-[-75px] md:my-[-150px]">
 						<Image src="/images/arts/dog.png" alt="" width={600} height={415} />
 					</div>
 				</div>
@@ -254,21 +258,21 @@ export default function Page() {
 			 * ### MARK: FAQ
 			 */}
 
-			<div className="mb-32">
-				<h1 className="text-slate-900 text-6xl font-extrabold text-center">
+			<div className="md:mb-32">
+				<h1 className="text-slate-900 text-2xl md:text-6xl font-extrabold text-center">
 					Perguntas frequentes
 				</h1>
 
 				<Accordion
 					type="single"
 					collapsible
-					className="container mx-auto px-8 sm:px-20 !text-2xl font-normal text-slate-900 mt-16"
+					className="container mx-auto md:px-8 sm:px-20 md:!text-2xl font-normal text-slate-900 mt-16"
 				>
 					<AccordionItem value="1">
-						<AccordionTrigger className="!py-8">
+						<AccordionTrigger className="md:!py-8">
 							Como posso relatar um desaparecimento?
 						</AccordionTrigger>
-						<AccordionContent className="!text-2xl !py-8">
+						<AccordionContent className="md:!text-2xl !py-8">
 							Para relatar um desaparecimento, clique no botão "Relatar
 							Desaparecimento" na parte superior da página. Preencha o
 							formulário com as informações necessárias e envie. Nossa equipe
@@ -277,10 +281,10 @@ export default function Page() {
 					</AccordionItem>
 
 					<AccordionItem value="2">
-						<AccordionTrigger className="!py-8">
+						<AccordionTrigger className="md:!py-8">
 							Como utilizo os filtros de busca?
 						</AccordionTrigger>
-						<AccordionContent className="!text-2xl !py-8">
+						<AccordionContent className="md:!text-2xl !py-8">
 							Na página inicial, utilize a ferramenta de busca para filtrar por
 							localização, tipo (pessoa ou animal) e outras características
 							específicas. Isso ajudará a refinar sua busca e encontrar
@@ -289,10 +293,10 @@ export default function Page() {
 					</AccordionItem>
 
 					<AccordionItem value="3">
-						<AccordionTrigger className="!py-8">
+						<AccordionTrigger className="md:!py-8">
 							Como posso contribuir com informações?
 						</AccordionTrigger>
-						<AccordionContent className="!text-2xl !py-8">
+						<AccordionContent className="md:!text-2xl !py-8">
 							Você pode contribuir com informações clicando em um caso
 							específico e adicionando um comentário com detalhes relevantes que
 							possam ajudar na localização da pessoa ou animal desaparecido.
@@ -300,10 +304,10 @@ export default function Page() {
 					</AccordionItem>
 
 					<AccordionItem value="4">
-						<AccordionTrigger className="!py-8">
+						<AccordionTrigger className="md:!py-8">
 							Como funciona o sistema de parcerias?
 						</AccordionTrigger>
-						<AccordionContent className="!text-2xl !py-8">
+						<AccordionContent className="md:!text-2xl !py-8">
 							Nossos parceiros incluem instituições e organizações que colaboram
 							conosco para fortalecer nossa rede de apoio. Eles ajudam na
 							divulgação de casos, fornecem recursos e compartilham informações
@@ -312,10 +316,10 @@ export default function Page() {
 					</AccordionItem>
 
 					<AccordionItem value="5">
-						<AccordionTrigger className="!py-8">
+						<AccordionTrigger className="md:!py-8">
 							Como posso me voluntariar para ajudar?
 						</AccordionTrigger>
-						<AccordionContent className="!text-2xl !py-8">
+						<AccordionContent className="md:!text-2xl !py-8">
 							Para se voluntariar, entre em contato conosco através da seção
 							"Contato" no menu. Estamos sempre à procura de pessoas dedicadas e
 							dispostas a contribuir para nossa causa.
@@ -329,12 +333,12 @@ export default function Page() {
 			 */}
 
 			<div className="bg-gradient-to-l from-[#6FFFE9] to-[#62B0F4] my-20">
-				<div className="container mx-auto flex flex-col gap-10 py-32 items-center">
-					<h1 className="text-white text-5xl font-extrabold text-center">
+				<div className="container mx-auto flex flex-col gap-10 py-16 md:py-32 items-center">
+					<h1 className="text-white text-2xl md:text-5xl font-extrabold text-center">
 						Ajude a trazer esperança para quem busca seus entes queridos
 					</h1>
 
-					<p className="text-2xl font-light text-black">
+					<p className="md:text-2xl font-light text-black">
 						Formamos parcerias estratégicas com instituições para fortalecer
 						nossa rede de apoio.
 					</p>
@@ -344,7 +348,7 @@ export default function Page() {
 						className={buttonVariants({
 							variant: "secondary",
 							className:
-								"!text-2xl font-bold leading-normal tracking-wide !px-6 !py-6",
+								"md:!text-2xl font-bold leading-normal tracking-wide !px-6 !py-6",
 						})}
 					>
 						Faça parte da solução

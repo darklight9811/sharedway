@@ -5,11 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function NavbarBackground() {
 	const ref = useRef<HTMLDivElement>(null);
-	const [shadow, setShadow] = useState(() =>
-		typeof window !== "undefined"
-			? document.scrollingElement?.scrollTop || 0 > 25
-			: false,
-	);
+	const [shadow, setShadow] = useState(true);
 
 	useEffect(() => {
 		function onScroll(e: Event) {
