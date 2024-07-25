@@ -21,7 +21,7 @@ export default function Page() {
 					src="/images/arts/splash_01.svg"
 					alt=""
 					fetchPriority="high"
-					className="absolute z-[-1] w-full"
+					className="absolute z-[-1] w-full min-w-[840px] bg-cover"
 				/>
 
 				<h1 className="text-3xl md:text-7xl font-bold max-w-screen-xl text-center text-white animate-top-in mb-8">

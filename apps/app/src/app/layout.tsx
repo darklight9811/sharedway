@@ -106,6 +106,12 @@ export default async function RootLayout({
 
 	return (
 		<html className="h-full scroll-smooth" lang={locale}>
+			<head>
+				<link
+					rel="preconnect"
+					href="https://above-phoenix-64.clerk.accounts.dev"
+				/>
+			</head>
 			<body className={cn(inter.className, "flex flex-col h-full")}>
 				<ServerProvider locale={locale}>
 					<ClientProvider>
