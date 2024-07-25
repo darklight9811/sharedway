@@ -93,23 +93,21 @@ export async function generateViewport() {
 
 export default async function RootLayout({
 	children,
-	params,
 }: {
 	children: React.ReactNode;
-	params: { locale: string };
 }) {
 	const { userId } = auth();
 	const pathname = headers().get("x-pathname") || "/";
-	const [user] = await parallel(currentUser());
+	const [user, locale] = await parallel(currentUser(), getLocale());
 
 	if (userId && !user && !pathname.includes("/callback")) {
 		return redirect(`/callback?redirect=${pathname}`);
 	}
 
 	return (
-		<html className="h-full scroll-smooth" lang={params.locale}>
+		<html className="h-full scroll-smooth" lang={locale}>
 			<body className={cn(inter.className, "flex flex-col h-full")}>
-				<ServerProvider locale={params.locale}>
+				<ServerProvider locale={locale}>
 					<ClientProvider>
 						<div className="grow w-full flex h-screen pt-[5vh]">
 							<div
