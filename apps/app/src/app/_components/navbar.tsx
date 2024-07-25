@@ -27,14 +27,14 @@ export default async function Navbar() {
 					<Image
 						alt="logo"
 						height={24}
-						src="/images/logo/favicon.svg"
+						src="/images/logo/favicon-light.svg"
 						width={24}
 					/>
 				</Link>
 				<Link
 					className={buttonVariants({
 						size: "sm",
-						variant: "primary-gradient",
+						variant: "secondary",
 						className: "pl-1",
 					})}
 					href="/entities/new"
@@ -46,33 +46,9 @@ export default async function Navbar() {
 					</span>
 					<span className="hidden md:inline">{t("create")}</span>
 				</Link>
-				<Link
-					className={buttonVariants({
-						size: "sm",
-					})}
-					href="/entities"
-					prefetch={false}
-					aria-label={t("search")}
-				>
-					<Search />
-					<span className="hidden md:inline"> {t("search")}</span>
-				</Link>
 			</div>
 
 			<div className="flex gap-4 items-center">
-				<a
-					target="blank"
-					rel="noreferrer"
-					href="https://natural-iberis-96f.notion.site/SHAREDWAY-Build-in-Public-ea743286a9834dcb9fa682f0f2e643a9?pvs=74"
-				>
-					<Image
-						src="/images/brands/notion.svg"
-						alt="notion logo"
-						width={24}
-						height={24}
-					/>
-				</a>
-
 				{user ? (
 					<DropdownMenu>
 						<DropdownMenuTrigger className="text-sm flex gap-2 items-center rounded-3xl">
@@ -112,7 +88,10 @@ export default async function Navbar() {
 						<Link href="/sign-in" className={buttonVariants()}>
 							{t("login")}
 						</Link>
-						<Link href="/sign-up" className="mr-2 hidden md:inline">
+						<Link
+							href="/sign-up"
+							className="mr-2 hidden md:inline text-[#3a506b]"
+						>
 							{t("signin")}
 						</Link>
 					</>

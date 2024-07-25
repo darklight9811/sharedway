@@ -15,7 +15,7 @@ export default function NavbarBackground() {
 		function onScroll(e: Event) {
 			setShadow(
 				(e.target as unknown as { scrollingElement: Element }).scrollingElement
-					.scrollTop > 25,
+					.scrollTop >= 0,
 			);
 		}
 
@@ -30,7 +30,7 @@ export default function NavbarBackground() {
 		<div
 			ref={ref}
 			className={cn(
-				"z-[-1] absolute top-0 left-0 w-full h-full transition-[opacity,shadow] opacity-0 bg-gradient-to-l from-[#f1f1f1] to-[#E9F6FE]",
+				"z-[-1] absolute top-0 left-0 w-full h-full transition-[opacity,shadow] opacity-0 bg-[#3a506b]",
 				shadow ? "shadow-md opacity-1" : "",
 			)}
 		/>
