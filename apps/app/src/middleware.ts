@@ -6,6 +6,7 @@ import createMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
 import { generate } from "./app/manifest";
 import { locales } from "./i18n";
+import { getLocaleContent } from "./lib/locale";
 
 /**
  * MARK: Route matchers
@@ -20,20 +21,13 @@ const isAssetRoute = createRouteMatcher([
 	"/manifest.webmanifest",
 ]);
 
-const isProtectedRoute = createRouteMatcher([
-	`/(${locales.join("|")})/callback`,
-]);
+const isProtectedRoute = createRouteMatcher(["/callback", "/profile"]);
 
 const isApiProtectedRoute = createRouteMatcher(["/api/uploadthing(.*)"]);
 
 /**
  * MARK: Middlewares
  */
-
-const intl = createMiddleware({
-	locales,
-	defaultLocale: locales[0],
-});
 
 const ratelimit = new Ratelimit({
 	redis: kv,
@@ -49,11 +43,7 @@ const clerk = clerkMiddleware(
 		// we generate the webmanifest dinamically to allow internacionalization
 		if (req.nextUrl.pathname === "/manifest.webmanifest") {
 			const preferredLanguage = req.headers.get("Accept-Language");
-			if (!preferredLanguage) return NextResponse.json(generate("en-US"));
-			const favoriteLanguages = preferredLanguage.split(",");
-			const locale = favoriteLanguages.find((t) =>
-				locales.includes(t.split(";")[0] as (typeof locales)[number]),
-			);
+			const locale = getLocaleContent(preferredLanguage);
 			return NextResponse.json(await generate(locale || "en-US"));
 		}
 
@@ -71,8 +61,6 @@ const clerk = clerkMiddleware(
 
 		// api handles their own authentication
 		if (isApiProtectedRoute(req)) return NextResponse.next();
-
-		return intl(req);
 	},
 	{
 		signInUrl: "/sign-in",

@@ -6,18 +6,22 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import parallel from "../../lib/parallel";
-import { baseUrl } from "../../lib/url";
+import parallel from "../lib/parallel";
+import { baseUrl } from "../lib/url";
 import ClientProvider from "./_components/client-provider";
 import ServerProvider from "./_components/server-provider";
 
 import "./globals.css";
+import { getLocaleContent } from "@/lib/locale";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata(params: { locale: string }) {
+export async function generateMetadata() {
 	const [t, locale] = await Promise.all([
-		getTranslations({ locale: params.locale, namespace: "metadata" }),
+		getTranslations({
+			locale: getLocaleContent(headers().get("Accept-Language")) || "pt-BR",
+			namespace: "metadata",
+		}),
 		getLocale(),
 	]);
 
@@ -25,10 +29,9 @@ export async function generateMetadata(params: { locale: string }) {
 		metadataBase: new URL(baseUrl()),
 		robots: "/robots.txt",
 		alternates: {
-			canonical: `./${locale}/`,
 			languages: {
-				"en-US": "/en-US",
-				"pt-BR": "/pt-BR",
+				"en-US": "/",
+				"pt-BR": "/",
 			},
 		},
 		title: {
