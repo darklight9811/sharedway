@@ -17,12 +17,11 @@ export default function Page() {
 			 */}
 
 			<div className="flex flex-col justify-center min-h-[800px] md:min-h-[1000px] items-center relative pb-[20vh] px-2 md:mb-[450px]">
-				<Image
+				<img
 					src="/images/arts/splash_01.svg"
 					alt=""
-					fill
-					className="left-0 top-0 mt-[-56px] absolute z-[-1]"
-					priority
+					fetchPriority="high"
+					className="absolute z-[-1] w-full"
 				/>
 
 				<h1 className="text-3xl md:text-7xl font-bold max-w-screen-xl text-center text-white animate-top-in mb-8">
@@ -32,12 +31,11 @@ export default function Page() {
 					A plataforma centralizada para localizar pessoas e animais
 					desaparecidos com eficiência e colaboração.
 				</h2>
-				<Image
+				<img
 					src="/images/arts/line_01.svg"
 					alt=""
-					fill
-					className="left-0 !top-[25%] absolute z-[-1]"
-					priority
+					fetchPriority="high"
+					className="absolute z-[-1] w-full !top-[70%]"
 				/>
 
 				<Link
