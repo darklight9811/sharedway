@@ -1,0 +1,12 @@
+{
+	"name": "@scripts/tests",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"test": "bun src/locale.ts"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.8.3",
+		"@types/bun": "^1.1.6"
+	}
+}

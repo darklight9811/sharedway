@@ -2,7 +2,7 @@
 	"metadata": {
 		"title": "sharedway",
 		"description": "sharedway is a website that helps connect lost people and animals with their loved ones. Help spread the word",
-		"keywords": ""
+		"keywords": "sso,opensource,missing,find"
 	},
 	"general": {
 		"create": "New missing",
@@ -49,11 +49,23 @@
 			"done": "Settings done! You can return to using the app now"
 		}
 	},
+	"report": {
+		"title": "Report",
+		"subtitle": "If this profile is violating any clause of our privacy policy, you can report it here.",
+		"reason": {
+			"offensive": "Offensive content",
+			"not_missing": "Profile is not missing",
+			"ownership": "This is me",
+			"other": "Other reasons"
+		},
+		"description": "More details to the report",
+		"success": "Profile reported",
+		"action": "Report"
+	},
 	"entities": {
 		"entities": "Missing",
 		"filter": "Filter",
 		"search": "Search",
-		"date": "Missing on {date}",
 		"found": "Found?",
 		"help": "Help find {entity}.",
 		"created-by": "Created by {by} on {date}",
@@ -61,10 +73,23 @@
 		"no-description": "No description",
 		"create-title": "Register new missing",
 		"back": "Back",
+		"location": "Location",
+		"entity_date_disappeared": "Has gone missing in {date}",
+		"entity_date_created": "Created in {date}",
+		"entity_date_found": "Found in {date}",
 		"create": "Create",
 		"date_created": "Date created",
+		"empty": "No data found",
 		"date_disappeared": "Date disappeared",
+		"reported": "Profile was reported",
+		"already_reported": "You have already reported this profile",
 		"new": {
+			"unauth": {
+				"title": "Has someone important disappeared?",
+				"description": "We are here to help, you can register the disappearance by creating an account or sending a message to our official Instagram:",
+				"register": "Register",
+				"or": "or"
+			},
 			"general": {
 				"title": "General information",
 				"name": "Name",
@@ -85,7 +110,8 @@
 				"title": "Location",
 				"district": "Neighborhood",
 				"city": "City",
-				"state": "State"
+				"state": "State",
+				"country": "Country"
 			},
 			"contact": {
 				"title": "Contact",

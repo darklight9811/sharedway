@@ -23,13 +23,13 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.8.2",
 		"@repo/config": "0.0.0",
-		"turbo": "2.0.4"
+		"turbo": "2.0.9"
 	},
 	"engines": {
 		"bun": ">=1.1.0"
 	},
 	"packageManager": "yarn@1.22.19",
-	"workspaces": ["apps/*", "packages/*"],
+	"workspaces": ["apps/*", "packages/*", "scripts/*"],
 	"dependencies": {
 		"dotenv-cli": "^7.4.1",
 		"symlink-dir": "^6.0.0",
