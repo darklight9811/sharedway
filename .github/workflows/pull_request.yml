@@ -48,7 +48,7 @@ jobs:
         run: bun install
 
       - name: Run tests
-        run: bun --bun run test
+        run: bun --bun run test --filter="./packages/*" --filter="./apps/*"
 
   locales:
     name: Test locales information
