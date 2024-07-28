@@ -1,9 +1,10 @@
 "use client";
 
-import states from "@/constants/state";
+import { states } from "@/modules/location/actions";
 import Field from "@repo/ds/form/field";
 import FieldList from "@repo/ds/form/field-list";
 import Form from "@repo/ds/form/form";
+import { AsyncSelect } from "@repo/ds/ui/async-select";
 import { Button } from "@repo/ds/ui/button";
 import ImageUploader from "@repo/ds/ui/image-uploader";
 import { Input } from "@repo/ds/ui/input";
@@ -149,19 +150,15 @@ export default function EntityForm(props: Props) {
 					className="w-full md:w-2/5"
 					render={({ field }) => {
 						return (
-							<Select {...field}>
-								<SelectTrigger>
-									<SelectValue />
-								</SelectTrigger>
-
-								<SelectContent>
-									{states.map((state) => (
-										<SelectItem value={state.sigla} key={state.id}>
-											{state.nome}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
+							<AsyncSelect
+								{...field}
+								action={states}
+								t={{
+									empty: "Nenhum estado encontrado",
+									placeholder: "Escolha um estado",
+									loading: "Carregando",
+								}}
+							/>
 						);
 					}}
 				/>
