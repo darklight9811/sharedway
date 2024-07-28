@@ -13,7 +13,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: 1,
 			alternates: {
 				languages: {
-					br: `${url}/pt-BR`,
+					br: `${url}/`,
+					en: `${url}/`,
 				},
 			},
 		},

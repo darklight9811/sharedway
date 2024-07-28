@@ -19,7 +19,7 @@
 		"@repo/env": "1.0.0",
 		"@repo/schemas": "1.0.0",
 		"@repo/services": "1.0.0",
-		"@tanstack/react-query": "^5.49.0",
+		"@tanstack/react-query": "^5.51.15",
 		"@tanstack/react-query-devtools": "^5.49.0",
 		"@upstash/ratelimit": "^1.2.1",
 		"@vercel/analytics": "^1.3.1",

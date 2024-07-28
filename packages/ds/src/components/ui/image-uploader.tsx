@@ -2,7 +2,7 @@ import { Camera, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { useUpdate } from "../../lib/react";
+import useUpdate from "../../hooks/use-update";
 
 interface Filesque extends File {
 	id: string;
@@ -80,7 +80,7 @@ export default function ImageUploader(props: Props) {
 									type="button"
 									className="absolute w-full h-full top-0 left-0 p-1 flex text-white bg-gradient-to-br from-[rgba(0,0,0,0.7)] via-[rgba(0,0,0,0)] to-[rgba(0,0,0,0)]"
 									onClick={() => {
-										setFiles((prev) => {
+										setFiles((prev): any => {
 											if (file._upload !== false)
 												return prev.map((t) =>
 													t.id === file.id ? { ...t, remove: true } : t,

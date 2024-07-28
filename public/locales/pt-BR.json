@@ -118,7 +118,10 @@
 				"description": "Outras formas de entrar em contato",
 				"type-options": {
 					"phone": "Telefone",
-					"email": "E-mail"
+					"email": "E-mail",
+					"instagram": "Instagram",
+					"facebook": "Facebook",
+					"whatsapp": "Whatsapp"
 				}
 			}
 		}
