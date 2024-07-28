@@ -118,7 +118,10 @@
 				"description": "Other ways to get in touch",
 				"type-options": {
 					"phone": "Phone",
-					"email": "Email"
+					"email": "Email",
+					"instagram": "Instagram",
+					"facebook": "Facebook",
+					"whatsapp": "Whatsapp"
 				}
 			}
 		}
