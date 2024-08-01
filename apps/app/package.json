@@ -15,6 +15,7 @@
 	"dependencies": {
 		"@clerk/localizations": "^2.5.1",
 		"@clerk/nextjs": "^5.2.6",
+		"@react-pdf/renderer": "^3.4.4",
 		"@repo/ds": "1.0.0",
 		"@repo/env": "1.0.0",
 		"@repo/schemas": "1.0.0",

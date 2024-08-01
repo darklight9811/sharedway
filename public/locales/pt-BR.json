@@ -66,6 +66,7 @@
 		"entities": "Desaparecidos",
 		"filter": "Filtro",
 		"search": "Pesquisar",
+		"information": "Informações",
 		"entity_date_disappeared": "{gender, select, female {Desaparecida} male {Desaparecido} other {Desaparecido}} em {date}",
 		"entity_date_created": "Criado em {date}",
 		"entity_date_found": "Encontrado em {date}",

@@ -2,6 +2,7 @@ import Share from "@/components/share";
 import { Link } from "@/lib/navigation";
 import parallel from "@/lib/parallel";
 import { baseUrl } from "@/lib/url";
+import Banner from "@/modules/entity/components/banner";
 import ReportDialog from "@/modules/report/components/report-dialog";
 import { currentUser } from "@/modules/user/loaders";
 import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
@@ -151,9 +152,15 @@ export default async function Page({ params }: { params: { id: string } }) {
 							<Share2 />
 						</Button>
 					</Share>
-					<Button type="button" size="icon" disabled>
-						<Printer />
-					</Button>
+					<Banner
+						images={data.pictures.map((t) => t.id)}
+						description={data.description}
+						contact={data.contact?.options as { type: string; value: string }[]}
+					>
+						<Button type="button" size="icon">
+							<Printer />
+						</Button>
+					</Banner>
 					{user?.id === data.user_created.id && (
 						<>
 							<Link
