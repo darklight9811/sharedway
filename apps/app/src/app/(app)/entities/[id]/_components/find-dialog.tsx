@@ -1,13 +1,12 @@
 "use client";
 
+import { contactIcons } from "@/modules/entity/helpers/icon";
 import { buttonVariants } from "@repo/ds/ui/button";
 import {
 	DialogDrawer,
 	DialogDrawerContent,
 	DialogDrawerTrigger,
 } from "@repo/ds/ui/dialog-drawer";
-import { Mail, Phone } from "lucide-react";
-import Image from "next/image";
 
 interface Props {
 	children: React.ReactNode;
@@ -67,39 +66,32 @@ export function FindDialog(props: Props) {
 	);
 }
 
-function buildIcon(path: string) {
-	return (
-		<Image
-			src={`/images/brands/${path}.svg`}
-			width={16}
-			height={16}
-			alt={`${path} logo`}
-		/>
-	);
-}
-
 function getInfo(type: string, value: string) {
 	switch (type) {
 		case "phone":
-			return { href: `tel:${value}`, icon: <Phone />, render: value };
+			return { href: `tel:${value}`, icon: contactIcons(type), render: value };
 		case "email":
-			return { href: `mailto:${value}`, icon: <Mail />, render: value };
+			return {
+				href: `mailto:${value}`,
+				icon: contactIcons(type),
+				render: value,
+			};
 		case "whatsapp":
 			return {
 				href: `https://wa.me/${value.replace(/(\+|\-|\.|\(|\))/g, "")}`,
-				icon: buildIcon("whatsapp"),
+				icon: contactIcons("whatsapp"),
 				render: value,
 			};
 		case "facebook":
 			return {
 				href: value.includes("http") ? value : `https://facebook.com/${value}`,
-				icon: buildIcon("facebook"),
+				icon: contactIcons("facebook"),
 				render: value.split("facebook.com/").at(-1),
 			};
 		case "instagram":
 			return {
 				href: value.includes("http") ? value : `https://instagram.com/${value}`,
-				icon: buildIcon("instagram"),
+				icon: contactIcons("instagram"),
 				render: value.split("instagram.com/").at(-1),
 			};
 	}
