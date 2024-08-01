@@ -68,6 +68,7 @@
 		"search": "Search",
 		"found": "Found?",
 		"help": "Help find {entity}.",
+		"information": "Information",
 		"created-by": "Created by {by} on {date}",
 		"description": "Description",
 		"no-description": "No description",
