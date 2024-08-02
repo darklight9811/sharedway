@@ -4,6 +4,7 @@ import Field from "@repo/ds/form/field";
 import Form from "@repo/ds/form/form";
 import { Button } from "@repo/ds/ui/button";
 import { Calendar } from "@repo/ds/ui/calendar";
+import { CalendarInput } from "@repo/ds/ui/calendar-input";
 import { Input } from "@repo/ds/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@repo/ds/ui/popover";
 import { parseToDate, stringifyDate } from "@repo/ds/utils/date";
@@ -18,7 +19,7 @@ interface Props {
 
 export function Filter(props: Props) {
 	const router = useRouter();
-	const timer = useRef<NodeJS.Timeout>();
+	const timer = useRef<ReturnType<typeof setTimeout>>();
 	const t = useTranslations("entities");
 
 	return (
@@ -60,33 +61,7 @@ export function Filter(props: Props) {
 				name="date_disappeared"
 				label={t("date_disappeared")}
 				errorless
-				render={({ field }) => (
-					<Popover>
-						<PopoverTrigger asChild>
-							<Button
-								className="w-full justify-start px-2 gap-2"
-								variant="outline"
-							>
-								<CalendarIcon />
-
-								{(() => {
-									if (!field.value?.to)
-										return field.value?.from?.toLocaleString().split(",")[0];
-
-									return `${field.value?.from?.toLocaleString().split(",")[0]}-${field.value?.to?.toLocaleString().split(",")[0]}`;
-								})()}
-							</Button>
-						</PopoverTrigger>
-						<PopoverContent>
-							<Calendar
-								mode="range"
-								selected={field.value}
-								onSelect={field.onChange}
-								{...field}
-							/>
-						</PopoverContent>
-					</Popover>
-				)}
+				render={({ field }) => <CalendarInput mode="range" {...field} />}
 			/>
 
 			<div className="flex gap-2">

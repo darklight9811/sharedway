@@ -95,6 +95,7 @@ const entityService = service({
 			data: {
 				name: data.name,
 				type: "person",
+				date_disappeared: data.date_disappeared,
 				description: data.description,
 				user_created: {
 					connect: {
@@ -250,6 +251,7 @@ const entityService = service({
 				data: {
 					name: payload.data.name,
 					description: payload.data.description,
+					date_disappeared: payload.data.date_disappeared,
 					data: {
 						update: payload.data.data,
 					},

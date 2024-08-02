@@ -6,6 +6,7 @@ import FieldList from "@repo/ds/form/field-list";
 import Form from "@repo/ds/form/form";
 import { AsyncSelect } from "@repo/ds/ui/async-select";
 import { Button } from "@repo/ds/ui/button";
+import { CalendarInput } from "@repo/ds/ui/calendar-input";
 import ImageUploader from "@repo/ds/ui/image-uploader";
 import { Input } from "@repo/ds/ui/input";
 import {
@@ -34,7 +35,7 @@ export default function EntityForm(props: Props) {
 	return (
 		<Form
 			data={props.data}
-			defaultData={{ contact: { options: [{}] } }}
+			defaultData={{ contact: { options: [{}] }, date_disappeared: new Date() }}
 			schema={
 				props.schema === "update" ? entityUpdateSchema : entityStoreSchema
 			}
@@ -52,6 +53,13 @@ export default function EntityForm(props: Props) {
 						render={({ field }) => {
 							return <Input {...field} />;
 						}}
+					/>
+
+					<Field
+						label={t("date_disappeared")}
+						name="date_disappeared"
+						required={props.require}
+						render={({ field }) => <CalendarInput {...field} />}
 					/>
 
 					<Field

@@ -45,6 +45,7 @@ export type EntitySchema = z.infer<typeof entity>;
 
 export const entityStoreSchema = zfd.formData({
 	name: z.string(),
+	date_disappeared: z.date(),
 
 	data: entityData.omit({ id: true }),
 	contact: contact.omit({ id: true }),
@@ -65,6 +66,7 @@ export const entityUpdateSchema = zfd.formData(
 	z
 		.object({
 			name: z.string(),
+			date_disappeared: z.date(),
 
 			data: entityData.omit({ id: true }),
 			contact: contact.omit({ id: true }),
