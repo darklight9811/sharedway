@@ -85,6 +85,7 @@
 		"reported": "Profile was reported",
 		"already_reported": "You have already reported this profile",
 		"new": {
+			"date_disappeared": "Date disappeared",
 			"unauth": {
 				"title": "Has someone important disappeared?",
 				"description": "We are here to help, you can register the disappearance by creating an account or sending a message to our official Instagram:",
