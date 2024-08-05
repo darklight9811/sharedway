@@ -85,7 +85,7 @@ export default async function Page(props: { searchParams: PaginationType }) {
 function LoadingState() {
 	return (
 		<div className="flex mb-auto flex-wrap justify-between gap-4 my-4">
-			{Array.from(new Array(8)).map((i) => (
+			{Array.from(new Array(8)).map((_, i) => (
 				<Skeleton
 					key={i}
 					className="max-w-[47%] sm:max-w-[210px] w-full aspect-card"
