@@ -28,7 +28,7 @@ import { store } from "../actions";
 interface Props {
 	children: React.ReactNode;
 
-	data?: { id_entity?: string };
+	data?: { id_profile?: string };
 }
 
 /**

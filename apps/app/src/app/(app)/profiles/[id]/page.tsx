@@ -2,7 +2,7 @@ import Share from "@/components/share";
 import { Link } from "@/lib/navigation";
 import parallel from "@/lib/parallel";
 import { baseUrl } from "@/lib/url";
-import Banner from "@/modules/entity/components/banner";
+import Banner from "@/modules/profile/components/banner";
 import ReportDialog from "@/modules/report/components/report-dialog";
 import { currentUser } from "@/modules/user/loaders";
 import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
@@ -10,7 +10,7 @@ import { Button, buttonVariants } from "@repo/ds/ui/button";
 import { Carousel, CarouselContent, CarouselItem } from "@repo/ds/ui/carousel";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@repo/ds/ui/tooltip";
 import { env } from "@repo/env";
-import entityService from "@repo/services/entity";
+import profileService from "@repo/services/profile";
 import {
 	Building2,
 	CircleAlert,
@@ -34,9 +34,9 @@ import { FindDialog } from "./_components/find-dialog";
  */
 export async function generateMetadata({ params }: { params: { id: string } }) {
 	const [data, locale, t] = await parallel(
-		entityService.show(params.id),
+		profileService.show(params.id),
 		getLocale(),
-		getTranslations("entities"),
+		getTranslations("profiles"),
 	);
 
 	return {
@@ -44,16 +44,16 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 		openGraph: {
 			type: "profile",
 			locale: locale,
-			title: t("help", { entity: data?.name }),
+			title: t("help", { profile: data?.name }),
 			siteName: env.APP_NAME,
-			description: data?.description || t("help", { entity: data?.name }),
+			description: data?.description || t("help", { profile: data?.name }),
 			images: data?.pictures[0].url,
 			logo: new URL("/images/logo/favicon.svg", baseUrl()),
-			url: new URL(`/entities/${data?.id}`, baseUrl()),
+			url: new URL(`/profiles/${data?.id}`, baseUrl()),
 		},
 		twitter: {
 			images: data?.pictures[0].url,
-			title: t("help", { entity: data?.name }),
+			title: t("help", { profile: data?.name }),
 		},
 	} as Metadata;
 }
@@ -63,10 +63,10 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
  */
 export default async function Page({ params }: { params: { id: string } }) {
 	const [data, user, locale, t] = await parallel(
-		entityService.show(params.id),
+		profileService.show(params.id),
 		currentUser(),
 		getLocale(),
-		getTranslations("entities"),
+		getTranslations("profiles"),
 	);
 
 	if (!data) return notFound();
@@ -111,7 +111,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 				<div>
 					{status !== "profile" &&
-						t(`entity_date_${status}`, {
+						t(`profile_date_${status}`, {
 							date: data[`date_${status}`]?.toLocaleDateString(),
 							gender: data.data?.gender,
 						})}
@@ -129,7 +129,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 						)}
 						<TooltipTrigger asChild>
 							<div>
-								<ReportDialog data={{ id_entity: data.id }}>
+								<ReportDialog data={{ id_profile: data.id }}>
 									<Button
 										type="button"
 										variant="destructive"
@@ -145,8 +145,8 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 				<div className="flex gap-2 my-2 justify-between">
 					<Share
-						link={`${baseUrl()}/entities/${data.id}`}
-						description={t("help", { entity: data.name })}
+						link={`${baseUrl()}/profiles/${data.id}`}
+						description={t("help", { profile: data.name })}
 					>
 						<Button type="button" size="icon">
 							<Share2 />
@@ -164,7 +164,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 					{user?.id === data.user_created.id && (
 						<>
 							<Link
-								href={`/entities/${data.id}/edit`}
+								href={`/profiles/${data.id}/edit`}
 								className={buttonVariants({
 									size: "icon",
 									variant: "success",

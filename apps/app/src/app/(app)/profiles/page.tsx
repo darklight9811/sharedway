@@ -5,7 +5,7 @@ import Card from "@repo/ds/ui/card";
 import { Pagination } from "@repo/ds/ui/pagination";
 import { Skeleton } from "@repo/ds/ui/skeleton";
 import type { Pagination as PaginationType } from "@repo/schemas/pagination";
-import entityService from "@repo/services/entity";
+import profileService from "@repo/services/profile";
 import { UserRoundX } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Suspense, createElement } from "react";
@@ -13,13 +13,13 @@ import parallel from "../../../lib/parallel";
 import { Filter } from "./_components/filter";
 
 export default async function Page(props: { searchParams: PaginationType }) {
-	const [t] = await parallel(getTranslations("entities"));
+	const [t] = await parallel(getTranslations("profiles"));
 
 	return (
 		<div className="flex flex-col sm:flex-row grow sm:container px-4 my-4 gap-4">
 			<aside className="w-full sm:w-1/3">
 				<h5 className="w-full text-xl py-4 pl-4 font-bold">
-					{t("entities")} - {t("filter")}
+					{t("profiles")} - {t("filter")}
 				</h5>
 
 				<Filter data={props.searchParams} />
@@ -37,14 +37,14 @@ export default async function Page(props: { searchParams: PaginationType }) {
 				<Suspense fallback={<LoadingState />}>
 					{createElement(async function Render() {
 						const [[data, pagination]] = await parallel(
-							entityService.index(props.searchParams),
+							profileService.index(props.searchParams),
 						);
 
 						return (
 							<>
 								<div className="flex mb-auto flex-wrap justify-between gap-4 my-4">
-									{data.map((entity) => {
-										return <Card key={entity.id} {...entity} />;
+									{data.map((profile) => {
+										return <Card key={profile.id} {...profile} />;
 									})}
 
 									{data.length === 0 && (
@@ -52,7 +52,7 @@ export default async function Page(props: { searchParams: PaginationType }) {
 											<UserRoundX size={64} />
 											<h2 className="text-2xl font-bold">{t("empty")}</h2>
 											<p>Gostaria de registrar um novo desaparecido?</p>
-											<Link className={buttonVariants()} href="/entities/new">
+											<Link className={buttonVariants()} href="/profiles/new">
 												Registrar
 											</Link>
 										</div>

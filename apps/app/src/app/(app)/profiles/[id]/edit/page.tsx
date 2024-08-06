@@ -1,7 +1,7 @@
 import { Link } from "@/lib/navigation";
 import parallel from "@/lib/parallel";
-import * as actions from "@/modules/entity/actions";
-import EntityForm from "@/modules/entity/components/entity-form";
+import * as actions from "@/modules/profile/actions";
+import ProfileForm from "@/modules/profile/components/profile-form";
 import { currentUser } from "@/modules/user/loaders";
 import Form from "@repo/ds/form/form";
 import { Button, buttonVariants } from "@repo/ds/ui/button";
@@ -14,14 +14,14 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@repo/ds/ui/dialog";
-import type { EntityUpdateSchema } from "@repo/schemas/entity";
-import entityService from "@repo/services/entity";
+import type { ProfileUpdateSchema } from "@repo/schemas/profile";
+import profileService from "@repo/services/profile";
 import { Eye, Trash } from "lucide-react";
 import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {
 	const [data, user] = await parallel(
-		entityService.show(params.id),
+		profileService.show(params.id),
 		currentUser(),
 	);
 
@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 	async function update(data: unknown) {
 		"use server";
 
-		return actions.update({ id: params.id, data: data as EntityUpdateSchema });
+		return actions.update({ id: params.id, data: data as ProfileUpdateSchema });
 	}
 
 	async function remove() {
@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 			<h1 className="w-full max-w-5xl text-3xl font-bold mb-4 flex justify-between">
 				Atualizar desaparecido
 				<Link
-					href={`/entities/${data.id}`}
+					href={`/profiles/${data.id}`}
 					className={buttonVariants({
 						size: "icon",
 						className: "ml-auto mr-2",
@@ -82,14 +82,14 @@ export default async function Page({ params }: { params: { id: string } }) {
 				</Dialog>
 			</h1>
 
-			<EntityForm onSubmit={update} data={data} schema="update" require>
+			<ProfileForm onSubmit={update} data={data} schema="update" require>
 				<Link href="/" className={buttonVariants({ variant: "outline" })}>
 					Voltar
 				</Link>
 				<Button type="submit" className="w-full max-w-[180px]">
 					Atualizar
 				</Button>
-			</EntityForm>
+			</ProfileForm>
 		</main>
 	);
 }

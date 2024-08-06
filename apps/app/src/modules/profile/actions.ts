@@ -2,32 +2,32 @@
 
 import api from "@/lib/api";
 import { buildMetadata } from "@/lib/parallel";
-import { entityStoreSchema, entityUpdateSchema } from "@repo/schemas/entity";
 import pagination from "@repo/schemas/pagination";
-import entityService from "@repo/services/entity";
+import { profileStoreSchema, profileUpdateSchema } from "@repo/schemas/profile";
+import profileService from "@repo/services/profile";
 import { z } from "zod";
 
 export const index = api
 	.zod(pagination)
-	.service(entityService.index, buildMetadata);
+	.service(profileService.index, buildMetadata);
 
 export const store = api
-	.zod(entityStoreSchema)
-	.service(entityService.store, buildMetadata)
+	.zod(profileStoreSchema)
+	.service(profileService.store, buildMetadata)
 	.action(async ({ input }: any) => ({
-		redirect: `/entities/${input.id}`,
+		redirect: `/profiles/${input.id}`,
 	}));
 
 export const update = api
-	.zod(z.object({ id: z.string().cuid(), data: entityUpdateSchema }))
-	.service(entityService.update, buildMetadata)
+	.zod(z.object({ id: z.string().cuid(), data: profileUpdateSchema }))
+	.service(profileService.update, buildMetadata)
 	.action(async () => ({
 		reload: true,
 	}));
 
 export const remove = api
 	.zod(z.string())
-	.service(entityService.delete, buildMetadata)
+	.service(profileService.delete, buildMetadata)
 	.action(async () => ({
 		redirect: "/",
 		message: "Apagado com sucesso",

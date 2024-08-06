@@ -1,6 +1,6 @@
 "use client";
 
-import { contactIcons } from "@/modules/entity/helpers/icon";
+import { contactIcons } from "@/modules/profile/helpers/icon";
 import { buttonVariants } from "@repo/ds/ui/button";
 import {
 	DialogDrawer,

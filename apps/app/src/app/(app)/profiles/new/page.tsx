@@ -1,13 +1,13 @@
 import { Link } from "@/lib/navigation";
-import { store } from "@/modules/entity/actions";
-import EntityForm from "@/modules/entity/components/entity-form";
+import { store } from "@/modules/profile/actions";
+import ProfileForm from "@/modules/profile/components/profile-form";
 import { auth } from "@clerk/nextjs/server";
 import { Button, buttonVariants } from "@repo/ds/ui/button";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 export default function Page() {
-	const t = useTranslations("entities");
+	const t = useTranslations("profiles");
 
 	if (!auth().userId) {
 		return (
@@ -21,7 +21,7 @@ export default function Page() {
 				<div className="flex gap-4 items-center">
 					<Link
 						className={buttonVariants({ className: "gap-2" })}
-						href="/sign-up?redirect=/entities/new"
+						href="/sign-up?redirect=/profiles/new"
 					>
 						<Image
 							alt=""
@@ -60,14 +60,14 @@ export default function Page() {
 				{t("create-title")}
 			</h1>
 
-			<EntityForm onSubmit={store} schema="store" require>
+			<ProfileForm onSubmit={store} schema="store" require>
 				<Link href="/" className={buttonVariants({ variant: "outline" })}>
 					{t("back")}
 				</Link>
 				<Button type="submit" className="w-full max-w-[180px]">
 					{t("create")}
 				</Button>
-			</EntityForm>
+			</ProfileForm>
 		</main>
 	);
 }

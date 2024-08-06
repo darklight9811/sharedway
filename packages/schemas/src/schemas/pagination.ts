@@ -13,7 +13,7 @@ export default pagination;
 
 export type Pagination = z.infer<typeof pagination>;
 
-export const entityPagination = pagination.extend({
+export const profilePagination = pagination.extend({
 	user: z.string().optional(),
 	date_disappeared: z
 		.string()
@@ -28,4 +28,4 @@ export const entityPagination = pagination.extend({
 		.optional(),
 });
 
-export type EntityPagination = z.infer<typeof entityPagination>;
+export type ProfilePagination = z.infer<typeof profilePagination>;

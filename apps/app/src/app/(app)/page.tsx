@@ -39,7 +39,7 @@ export default function Page() {
 				/>
 
 				<Link
-					href="/entities"
+					href="/profiles"
 					className={buttonVariants({
 						className: "mt-8 md:!text-2xl md:!py-8",
 						variant: "secondary",

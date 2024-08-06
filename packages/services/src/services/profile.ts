@@ -1,28 +1,28 @@
+import type { ProfilePagination } from "@repo/schemas/pagination";
+import { profilePagination } from "@repo/schemas/pagination";
 import type {
-	EntityStoreSchema,
-	EntityUpdateSchema,
-} from "@repo/schemas/entity";
-import { entityStoreSchema } from "@repo/schemas/entity";
-import type { EntityPagination } from "@repo/schemas/pagination";
-import { entityPagination } from "@repo/schemas/pagination";
+	ProfileStoreSchema,
+	ProfileUpdateSchema,
+} from "@repo/schemas/profile";
+import { profileStoreSchema } from "@repo/schemas/profile";
 import { db } from "../lib/db";
 import service from "../lib/service";
 import uploader from "../lib/uploader";
 
-const entityService = service({
+const profileService = service({
 	/**
 	 * ### MARK: Index
 	 *
-	 * Display a paginable list of entities
+	 * Display a paginable list of profiles
 	 *
 	 * @param input
 	 * @returns
 	 */
-	index(input?: EntityPagination & { user?: string }) {
+	index(input?: ProfilePagination & { user?: string }) {
 		const { page, limit, q, order, sort, date_disappeared } =
-			entityPagination.parse(input);
+			profilePagination.parse(input);
 
-		return db.entity.paginate({
+		return db.profile.paginate({
 			page,
 			limit,
 			orderBy: [
@@ -52,7 +52,7 @@ const entityService = service({
 
 				reports: {
 					every: {
-						OR: [{ id_entity: null }, { reason: { not: "offensive" } }],
+						OR: [{ id_profile: null }, { reason: { not: "offensive" } }],
 					},
 				},
 				date_disappeared: { not: null },
@@ -71,27 +71,27 @@ const entityService = service({
 	/**
 	 * ### MARK: Store
 	 *
-	 * Stores an entity with all information on it
+	 * Stores an profile with all information on it
 	 *
 	 * @param input
 	 * @param metadata
 	 * @returns
 	 */
-	async store(input: EntityStoreSchema, { user }) {
-		const data = entityStoreSchema.parse(input);
+	async store(input: ProfileStoreSchema, { user }) {
+		const data = profileStoreSchema.parse(input);
 		if (!user) return null;
 
 		// TODO remove hardlimit into a feature flag
-		const count = await db.entity.count({
+		const count = await db.profile.count({
 			where: { id_user_created: user.id },
 		});
 		if (count >= 5) {
-			throw new Error("Max entity quantity created");
+			throw new Error("Max profile quantity created");
 		}
 
 		const files = await uploader.uploadFiles(data.pictures);
 
-		const response = await db.entity.create({
+		const response = await db.profile.create({
 			data: {
 				name: data.name,
 				type: "person",
@@ -144,10 +144,10 @@ const entityService = service({
 	/**
 	 * ### MARK: Show
 	 *
-	 * Display full information about an entity
+	 * Display full information about an profile
 	 */
 	show(id: string) {
-		return db.entity.findUnique({
+		return db.profile.findUnique({
 			where: { id },
 			select: {
 				id: true,
@@ -185,9 +185,9 @@ const entityService = service({
 	/**
 	 * ### MARK: Update
 	 *
-	 * Update parts of the field of the entity
+	 * Update parts of the field of the profile
 	 */
-	async update(payload: { id: string; data: Partial<EntityUpdateSchema> }) {
+	async update(payload: { id: string; data: Partial<ProfileUpdateSchema> }) {
 		const add_files: File[] = [];
 		const remove_files: { id: string; remove: boolean }[] = [];
 
@@ -208,7 +208,7 @@ const entityService = service({
 					async (tx) => {
 						const files = await uploader.uploadFiles(add_files);
 
-						await tx.entity.update({
+						await tx.profile.update({
 							where: { id: payload.id },
 							data: {
 								pictures: {
@@ -229,12 +229,12 @@ const entityService = service({
 			// remove pictures
 			remove_files.length > 0 &&
 				db.$transaction(async (tx) => {
-					const key_files = await tx.entityPicture.findMany({
+					const key_files = await tx.profilePicture.findMany({
 						where: { id: { in: remove_files.map((t) => t.id) } },
 					});
 					await uploader.deleteFiles(key_files.map((t) => t.key));
 
-					await tx.entity.update({
+					await tx.profile.update({
 						where: { id: payload.id },
 						data: {
 							pictures: {
@@ -246,7 +246,7 @@ const entityService = service({
 					});
 				}),
 			// handle data
-			db.entity.update({
+			db.profile.update({
 				where: { id: payload.id },
 				data: {
 					name: payload.data.name,
@@ -258,7 +258,7 @@ const entityService = service({
 					contact: {
 						upsert: {
 							where: {
-								id_entity: payload.id,
+								id_profile: payload.id,
 							},
 							create: {
 								description: payload.data.contact?.description,
@@ -284,7 +284,7 @@ const entityService = service({
 	/**
 	 * ### MARK: Delete
 	 *
-	 * Remove an entity permanently
+	 * Remove an profile permanently
 	 *
 	 * @param id
 	 * @param param1
@@ -292,7 +292,7 @@ const entityService = service({
 	async delete(id: string, { user }) {
 		if (!user) return null;
 
-		const data = await db.entity.findFirst({
+		const data = await db.profile.findFirst({
 			where: {
 				id,
 				id_user_created: user.id,
@@ -311,11 +311,11 @@ const entityService = service({
 
 		return db.$transaction(async (tx) => {
 			return Promise.all([
-				tx.entity.delete({ where: { id } }),
+				tx.profile.delete({ where: { id } }),
 				uploader.deleteFiles(data?.pictures.map((t) => t.key)),
 			]);
 		});
 	},
 });
 
-export default entityService;
+export default profileService;

@@ -20,7 +20,7 @@ interface Props {
 export function Filter(props: Props) {
 	const router = useRouter();
 	const timer = useRef<ReturnType<typeof setTimeout>>();
-	const t = useTranslations("entities");
+	const t = useTranslations("profiles");
 
 	return (
 		<Form

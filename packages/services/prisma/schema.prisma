@@ -14,7 +14,7 @@ generator client {
 // #MARK: Enums
 // ---------------
 
-enum EntityType {
+enum ProfileType {
     person
     animal
 }
@@ -41,7 +41,7 @@ model User {
     name          String?
     email         String?   @unique
     emailVerified DateTime?
-    entities      Entity[]
+    profiles      Profile[]
 
     auth_provider String @default("password")
     auth_value    String
@@ -56,12 +56,12 @@ model User {
 // #MARK: Profile related
 // ---------------
 
-model Entity {
+model Profile {
     id String @id @default(cuid())
 
-    type        EntityType
+    type        ProfileType
     name        String
-    description String     @db.Text
+    description String      @db.Text
 
     date_created     DateTime  @default(now())
     date_updated     DateTime  @updatedAt
@@ -70,31 +70,31 @@ model Entity {
 
     id_user_created String
 
-    user_created User            @relation(fields: [id_user_created], references: [id], onDelete: Cascade)
-    pictures     EntityPicture[]
-    addresses    EntityAddress[]
-    data         EntityData?
-    contact      EntityContact?
+    user_created User             @relation(fields: [id_user_created], references: [id], onDelete: Cascade)
+    pictures     ProfilePicture[]
+    addresses    ProfileAddress[]
+    data         ProfileData?
+    contact      ProfileContact?
     reports      Report[]
 
-    @@map("entities")
+    @@map("profiles")
 }
 
-model EntityData {
+model ProfileData {
     id String @id @default(cuid())
 
     age    Int
     race   String
     gender Gender
 
-    id_entity String @unique
+    id_profile String @unique
 
-    entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
+    profile Profile @relation(fields: [id_profile], references: [id], onDelete: Cascade)
 
-    @@map("entity_data")
+    @@map("profile_data")
 }
 
-model EntityAddress {
+model ProfileAddress {
     id String @id @default(cuid())
 
     district String?
@@ -102,37 +102,37 @@ model EntityAddress {
     state    String?
     country  String  @default("brazil")
 
-    id_entity String
+    id_profile String
 
-    entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
+    profile Profile @relation(fields: [id_profile], references: [id], onDelete: Cascade)
 
-    @@map("entity_addresses")
+    @@map("profile_addresses")
 }
 
-model EntityPicture {
+model ProfilePicture {
     id String @id @default(cuid())
 
     key String @unique
     url String @unique
 
-    id_entity String
+    id_profile String
 
-    entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
+    profile Profile @relation(fields: [id_profile], references: [id], onDelete: Cascade)
 
-    @@map("entity_pictures")
+    @@map("profile_pictures")
 }
 
-model EntityContact {
+model ProfileContact {
     id String @id @default(cuid())
 
     description String @default("")
     options     Json   @default("[]")
 
-    id_entity String @unique
+    id_profile String @unique
 
-    entity Entity @relation(fields: [id_entity], references: [id], onDelete: Cascade)
+    profile Profile @relation(fields: [id_profile], references: [id], onDelete: Cascade)
 
-    @@map("entity_contact")
+    @@map("profile_contact")
 }
 
 // ---------------
@@ -147,12 +147,12 @@ model Report {
     ip          String?
 
     id_user_created String?
-    id_entity       String?
+    id_profile      String?
     id_user         String?
 
-    entity       Entity? @relation(fields: [id_entity], references: [id], onDelete: Cascade)
-    user         User?   @relation(name: "user", fields: [id_user], references: [id], onDelete: Cascade)
-    user_created User?   @relation(name: "user_created", fields: [id_user_created], references: [id], onDelete: SetNull)
+    profile      Profile? @relation(fields: [id_profile], references: [id], onDelete: Cascade)
+    user         User?    @relation(name: "user", fields: [id_user], references: [id], onDelete: Cascade)
+    user_created User?    @relation(name: "user_created", fields: [id_user_created], references: [id], onDelete: SetNull)
 
     @@map("reports")
 }

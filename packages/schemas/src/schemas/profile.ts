@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { zfd } from "zod-form-data";
 
-const entityData = z.object({
+const profileData = z.object({
 	id: z.string().cuid(),
 	age: z.coerce.number(),
 	race: z.string(),
@@ -26,10 +26,10 @@ const address = z.object({
 	state: z.string(),
 });
 
-const entity = z.object({
+const profile = z.object({
 	name: z.string(),
 
-	data: entityData.omit({ id: true }),
+	data: profileData.omit({ id: true }),
 	contact: contact.omit({ id: true }),
 
 	description: z.string().default(""),
@@ -39,15 +39,15 @@ const entity = z.object({
 	addresses: z.array(address),
 });
 
-export default entity;
+export default profile;
 
-export type EntitySchema = z.infer<typeof entity>;
+export type ProfileSchema = z.infer<typeof profile>;
 
-export const entityStoreSchema = zfd.formData({
+export const profileStoreSchema = zfd.formData({
 	name: z.string(),
 	date_disappeared: z.date(),
 
-	data: entityData.omit({ id: true }),
+	data: profileData.omit({ id: true }),
 	contact: contact.omit({ id: true }),
 
 	description: z.string().default(""),
@@ -60,15 +60,15 @@ export const entityStoreSchema = zfd.formData({
 	addresses: z.array(address.omit({ id: true })),
 });
 
-export type EntityStoreSchema = z.infer<typeof entityStoreSchema>;
+export type ProfileStoreSchema = z.infer<typeof profileStoreSchema>;
 
-export const entityUpdateSchema = zfd.formData(
+export const profileUpdateSchema = zfd.formData(
 	z
 		.object({
 			name: z.string(),
 			date_disappeared: z.date(),
 
-			data: entityData.omit({ id: true }),
+			data: profileData.omit({ id: true }),
 			contact: contact.omit({ id: true }),
 
 			description: z.string().default(""),
@@ -85,4 +85,4 @@ export const entityUpdateSchema = zfd.formData(
 		.partial(),
 );
 
-export type EntityUpdateSchema = z.infer<typeof entityUpdateSchema>;
+export type ProfileUpdateSchema = z.infer<typeof profileUpdateSchema>;

@@ -37,7 +37,7 @@ export default async function Navbar() {
 						variant: "secondary",
 						className: "pl-1",
 					})}
-					href="/entities/new"
+					href="/profiles/new"
 					prefetch={false}
 					aria-label={t("create")}
 				>
@@ -69,7 +69,7 @@ export default async function Navbar() {
 
 						<DropdownMenuContent className="mr-2">
 							<DropdownMenuItem>
-								<Link className="w-full" href="/entities/current">
+								<Link className="w-full" href="/profiles/current">
 									{t("list")}
 								</Link>
 							</DropdownMenuItem>

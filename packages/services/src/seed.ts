@@ -39,12 +39,12 @@ async function main() {
 
 	await Promise.all(
 		profiles.map((profile: ApiResponse) =>
-			db.entity.create({
+			db.profile.create({
 				data: {
 					name: `${profile.name.first} ${profile.name.last}`,
 					type: "person",
 					description: "",
-					id_user_created: "clydp3jxl00002tduqdonwcw9",
+					id_user_created: "clzcdqmey0000y85dhfalpwqu",
 					data: {
 						create: {
 							age: profile.dob.age,

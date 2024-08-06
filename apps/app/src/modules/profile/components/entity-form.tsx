@@ -17,7 +17,7 @@ import {
 	SelectValue,
 } from "@repo/ds/ui/select";
 import { Textarea } from "@repo/ds/ui/textarea";
-import { entityStoreSchema, entityUpdateSchema } from "@repo/schemas/entity";
+import { profileStoreSchema, profileUpdateSchema } from "@repo/schemas/profile";
 import { Trash } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -29,15 +29,15 @@ interface Props {
 	children?: React.ReactNode;
 }
 
-export default function EntityForm(props: Props) {
-	const t = useTranslations("entities.new");
+export default function ProfileForm(props: Props) {
+	const t = useTranslations("profiles.new");
 
 	return (
 		<Form
 			data={props.data}
 			defaultData={{ contact: { options: [{}] }, date_disappeared: new Date() }}
 			schema={
-				props.schema === "update" ? entityUpdateSchema : entityStoreSchema
+				props.schema === "update" ? profileUpdateSchema : profileStoreSchema
 			}
 			onSubmit={props.onSubmit}
 			className="w-full max-w-5xl flex gap-8 flex-col"

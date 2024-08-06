@@ -62,12 +62,12 @@
 		"success": "Profile reported",
 		"action": "Report"
 	},
-	"entities": {
-		"entities": "Missing",
+	"profiles": {
+		"profiles": "Missing",
 		"filter": "Filter",
 		"search": "Search",
 		"found": "Found?",
-		"help": "Help find {entity}.",
+		"help": "Help find {profile}.",
 		"information": "Information",
 		"created-by": "Created by {by} on {date}",
 		"description": "Description",
@@ -75,9 +75,9 @@
 		"create-title": "Register new missing",
 		"back": "Back",
 		"location": "Location",
-		"entity_date_disappeared": "Has gone missing in {date}",
-		"entity_date_created": "Created in {date}",
-		"entity_date_found": "Found in {date}",
+		"profile_date_disappeared": "Has gone missing in {date}",
+		"profile_date_created": "Created in {date}",
+		"profile_date_found": "Found in {date}",
 		"create": "Create",
 		"date_created": "Date created",
 		"empty": "No data found",

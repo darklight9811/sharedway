@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { Input } from "@repo/ds/ui/input";
 
 import { Link } from "@/lib/navigation";
-import { index } from "@/modules/entity/actions";
+import { index } from "@/modules/profile/actions";
 import { buttonVariants } from "@repo/ds/ui/button";
 import Card from "@repo/ds/ui/card";
 import { Loader } from "lucide-react";
@@ -71,7 +71,7 @@ export default function MiniSearch() {
 			{search && !isLoading && data.length === 0 && (
 				<>
 					<span className="my-8 font-bold text-lg">{t("empty")}</span>
-					<Link href="/entities/new" className={buttonVariants()}>
+					<Link href="/profiles/new" className={buttonVariants()}>
 						{t("register")}
 					</Link>
 				</>

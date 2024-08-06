@@ -23,7 +23,7 @@ export default function Card(props: CardProps) {
 
 			<Link
 				className="grow z-10"
-				href={`/entities/${props.id}`}
+				href={`/profiles/${props.id}`}
 				prefetch={false}
 			/>
 
