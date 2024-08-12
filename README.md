@@ -8,5 +8,5 @@ An application to help find missing people and animals. Serving as a central ban
 
 - Clone this repository
 - Run `bun install` on the root repository
-- Create `.env` file from `.env.example`
-- Run `bun --bun run dev --scope=app`
+- Create `.env` file from `.env.example` and populate it
+- Run `bun dev --filter=app`
