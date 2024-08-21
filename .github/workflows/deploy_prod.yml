@@ -1,0 +1,29 @@
+name: Deploy production environment
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  migrate:
+    name: Migrate database information
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Cache migration files
+        uses: actions/cache@v4
+        with: 
+          path: packages/services/prisma/migrations
+          key: ${{ runner.os }}-migrations-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-migrations-
+
+      - uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run tests
+        run: bun db migrate prod
