@@ -1,4 +1,4 @@
-name: Code quality
+name: Pull request code quality
 
 on:
   pull_request:
@@ -49,6 +49,26 @@ jobs:
 
       - name: Run tests
         run: bun run test --filter=!@scripts/tests
+        
+  envs:
+    name: Check env integrity based on vault
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env: [development, production]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun install
+
+      - name: Pull variables
+        run: bun env:vault pull ${{ matrix.env }}
+
+      - name: Run tests
+        run: bun run test --filter=@repo/env
 
   locales:
     name: Test locales information
