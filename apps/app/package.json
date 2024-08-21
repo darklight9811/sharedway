@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbo",
+		"env": "dotenvx run -f ../../.env.local -f ../../.env --log-level=error --",
+		"dev": "bun env next dev --turbo",
 		"build": "next build",
 		"start": "next start",
 		"lint": "biome lint --error-on-warnings ./src",
