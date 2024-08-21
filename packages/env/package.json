@@ -6,7 +6,7 @@
 		".": "./src/index.mjs"
 	},
 	"scripts": {
-    	"test": "vitest",
+		"test": "vitest",
 		"format": "biome format --error-on-warnings ./src",
 		"verify": "biome check --error-on-warnings ./src",
 		"lint": "biome lint --error-on-warnings ./src"
