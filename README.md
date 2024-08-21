@@ -13,7 +13,9 @@ An application to help find missing people and animals. Serving as a central ban
 
 - Clone this repository
 - Run `bun install` on the root repository
-- Create `.env` file from `.env.example` and populate it
+- Create `.env` file from `.env.example`
+	- if you are part of the team, run `bun env:vault pull`
+	- if you are not part of the team you will have to manually populate it withe services required
 - Run `bun db push`
 - Populate with mock data using `bun db seed`
 - Run `bun dev --filter=app`
@@ -24,3 +26,4 @@ An application to help find missing people and animals. Serving as a central ban
 [![Railway](https://img.shields.io/badge/railway-801ae6?logo=railway&style=for-the-badge)](https://railway.app/)
 [![Uploadthing](https://img.shields.io/badge/uploadthing-e91616?&style=for-the-badge)](https://uploadthing.com/)
 [![Clerk](https://img.shields.io/badge/clerk-6c47ff?&logo=clerk&style=for-the-badge)](https://clerk.com/)
+[![Dotenv](https://img.shields.io/badge/dotenv--vault-white?logo=dotenv&style=for-the-badge)](https://www.dotenv.org/)

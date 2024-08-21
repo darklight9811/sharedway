@@ -1,11 +1,9 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { Ratelimit } from "@upstash/ratelimit";
-import { ipAddress } from "@vercel/edge";
+import { ipAddress } from "@vercel/functions";
 import { kv } from "@vercel/kv";
-import createMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
 import { generate } from "./app/manifest";
-import { locales } from "./i18n";
 import { getLocaleContent } from "./lib/locale";
 
 /**

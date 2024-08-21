@@ -11,7 +11,7 @@ import { baseUrl } from "../lib/url";
 import ClientProvider from "./_components/client-provider";
 import ServerProvider from "./_components/server-provider";
 
-import "./globals.css";
+import "@repo/ds/style";
 import { getLocaleContent } from "@/lib/locale";
 
 const inter = Inter({ subsets: ["latin"] });
