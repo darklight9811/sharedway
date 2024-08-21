@@ -4,8 +4,8 @@
 	"private": true,
 	"scripts": {
 		"env": "dotenvx run -f ../../.env.local -f ../../.env --log-level=error --",
-		"dev": "bun env next dev --turbo",
-		"build": "next build",
+		"dev": "next dev --turbo",
+		"build": "bun env next build",
 		"start": "next start",
 		"lint": "biome lint --error-on-warnings ./src",
 		"format": "biome format --error-on-warnings ./src",
