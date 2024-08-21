@@ -11,7 +11,8 @@
 		"./utils/*": "./src/lib/*.ts",
 		"./tw": "./tailwind.config.ts",
 		"./hooks/*": "./src/hooks/*.ts",
-		"./react": "./src/lib/react.ts"
+		"./react": "./src/lib/react.ts",
+		"./style": "./src/styles.css"
 	},
 	"license": "MIT",
 	"scripts": {
