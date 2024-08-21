@@ -64,9 +64,6 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Pull variables
-        run: bun env:vault pull ${{ matrix.env }}
-
       - name: Run tests
         run: bun run test --filter=@repo/env
 
