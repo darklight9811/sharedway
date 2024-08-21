@@ -2,9 +2,9 @@
   "name": "sharedway",
   "private": true,
   "scripts": {
-    "build": "dotenv -- turbo build",
-    "dev": "dotenv -- turbo dev",
-    "test": "dotenv -- turbo test",
+    "build": "bun env turbo build",
+    "dev": "bun env turbo dev",
+    "test": "bun env turbo test",
     "lint": "turbo lint --",
     "verify": "turbo verify --",
     "format": "turbo format --",
@@ -12,14 +12,16 @@
     "sync": "syncpack fix-mismatches --indent \"\t\"",
     "clean": "turbo clean",
     "component": "cd packages/ds && npx shadcn-ui@latest add",
-    "db": "cd packages/services && dotenv -e ../../.env -- bun run ",
+    "db": "cd packages/services &&  bun run",
     "symlink": "symlink-dir ./public ./apps/app/public",
     "outdated": "taze -I -r",
+    "env": "dotenvx run -f .env.local -f .env --log-level=error --",
+    "env:vault": "dotenv-vault",
     "postinstall": "bun run symlink && bun run db generate"
   },
   "prisma": {
     "schema": "packages/database/prisma/schema.prisma",
-    "seed": "tsx packages/database/src/seed.ts"
+    "seed": "bun packages/database/src/seed.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.2",
@@ -36,7 +38,8 @@
     "scripts/*"
   ],
   "dependencies": {
-    "dotenv-cli": "^7.4.2",
+    "@dotenvx/dotenvx": "^1.7.0",
+    "dotenv-vault": "^1.26.2",
     "symlink-dir": "^6.0.1",
     "syncpack": "^12.4.0",
     "taze": "^0.16.3"

@@ -8,16 +8,17 @@
 		"./types/*": "./src/types/*.ts"
 	},
 	"scripts": {
-		"migrate:deploy": "prisma migrate deploy",
-		"migrate:dev": "prisma migrate dev",
-		"push": "prisma db push",
+		"env": "dotenvx run -f ../../.env.local -f ../../.env --log-level=error --",
+		"migrate:deploy": "bun env prisma migrate deploy",
+		"migrate:dev": "bun env prisma migrate dev",
+		"push": "bun env prisma db push",
 		"seed": "bun ./src/seed.ts",
 		"generate": "prisma generate",
 		"test": "",
 		"format": "biome format --error-on-warnings ./src",
 		"verify": "biome check --error-on-warnings ./src",
 		"lint": "biome lint --error-on-warnings ./src",
-		"studio": "prisma studio"
+		"studio": "bun env prisma studio"
 	},
 	"dependencies": {
 		"@prisma/client": "^5.18.0",
