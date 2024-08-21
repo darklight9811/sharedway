@@ -39,3 +39,7 @@ yarn-error.log*
 dist/
 
 *storybook.log
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
