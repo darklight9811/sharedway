@@ -1,0 +1,8 @@
+{
+	"name": "@yamiassu/shared",
+	"version": "1.0.0",
+	"exports": {
+		"./config/*": "./src/config/*.json",
+		"./*": "./src/exports/*.ts"
+	}
+}

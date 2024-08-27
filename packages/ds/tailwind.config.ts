@@ -91,13 +91,6 @@ const config = {
 	},
 	plugins: [
 		require("tailwindcss-animate"),
-		function childVariant({
-			addVariant,
-		}: { addVariant(...args: string[]): void }) {
-			addVariant("child", "& > *");
-			addVariant("child-hover", "&:hover > *");
-		},
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		({ matchUtilities, theme }: any) => {
 			matchUtilities(
 				{
