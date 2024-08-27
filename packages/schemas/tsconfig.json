@@ -1,4 +1,4 @@
 {
-	"extends": "@repo/config/typescript/base.json",
+	"extends": "@yamiassu/shared/config/typescript",
 	"include": ["."]
 }

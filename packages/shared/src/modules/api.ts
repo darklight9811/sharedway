@@ -1,5 +1,8 @@
 // Types
 import type { ZodSchema, z } from "zod";
+import type { Prettify } from "../types/prettify";
+import type { Payload } from "./payload";
+import payload from "./payload";
 
 // -------------------------------------------------
 // MARK: Types
@@ -9,28 +12,37 @@ type Config<Bind extends Record<string, any>> = {
 	/**
 	 * ### Bind
 	 *
-	 * Add utility methods to the request object
+	 * Add utility methods to the request object. If you pass a method, it will
+	 * be invoked when starting the API to prepare the bind service
 	 */
-	bind?: Bind;
+	bind?: Bind | (() => Promise<Bind> | Bind);
+
+	/**
+	 * ### Handle
+	 *
+	 * Method that is invoked in case the api throws. If you don't
+	 * rethrow, it will return the method response instead
+	 */
+	handle?: (err: unknown, service: Bind) => any;
 };
 
 export type PrepareApi<
-	Bound extends Record<string, any> = Record<string, any>,
+	/** Services bound to the method */
+	Bound extends Record<string, any> = {},
+	/** Input required to start the api method */
 	Input = void,
-	Output = Input,
-	Service = Bound & { input: Input },
+	/** The current input coming from the context pipe */
+	Pipe = Input,
+	/** The api methods response */
+	Output = Pipe,
+	Service = Bound & { input: Pipe },
 > = {
 	/**
 	 * ### Parse
 	 *
 	 * Run the piped value
 	 */
-	(
-		data: Input,
-	): Promise<
-		| { data: Output; ok: true; errors: undefined }
-		| { errors: any; ok: false; data: undefined }
-	>;
+	<Error = unknown>(data: Input): Promise<Payload<Output, Error>>;
 
 	/**
 	 * ### Auth
@@ -39,7 +51,7 @@ export type PrepareApi<
 	 */
 	auth(
 		callback: (data: Service) => Promise<any | undefined>,
-	): PrepareApi<Bound, Input, Output>;
+	): PrepareApi<Bound, Input, Pipe, Output>;
 
 	/**
 	 * ### ZOD
@@ -48,7 +60,7 @@ export type PrepareApi<
 	 */
 	zod<Schema extends ZodSchema, Result = z.infer<Schema>>(
 		schema: Schema,
-	): PrepareApi<Bound, Input extends void ? Result : Input, Result>;
+	): PrepareApi<Bound, Input extends void ? Result : Input, Result, Result>;
 
 	/**
 	 * ### Map
@@ -58,7 +70,7 @@ export type PrepareApi<
 	map<
 		Callback extends (data: Service) => Promise<any>,
 		Result = Awaited<ReturnType<Callback>>,
-	>(cb: Callback): PrepareApi<Bound, Result, Result>;
+	>(cb: Callback): PrepareApi<Bound, Input, Result, Result>;
 
 	/**
 	 * ### Action
@@ -68,7 +80,7 @@ export type PrepareApi<
 	action<
 		Callback extends (data: Service) => Promise<any>,
 		Result = Awaited<ReturnType<Callback>>,
-	>(cb: Callback): PrepareApi<Bound, Input, Result>;
+	>(cb: Callback): PrepareApi<Bound, Input, Result, Result>;
 };
 
 // -------------------------------------------------
@@ -78,56 +90,55 @@ export type PrepareApi<
 export default function createApi<Bind extends Record<string, any>>(
 	config: Config<Bind>,
 ) {
-	const bound = (config.bind || {}) as Bind;
-
 	function prepare<Input = void, Output = Input>(
 		cb: (input: { input: Input } & Bind) => Promise<Output> = async (t) =>
 			t as any,
-	): PrepareApi<Bind, Input, Output> {
-		const parse: PrepareApi<Bind, Input, Output> = async function parse(
+	): Prettify<PrepareApi<Bind, Input, Output>> {
+		const parse = async function parse(
 			data: any,
-		): Promise<Output> {
+		): Promise<Payload<Output, any>> {
+			const bound: Bind =
+				typeof config.bind === "function"
+					? await config.bind()
+					: config.bind || ({} as Bind);
+
 			return Promise.resolve(cb({ ...bound, input: data }))
-				.then((data) => ({ ok: true, data }))
+				.then((data) => payload(data))
 				.catch((err) => {
+					if (config.handle) return config.handle(err, bound);
+
 					if (["ZodError", "AuthError"].includes(err.name)) {
-						return {
-							ok: false,
+						return payload(undefined, {
 							errors: err.errors.map((error: any) => ({
 								field: error.path,
 								message: error.message,
 							})),
-						} as any;
+						});
 					}
 
-					// we want to unexpected errors to throw the app flow so the dev can fix them
-					throw err;
+					return payload(undefined, err);
 				});
 		} as any;
 
 		parse.zod = function zod(schema: ZodSchema) {
-			return prepare<any, z.infer<typeof schema>>(async (data) =>
-				schema.parse(data.input),
-			);
+			return prepare<any, any>(async (data) => schema.parse(data.input));
 		};
 
-		parse.map = (callback) =>
+		parse.map = (callback: any) =>
 			prepare<any, any>((data) =>
-				Promise.resolve(callback({ ...bound, input: data as any })).then(
-					(response) => cb({ ...bound, input: response }),
+				Promise.resolve(callback(data)).then((response) =>
+					cb({ ...data, input: response }),
 				),
 			);
 
-		parse.action = (callback) =>
-			prepare((data) =>
-				cb(data).then((response) =>
-					callback({ ...bound, input: response as any }),
-				),
+		parse.action = (callback: any) =>
+			prepare((data: any) =>
+				cb(data).then((response) => callback({ ...data, input: response })),
 			);
 
-		parse.auth = (callback) =>
-			prepare((data) =>
-				callback(data as any).then((response) => {
+		parse.auth = (callback: any) =>
+			prepare((data: any) =>
+				callback(data).then((response: any) => {
 					if (response) {
 						throw {
 							name: "AuthError",
@@ -139,7 +150,7 @@ export default function createApi<Bind extends Record<string, any>>(
 				}),
 			);
 
-		return parse as PrepareApi<typeof bound, Input, Output>;
+		return parse;
 	}
 
 	return prepare();

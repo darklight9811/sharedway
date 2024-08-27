@@ -1,7 +1,7 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"display": "React Library",
-	"extends": "@yamiassu/shared/config/typescript",
+	"extends": "./src/config/typescript.json",
 	"compilerOptions": {
 		"lib": ["ES2015", "DOM"],
 		"module": "ESNext",

@@ -5,7 +5,7 @@ export default function useDebounce<Value>(
 	initialValue: Value,
 	timeout = 300,
 ) {
-	const ref = useRef<NodeJS.Timeout>();
+	const ref = useRef<ReturnType<typeof setTimeout>>();
 	const [value, setvalue] = useState(initialValue);
 
 	return [
