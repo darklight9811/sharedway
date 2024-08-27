@@ -1,3 +1,5 @@
+<img src="./public/banner.png" />
+
 # <img src="./public/images/logo/favicon.svg" width="24" /> Sharedway
 
 [![Production](https://img.shields.io/badge/deployment-prod-3a506b?&style=for-the-badge&labelColor=dbf0fd)](https://sharedway.org)
