@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question or discuss a topic
+    url: https://github.com/darklight9811/sharedway/discussions
+    about: Ask questions or discuss with other contributors in discussions.
+  - name: Feature or documentation request
+    url: https://github.com/darklight9811/sharedway/discussions/new?category=ideas
+    about: Open a feature request in discussions.
