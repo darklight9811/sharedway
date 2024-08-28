@@ -13,7 +13,7 @@
 		"migrate:dev": "bun env prisma migrate dev",
 		"push": "bun env prisma db push",
 		"seed": "bun ./src/seed.ts",
-		"generate": "prisma generate",
+		"generate": "prisma generate --no-hints",
 		"test": "",
 		"format": "biome format --error-on-warnings ./src",
 		"verify": "biome check --error-on-warnings ./src",
