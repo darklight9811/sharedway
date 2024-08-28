@@ -11,7 +11,10 @@
 	},
 	"typescript.tsdk": "node_modules\\typescript\\lib",
 	"tailwindCSS.experimental.classRegex": [
-		["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+		[
+			"cva\\(([^)]*)\\)",
+			"[\"'`]([^\"'`]*).*?[\"'`]"
+		]
 	],
 	"workbench.editor.customLabels.patterns": {
 		"**/app/**/page.tsx": "${dirname} - Page",

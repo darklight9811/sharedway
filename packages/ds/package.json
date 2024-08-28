@@ -2,9 +2,7 @@
 	"name": "@repo/ds",
 	"version": "1.0.0",
 	"private": true,
-	"sideEffects": [
-		"**/*.css"
-	],
+	"sideEffects": ["**/*.css"],
 	"exports": {
 		"./*": "./src/components/*.tsx",
 		"./utils": "./src/lib/utils.ts",
@@ -12,7 +10,7 @@
 		"./tw": "./tailwind.config.ts",
 		"./hooks/*": "./src/hooks/*.ts",
 		"./react": "./src/lib/react.ts",
-		"./style": "./src/styles.css"
+		"./style": "./src/style.css"
 	},
 	"license": "MIT",
 	"scripts": {
@@ -52,7 +50,7 @@
 		"date-fns": "^3.6.0",
 		"embla-carousel-react": "^8.2.0",
 		"lucide-react": "^0.436.0",
-		"next": "^14.2.6",
+		"next": "^14.2.7",
 		"next-intl": "^3.17.6",
 		"next-themes": "^0.3.0",
 		"react": "^18.3.1",

@@ -8,6 +8,7 @@ node_modules
 # testing
 coverage
 trace
+tsconfig.vitest-temp.json
 
 # next.js
 .next/
