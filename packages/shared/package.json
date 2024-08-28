@@ -3,6 +3,11 @@
 	"private": false,
 	"version": "1.0.0",
 	"license": "MIT",
+	"type": "module",
+	"scripts": {
+		"test": "vitest",
+		"test:type": "vitest --typecheck"
+	},
 	"exports": {
 		"./config/*": "./src/config/*.json",
 		"./*": "./src/exports/*.ts"
@@ -11,6 +16,11 @@
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
-		"typescript": "^5.5.4"
+		"@vitejs/plugin-react": "^4.3.1",
+		"jsdom": "^25.0.0",
+		"typescript": "^5.5.4",
+		"vite": "^5.4.2",
+		"vite-tsconfig-paths": "^5.0.1",
+		"vitest": "^2.0.5"
 	}
 }

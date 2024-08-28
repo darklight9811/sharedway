@@ -21,14 +21,14 @@
 		"studio": "bun env prisma studio"
 	},
 	"dependencies": {
-		"@prisma/client": "^5.18.0",
+		"@prisma/client": "^5.19.0",
 		"@repo/env": "1.0.0",
 		"@repo/schemas": "1.0.0",
 		"uploadthing": "^6.13.2"
 	},
 	"devDependencies": {
 		"@repo/config": "0.0.0",
-		"prisma": "^5.18.0",
+		"prisma": "^5.19.0",
 		"typescript": "^5.5.4",
 		"zod": "^3.23.8"
 	}
