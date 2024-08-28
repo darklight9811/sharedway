@@ -9,7 +9,9 @@ export const localePrefix = "always";
 
 export default getRequestConfig(async () => {
 	// Validate that the incoming `locale` parameter is valid
-	const locale = getLocaleContent(headers().get("Accept-Language"));
+	const locale = getLocaleContent(
+		headers().get("Accept-Language") || locales[0],
+	);
 
 	if (!locale) return notFound();
 
