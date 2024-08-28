@@ -125,10 +125,8 @@ export default function createApi<Bind extends Record<string, any>>(
 		};
 
 		parse.map = (callback: any) =>
-			prepare<any, any>((data) =>
-				Promise.resolve(callback(data)).then((response) =>
-					cb({ ...data, input: response }),
-				),
+			prepare((data: any) =>
+				cb(data).then((response) => callback({ ...data, input: response })),
 			);
 
 		parse.action = (callback: any) =>
