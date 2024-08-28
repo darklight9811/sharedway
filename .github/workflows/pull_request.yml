@@ -49,6 +49,9 @@ jobs:
 
       - name: Run tests
         run: bun run test --filter=!@scripts/tests
+
+      - name: Run type tests
+        run: bun run test:type
         
   envs-preview:
     name: Check preview env integrity

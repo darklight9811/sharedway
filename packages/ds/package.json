@@ -2,9 +2,7 @@
 	"name": "@repo/ds",
 	"version": "1.0.0",
 	"private": true,
-	"sideEffects": [
-		"**/*.css"
-	],
+	"sideEffects": ["**/*.css"],
 	"exports": {
 		"./*": "./src/components/*.tsx",
 		"./utils": "./src/lib/utils.ts",
@@ -12,7 +10,7 @@
 		"./tw": "./tailwind.config.ts",
 		"./hooks/*": "./src/hooks/*.ts",
 		"./react": "./src/lib/react.ts",
-		"./style": "./src/styles.css"
+		"./style": "./src/style.css"
 	},
 	"license": "MIT",
 	"scripts": {
@@ -30,7 +28,7 @@
 		"tailwindcss-animate": "^1.0.7",
 		"typescript": "^5.5.4",
 		"vite": "^5.4.2",
-		"webpack": "^5.93.0"
+		"webpack": "^5.94.0"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.9.0",
@@ -45,21 +43,21 @@
 		"@radix-ui/react-select": "^2.1.1",
 		"@radix-ui/react-slot": "^1.1.0",
 		"@radix-ui/react-tooltip": "^1.1.2",
-		"@tanstack/react-query": "^5.52.0",
+		"@tanstack/react-query": "^5.52.2",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
 		"cmdk": "^1.0.0",
 		"date-fns": "^3.6.0",
 		"embla-carousel-react": "^8.2.0",
-		"lucide-react": "^0.428.0",
-		"next": "^14.2.5",
-		"next-intl": "^3.17.4",
+		"lucide-react": "^0.436.0",
+		"next": "^14.2.7",
+		"next-intl": "^3.17.6",
 		"next-themes": "^0.3.0",
 		"react": "^18.3.1",
 		"react-day-picker": "^9.0.8",
 		"react-dom": "^18.3.1",
 		"react-dropzone": "^14.2.3",
-		"react-hook-form": "^7.52.2",
+		"react-hook-form": "^7.53.0",
 		"sonner": "^1.5.0",
 		"tailwind-merge": "^2.5.2",
 		"vaul": "^0.9.1",

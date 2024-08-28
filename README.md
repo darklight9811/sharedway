@@ -1,3 +1,5 @@
+<img src="./public/banner.png" />
+
 # <img src="./public/images/logo/favicon.svg" width="24" /> Sharedway
 
 [![Production](https://img.shields.io/badge/deployment-prod-3a506b?&style=for-the-badge&labelColor=dbf0fd)](https://sharedway.org)
@@ -6,6 +8,8 @@
 [![X](https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=X&logoColor=white)](https://x.com/darklight9811)
 
 An application to help find missing people and animals. Serving as a central bank (or HUB) for institutions, the government and anyone can access the data. A difference is that it allows you to filter by region, so that you can see missing people or animals in the location with better distinction.
+
+<img src="./public/screenshot.png" />
 
 ## Installation
 

@@ -1,5 +1,5 @@
 {
-	"extends": "@repo/config/typescript/base.json",
+	"extends": "@yamiassu/shared/config/typescript",
 	"compilerOptions": {
 		"allowJs": true
 	},

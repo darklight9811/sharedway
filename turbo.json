@@ -31,6 +31,7 @@
 		"db:push": {},
 		"db:seed": {},
 		"test": {},
+		"test:type": {},
 		"dev": {
 			"cache": false,
 			"persistent": true

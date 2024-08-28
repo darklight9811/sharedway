@@ -1,7 +1,6 @@
 "use server";
 
-import api from "@/lib/api";
-import { buildMetadata } from "@/lib/parallel";
+import api, { apiService } from "@/lib/api";
 import pagination from "@repo/schemas/pagination";
 import { profileStoreSchema, profileUpdateSchema } from "@repo/schemas/profile";
 import profileService from "@repo/services/profile";
@@ -9,25 +8,25 @@ import { z } from "zod";
 
 export const index = api
 	.zod(pagination)
-	.service(profileService.index, buildMetadata);
+	.action(apiService(profileService.index));
 
 export const store = api
 	.zod(profileStoreSchema)
-	.service(profileService.store, buildMetadata)
-	.action(async ({ input }: any) => ({
-		redirect: `/profiles/${input.id}`,
+	.action(apiService(profileService.store))
+	.action(async ({ input }) => ({
+		redirect: `/profiles/${input!.id}`,
 	}));
 
 export const update = api
 	.zod(z.object({ id: z.string().cuid(), data: profileUpdateSchema }))
-	.service(profileService.update, buildMetadata)
+	.action(apiService(profileService.update))
 	.action(async () => ({
 		reload: true,
 	}));
 
 export const remove = api
 	.zod(z.string())
-	.service(profileService.delete, buildMetadata)
+	.action(apiService(profileService.delete))
 	.action(async () => ({
 		redirect: "/",
 		message: "Apagado com sucesso",
