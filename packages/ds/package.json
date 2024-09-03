@@ -2,9 +2,7 @@
 	"name": "@repo/ds",
 	"version": "1.0.0",
 	"private": true,
-	"sideEffects": [
-		"**/*.css"
-	],
+	"sideEffects": ["**/*.css"],
 	"exports": {
 		"./*": "./src/components/*.tsx",
 		"./utils": "./src/lib/utils.ts",
