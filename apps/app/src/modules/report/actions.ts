@@ -1,13 +1,12 @@
 "use server";
 
-import api from "@/lib/api";
-import { buildMetadata } from "@/lib/parallel";
+import api, { apiService } from "@/lib/api";
 import report from "@repo/schemas/report";
 import reportService from "@repo/services/report";
 
 export const store = api
 	.zod(report)
-	.service(reportService.store, buildMetadata)
+	.action(apiService(reportService.store))
 	.action(async () => ({
 		replace: true,
 	}));

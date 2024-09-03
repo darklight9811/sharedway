@@ -93,7 +93,7 @@
 				"or": "ou"
 			},
 			"general": {
-				"title": "Informações gerais",
+				"title": "Informações",
 				"name": "Nome",
 				"age": "Idade",
 				"race": "Raça",

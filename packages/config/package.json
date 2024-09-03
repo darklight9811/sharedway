@@ -2,6 +2,9 @@
 	"name": "@repo/config",
 	"version": "0.0.0",
 	"private": true,
+	"dependencies": {
+		"@yamiassu/shared": "*"
+	},
 	"devDependencies": {
 		"typescript": "^5.5.4"
 	},

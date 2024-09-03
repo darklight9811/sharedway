@@ -13,7 +13,7 @@
 		"migrate:dev": "bun env prisma migrate dev",
 		"push": "bun env prisma db push",
 		"seed": "bun ./src/seed.ts",
-		"generate": "prisma generate",
+		"generate": "prisma generate --no-hints",
 		"test": "",
 		"format": "biome format --error-on-warnings ./src",
 		"verify": "biome check --error-on-warnings ./src",
@@ -21,14 +21,14 @@
 		"studio": "bun env prisma studio"
 	},
 	"dependencies": {
-		"@prisma/client": "^5.18.0",
+		"@prisma/client": "^5.19.1",
 		"@repo/env": "1.0.0",
 		"@repo/schemas": "1.0.0",
 		"uploadthing": "^6.13.2"
 	},
 	"devDependencies": {
 		"@repo/config": "0.0.0",
-		"prisma": "^5.18.0",
+		"prisma": "^5.19.1",
 		"typescript": "^5.5.4",
 		"zod": "^3.23.8"
 	}

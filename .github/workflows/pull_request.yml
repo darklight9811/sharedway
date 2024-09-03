@@ -80,6 +80,39 @@ jobs:
       - name: Run tests
         run: bun run test --filter=@repo/env
 
+      - name: Run type tests
+        run: bun run test:type
+        
+  envs-preview:
+    name: Check preview env integrity
+    runs-on: ubuntu-latest
+    environment: Preview
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run tests
+        run: bun run test --filter=@repo/env
+        
+  envs-production:
+    name: Check production env integrity
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run tests
+        run: bun run test --filter=@repo/env
+
   locales:
     name: Test locales information
     runs-on: ubuntu-latest

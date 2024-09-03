@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--radius: 0.5rem;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		position: relative;
+		background-color: #DBF0FD;
+		background-attachment: fixed;
+	}
+
+	html {
+		scrollbar-width: thin;
+		scrollbar-color: theme("colors.primary.DEFAULT") #DBF0FD;
+		scrollbar-gutter: auto;
+	}
+
+	body[data-scroll-locked] nav {
+		width: calc(100% - var(--removed-body-scroll-bar-size));
+		margin-right: 8px;
+	}
+}

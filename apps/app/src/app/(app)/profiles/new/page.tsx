@@ -60,7 +60,7 @@ export default function Page() {
 				{t("create-title")}
 			</h1>
 
-			<ProfileForm onSubmit={store} schema="store" require>
+			<ProfileForm onSubmit={store}>
 				<Link href="/" className={buttonVariants({ variant: "outline" })}>
 					{t("back")}
 				</Link>
