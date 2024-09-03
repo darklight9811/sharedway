@@ -11,10 +11,7 @@
 	},
 	"typescript.tsdk": "node_modules\\typescript\\lib",
 	"tailwindCSS.experimental.classRegex": [
-		[
-			"cva\\(([^)]*)\\)",
-			"[\"'`]([^\"'`]*).*?[\"'`]"
-		]
+		["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
 	],
 	"workbench.editor.customLabels.patterns": {
 		"**/app/**/page.tsx": "${dirname} - Page",
@@ -27,6 +24,9 @@
 		"editor.defaultFormatter": "Prisma.prisma"
 	},
 	"[jsonc]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	}
 }
