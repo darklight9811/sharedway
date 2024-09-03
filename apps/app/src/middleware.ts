@@ -48,11 +48,13 @@ const clerk = clerkMiddleware(
 		// assets are always public and not internacionalized
 		if (isAssetRoute(req)) return NextResponse.next();
 
-		const { success } = await ratelimit.limit(ip);
+		if (process.env.NODE_ENV === "production") {
+			const { success } = await ratelimit.limit(ip);
 
-		// make sure the user is not rate limited or not in the rate limit screen
-		if (!success && !req.nextUrl.pathname.includes("/block"))
-			return NextResponse.redirect(new URL("/block", req.url));
+			// make sure the user is not rate limited or not in the rate limit screen
+			if (!success && !req.nextUrl.pathname.includes("/block"))
+				return NextResponse.redirect(new URL("/block", req.url));
+		}
 
 		// make sure the user is authenticated
 		if (isProtectedRoute(req)) auth().protect();
