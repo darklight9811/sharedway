@@ -13,6 +13,7 @@ export async function generate(lang: string) {
 	}
 
 	return {
+		id: `?sharedway=${env.APP_ENV}`,
 		name: `${t("title")}${env.APP_ENV === "production" ? "" : " (dev)"}`,
 		short_name: `${t("title")}${env.APP_ENV === "production" ? "" : " (dev)"}`,
 		description: t("description"),
@@ -20,10 +21,17 @@ export async function generate(lang: string) {
 		display: "browser",
 		background_color: "#DFF2FD",
 		theme_color: "#3a506b",
+		orientation: "portrait",
 		icons: [
 			{
 				src: "/images/logo/favicon.svg",
 				sizes: "any",
+				type: "image/x-icon",
+				purpose: "any",
+			},
+			{
+				src: "/images/logo/favicon.svg",
+				sizes: "512x512",
 				type: "image/x-icon",
 				purpose: "any",
 			},

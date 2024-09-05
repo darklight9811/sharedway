@@ -106,7 +106,7 @@ export default function Page() {
 						está desaparecido.
 					</p>
 
-					<small className="text-[#1977f3] text-sm font-medium tracking-wide mt-8">
+					<small className="text-sm font-bold tracking-wide mt-8">
 						Em breve
 					</small>
 
@@ -192,7 +192,7 @@ export default function Page() {
 					<div className="flex flex-col items-center max-w-xs">
 						<Users size="64" />
 
-						<h3 className="font-semibold text-xl">Comunidade</h3>
+						<h2 className="font-semibold text-xl">Comunidade</h2>
 
 						<p className="text-justify">
 							Nós estamos aqui graças àqueles que nos ajudam. A comunidade é a
@@ -204,7 +204,7 @@ export default function Page() {
 					<div className="flex flex-col items-center max-w-xs">
 						<Code size="64" />
 
-						<h3 className="font-semibold text-xl">Código aberto</h3>
+						<h2 className="font-semibold text-xl">Código aberto</h2>
 
 						<p className="text-justify">
 							Nosso código está inteiramente disponível e aberto para
@@ -216,7 +216,7 @@ export default function Page() {
 					<div className="flex flex-col items-center max-w-xs">
 						<Handshake size="64" />
 
-						<h3 className="font-semibold text-xl">Parceiros</h3>
+						<h2 className="font-semibold text-xl">Parceiros</h2>
 
 						<p className="text-justify">
 							Nossos parceiros nos permitem ir mais longe. Graças a essas

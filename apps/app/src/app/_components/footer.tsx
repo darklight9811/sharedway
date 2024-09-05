@@ -19,12 +19,13 @@ export default function Footer(props: Props) {
 				props.className,
 			)}
 		>
-			<div className="flex container mx-auto gap-8">
+			<div className="flex flex-col md:flex-row text-center md:text-left container mx-auto gap-8">
 				<div className="flex flex-col w-full md:w-1/4">
 					<Link
 						href="/"
 						prefetch={false}
 						className="flex text-xl gap-2 text-primary font-bold mb-4"
+						aria-label="home"
 					>
 						<Image
 							src="/images/logo/favicon.svg"
@@ -84,6 +85,7 @@ export default function Footer(props: Props) {
 						href="https://www.instagram.com/sharedway_org/"
 						target="_blank"
 						className="flex gap-2"
+						aria-label="instagram"
 					>
 						<Image
 							src="/images/brands/instagram.svg"
@@ -105,13 +107,13 @@ export default function Footer(props: Props) {
 						<Image
 							src="/images/screenshots/app_store.png"
 							alt=""
-							width={120}
+							width={136}
 							height={40}
 						/>
 						<Image
 							src="/images/screenshots/play_store.png"
 							alt=""
-							width={120}
+							width={136}
 							height={40}
 							className="opacity-50"
 						/>
