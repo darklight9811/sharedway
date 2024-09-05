@@ -68,7 +68,9 @@ export function Filter(props: Props) {
 				</Button>
 				<Button
 					type="button"
+					size="icon"
 					variant="destructive"
+					className="px-2"
 					onClick={() => {
 						const url = new URL(window.location.href);
 
