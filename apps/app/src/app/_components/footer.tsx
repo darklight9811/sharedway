@@ -24,7 +24,7 @@ export default function Footer(props: Props) {
 					<Link
 						href="/"
 						prefetch={false}
-						className="flex text-xl gap-2 text-primary font-bold mb-4"
+						className="flex justify-center md:justify-start text-xl gap-2 text-primary font-bold mb-4"
 						aria-label="home"
 					>
 						<Image

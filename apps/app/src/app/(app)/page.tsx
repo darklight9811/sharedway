@@ -180,12 +180,7 @@ export default function Page() {
 				</p>
 
 				<div className="md:mx-16 rounded-3xl bg-gradient-to-l from-[#6FFFE9] to-[#62B0F4] my-16 flex justify-center items-center py-4 md:py-12">
-					<Image
-						src="/images/screenshots/search.png"
-						alt=""
-						width={1100}
-						height={735}
-					/>
+					<Image src="/screenshot.png" alt="" width={1100} height={735} />
 				</div>
 
 				<div className="flex flex-wrap justify-evenly my-8 gap-4">
