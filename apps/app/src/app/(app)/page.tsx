@@ -50,7 +50,7 @@ export default function Page() {
 				</Link>
 
 				<Image
-					src="/images/screenshots/dashboard.png"
+					src="/screenshot.png"
 					alt=""
 					width={1100}
 					height={679}
