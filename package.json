@@ -32,11 +32,7 @@
 		"bun": ">=1.1.0"
 	},
 	"packageManager": "yarn@1.22.22",
-	"workspaces": [
-		"apps/*",
-		"packages/*",
-		"scripts/*"
-	],
+	"workspaces": ["apps/*", "packages/*", "scripts/*"],
 	"dependencies": {
 		"@dotenvx/dotenvx": "^1.14.0",
 		"symlink-dir": "^6.0.2",
