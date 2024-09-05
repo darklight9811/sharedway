@@ -7,6 +7,7 @@ import { z } from "zod";
 const server = z.object({
 	APP_NAME: z.string(),
 	APP_SECRET: z.string(),
+	APP_ENV: z.enum(["preview", "production"]).default("preview"),
 	VERCEL_URL: z.string().optional(),
 	PORT: z.coerce.number().default(3000),
 	DATABASE_URL: z.string().url(),
@@ -41,6 +42,7 @@ const processEnv = {
 	APP_NAME: process.env.APP_NAME,
 	APP_SECRET: process.env.APP_SECRET,
 	VERCEL_URL: process.env.VERCEL_URL,
+	APP_ENV: process.env.APP_ENV,
 	PORT: process.env.PORT,
 	DATABASE_URL: process.env.DATABASE_URL,
 

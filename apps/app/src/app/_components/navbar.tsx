@@ -20,80 +20,85 @@ export default async function Navbar() {
 	]);
 
 	return (
-		<nav className="fixed top-0 left-0 z-10 w-[100vw] py-2 px-4 flex justify-between items-center">
-			<NavbarBackground />
-			<div className="flex gap-2 items-center">
-				<Link className="flex gap-2" href="/">
-					<Image
-						alt="logo"
-						height={24}
-						src="/images/logo/favicon-light.svg"
-						width={24}
-					/>
-				</Link>
-				<Link
-					className={buttonVariants({
-						size: "sm",
-						variant: "secondary",
-						className: "pl-1",
-					})}
-					href="/profiles/new"
-					prefetch={false}
-					aria-label={t("create")}
-				>
-					<span>
-						<Plus />
-					</span>
-					<span className="hidden md:inline">{t("create")}</span>
-				</Link>
-			</div>
+		<>
+			<nav className="fixed top-0 left-0 z-10 w-[100vw] py-2 px-4 flex justify-between items-center">
+				<NavbarBackground />
+				<div className="flex gap-2 items-center">
+					<Link className="flex gap-2" href="/">
+						<Image
+							alt="logo"
+							height={24}
+							src="/images/logo/favicon-light.svg"
+							width={24}
+						/>
+					</Link>
+					<Link
+						className={buttonVariants({
+							variant: "secondary",
+							className: "!px-2 md:pl-1",
+						})}
+						href="/profiles/new"
+						prefetch={false}
+						aria-label={t("create")}
+					>
+						<span>
+							<Plus />
+						</span>
+						<span className="hidden md:inline">{t("create")}</span>
+					</Link>
+				</div>
 
-			<div className="flex gap-4 items-center">
-				{user ? (
-					<DropdownMenu>
-						<DropdownMenuTrigger className="text-sm flex gap-2 items-center rounded-3xl">
-							{user.hasImage ? (
-								<Image
-									alt="user logo"
-									className="rounded-full"
-									height={30}
-									src={user.imageUrl}
-									width={30}
-								/>
-							) : (
-								<div className="w-[30px] h-[30px] bg-slate-200 rounded-full flex justify-center items-center">
-									<User />
-								</div>
-							)}
-						</DropdownMenuTrigger>
+				<div className="flex gap-4 items-center">
+					{user ? (
+						<DropdownMenu>
+							<DropdownMenuTrigger className="text-sm flex gap-2 items-center rounded-3xl">
+								{user.hasImage ? (
+									<Image
+										alt="user logo"
+										className="rounded-full"
+										height={30}
+										src={user.imageUrl}
+										width={30}
+									/>
+								) : (
+									<div className="w-[30px] h-[30px] bg-slate-200 rounded-full flex justify-center items-center">
+										<User />
+									</div>
+								)}
+							</DropdownMenuTrigger>
 
-						<DropdownMenuContent className="mr-2">
-							<DropdownMenuItem>
-								<Link className="w-full" href="/profiles/current">
-									{t("list")}
-								</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<Link className="w-full" href="/profile">
-									{t("profile")}
-								</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem asChild className="w-full">
-								<SignOutButton>{t("logout")}</SignOutButton>
-							</DropdownMenuItem>
-						</DropdownMenuContent>
-					</DropdownMenu>
-				) : (
-					<>
-						<Link href="/sign-in" className={buttonVariants()}>
-							{t("login")}
-						</Link>
-						<Link href="/sign-up" className="mr-2 hidden md:inline text-white">
-							{t("signin")}
-						</Link>
-					</>
-				)}
-			</div>
-		</nav>
+							<DropdownMenuContent className="mr-2">
+								<DropdownMenuItem>
+									<Link className="w-full" href="/profiles/current">
+										{t("list")}
+									</Link>
+								</DropdownMenuItem>
+								<DropdownMenuItem>
+									<Link className="w-full" href="/profile">
+										{t("profile")}
+									</Link>
+								</DropdownMenuItem>
+								<DropdownMenuItem asChild className="w-full">
+									<SignOutButton>{t("logout")}</SignOutButton>
+								</DropdownMenuItem>
+							</DropdownMenuContent>
+						</DropdownMenu>
+					) : (
+						<>
+							<Link href="/sign-in" className={buttonVariants()}>
+								{t("login")}
+							</Link>
+							<Link
+								href="/sign-up"
+								className="mr-2 hidden md:inline text-white"
+							>
+								{t("signin")}
+							</Link>
+						</>
+					)}
+				</div>
+			</nav>
+			<div className="pt-[6vh]" />
+		</>
 	);
 }

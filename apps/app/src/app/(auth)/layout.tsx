@@ -6,7 +6,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<>
 			<div className="relative grow flex flex-col justify-center items-center overflow-hidden animate-fade-in pb-[15vh]">
-				<span className="absolute top-1 left-1 flex gap-2 opacity-30 text-primary">
+				<span className="absolute top-1 left-1 flex gap-2 opacity-50 text-primary">
 					<Image
 						alt="logo"
 						height={20}
@@ -18,11 +18,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 				{children}
 
-				<div className="absolute z-[-1] top-[50%] left-[50%] opacity-20 aspect-square w-[50vw]">
+				<div className="absolute z-[-1] top-[50%] left-[50%] opacity-20 w-[50%]">
 					<Image alt="" fill src="/images/logo/favicon.svg" />
 				</div>
 			</div>
-			<Footer className="absolute bottom-0" />
+			<Footer className="bottom-0" />
 		</>
 	);
 }

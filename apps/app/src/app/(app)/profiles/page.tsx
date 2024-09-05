@@ -16,7 +16,7 @@ export default async function Page(props: { searchParams: PaginationType }) {
 	const [t] = await parallel(getTranslations("profiles"));
 
 	return (
-		<div className="flex flex-col sm:flex-row grow sm:container px-4 my-4 gap-4">
+		<div className="flex flex-col sm:flex-row grow sm:container px-4 my-4 gap-4 relative">
 			<aside className="w-full sm:w-1/3">
 				<h5 className="w-full text-xl py-4 pl-4 font-bold">
 					{t("profiles")} - {t("filter")}
@@ -24,9 +24,9 @@ export default async function Page(props: { searchParams: PaginationType }) {
 
 				<Filter data={props.searchParams} />
 			</aside>
-			<main className="w-full flex flex-col justify-between">
+			<main className="w-full flex flex-col justify-between relative">
 				<Sort
-					className="flex gap-2 bg-white rounded-lg *:m-0 p-2 shadow"
+					className="flex gap-2 bg-white rounded-lg *:m-0 p-2 shadow sticky top-[67px] z-[11]"
 					data={props.searchParams}
 					order={{
 						name: t("new.general.name"),

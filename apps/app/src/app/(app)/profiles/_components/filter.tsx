@@ -3,12 +3,10 @@
 import Field from "@repo/ds/form/field";
 import Form from "@repo/ds/form/form";
 import { Button } from "@repo/ds/ui/button";
-import { Calendar } from "@repo/ds/ui/calendar";
 import { CalendarInput } from "@repo/ds/ui/calendar-input";
 import { Input } from "@repo/ds/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@repo/ds/ui/popover";
 import { parseToDate, stringifyDate } from "@repo/ds/utils/date";
-import { CalendarIcon, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
@@ -24,7 +22,7 @@ export function Filter(props: Props) {
 
 	return (
 		<Form
-			className="bg-white *:m-0 p-2 rounded-lg shadow flex gap-4 flex-col"
+			className="bg-white *:m-0 p-2 rounded-lg shadow flex gap-4 flex-col sticky top-[67px]"
 			data={{
 				...props.data,
 				date_disappeared: parseToDate(props.data?.date_disappeared as string),
@@ -70,7 +68,9 @@ export function Filter(props: Props) {
 				</Button>
 				<Button
 					type="button"
+					size="icon"
 					variant="destructive"
+					className="px-2"
 					onClick={() => {
 						const url = new URL(window.location.href);
 

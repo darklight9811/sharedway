@@ -50,7 +50,7 @@ export default function Page() {
 				</Link>
 
 				<Image
-					src="/images/screenshots/dashboard.png"
+					src="/screenshot.png"
 					alt=""
 					width={1100}
 					height={679}
@@ -106,7 +106,7 @@ export default function Page() {
 						está desaparecido.
 					</p>
 
-					<small className="text-[#1977f3] text-sm font-medium tracking-wide mt-8">
+					<small className="text-sm font-bold tracking-wide mt-8">
 						Em breve
 					</small>
 
@@ -180,19 +180,14 @@ export default function Page() {
 				</p>
 
 				<div className="md:mx-16 rounded-3xl bg-gradient-to-l from-[#6FFFE9] to-[#62B0F4] my-16 flex justify-center items-center py-4 md:py-12">
-					<Image
-						src="/images/screenshots/search.png"
-						alt=""
-						width={1100}
-						height={735}
-					/>
+					<Image src="/screenshot.png" alt="" width={1100} height={735} />
 				</div>
 
 				<div className="flex flex-wrap justify-evenly my-8 gap-4">
 					<div className="flex flex-col items-center max-w-xs">
 						<Users size="64" />
 
-						<h3 className="font-semibold text-xl">Comunidade</h3>
+						<h2 className="font-semibold text-xl">Comunidade</h2>
 
 						<p className="text-justify">
 							Nós estamos aqui graças àqueles que nos ajudam. A comunidade é a
@@ -204,7 +199,7 @@ export default function Page() {
 					<div className="flex flex-col items-center max-w-xs">
 						<Code size="64" />
 
-						<h3 className="font-semibold text-xl">Código aberto</h3>
+						<h2 className="font-semibold text-xl">Código aberto</h2>
 
 						<p className="text-justify">
 							Nosso código está inteiramente disponível e aberto para
@@ -216,7 +211,7 @@ export default function Page() {
 					<div className="flex flex-col items-center max-w-xs">
 						<Handshake size="64" />
 
-						<h3 className="font-semibold text-xl">Parceiros</h3>
+						<h2 className="font-semibold text-xl">Parceiros</h2>
 
 						<p className="text-justify">
 							Nossos parceiros nos permitem ir mais longe. Graças a essas

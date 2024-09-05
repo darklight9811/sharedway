@@ -34,7 +34,7 @@
 	"packageManager": "yarn@1.22.22",
 	"workspaces": ["apps/*", "packages/*", "scripts/*"],
 	"dependencies": {
-		"@dotenvx/dotenvx": "^1.12.1",
+		"@dotenvx/dotenvx": "^1.14.0",
 		"symlink-dir": "^6.0.2",
 		"syncpack": "^13.0.0",
 		"taze": "^0.16.7"

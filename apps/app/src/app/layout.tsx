@@ -13,6 +13,7 @@ import ServerProvider from "./_components/server-provider";
 
 import "@repo/ds/style";
 import { getLocaleContent } from "@/lib/locale";
+import { env } from "@repo/env";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,8 +36,8 @@ export async function generateMetadata() {
 			},
 		},
 		title: {
-			default: t("title"),
-			template: `%s | ${t("title")}`,
+			default: `${t("title")}${env.APP_ENV === "production" ? "" : " (dev)"}`,
+			template: `%s | ${t("title")}${env.APP_ENV === "production" ? "" : " (dev)"}`,
 		},
 		description: t("description"),
 		keywords: t("keywords").split(","),
@@ -115,7 +116,7 @@ export default async function RootLayout({
 			<body className={cn(inter.className, "flex flex-col h-full")}>
 				<ServerProvider locale={locale}>
 					<ClientProvider>
-						<div className="grow w-full flex h-screen pt-[6vh]">
+						<div className="grow w-full flex h-screen">
 							<div
 								id="content"
 								className="flex flex-col w-full grow relative *:animate-fade-in"
