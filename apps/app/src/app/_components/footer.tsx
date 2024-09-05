@@ -23,6 +23,7 @@ export default function Footer(props: Props) {
 				<div className="flex flex-col w-full md:w-1/4">
 					<Link
 						href="/"
+						prefetch={false}
 						className="flex text-xl gap-2 text-primary font-bold mb-4"
 					>
 						<Image
@@ -43,10 +44,14 @@ export default function Footer(props: Props) {
 
 					<ul className="flex flex-col gap-2">
 						<li>
-							<Link href="/">{t("landing")}</Link>
+							<Link prefetch={false} href="/">
+								{t("landing")}
+							</Link>
 						</li>
 						<li>
-							<Link href="/profiles">{t("search")}</Link>
+							<Link prefetch={false} href="/profiles">
+								{t("search")}
+							</Link>
 						</li>
 						<li>
 							<Link href="/profiles/new">{t("new")}</Link>
@@ -59,10 +64,14 @@ export default function Footer(props: Props) {
 
 					<ul className="flex flex-col gap-2">
 						<li>
-							<Link href="/legal/usage">{t("usage")}</Link>
+							<Link prefetch={false} href="/legal/usage">
+								{t("usage")}
+							</Link>
 						</li>
 						<li>
-							<Link href="/legal/privacy">{t("privacy")}</Link>
+							<Link prefetch={false} href="/legal/privacy">
+								{t("privacy")}
+							</Link>
 						</li>
 					</ul>
 				</div>
@@ -71,6 +80,7 @@ export default function Footer(props: Props) {
 					<h2 className="font-bold mb-2">{t("contact")}</h2>
 
 					<Link
+						prefetch={false}
 						href="https://www.instagram.com/sharedway_org/"
 						target="_blank"
 						className="flex gap-2"
@@ -111,6 +121,7 @@ export default function Footer(props: Props) {
 
 			<Link
 				href="/"
+				prefetch={false}
 				className="text-slate-900 text-base font-normal w-full text-center mt-4"
 			>
 				© {new Date().getFullYear()} {env.APP_NAME}. {t("rights")}
