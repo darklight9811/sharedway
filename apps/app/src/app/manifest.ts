@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { baseUrl } from "@/lib/url";
 import { env } from "@repo/env";
 // languages
 import enUS from "../../public/locales/en-US.json";
@@ -22,6 +23,8 @@ export async function generate(lang: string) {
 		background_color: "#DFF2FD",
 		theme_color: "#3a506b",
 		orientation: "portrait",
+		dir: "ltr",
+		scope: baseUrl(),
 		icons: [
 			{
 				src: "/images/logo/favicon.svg",
