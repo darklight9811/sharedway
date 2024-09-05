@@ -13,8 +13,11 @@
 		"login": "Login",
 		"signin": "Registrar",
 		"rights": "Todos os direitos reservados.",
-		"terms": "Termos de uso",
-		"privacy": "Termos de privacidade"
+		"description": "sharedway é um site que ajuda a conectar pessoas e animais perdidos com seus ente queridos. Ajude a espalhar a palavra",
+		"usage": "Termos de uso",
+		"privacy": "Termos de privacidade",
+		"landing": "Landing page",
+		"new": "Novo desaparecido"
 	},
 	"home": {
 		"hero": {

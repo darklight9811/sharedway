@@ -12,9 +12,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 				width={150}
 				height={150}
 				alt="logo"
-				className="mx-auto mb-8"
+				className="mx-auto my-8"
 			/>
-			<div className="max-w-3xl w-full mx-auto flex flex-col gap-2">
+			<div className="max-w-3xl w-full mx-auto my-8 flex flex-col gap-2">
 				{children}
 			</div>
 
