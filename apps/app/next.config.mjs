@@ -44,11 +44,6 @@ const config = {
 						key: "Referrer-Policy",
 						value: "origin-when-cross-origin",
 					},
-					{
-						key: "Content-Security-Policy",
-						value:
-							"default-src 'self' *.clerk.com *.utfs.io *.clerk.accounts.dev vercel.live",
-					},
 				],
 			},
 		];
