@@ -58,7 +58,7 @@ export default function ProfileFormV2(props: Props) {
 				<ProfileFormLocation />
 				<ProfileFormContact />
 
-				<div className="w-full flex gap-4 justify-center sticky bottom-0 bg-[#DBF0FD] p-4">
+				<div className="w-full flex gap-2 justify-center sticky bottom-0 bg-[#DBF0FD] py-2">
 					{props.children}
 				</div>
 			</Tabs>

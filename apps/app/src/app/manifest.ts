@@ -20,7 +20,7 @@ export async function generate(lang: string) {
 		description: t("description"),
 		start_url: "/",
 		display: "browser",
-		background_color: "#DFF2FD",
+		background_color: "#3a506b",
 		theme_color: "#3a506b",
 		orientation: "portrait",
 		dir: "ltr",

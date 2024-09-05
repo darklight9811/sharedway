@@ -11,17 +11,17 @@ import Image from "next/image";
 
 export default function Page() {
 	return (
-		<>
+		<main className="flex flex-col w-full grow relative">
 			{/**
 			 * ### MARK: Hero
 			 */}
 
-			<div className="flex flex-col justify-center min-h-[800px] md:min-h-[1000px] items-center relative pb-[20vh] px-2 md:mb-[450px]">
+			<div className="flex flex-col justify-center h-full min-h-[800px] md:min-h-[1000px] items-center relative pb-[50vh] px-2 overflow-hidden">
 				<img
 					src="/images/arts/splash_01.svg"
 					alt=""
 					fetchPriority="high"
-					className="absolute z-[-1] w-full min-w-[840px] bg-cover"
+					className="absolute xl:top-[-40vh] z-[-1] w-full min-w-[840px] bg-cover"
 				/>
 
 				<h1 className="text-3xl md:text-7xl font-bold max-w-screen-xl text-center text-white animate-top-in mb-8">
@@ -35,7 +35,7 @@ export default function Page() {
 					src="/images/arts/line_01.svg"
 					alt=""
 					fetchPriority="high"
-					className="absolute z-[-1] w-full !top-[70%]"
+					className="absolute z-[-1] w-full !top-[50%]"
 				/>
 
 				<Link
@@ -54,7 +54,7 @@ export default function Page() {
 					alt=""
 					width={1100}
 					height={679}
-					className="z-[-1] absolute top-[65%]"
+					className="z-[-1] absolute top-[50%]"
 					priority
 				/>
 			</div>
@@ -348,6 +348,6 @@ export default function Page() {
 					</Link>
 				</div>
 			</div>
-		</>
+		</main>
 	);
 }

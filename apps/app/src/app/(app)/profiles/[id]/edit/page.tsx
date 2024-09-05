@@ -82,11 +82,14 @@ export default async function Page({ params }: { params: { id: string } }) {
 				</Dialog>
 			</h1>
 
-			<ProfileForm onSubmit={update} data={data} schema="update" require>
-				<Link href="/" className={buttonVariants({ variant: "outline" })}>
+			<ProfileForm onSubmit={update} data={data}>
+				<Link
+					href="/profiles"
+					className={buttonVariants({ variant: "outline" })}
+				>
 					Voltar
 				</Link>
-				<Button type="submit" className="w-full max-w-[180px]">
+				<Button type="submit" className="w-full md:max-w-[180px]">
 					Atualizar
 				</Button>
 			</ProfileForm>
