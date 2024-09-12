@@ -67,7 +67,6 @@ export function Filter(props: Props) {
 					Aplicar
 				</Button>
 				<Button
-					type="button"
 					size="icon"
 					variant="destructive"
 					className="px-2"

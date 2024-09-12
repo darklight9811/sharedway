@@ -21,7 +21,7 @@ export default function Share(props: Props) {
 	return (
 		<DialogDrawer>
 			<DialogDrawerTrigger asChild>
-				{props.children || <Button type="button">Compartilhar</Button>}
+				{props.children || <Button>Compartilhar</Button>}
 			</DialogDrawerTrigger>
 
 			<DialogDrawerContent

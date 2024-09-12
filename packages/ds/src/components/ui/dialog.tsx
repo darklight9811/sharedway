@@ -1,12 +1,32 @@
 "use client";
 
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { X } from "lucide-react";
-import React from "react";
+import React, { createContext, useContext } from "react";
 
 import { cn } from "../../lib/utils";
 
-const Dialog = DialogPrimitive.Root;
+const context = createContext<[boolean, React.Dispatch<boolean>]>([
+	false,
+	() => {},
+]);
+
+const useModal = () => useContext(context);
+
+function Dialog(props: React.ComponentProps<typeof DialogPrimitive.Root>) {
+	const [open = false, setOpen] = useControllableState({
+		prop: props.open,
+		defaultProp: props.defaultOpen,
+		onChange: props.onOpenChange,
+	});
+
+	return (
+		<context.Provider value={[open, setOpen]}>
+			<DialogPrimitive.Root {...props} open={open} onOpenChange={setOpen} />
+		</context.Provider>
+	);
+}
 
 const DialogTrigger = DialogPrimitive.Trigger;
 
@@ -113,6 +133,7 @@ const DialogDescription = React.forwardRef<
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
+	useModal,
 	Dialog,
 	DialogPortal,
 	DialogOverlay,

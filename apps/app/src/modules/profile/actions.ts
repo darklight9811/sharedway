@@ -2,8 +2,9 @@
 
 import api, { apiService } from "@/lib/api";
 import pagination from "@repo/schemas/pagination";
-import { profileStoreSchema, profileUpdateSchema } from "@repo/schemas/profile";
+import { profileFindSchema, profileStoreSchema, profileUpdateSchema } from "@repo/schemas/profile";
 import profileService from "@repo/services/profile";
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 export const index = api
@@ -20,9 +21,20 @@ export const store = api
 export const update = api
 	.zod(z.object({ id: z.string().cuid(), data: profileUpdateSchema }))
 	.action(apiService(profileService.update))
-	.action(async () => ({
-		reload: true,
-	}));
+	.action(async () => {
+		revalidatePath("/", "layout")
+
+		return { message: "yay" }
+	});
+
+export const find = api
+	.zod(z.object({ data: profileFindSchema, id: z.string() }))
+	.action(apiService(profileService.find))
+	.action(async () => {
+		revalidatePath("/", "layout")
+
+		return { message: "yay" }
+	});
 
 export const remove = api
 	.zod(z.string())

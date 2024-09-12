@@ -30,7 +30,7 @@ export default function Template01(props: Props) {
 	return (
 		<Document>
 			<Page size="A4">
-				<Text style={styles.title}>Desaparecida</Text>
+				<Text style={styles.title}>Procura-se</Text>
 				{(props.images?.length || 0) > 0 && (
 					<Image src={`/api/images/${props.images![0]}`} style={styles.image} />
 				)}

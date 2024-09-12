@@ -66,6 +66,7 @@ export default function Page() {
 			<div className="container mx-auto flex flex-col md:flex-row gap-10">
 				<div className="w-full sm:w-1/2">
 					<Image
+						loading="eager"
 						src="/images/arts/people_01.png"
 						alt=""
 						width={600}
@@ -114,13 +115,13 @@ export default function Page() {
 						<Image
 							src="/images/screenshots/app_store.png"
 							alt=""
-							width={120}
+							width={136}
 							height={40}
 						/>
 						<Image
 							src="/images/screenshots/play_store.png"
 							alt=""
-							width={120}
+							width={136}
 							height={40}
 							className="opacity-50"
 						/>
@@ -252,9 +253,9 @@ export default function Page() {
 			 */}
 
 			<div className="md:mb-32">
-				<h1 className="text-slate-900 text-2xl md:text-6xl font-extrabold text-center">
+				<h2 className="text-slate-900 text-2xl md:text-6xl font-extrabold text-center">
 					Perguntas frequentes
-				</h1>
+				</h2>
 
 				<Accordion
 					type="single"

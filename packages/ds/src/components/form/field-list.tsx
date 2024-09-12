@@ -25,11 +25,7 @@ export default function FieldList(props: Props) {
 				}),
 			)}
 
-			<Button
-				type="button"
-				className="w-full max-w-xs mx-auto"
-				onClick={() => append({})}
-			>
+			<Button className="w-full max-w-xs mx-auto" onClick={() => append({})}>
 				<Plus /> Adicionar
 			</Button>
 		</>
