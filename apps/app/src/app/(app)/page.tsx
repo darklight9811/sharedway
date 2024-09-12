@@ -11,17 +11,17 @@ import Image from "next/image";
 
 export default function Page() {
 	return (
-		<>
+		<main className="flex flex-col w-full grow relative">
 			{/**
 			 * ### MARK: Hero
 			 */}
 
-			<div className="flex flex-col justify-center min-h-[800px] md:min-h-[1000px] items-center relative pb-[20vh] px-2 md:mb-[450px]">
+			<div className="flex flex-col justify-center h-full min-h-[800px] md:min-h-[1000px] items-center relative pb-[50vh] px-2 overflow-hidden">
 				<img
 					src="/images/arts/splash_01.svg"
 					alt=""
 					fetchPriority="high"
-					className="absolute z-[-1] w-full min-w-[840px] bg-cover"
+					className="absolute xl:top-[-40vh] z-[-1] w-full min-w-[840px] bg-cover"
 				/>
 
 				<h1 className="text-3xl md:text-7xl font-bold max-w-screen-xl text-center text-white animate-top-in mb-8">
@@ -35,7 +35,7 @@ export default function Page() {
 					src="/images/arts/line_01.svg"
 					alt=""
 					fetchPriority="high"
-					className="absolute z-[-1] w-full !top-[70%]"
+					className="absolute z-[-1] w-full !top-[50%]"
 				/>
 
 				<Link
@@ -54,7 +54,7 @@ export default function Page() {
 					alt=""
 					width={1100}
 					height={679}
-					className="z-[-1] absolute top-[65%]"
+					className="z-[-1] absolute top-[50%]"
 					priority
 				/>
 			</div>
@@ -66,6 +66,7 @@ export default function Page() {
 			<div className="container mx-auto flex flex-col md:flex-row gap-10">
 				<div className="w-full sm:w-1/2">
 					<Image
+						loading="eager"
 						src="/images/arts/people_01.png"
 						alt=""
 						width={600}
@@ -114,13 +115,13 @@ export default function Page() {
 						<Image
 							src="/images/screenshots/app_store.png"
 							alt=""
-							width={120}
+							width={136}
 							height={40}
 						/>
 						<Image
 							src="/images/screenshots/play_store.png"
 							alt=""
-							width={120}
+							width={136}
 							height={40}
 							className="opacity-50"
 						/>
@@ -252,9 +253,9 @@ export default function Page() {
 			 */}
 
 			<div className="md:mb-32">
-				<h1 className="text-slate-900 text-2xl md:text-6xl font-extrabold text-center">
+				<h2 className="text-slate-900 text-2xl md:text-6xl font-extrabold text-center">
 					Perguntas frequentes
-				</h1>
+				</h2>
 
 				<Accordion
 					type="single"
@@ -348,6 +349,6 @@ export default function Page() {
 					</Link>
 				</div>
 			</div>
-		</>
+		</main>
 	);
 }

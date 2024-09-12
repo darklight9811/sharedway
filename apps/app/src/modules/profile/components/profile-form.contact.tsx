@@ -63,7 +63,7 @@ export default function ProfileFormContact() {
 							className="m-0 w-full"
 							render={({ field }) => <Input {...field} />}
 						/>
-						<Button type="button" onClick={remove} variant="destructive">
+						<Button onClick={remove} variant="destructive">
 							<Trash />
 						</Button>
 					</div>

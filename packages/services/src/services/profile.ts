@@ -1,6 +1,7 @@
 import type { ProfilePagination } from "@repo/schemas/pagination";
 import { profilePagination } from "@repo/schemas/pagination";
 import type {
+	ProfileFindSchema,
 	ProfileStoreSchema,
 	ProfileUpdateSchema,
 } from "@repo/schemas/profile";
@@ -190,6 +191,7 @@ const profileService = service({
 	async update(payload: { id: string; data: Partial<ProfileUpdateSchema> }) {
 		const add_files: File[] = [];
 		const remove_files: { id: string; remove: boolean }[] = [];
+		const profile = await db.profile.findUnique({ where: { id: payload.id } })
 
 		if (payload.data.pictures) {
 			for (let i = 0; i < payload.data.pictures.length; i++) {
@@ -252,6 +254,7 @@ const profileService = service({
 					name: payload.data.name,
 					description: payload.data.description,
 					date_disappeared: payload.data.date_disappeared,
+					date_found: payload.data.date_disappeared ? null : profile?.date_found,
 					data: {
 						update: payload.data.data,
 					},
@@ -279,6 +282,24 @@ const profileService = service({
 				},
 			}),
 		]);
+	},
+
+	/**
+	 * ### MARK: Find
+	 * 
+	 * Update found status for the profile
+	 * 
+	 * @param param0 
+	 * @returns 
+	 */
+	async find ({ id, data }: { id: string; data: ProfileFindSchema }) {
+		return db.profile.update({
+			where: { id },
+			data: {
+				date_found: data.date_found,
+				date_disappeared: null,
+			},
+		})
 	},
 
 	/**

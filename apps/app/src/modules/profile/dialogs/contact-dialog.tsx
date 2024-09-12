@@ -17,7 +17,7 @@ interface Props {
 	} | null;
 }
 
-export function FindDialog(props: Props) {
+export function ContactDialog(props: Props) {
 	const options = props.contact?.options as { type: string; value: string }[];
 
 	return (

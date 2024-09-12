@@ -15,11 +15,11 @@ export default function Footer(props: Props) {
 	return (
 		<footer
 			className={cn(
-				"w-full flex flex-col flex-wrap gap-4 justify-evenly items-center py-4 px-2",
+				"w-full flex flex-col flex-wrap gap-4 justify-evenly items-center p-4",
 				props.className,
 			)}
 		>
-			<div className="flex flex-col md:flex-row text-center md:text-left container mx-auto gap-8">
+			<div className="flex flex-col md:flex-row text-center md:text-left !p-0 container mx-auto gap-8">
 				<div className="flex flex-col w-full md:w-1/4">
 					<Link
 						href="/"

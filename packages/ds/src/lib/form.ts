@@ -7,6 +7,9 @@ export function appendFormData(data: any, root: string, formData: FormData) {
 
 		return;
 	}
+	if (data instanceof Date) {
+		return formData.append(root, data.toISOString());
+	}
 	if (typeof data === "object" && data) {
 		for (const key in data) {
 			if (data.hasOwnProperty(key)) {

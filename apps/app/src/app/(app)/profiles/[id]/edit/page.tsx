@@ -1,22 +1,17 @@
 import { Link } from "@/lib/navigation";
 import parallel from "@/lib/parallel";
+import DeleteModal from "@/modules/general/dialogs/delete-dialog";
 import * as actions from "@/modules/profile/actions";
 import ProfileForm from "@/modules/profile/components/profile-form";
+import FindDialog from "@/modules/profile/dialogs/find-dialog";
 import { currentUser } from "@/modules/user/loaders";
-import Form from "@repo/ds/form/form";
 import { Button, buttonVariants } from "@repo/ds/ui/button";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from "@repo/ds/ui/dialog";
-import type { ProfileUpdateSchema } from "@repo/schemas/profile";
+import type {
+	ProfileFindSchema,
+	ProfileUpdateSchema,
+} from "@repo/schemas/profile";
 import profileService from "@repo/services/profile";
-import { Eye, Trash } from "lucide-react";
+import { Eye, SaveIcon, Trash } from "lucide-react";
 import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -31,6 +26,12 @@ export default async function Page({ params }: { params: { id: string } }) {
 		"use server";
 
 		return actions.update({ id: params.id, data: data as ProfileUpdateSchema });
+	}
+
+	async function find(data: ProfileFindSchema) {
+		"use server";
+
+		return actions.find({ id: params.id, data });
 	}
 
 	async function remove() {
@@ -52,42 +53,31 @@ export default async function Page({ params }: { params: { id: string } }) {
 				>
 					<Eye />
 				</Link>
-				<Dialog>
-					<DialogTrigger asChild>
-						<Button variant="destructive" size="icon" type="button">
-							<Trash />
-						</Button>
-					</DialogTrigger>
-
-					<DialogContent>
-						<DialogHeader>
-							<DialogTitle>Você tem certeza?</DialogTitle>
-							<DialogDescription>
-								Essa ação não é reversivel, os dados serão perdidos
-								permanentemente
-							</DialogDescription>
-						</DialogHeader>
-
-						<DialogFooter>
-							<DialogTrigger asChild>
-								<Button variant="outline">Voltar</Button>
-							</DialogTrigger>
-							<Form onSubmit={remove}>
-								<Button variant="destructive" className="ml-auto">
-									Apagar
-								</Button>
-							</Form>
-						</DialogFooter>
-					</DialogContent>
-				</Dialog>
+				<DeleteModal submit={remove}>
+					<Button variant="destructive" size="icon">
+						<Trash />
+					</Button>
+				</DeleteModal>
 			</h1>
 
-			<ProfileForm onSubmit={update} data={data} schema="update" require>
-				<Link href="/" className={buttonVariants({ variant: "outline" })}>
-					Voltar
-				</Link>
-				<Button type="submit" className="w-full max-w-[180px]">
-					Atualizar
+			<ProfileForm onSubmit={update} data={data}>
+				<DeleteModal submit={remove}>
+					<Button variant="destructive" size="icon">
+						<Trash />
+					</Button>
+				</DeleteModal>
+				<FindDialog submit={find}>
+					<Button
+						size="icon"
+						variant="success"
+						disabled={!!data.date_found}
+						className="w-full md:max-w-[180px]"
+					>
+						Encontrado
+					</Button>
+				</FindDialog>
+				<Button type="submit" size="icon">
+					<SaveIcon />
 				</Button>
 			</ProfileForm>
 		</main>

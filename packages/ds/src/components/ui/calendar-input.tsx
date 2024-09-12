@@ -6,11 +6,12 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 interface Props extends Omit<ControllerRenderProps, "ref"> {
 	mode?: "range" | "single";
+	modal?: boolean;
 }
 
-export function CalendarInput({ mode, ...field }: Props) {
+export function CalendarInput({ mode, modal, ...field }: Props) {
 	return (
-		<Popover>
+		<Popover modal={modal}>
 			<PopoverTrigger asChild>
 				<Button className="w-full justify-start px-2 gap-2" variant="outline">
 					<CalendarIcon />

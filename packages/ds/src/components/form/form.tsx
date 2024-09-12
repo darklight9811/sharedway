@@ -6,8 +6,9 @@ import { FormProvider, useForm } from "react-hook-form";
 import { objectToFormData } from "../../lib/form";
 
 import type React from "react";
-import { createElement, useState } from "react";
+import { createElement, useEffect, useState } from "react";
 import type { ZodSchema } from "zod";
+import { useModal } from "../ui/dialog";
 
 interface FormProps {
 	onSubmit?: (data: any, raw: Record<string, unknown>) => any | Promise<any>;
@@ -28,10 +29,15 @@ export default function Form(props: FormProps) {
 	const router = useRouter();
 	const pathname = usePathname();
 	const [replace, setreplace] = useState<any | undefined>(undefined);
+	const [, setModal] = useModal();
 	const form = useForm({
 		defaultValues: props.data || props.defaultData,
 		resolver: props.schema && zodResolver(props.schema),
 	});
+
+	useEffect(() => {
+		form.reset(props.data);
+	}, [props.data, form.reset]);
 
 	return (
 		<FormProvider {...form}>
@@ -44,15 +50,19 @@ export default function Form(props: FormProps) {
 							form.getValues(),
 						))
 				}
-				onSubmit={form.handleSubmit(async (payload) => {
+				onSubmit={async (event) => {
+					const payload = form.getValues();
 					if (!props.onSubmit) return;
+					event?.stopPropagation();
+					event?.preventDefault();
 
 					form.clearErrors();
 
 					const response = await props
 						.onSubmit(objectToFormData(payload), payload)
 						.catch((e: unknown) => e);
-					const errors = response?.errors || response?.data?.errors;
+					const errors =
+						response?.[0] || response?.errors || response?.data?.errors;
 
 					if (!response) return;
 
@@ -60,14 +70,15 @@ export default function Form(props: FormProps) {
 						return;
 					}
 
-					const data = response?.data || response;
+					const data = response?.[1] || response?.data || response;
 
+					setModal(false);
 					if (data.redirect) return router.push(data.redirect);
 					if (data.reload) return router.push(pathname);
 					if (data.replace && props.replace) return setreplace(data);
 
 					return props?.onSuccess?.(data);
-				})}
+				}}
 				className={props.className}
 			>
 				{replace

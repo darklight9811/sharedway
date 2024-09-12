@@ -55,16 +55,19 @@ export default function Page() {
 	}
 
 	return (
-		<main className="grow flex flex-col justify-center items-center my-16 px-2">
+		<main className="grow flex flex-col justify-center items-center my-16 px-4">
 			<h1 className="w-full max-w-5xl text-3xl font-bold mb-4 text-primary">
 				{t("create-title")}
 			</h1>
 
 			<ProfileForm onSubmit={store}>
-				<Link href="/" className={buttonVariants({ variant: "outline" })}>
+				<Link
+					href="/profiles"
+					className={buttonVariants({ variant: "outline" })}
+				>
 					{t("back")}
 				</Link>
-				<Button type="submit" className="w-full max-w-[180px]">
+				<Button type="submit" className="w-full md:max-w-[180px]">
 					{t("create")}
 				</Button>
 			</ProfileForm>

@@ -29,9 +29,7 @@ export default function ErrorPage({
 			)}
 
 			<div className="flex gap-2">
-				<Button type="button" onClick={reset}>
-					Tentar novamente
-				</Button>
+				<Button onClick={reset}>Tentar novamente</Button>
 				<Link href="/" className={buttonVariants()}>
 					Ir para home
 				</Link>

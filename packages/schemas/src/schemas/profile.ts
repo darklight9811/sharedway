@@ -45,7 +45,7 @@ export type ProfileSchema = z.infer<typeof profile>;
 
 export const profileStoreSchema = zfd.formData({
 	name: z.string(),
-	date_disappeared: z.date(),
+	date_disappeared: z.coerce.date(),
 
 	data: profileData.omit({ id: true }),
 	contact: contact.omit({ id: true }),
@@ -57,7 +57,7 @@ export const profileStoreSchema = zfd.formData({
 		.innerType()
 		.max(5),
 
-	addresses: z.array(address.omit({ id: true })),
+	addresses: z.array(address.partial({ id: true })),
 });
 
 export type ProfileStoreSchema = z.infer<typeof profileStoreSchema>;
@@ -66,7 +66,7 @@ export const profileUpdateSchema = zfd.formData(
 	z
 		.object({
 			name: z.string(),
-			date_disappeared: z.date(),
+			date_disappeared: z.coerce.date(),
 
 			data: profileData.omit({ id: true }),
 			contact: contact.omit({ id: true }),
@@ -86,3 +86,9 @@ export const profileUpdateSchema = zfd.formData(
 );
 
 export type ProfileUpdateSchema = z.infer<typeof profileUpdateSchema>;
+
+export const profileFindSchema = zfd.formData({
+	date_found: z.coerce.date(),
+})
+
+export type ProfileFindSchema = z.infer<typeof profileFindSchema>;

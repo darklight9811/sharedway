@@ -19,66 +19,71 @@ export default function ProfileFormGeneral() {
 
 	return (
 		<TabsContent value="general" className="grow">
-			<Field
-				label={t("general.name")}
-				name="name"
-				required
-				render={({ field }) => {
-					return <Input {...field} />;
-				}}
-			/>
+			<div className="flex md:flex-row flex-col w-full gap-4">
+				<div className="w-full">
+					<Field
+						label={t("general.name")}
+						name="name"
+						required
+						render={({ field }) => {
+							return <Input {...field} />;
+						}}
+					/>
+					<Field
+						label={t("date_disappeared")}
+						name="date_disappeared"
+						required
+						render={({ field }) => <CalendarInput {...field} />}
+					/>
+				</div>
 
-			<Field
-				label={t("date_disappeared")}
-				name="date_disappeared"
-				required
-				render={({ field }) => <CalendarInput {...field} />}
-			/>
+				<div className="w-full">
+					<Field
+						label={t("general.age")}
+						name="data.age"
+						required
+						render={({ field }) => {
+							return <Input {...field} />;
+						}}
+					/>
 
-			<Field
-				label={t("general.age")}
-				name="data.age"
-				required
-				render={({ field }) => {
-					return <Input {...field} />;
-				}}
-			/>
+					<Field
+						label={t("general.race")}
+						name="data.race"
+						required
+						render={({ field }) => {
+							return <Input {...field} />;
+						}}
+					/>
 
-			<Field
-				label={t("general.race")}
-				name="data.race"
-				required
-				render={({ field }) => {
-					return <Input {...field} />;
-				}}
-			/>
+					<Field
+						label={t("general.gender")}
+						name="data.gender"
+						required
+						render={({ field }) => {
+							return (
+								<Select {...field}>
+									<SelectTrigger>
+										<SelectValue />
+									</SelectTrigger>
 
-			<Field
-				label={t("general.gender")}
-				name="data.gender"
-				required
-				render={({ field }) => {
-					return (
-						<Select {...field}>
-							<SelectTrigger>
-								<SelectValue />
-							</SelectTrigger>
-
-							<SelectContent>
-								<SelectItem value="male">
-									{t("general.gender-options.male")}
-								</SelectItem>
-								<SelectItem value="female">
-									{t("general.gender-options.female")}
-								</SelectItem>
-								<SelectItem value="other">
-									{t("general.gender-options.other")}
-								</SelectItem>
-							</SelectContent>
-						</Select>
-					);
-				}}
-			/>
+									<SelectContent>
+										<SelectItem value="male">
+											{t("general.gender-options.male")}
+										</SelectItem>
+										<SelectItem value="female">
+											{t("general.gender-options.female")}
+										</SelectItem>
+										<SelectItem value="other">
+											{t("general.gender-options.other")}
+										</SelectItem>
+									</SelectContent>
+								</Select>
+							);
+						}}
+					/>
+				</div>
+			</div>
 
 			<Field
 				label={t("general.description")}

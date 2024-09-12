@@ -4,14 +4,14 @@ import { db } from "../lib/db";
 import service from "../lib/service";
 
 const userService = service({
-	index({ page, limit }: Pagination) {
+	async index({ page, limit }: Pagination) {
 		return db.user.paginate({
 			page,
 			limit,
 		});
 	},
 
-	create(data: User & { emailVerified: Date }, { user }) {
+	async create(data: User & { emailVerified: Date }, { user }) {
 		if (user?.id) return user;
 
 		return db.user.create({
@@ -26,13 +26,13 @@ const userService = service({
 		});
 	},
 
-	show(id?: string | null) {
+	async show(id?: string | null) {
 		if (!id) return undefined;
 
 		return db.user.findUnique({ where: { id } });
 	},
 
-	byProvider({ provider, value }: { provider: string; value: string }) {
+	async byProvider({ provider, value }: { provider: string; value: string }) {
 		if (!value) return undefined;
 
 		return db.user.findFirst({

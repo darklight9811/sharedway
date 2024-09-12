@@ -3,7 +3,8 @@ import { Link } from "@/lib/navigation";
 import parallel from "@/lib/parallel";
 import { baseUrl } from "@/lib/url";
 import Banner from "@/modules/profile/components/banner";
-import ReportDialog from "@/modules/report/components/report-dialog";
+import { ContactDialog } from "@/modules/profile/dialogs/contact-dialog";
+import ReportDialog from "@/modules/report/dialogs/report-dialog";
 import { currentUser } from "@/modules/user/loaders";
 import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
 import { Button, buttonVariants } from "@repo/ds/ui/button";
@@ -27,7 +28,6 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { FindDialog } from "./_components/find-dialog";
 
 /**
  * ### MARK: Metadata
@@ -118,11 +118,9 @@ export default async function Page({ params }: { params: { id: string } }) {
 				</div>
 
 				<div className="flex gap-2 mt-4">
-					<FindDialog contact={data.contact}>
-						<Button type="button" className="w-full">
-							{t("found")}
-						</Button>
-					</FindDialog>
+					<ContactDialog contact={data.contact}>
+						<Button className="w-full">{t("found")}</Button>
+					</ContactDialog>
 					<Tooltip>
 						{!canReport && (
 							<TooltipContent>{t("already_reported")}</TooltipContent>
@@ -130,11 +128,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 						<TooltipTrigger asChild>
 							<div>
 								<ReportDialog data={{ id_profile: data.id }}>
-									<Button
-										type="button"
-										variant="destructive"
-										disabled={!canReport}
-									>
+									<Button variant="destructive" disabled={!canReport}>
 										<Flag />
 									</Button>
 								</ReportDialog>
@@ -148,7 +142,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 						link={`${baseUrl()}/profiles/${data.id}`}
 						description={t("help", { profile: data.name })}
 					>
-						<Button type="button" size="icon">
+						<Button size="icon">
 							<Share2 />
 						</Button>
 					</Share>
@@ -157,7 +151,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 						description={data.description}
 						contact={data.contact?.options as { type: string; value: string }[]}
 					>
-						<Button type="button" size="icon">
+						<Button size="icon">
 							<Printer />
 						</Button>
 					</Banner>
@@ -172,7 +166,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 							>
 								<Edit />
 							</Link>
-							<Button type="button" size="icon" variant="destructive">
+							<Button size="icon" variant="destructive">
 								<Trash />
 							</Button>
 						</>

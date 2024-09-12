@@ -19,14 +19,18 @@ interface Props {
 	children?: React.ReactNode;
 }
 
-export default function ProfileFormV2(props: Props) {
+export default function ProfileForm(props: Props) {
 	const t = useTranslations("profiles.new");
 	const [page, setpage] = useState("general");
 
 	return (
 		<Form
-			data={props.data}
-			defaultData={{ contact: { options: [{}] }, date_disappeared: new Date() }}
+			data={
+				props.data || {
+					contact: { options: [{}] },
+					date_disappeared: new Date(),
+				}
+			}
 			schema={profileStoreSchema}
 			onSubmit={props.onSubmit}
 			className="w-full max-w-5xl flex gap-8 flex-col grow"
@@ -58,7 +62,7 @@ export default function ProfileFormV2(props: Props) {
 				<ProfileFormLocation />
 				<ProfileFormContact />
 
-				<div className="w-full flex gap-4 justify-center sticky bottom-0 bg-[#DBF0FD] p-4">
+				<div className="w-full flex gap-2 justify-center sticky bottom-0 bg-[#DBF0FD] py-2">
 					{props.children}
 				</div>
 			</Tabs>
