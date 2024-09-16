@@ -39,6 +39,11 @@ export async function generateMetadata() {
 			default: `${t("title")}${env.APP_ENV === "production" ? "" : " (dev)"}`,
 			template: `%s | ${t("title")}${env.APP_ENV === "production" ? "" : " (dev)"}`,
 		},
+		appleWebApp: {
+			capable: true,
+			statusBarStyle: "default",
+			title: t("title"),
+		},
 		description: t("description"),
 		keywords: t("keywords").split(","),
 		icons: {
@@ -106,7 +111,7 @@ export default async function RootLayout({
 	}
 
 	return (
-		<html className="h-full scroll-smooth" lang={locale}>
+		<html className="h-full scroll-smooth" lang={locale} dir="ltr">
 			<head>
 				<link
 					rel="preconnect"

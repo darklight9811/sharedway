@@ -24,12 +24,12 @@ export default async function Navbar() {
 			<nav className="fixed top-0 left-0 z-10 w-[100vw] py-2 px-4 flex justify-between items-center">
 				<NavbarBackground />
 				<div className="flex gap-2 items-center">
-					<Link className="flex gap-2" href="/">
+					<Link className="flex gap-2" href="/" prefetch={false}>
 						<Image
 							alt="logo"
-							height={24}
+							height={32}
 							src="/images/logo/favicon-light.svg"
-							width={24}
+							width={32}
 						/>
 					</Link>
 					<Link
