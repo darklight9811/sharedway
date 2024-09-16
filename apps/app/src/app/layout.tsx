@@ -91,8 +91,8 @@ export async function generateMetadata() {
 export async function generateViewport() {
 	return {
 		themeColor: [
-			{ media: "(prefers-color-scheme: light)", color: "#E9F6FE" },
-			{ media: "(prefers-color-scheme: dark)", color: "#E9F6FE" },
+			{ media: "(prefers-color-scheme: light)", color: "#ffffff" },
+			{ media: "(prefers-color-scheme: dark)", color: "#ffffff" },
 		],
 	} satisfies Viewport;
 }

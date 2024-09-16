@@ -31,7 +31,7 @@ export default function ProfileFormContact() {
 						<Field
 							name={`${name}.type`}
 							value="phone"
-							className="m-0 min-w-[100px]"
+							className="m-0 min-w-[120px]"
 							render={({ field }) => (
 								<Select {...field}>
 									<SelectTrigger>
@@ -63,7 +63,7 @@ export default function ProfileFormContact() {
 							className="m-0 w-full"
 							render={({ field }) => <Input {...field} />}
 						/>
-						<Button onClick={remove} variant="destructive">
+						<Button onClick={remove} variant="outline-destructive" size="icon">
 							<Trash />
 						</Button>
 					</div>

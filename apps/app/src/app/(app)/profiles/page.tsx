@@ -26,7 +26,7 @@ export default async function Page(props: { searchParams: PaginationType }) {
 			</aside>
 			<main className="w-full flex flex-col justify-between relative">
 				<Sort
-					className="flex gap-2 bg-white rounded-lg *:m-0 p-2 shadow sticky top-[67px] z-[11]"
+					className="flex gap-2 bg-white rounded-[24px] *:m-0 p-2 shadow sticky top-[72px] z-[11]"
 					data={props.searchParams}
 					order={{
 						name: t("new.general.name"),

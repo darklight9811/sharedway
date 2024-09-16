@@ -119,16 +119,22 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 				<div className="flex gap-2 mt-4">
 					<ContactDialog contact={data.contact}>
-						<Button className="w-full">{t("found")}</Button>
+						<Button className="w-full" variant="dark">
+							{t("found")}
+						</Button>
 					</ContactDialog>
 					<Tooltip>
-						{!canReport && (
+						{!canReport ? (
 							<TooltipContent>{t("already_reported")}</TooltipContent>
-						)}
+						) : null}
 						<TooltipTrigger asChild>
 							<div>
 								<ReportDialog data={{ id_profile: data.id }}>
-									<Button variant="destructive" disabled={!canReport}>
+									<Button
+										variant="destructive"
+										size="icon"
+										disabled={!canReport}
+									>
 										<Flag />
 									</Button>
 								</ReportDialog>
@@ -142,7 +148,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 						link={`${baseUrl()}/profiles/${data.id}`}
 						description={t("help", { profile: data.name })}
 					>
-						<Button size="icon">
+						<Button size="icon" variant="dark">
 							<Share2 />
 						</Button>
 					</Share>
@@ -151,7 +157,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 						description={data.description}
 						contact={data.contact?.options as { type: string; value: string }[]}
 					>
-						<Button size="icon">
+						<Button size="icon" variant="dark">
 							<Printer />
 						</Button>
 					</Banner>

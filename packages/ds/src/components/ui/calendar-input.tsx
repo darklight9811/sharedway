@@ -13,7 +13,7 @@ export function CalendarInput({ mode, modal, ...field }: Props) {
 	return (
 		<Popover modal={modal}>
 			<PopoverTrigger asChild>
-				<Button className="w-full justify-start px-2 gap-2" variant="outline">
+				<Button className="w-full justify-start px-3 gap-2" variant="outline">
 					<CalendarIcon />
 
 					{(() => {

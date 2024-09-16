@@ -19,29 +19,40 @@ export async function generate(lang: string) {
 		short_name: `${t("title")}${env.APP_ENV === "production" ? "" : " (dev)"}`,
 		description: t("description"),
 		start_url: "/",
-		display: "browser",
-		background_color: "#3a506b",
-		theme_color: "#3a506b",
+		display: "standalone",
+		background_color: "#ffffff",
+		theme_color: "#68D8EE",
 		orientation: "portrait",
 		dir: "ltr",
 		scope: baseUrl(),
+		screenshots: [
+			{
+				src: "/screenshot.png",
+				form_factor: "wide",
+				sizes: "1331x710"
+			},
+			{
+				src: "/screenshot_mobile.png",
+				form_factor: "narrow",
+				sizes: "410x648"
+			},
+		],
 		icons: [
 			{
 				src: "/images/logo/favicon.svg",
-				sizes: "any",
-				type: "image/x-icon",
+				sizes: "256x256",
 				purpose: "any",
 			},
 			{
-				src: "/images/logo/favicon.svg",
-				sizes: "512x512",
+				src: "/images/logo/ico.ico",
+				sizes: "256x256",
 				type: "image/x-icon",
 				purpose: "any",
 			},
 		],
 		lang: lang,
 		categories: t("keywords").split(","),
-	} satisfies MetadataRoute.Manifest;
+	};
 }
 
 export default function manifest(): Promise<

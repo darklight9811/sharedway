@@ -11,7 +11,7 @@ const userService = service({
 		});
 	},
 
-	async create(data: User & { emailVerified: Date }, { user }) {
+	async create(data: User & { emailVerified?: Date }, { user }) {
 		if (user?.id) return user;
 
 		return db.user.create({

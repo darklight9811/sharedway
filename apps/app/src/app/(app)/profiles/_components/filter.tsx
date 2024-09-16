@@ -22,7 +22,7 @@ export function Filter(props: Props) {
 
 	return (
 		<Form
-			className="bg-white *:m-0 p-2 rounded-lg shadow flex gap-4 flex-col sticky top-[67px]"
+			className="bg-white *:m-0 p-2 rounded-lg flex gap-4 flex-col sticky top-[72px]"
 			data={{
 				...props.data,
 				date_disappeared: parseToDate(props.data?.date_disappeared as string),
@@ -62,13 +62,13 @@ export function Filter(props: Props) {
 				render={({ field }) => <CalendarInput mode="range" {...field} />}
 			/>
 
-			<div className="flex gap-2">
-				<Button type="submit" className="w-full">
+			<div className="flex gap-2 pt-2">
+				<Button type="submit" className="w-full" variant="dark">
 					Aplicar
 				</Button>
 				<Button
 					size="icon"
-					variant="destructive"
+					variant="outline-destructive"
 					className="px-2"
 					onClick={() => {
 						const url = new URL(window.location.href);

@@ -100,7 +100,7 @@ export default function ImageUploader(props: Props) {
 					<button
 						onClick={() => open()}
 						type="button"
-						className=" pb-2 pr-2 relative aspect-square w-full text-primary max-w-24 rounded-xl border-primary border-4 border-dashed flex justify-center items-center"
+						className=" pb-2 pr-2 relative aspect-square w-full text-foreground max-w-24 rounded-xl border-foreground border-4 border-dashed flex justify-center items-center"
 					>
 						<Camera size="52" />
 

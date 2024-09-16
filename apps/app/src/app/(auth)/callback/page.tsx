@@ -44,7 +44,7 @@ export default function Page({
 							userService.create({
 								id: user.id,
 								name: user.fullName || user.username || "",
-								email: user.emailAddresses.at(0)?.emailAddress,
+								email: user.emailAddresses.at(0)?.emailAddress!,
 								emailVerified:
 									user.emailAddresses.at(0)?.verification?.status === "verified"
 										? new Date()
@@ -57,15 +57,15 @@ export default function Page({
 						<>
 							<Image
 								alt="logo"
-								height={56}
+								height={128}
 								src="/images/logo/favicon.svg"
-								width={56}
+								width={128}
 							/>
 
-							<h1 className="text-2xl font-bold my-2">{t("done")}</h1>
+							<h1 className="text-3xl font-bold my-8">{t("done")}</h1>
 
 							<Link
-								className={buttonVariants()}
+								className={buttonVariants({ variant: "dark", size: "lg" })}
 								href={searchParams.redirect || "/"}
 							>
 								{t("back")}

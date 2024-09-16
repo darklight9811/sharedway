@@ -71,7 +71,10 @@ export default function Banner(props: Props) {
 						<PDFDownloadLink
 							document={template}
 							fileName="desaparecido.pdf"
-							className={buttonVariants({ className: "w-full" })}
+							className={buttonVariants({
+								className: "w-full",
+								variant: "dark",
+							})}
 						>
 							{({ loading }) =>
 								loading ? (

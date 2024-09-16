@@ -6,7 +6,7 @@ import {
 	AccordionTrigger,
 } from "@repo/ds/ui/accordion";
 import { buttonVariants } from "@repo/ds/ui/button";
-import { Code, Handshake, Users } from "lucide-react";
+import { ArrowRight, Code, Handshake, Users } from "lucide-react";
 import Image from "next/image";
 
 export default function Page() {
@@ -16,45 +16,44 @@ export default function Page() {
 			 * ### MARK: Hero
 			 */}
 
-			<div className="flex flex-col justify-center h-full min-h-[800px] md:min-h-[1000px] items-center relative pb-[50vh] px-2 overflow-hidden">
-				<img
-					src="/images/arts/splash_01.svg"
-					alt=""
-					fetchPriority="high"
-					className="absolute xl:top-[-40vh] z-[-1] w-full min-w-[840px] bg-cover"
+			<div className="flex flex-col justify-center min-h-[800px] md:min-h-[1000px] pt-[20vh] items-center relative px-2">
+				<Image
+					alt="logo"
+					height={800}
+					src="/images/logo/blur.webp"
+					className="absolute top-0 z-[-1]"
+					width={800}
 				/>
-
-				<h1 className="text-3xl md:text-7xl font-bold max-w-screen-xl text-center text-white animate-top-in mb-8">
-					Reencontre vidas com nossa plataforma inteligente
+				<h1 className="text-3xl md:text-7xl font-bold max-w-screen-xl text-center animate-top-in mb-8">
+					Reencontre{" "}
+					<span className="bg-gradient-to-r from-primary to-[#6FFFE9] text-transparent bg-clip-text">
+						vidas
+					</span>{" "}
+					com nossa plataforma inteligente
 				</h1>
 				<h2 className="text-md md:text-2xl font-light text-center text-[#262a41] opacity-0 animation-delay-200 animate-top-in">
 					A plataforma centralizada para localizar pessoas e animais
 					desaparecidos com eficiência e colaboração.
 				</h2>
-				<img
-					src="/images/arts/line_01.svg"
-					alt=""
-					fetchPriority="high"
-					className="absolute z-[-1] w-full !top-[50%]"
-				/>
 
 				<Link
 					href="/profiles"
 					className={buttonVariants({
-						className: "mt-8 md:!text-2xl md:!py-8",
-						variant: "secondary",
+						className: "my-16",
+						variant: "dark",
 						size: "lg",
 					})}
 				>
 					Comece sua busca agora
+					<ArrowRight className="ml-2" />
 				</Link>
 
 				<Image
 					src="/screenshot.png"
 					alt=""
-					width={1100}
-					height={679}
-					className="z-[-1] absolute top-[50%]"
+					width={1064}
+					height={568}
+					className="outline outline-1 outline-input rounded-[32px] outline-offset-8 shadow"
 					priority
 				/>
 			</div>
@@ -63,7 +62,7 @@ export default function Page() {
 			 * ### MARK: How
 			 */}
 
-			<div className="container mx-auto flex flex-col md:flex-row gap-10">
+			<div className="container mx-auto flex flex-col md:flex-row gap-10 mt-8">
 				<div className="w-full sm:w-1/2">
 					<Image
 						loading="eager"
@@ -141,7 +140,7 @@ export default function Page() {
 			 * ### MARK: Action
 			 */}
 
-			<div className="bg-[#62b0f4] my-20">
+			<div className="bg-secondary my-20">
 				<div className="container mx-auto flex flex-col gap-10 py-20 items-center">
 					<h1 className="text-white text-2xl md:text-5xl font-extrabold">
 						Ajude a encontrar quem está desaparecido
@@ -155,7 +154,8 @@ export default function Page() {
 					<Link
 						href="/sign-up"
 						className={buttonVariants({
-							variant: "secondary",
+							variant: "dark",
+							size: "lg",
 							className:
 								"md:!text-2xl font-bold leading-normal tracking-wide !px-6 !py-6",
 						})}
@@ -180,15 +180,21 @@ export default function Page() {
 					é centralizar e distribuir informações de forma eficiente e acessível.
 				</p>
 
-				<div className="md:mx-16 rounded-3xl bg-gradient-to-l from-[#6FFFE9] to-[#62B0F4] my-16 flex justify-center items-center py-4 md:py-12">
-					<Image src="/screenshot.png" alt="" width={1100} height={735} />
+				<div className="mx-auto rounded-[32px] bg-gradient-to-l from-[#6FFFE9] to-[#62B0F4] my-16 flex justify-center items-center p-2 md:p-4">
+					<Image
+						src="/screenshot.png"
+						alt=""
+						width={1064}
+						height={568}
+						className="rounded-[24px] overflow-hidden w-full"
+					/>
 				</div>
 
 				<div className="flex flex-wrap justify-evenly my-8 gap-4">
 					<div className="flex flex-col items-center max-w-xs">
 						<Users size="64" />
 
-						<h2 className="font-semibold text-xl">Comunidade</h2>
+						<h2 className="font-semibold text-xl mb-4">Comunidade</h2>
 
 						<p className="text-justify">
 							Nós estamos aqui graças àqueles que nos ajudam. A comunidade é a
@@ -200,7 +206,7 @@ export default function Page() {
 					<div className="flex flex-col items-center max-w-xs">
 						<Code size="64" />
 
-						<h2 className="font-semibold text-xl">Código aberto</h2>
+						<h2 className="font-semibold text-xl mb-4">Código aberto</h2>
 
 						<p className="text-justify">
 							Nosso código está inteiramente disponível e aberto para
@@ -212,7 +218,7 @@ export default function Page() {
 					<div className="flex flex-col items-center max-w-xs">
 						<Handshake size="64" />
 
-						<h2 className="font-semibold text-xl">Parceiros</h2>
+						<h2 className="font-semibold text-xl mb-4">Parceiros</h2>
 
 						<p className="text-justify">
 							Nossos parceiros nos permitem ir mais longe. Graças a essas
@@ -228,7 +234,7 @@ export default function Page() {
 			 * ### MARK: Report
 			 */}
 
-			<div className="bg-[#62b0f4] text-slate-900 mb-28">
+			<div className="bg-foreground text-white mb-28">
 				<div className="mx-auto container flex flex-col-reverse md:flex-row my-[10vh] relative px-4">
 					<div className="w-full md:w-1/2 grow flex flex-col justify-center">
 						<p className="text-2xl font-normal">
@@ -340,9 +346,8 @@ export default function Page() {
 					<Link
 						href="/sign-up"
 						className={buttonVariants({
-							variant: "secondary",
-							className:
-								"md:!text-2xl font-bold leading-normal tracking-wide !px-6 !py-6",
+							variant: "dark",
+							size: "lg",
 						})}
 					>
 						Faça parte da solução

@@ -38,10 +38,10 @@
 		"scripts/*"
 	],
 	"dependencies": {
-		"@dotenvx/dotenvx": "^1.14.0",
+		"@dotenvx/dotenvx": "^1.14.1",
 		"symlink-dir": "^6.0.2",
 		"syncpack": "^13.0.0",
-		"taze": "^0.16.7"
+		"taze": "^0.16.9"
 	},
 	"trustedDependencies": [
 		"@biomejs/biome",

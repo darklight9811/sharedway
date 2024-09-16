@@ -39,9 +39,9 @@ export default function Field(props: FieldProps) {
 					context.fieldState.error?.type || context.fieldState.error?.message;
 
 				return (
-					<fieldset className={cn("mb-4", props.className)}>
+					<fieldset className={cn("flex flex-col mb-4", props.className)}>
 						{props.label ? (
-							<Label htmlFor={props.name}>
+							<Label htmlFor={props.name} className="pb-2">
 								{props.label} {props.required ? "*" : ""}
 							</Label>
 						) : null}

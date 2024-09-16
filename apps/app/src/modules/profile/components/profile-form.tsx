@@ -36,7 +36,7 @@ export default function ProfileForm(props: Props) {
 			className="w-full max-w-5xl flex gap-8 flex-col grow"
 		>
 			<Tabs value={page} onValueChange={setpage} className="flex flex-col grow">
-				<div className="w-full flex justify-center sticky top-16">
+				<div className="w-full flex justify-center sticky top-20 mb-4">
 					<TabsList className="aspect-[5/1] flex">
 						<TabsTrigger value="general" className="flex flex-col gap-1 w-1/4">
 							<User />
@@ -62,7 +62,7 @@ export default function ProfileForm(props: Props) {
 				<ProfileFormLocation />
 				<ProfileFormContact />
 
-				<div className="w-full flex gap-2 justify-center sticky bottom-0 bg-[#DBF0FD] py-2">
+				<div className="w-full flex gap-2 justify-center sticky bottom-0 bg-white py-2">
 					{props.children}
 				</div>
 			</Tabs>
