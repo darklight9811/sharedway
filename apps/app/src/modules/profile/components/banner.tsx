@@ -1,7 +1,7 @@
 "use client";
 
-import { PDFDownloadLink, PDFViewer, render } from "@react-pdf/renderer";
-import { Button, buttonVariants } from "@repo/ds/ui/button";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import { buttonVariants } from "@repo/ds/ui/button";
 import {
 	Dialog,
 	DialogContent,

@@ -6,6 +6,7 @@ import Banner from "@/modules/profile/components/banner";
 import { ContactDialog } from "@/modules/profile/dialogs/contact-dialog";
 import ReportDialog from "@/modules/report/dialogs/report-dialog";
 import { currentUser } from "@/modules/user/loaders";
+import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { Avatar, AvatarFallback, AvatarImage } from "@repo/ds/ui/avatar";
 import { Button, buttonVariants } from "@repo/ds/ui/button";
 import { Carousel, CarouselContent, CarouselItem } from "@repo/ds/ui/carousel";
@@ -17,7 +18,6 @@ import {
 	CircleAlert,
 	Edit,
 	Flag,
-	MapPinned,
 	Printer,
 	Share2,
 	Trash,
@@ -152,15 +152,20 @@ export default async function Page({ params }: { params: { id: string } }) {
 							<Share2 />
 						</Button>
 					</Share>
-					<Banner
-						images={data.pictures.map((t) => t.id)}
-						description={data.description}
-						contact={data.contact?.options as { type: string; value: string }[]}
-					>
-						<Button size="icon" variant="dark">
-							<Printer />
-						</Button>
-					</Banner>
+					{data.pictures.length > 0 &&
+						(data.contact?.options as unknown[])?.length > 1 && (
+							<Banner
+								images={data.pictures.map((t) => t.id)}
+								description={data.description}
+								contact={
+									data.contact?.options as { type: string; value: string }[]
+								}
+							>
+								<Button size="icon" variant="dark">
+									<Printer />
+								</Button>
+							</Banner>
+						)}
 					{user?.id === data.user_created.id && (
 						<>
 							<Link
@@ -259,12 +264,15 @@ export default async function Page({ params }: { params: { id: string } }) {
 							</div>
 
 							<div className="w-full sm:w-1/2 aspect-video relative">
-								<Image alt="" src="/images/placeholder/maps.webp" fill />
-
-								<div className="absolute top-0 left-0 w-full h-full bg-black/50 flex flex-col justify-center items-center text-white">
-									<MapPinned size={64} />
-									<h1 className="text-xl">Mapas em breve</h1>
-								</div>
+								<GoogleMapsEmbed
+									apiKey={env.GOOGLE_KEY}
+									width="100%"
+									height={350}
+									style=".place-card { display: none; }"
+									loading="eager"
+									mode="place"
+									q={`${data.addresses[0]?.district},${data.addresses[0]?.city},${data.addresses[0]?.state}`}
+								/>
 							</div>
 						</div>
 					</>
