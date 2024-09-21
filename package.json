@@ -1,5 +1,6 @@
 {
 	"name": "sharedway",
+	"version": "0.1.0",
 	"private": true,
 	"scripts": {
 		"build": "bun env turbo build",
@@ -24,19 +25,15 @@
 		"seed": "bun packages/database/src/seed.ts"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.8.2",
+		"@biomejs/biome": "1.9.2",
 		"@repo/config": "0.0.0",
-		"turbo": "2.0.12"
+		"turbo": "2.1.2"
 	},
 	"engines": {
 		"bun": ">=1.1.0"
 	},
 	"packageManager": "yarn@1.22.22",
-	"workspaces": [
-		"apps/*",
-		"packages/*",
-		"scripts/*"
-	],
+	"workspaces": ["apps/*", "packages/*", "scripts/*"],
 	"dependencies": {
 		"@dotenvx/dotenvx": "^1.14.1",
 		"symlink-dir": "^6.0.2",
