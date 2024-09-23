@@ -10,13 +10,12 @@
 	body {
 		@apply bg-background text-foreground;
 		position: relative;
-		background-color: #DBF0FD;
 		background-attachment: fixed;
 	}
 
 	html {
 		scrollbar-width: thin;
-		scrollbar-color: theme("colors.primary.DEFAULT") #DBF0FD;
+		scrollbar-color: theme("colors.foreground") #DBF0FD;
 		scrollbar-gutter: auto;
 	}
 

@@ -17,7 +17,7 @@ const limit = 8;
 export default function MiniSearch() {
 	const reset = useRef(false);
 	const input = useRef<HTMLInputElement>(null);
-	const debounce = useRef<NodeJS.Timeout>();
+	const debounce = useRef<ReturnType<typeof setTimeout>>();
 	const [value, setvalue] = useState("");
 	const [search, setsearch] = useState("");
 	const t = useTranslations("home.search");

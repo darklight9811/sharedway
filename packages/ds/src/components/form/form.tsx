@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { objectToFormData } from "../../lib/form";
 
@@ -27,7 +27,6 @@ interface FormProps {
 
 export default function Form(props: FormProps) {
 	const router = useRouter();
-	const pathname = usePathname();
 	const [replace, setreplace] = useState<any | undefined>(undefined);
 	const [, setModal] = useModal();
 	const form = useForm({
@@ -74,7 +73,7 @@ export default function Form(props: FormProps) {
 
 					setModal(false);
 					if (data.redirect) return router.push(data.redirect);
-					if (data.reload) return router.push(pathname);
+					if (data.reload) return router.push(document.location.pathname);
 					if (data.replace && props.replace) return setreplace(data);
 
 					return props?.onSuccess?.(data);

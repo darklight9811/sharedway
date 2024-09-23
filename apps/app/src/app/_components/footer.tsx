@@ -24,14 +24,14 @@ export default function Footer(props: Props) {
 					<Link
 						href="/"
 						prefetch={false}
-						className="flex justify-center md:justify-start text-xl gap-2 text-primary font-bold mb-4"
+						className="flex justify-center md:justify-start text-xl gap-2 font-bold mb-4"
 						aria-label="home"
 					>
 						<Image
 							src="/images/logo/favicon.svg"
 							alt=""
-							width={16}
-							height={16}
+							width={20}
+							height={20}
 						/>
 
 						{env.APP_NAME}
@@ -82,6 +82,22 @@ export default function Footer(props: Props) {
 
 					<Link
 						prefetch={false}
+						href="https://www.facebook.com/sharedway.org/"
+						target="_blank"
+						className="flex gap-2"
+						aria-label="facebook"
+					>
+						<Image
+							src="/images/brands/facebook.svg"
+							alt=""
+							width={16}
+							height={16}
+						/>
+						facebook
+					</Link>
+
+					<Link
+						prefetch={false}
 						href="https://www.instagram.com/sharedway_org/"
 						target="_blank"
 						className="flex gap-2"
@@ -121,10 +137,12 @@ export default function Footer(props: Props) {
 				</div>
 			</div>
 
+			<hr className="container mt-4" />
+
 			<Link
 				href="/"
 				prefetch={false}
-				className="text-slate-900 text-base font-normal w-full text-center mt-4"
+				className="text-slate-900 text-base font-normal w-full text-center"
 			>
 				© {new Date().getFullYear()} {env.APP_NAME}. {t("rights")}
 			</Link>

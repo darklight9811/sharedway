@@ -9,7 +9,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 /** @type {import('next').NextConfig} */
 const config = {
 	reactStrictMode: true,
-	transpilePackages: ["@repo/ds"],
+	transpilePackages: ["@repo/ds", "@repo/env", "@repo/services", "@repo/schemas", "@repo/shared"],
 	productionBrowserSourceMaps: true,
 	async headers() {
 		return [
@@ -68,6 +68,11 @@ const config = {
 				hostname: "utfs.io",
 			},
 		],
+	},
+	webpack: (config) => {
+		config.resolve.alias.canvas = false;
+		config.resolve.alias.encoding = false;
+		return config;
 	},
 };
 

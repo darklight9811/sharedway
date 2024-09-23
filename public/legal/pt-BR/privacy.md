@@ -1,8 +1,8 @@
-## Política de privacidade para sharedway
+# Política de privacidade para sharedway
 
 ## Informações coletadas dos usuários
 
-As informações coletadas dos usuários incluem, mas não se limitam a: informações de contato, como nome, endereço de e-mail e número de telefone; informações demográficas, como idade, sexo e localização geográfica; informações de perfil, como interesses e preferências; informações de dispositivo, como modelo, sistema operacional e identificadores únicos.
+As informações coletadas dos usuários incluem, mas não se limitam a: informações de contato, como nome e endereço de e-mail; informações demográficas, como idade, sexo e localização geográfica; informações de perfil; informações de dispositivo, como modelo, sistema operacional e identificadores únicos.
 
 Os dados coletados são utilizados para personalizar a experiência do usuário, fornecer serviços sob medida, melhorar a qualidade do aplicativo e enviar comunicações relevantes. Todas as informações são tratadas com confidencialidade e segurança, sendo armazenadas em servidores protegidos por medidas técnicas e organizacionais adequadas.
 
@@ -18,7 +18,7 @@ Ao utilizar o aplicativo, os usuários concordam com a coleta e uso de suas info
 
 ## Uso dos dados coletados
 
-A finalidade do aplicativo é proporcionar aos usuários uma plataforma para acessar e utilizar recursos relacionados ao tema específico do aplicativo, com o intuito de facilitar e melhorar a experiência dos usuários. As informações coletadas dos usuários incluem, mas não se limitam a, nome, endereço de e-mail, número de telefone, dados de localização, histórico de uso do aplicativo e preferências pessoais.
+A finalidade do aplicativo é proporcionar aos usuários uma plataforma para acessar e utilizar recursos relacionados ao tema de pessoas e animais desaparecidos, com o intuito de facilitar e melhorar a experiência dos usuários. As informações coletadas dos usuários incluem, mas não se limitam a, nome, endereço de e-mail, número de telefone, dados de localização, histórico de uso do aplicativo e preferências pessoais.
 
 Os dados coletados são utilizados para personalizar a experiência do usuário, fornecer suporte técnico, analisar tendências de uso, realizar melhorias no aplicativo e enviar informações relevantes aos usuários. Adotamos medidas de segurança, como criptografia de dados, restrição de acesso interno e manutenção de sistemas atualizados, para proteger as informações coletadas dos usuários contra acessos não autorizados.
 

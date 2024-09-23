@@ -5,15 +5,23 @@ import { useEffect, useRef, useState } from "react";
 
 export default function NavbarBackground() {
 	const ref = useRef<HTMLDivElement>(null);
-	const [shadow, setShadow] = useState(true);
+	const [shadow, setShadow] = useState<"initial" | "scroll" | "none">(
+		"initial",
+	);
 
 	useEffect(() => {
 		function onScroll(e: Event) {
 			setShadow(
 				(e.target as unknown as { scrollingElement: Element }).scrollingElement
-					.scrollTop >= 0,
+					.scrollTop > 25
+					? "scroll"
+					: "none",
 			);
 		}
+
+		setShadow(
+			(document.scrollingElement?.scrollTop || 0) > 25 ? "scroll" : "none",
+		);
 
 		document.addEventListener("scroll", onScroll);
 
@@ -26,8 +34,12 @@ export default function NavbarBackground() {
 		<div
 			ref={ref}
 			className={cn(
-				"z-[-1] absolute top-0 left-0 w-full h-full transition-[opacity,shadow] opacity-0 bg-[#3a506b]",
-				shadow ? "shadow-md opacity-1" : "",
+				"z-[-1] absolute top-0 left-0 w-full h-full transition-[opacity,shadow] opacity-0 backdrop-blur bg-background/90",
+				shadow === "initial"
+					? "opacity-1"
+					: shadow === "scroll"
+						? "shadow-md opacity-1"
+						: "",
 			)}
 		/>
 	);

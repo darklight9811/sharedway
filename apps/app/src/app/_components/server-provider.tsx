@@ -9,19 +9,15 @@ export default async function ServerProvider({
 	children,
 	locale,
 }: { children: React.ReactNode; locale: string }) {
-	/**
-	 * Legal contains a lot of unnecessary text to most pages, and
-	 * since its loaded through RSC, it wont be used client side
-	 */
-	const { legal: _, ...messages } = await getMessages();
+	const messages = await getMessages();
 
 	return (
 		<NextIntlClientProvider messages={messages}>
 			<ClerkProvider
 				polling={false}
 				localization={{ "pt-BR": ptBR, "en-US": enUS }[locale]}
-				signInUrl={`/${locale}/sign-in`}
-				signUpUrl={`/${locale}/sign-up`}
+				signInUrl="/sign-in"
+				signUpUrl="/sign-up"
 			>
 				<SpeedInsights />
 				<Analytics />

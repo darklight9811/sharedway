@@ -22,7 +22,7 @@ const reportService = service({
 		});
 	},
 
-	show(id?: string | null) {
+	async show(id?: string | null) {
 		if (!id) return undefined;
 
 		return db.report.findUnique({ where: { id } });

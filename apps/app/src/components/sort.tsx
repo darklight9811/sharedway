@@ -71,7 +71,10 @@ export function Sort(props: Props) {
 						<Checkbox
 							{...field}
 							onClick={() => onChange(field.value === "asc" ? "desc" : "asc")}
-							className={buttonVariants({ className: "*:absolute w-10" })}
+							className={buttonVariants({
+								className: "*:absolute w-10",
+								variant: "outline",
+							})}
 						>
 							{field.value === "asc" ? <ArrowDownAz /> : <ArrowUpAz />}
 						</Checkbox>

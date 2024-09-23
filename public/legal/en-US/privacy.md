@@ -1,4 +1,4 @@
-## Privacy policy for sharedway
+# Privacy policy for sharedway
 
 ## Information collected from users
 

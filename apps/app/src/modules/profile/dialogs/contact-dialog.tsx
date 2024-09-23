@@ -52,6 +52,7 @@ export function ContactDialog(props: Props) {
 											href={info.href}
 											className={buttonVariants({
 												className: "flex justify-between w-full",
+												variant: "dark",
 											})}
 										>
 											{info.icon} {info.render}

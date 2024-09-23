@@ -24,7 +24,7 @@
 		"@prisma/client": "^5.19.1",
 		"@repo/env": "1.0.0",
 		"@repo/schemas": "1.0.0",
-		"uploadthing": "^6.13.3"
+		"uploadthing": "^7.0.2"
 	},
 	"devDependencies": {
 		"@repo/config": "0.0.0",
