@@ -23,7 +23,7 @@ export default async function Navbar() {
 		<>
 			<nav className="fixed top-0 left-0 z-10 w-[100vw] py-3 px-0">
 				<NavbarBackground />
-				<div className="container flex justify-between items-center">
+				<div className="md:container px-2 flex justify-between items-center">
 					<div className="flex gap-2 items-center">
 						<Link
 							className="flex gap-2 font-bold text-lg translate-y-[-1px]"

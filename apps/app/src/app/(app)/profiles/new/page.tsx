@@ -11,7 +11,7 @@ export default function Page() {
 
 	if (!auth().userId) {
 		return (
-			<div className="grow flex flex-col justify-center items-center max-w-xl w-full mx-auto text-center gap-4">
+			<div className="grow flex flex-col justify-center items-center max-w-xl w-full mx-auto min-h-[80vh] text-center gap-4">
 				<Image
 					alt="logo"
 					height={800}

@@ -21,7 +21,7 @@ export default function Page() {
 					alt="logo"
 					height={800}
 					src="/images/logo/blur.webp"
-					className="absolute top-0 z-[-1]"
+					className="absolute top-0 z-[-1] animate-[spin_4s_infinite]"
 					width={800}
 				/>
 				<h1 className="text-3xl md:text-7xl font-bold max-w-screen-xl text-center animate-top-in mb-8">

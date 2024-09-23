@@ -30,9 +30,9 @@
 		"turbo": "2.1.2"
 	},
 	"engines": {
-		"bun": ">=1.1.0"
+		"bun": ">=1.1.29"
 	},
-	"packageManager": "yarn@1.22.22",
+	"packageManager": "bun@1.1.29",
 	"workspaces": ["apps/*", "packages/*", "scripts/*"],
 	"dependencies": {
 		"@dotenvx/dotenvx": "^1.14.1",
