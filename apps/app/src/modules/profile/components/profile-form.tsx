@@ -35,9 +35,13 @@ export default function ProfileForm(props: Props) {
 			onSubmit={props.onSubmit}
 			className="w-full max-w-5xl flex gap-8 flex-col grow"
 		>
-			<Tabs value={page} onValueChange={setpage} className="flex flex-col grow">
+			<Tabs
+				value={page}
+				onValueChange={setpage}
+				className="flex flex-col grow mx-2"
+			>
 				<div className="w-full flex justify-center sticky top-20 mb-4">
-					<TabsList className="aspect-[5/1] flex">
+					<TabsList className="aspect-[5/1] flex w-full">
 						<TabsTrigger value="general" className="flex flex-col gap-1 w-1/4">
 							<User />
 							<span className="text-xs opacity-50">{t("general.title")}</span>
