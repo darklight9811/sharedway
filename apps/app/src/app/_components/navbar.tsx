@@ -33,9 +33,9 @@ export default async function Navbar() {
 							<Image
 								alt="logo"
 								height={26}
+								width={26}
 								src="/images/logo/favicon.svg"
 								className="mt-0.5"
-								width={26}
 							/>
 							<span className="hidden md:inline-block">sharedway</span>
 						</Link>

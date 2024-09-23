@@ -82,6 +82,22 @@ export default function Footer(props: Props) {
 
 					<Link
 						prefetch={false}
+						href="https://www.facebook.com/sharedway.org/"
+						target="_blank"
+						className="flex gap-2"
+						aria-label="facebook"
+					>
+						<Image
+							src="/images/brands/facebook.svg"
+							alt=""
+							width={16}
+							height={16}
+						/>
+						facebook
+					</Link>
+
+					<Link
+						prefetch={false}
 						href="https://www.instagram.com/sharedway_org/"
 						target="_blank"
 						className="flex gap-2"
