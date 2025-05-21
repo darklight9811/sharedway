@@ -1,4 +1,0 @@
-{
-	"extends": "@yamiassu/shared/config/typescript",
-	"include": ["."]
-}

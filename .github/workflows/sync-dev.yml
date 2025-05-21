@@ -1,0 +1,29 @@
+name: Sync Prod to Dev
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  update-cms-master:
+    name: Merge prod into dev after a PR is merged
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Update dev with production
+        id: squash_merge
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: release } = await github.rest.repos.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              base: "dev",
+              head: "prod",
+              commit_message: "${{ github.event.head_commit.message }}"
+            });

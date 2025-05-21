@@ -7,26 +7,36 @@
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"files.associations": {
 		"*.json": "jsonc",
-		".env.local": "env"
+		".env.local": "properties",
+		".local.env": "properties"
+	},
+	"workbench.editor.customLabels.patterns": {
+		"**/routes/**/page.tsx": "${dirname} - Page",
+		"**/routes/**/index.tsx": "${dirname} - Index",
+		"**/routes/**/layout.tsx": "${dirname} - Layout",
+		"**/routes/**/template.tsx": "${dirname} - Template",
+		"**/components/**/index.tsx": "${dirname} - Component"
 	},
 	"typescript.tsdk": "node_modules\\typescript\\lib",
 	"tailwindCSS.experimental.classRegex": [
-		["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+		[
+			"cva\\(([^)]*)\\)",
+			"[\"'`]([^\"'`]*).*?[\"'`]"
+		]
 	],
-	"workbench.editor.customLabels.patterns": {
-		"**/app/**/page.tsx": "${dirname} - Page",
-		"**/app/**/index.tsx": "${dirname} - Index",
-		"**/app/**/layout.tsx": "${dirname} - Layout",
-		"**/app/**/template.tsx": "${dirname} - Template",
-		"**/components/**/index.tsx": "${dirname} - Component"
-	},
-	"[prisma]": {
-		"editor.defaultFormatter": "Prisma.prisma"
-	},
-	"[jsonc]": {
+	"[typescript]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
 	}
 }

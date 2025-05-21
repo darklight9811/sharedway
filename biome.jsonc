@@ -1,10 +1,72 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.8.2/schema.json",
-	"extends": ["./packages/config/biome/general.json"],
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"style": {
+				"noNonNullAssertion": "off"
+			},
+			"complexity": {
+				"noBannedTypes": "off"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": {
+					"level": "error",
+					"options": {
+						"hooks": [
+							{
+								"name": "useDrag",
+								"stableResult": [
+									1
+								]
+							},
+							{
+								"name": "useRouteLoaderData",
+								"stableResult": true
+							}
+						]
+					}
+				}
+			}
 		}
+	},
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": {
+					"level": "on",
+					"options": {
+						"groups": [
+							":BUN:",
+							":NODE:",
+							":BLANK_LINE:",
+							":PACKAGE:",
+							":PACKAGE_WITH_PROTOCOL:",
+							":URL:",
+							":BLANK_LINE:",
+							"@repo/*",
+							":BLANK_LINE:",
+							"modules/**/*",
+							":ALIAS:",
+							":PATH:"
+						]
+					}
+				}
+			}
+		}
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 4,
+		"lineEnding": "lf",
+		"lineWidth": 120
+	},
+	"javascript": {
+		"globals": [
+			"React",
+			"JSX"
+		]
 	}
 }

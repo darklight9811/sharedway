@@ -1,0 +1,88 @@
+name: Pull request code quality
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  quality:
+    name: Lint and format code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun install
+
+      - name: Verify code quality
+        run: bun --bun run verify
+        
+  test:
+    name: Run tests in project
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run tests
+        run: bun run test --coverage
+        
+      - name: Cache coverage report
+        uses: actions/cache/restore@v4
+        with:
+          path: coverage
+          key: ${{ runner.os }}-coverage-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-coverage-
+
+      - name: Calculate coverage
+        run: bun --filter scripts coverage
+
+      - name: Create comment
+        id: create_comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+
+            const coverage = JSON.parse(fs.readFileSync('coverage/coverage-total.json', 'utf8'));
+            let body = (pr.data.body || "").replace(/### Coverage[\s\S]*/, '').trim() + '\n\n### Coverage\n| | lines | functions | lines |\n|---|---|---|---|';
+
+            for (const package of Object.keys(coverage)) {
+              body += `\n| ${package} | ${(coverage[package].lines.pct).toFixed(2)}% | ${(coverage[package].functions.pct).toFixed(2)}% | ${coverage[package].lines.total} |`;
+            }
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              body: body
+            });
+
+  locales:
+    name: Test locales information
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run tests
+        run: bun --filter "scripts" locale
