@@ -77,7 +77,7 @@ function extract_keys(obj: Record<string, unknown>, set: Set<string>, ctx: strin
 
 function extract(obj: Record<string, unknown>, path: string[]) {
 	return path.reduce(
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		// biome-ignore lint/suspicious/noExplicitAny: For the sake of simplification
 		(prev: any, curr) => (prev ? prev[curr] : undefined),
 		obj,
 	);
