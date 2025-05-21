@@ -9,25 +9,6 @@
 			},
 			"complexity": {
 				"noBannedTypes": "off"
-			},
-			"correctness": {
-				"useExhaustiveDependencies": {
-					"level": "error",
-					"options": {
-						"hooks": [
-							{
-								"name": "useDrag",
-								"stableResult": [
-									1
-								]
-							},
-							{
-								"name": "useRouteLoaderData",
-								"stableResult": true
-							}
-						]
-					}
-				}
 			}
 		}
 	},
@@ -67,6 +48,13 @@
 		"globals": [
 			"React",
 			"JSX"
+		]
+	},
+	"files": {
+		"includes": [
+			"!node_modules/**/*",
+			"packages/*/**",
+			"apps/*/**"
 		]
 	}
 }

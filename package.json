@@ -5,8 +5,9 @@
 	"scripts": {
 		"dev": "bun --bun turbo dev --",
 		"verify": "turbo verify --",
-		"symlink": "symlink-dir ./public ./apps/app/public",
+		"ds": "cd packages/ds && bun",
 		"deps": "taze -I -r",
+		"symlink": "symlink-dir ./public ./apps/app/public",
 		"env": "dotenvx run -f .env.local -f .env --log-level=error --",
 		"postinstall": "bun run symlink"
 	},

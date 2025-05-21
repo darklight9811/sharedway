@@ -1,26 +1,28 @@
 {
 	"compilerOptions": {
-		// Environment setup & latest features
-		"lib": [
-			"ESNext"
-		],
-		"target": "ESNext",
+		"target": "ES2020",
+		"useDefineForClassFields": true,
 		"module": "ESNext",
-		"moduleDetection": "force",
-		"jsx": "react-jsx",
-		"allowJs": true,
-		// Bundler mode
+		"lib": [
+			"ES2020",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"skipLibCheck": true,
+		/* Bundler mode */
 		"moduleResolution": "bundler",
 		"allowImportingTsExtensions": true,
-		"verbatimModuleSyntax": true,
+		"isolatedModules": true,
+		"moduleDetection": "force",
 		"noEmit": true,
-		// Best practices
+		"jsx": "react-jsx",
+		/* Linting */
 		"strict": true,
-		"skipLibCheck": true,
-		"noFallthroughCasesInSwitch": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true
 	},
 	"include": [
-		"src/**/*",
-		"vite.config.ts"
-	],
+		"src"
+	]
 }
