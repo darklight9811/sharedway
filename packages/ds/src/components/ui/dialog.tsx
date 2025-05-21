@@ -1,11 +1,26 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { XIcon } from "lucide-react";
-import type * as React from "react";
+import * as React from "react";
 
 import { cn } from "../../lib/utils";
 
-function Dialog({ ...props }: React.ComponentProps<typeof DialogPrimitive.Root>) {
-	return <DialogPrimitive.Root data-slot="dialog" {...props} />;
+const context = React.createContext<[boolean, React.Dispatch<boolean>]>([false, () => {}]);
+
+const useDialog = () => React.useContext(context);
+
+function Dialog(props: React.ComponentProps<typeof DialogPrimitive.Root>) {
+	const [open = false, setOpen] = useControllableState({
+		prop: props.open,
+		defaultProp: props.defaultOpen || false,
+		onChange: props.onOpenChange,
+	});
+
+	return (
+		<context.Provider value={[open, setOpen]}>
+			<DialogPrimitive.Root {...props} open={open} onOpenChange={setOpen} />
+		</context.Provider>
+	);
 }
 
 function DialogTrigger({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
@@ -96,6 +111,7 @@ function DialogDescription({ className, ...props }: React.ComponentProps<typeof 
 }
 
 export {
+	useDialog,
 	Dialog,
 	DialogClose,
 	DialogContent,
