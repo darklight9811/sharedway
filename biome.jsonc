@@ -9,6 +9,9 @@
 			},
 			"complexity": {
 				"noBannedTypes": "off"
+			},
+			"correctness": {
+				"noChildrenProp": "off"
 			}
 		}
 	},

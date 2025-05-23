@@ -16,6 +16,16 @@ export const { useAppForm } = createFormHook({
 				</form.Subscribe>
 			);
 		},
+		Fieldset(props: { children: React.ReactNode; label?: string }) {
+			const field = useFieldContext();
+
+			return (
+				<fieldset>
+					{props.label && <label htmlFor={field.name}>{props.label}</label>}
+					{props.children}
+				</fieldset>
+			);
+		},
 	},
 	fieldContext,
 	formContext,
