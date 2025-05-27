@@ -1,6 +1,7 @@
-import { env } from "@/domains/app/env";
-import { toast } from "@/ds/ui/toast";
-import type { v, ZodType } from "@/ds/v";
+import { env } from "@repo/domains/app/env";
+import { toast } from "@repo/ds/ui/toast";
+import type { v, ZodType } from "@repo/ds/v";
+
 import { queryClient } from "../domains/app/query";
 import { objectToFormData } from "./form";
 

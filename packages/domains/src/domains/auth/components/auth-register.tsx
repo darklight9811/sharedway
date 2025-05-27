@@ -1,9 +1,9 @@
+import { useAppForm } from "@repo/ds/hooks/use-form";
+import { Trans, useTranslation } from "@repo/ds/lib/localization";
+import { Alert, AlertDescription } from "@repo/ds/ui/alert";
+import { Input } from "@repo/ds/ui/input";
 import { Link } from "react-router";
 
-import { useAppForm } from "@/ds/hooks/use-form";
-import { Trans, useTranslation } from "@/ds/lib/localization";
-import { Alert, AlertDescription } from "@/ds/ui/alert";
-import { Input } from "@/ds/ui/input";
 import { type RegisterSchema, registerSchema } from "../schema";
 
 export interface AuthRegisterProps {
@@ -35,43 +35,42 @@ export function AuthRegister(props: AuthRegisterProps) {
 					<AlertDescription>{props.errors.at(0)?.message}</AlertDescription>
 				</Alert>
 			)}
-			<form.AppForm>
-				<div className="flex flex-col w-full *:animate-top-in">
-					<form.AppField
-						name="email"
-						children={(field) => (
-							<form.Fieldset label={t("email")}>
-								<Input type="email" value={field.state.value} onChange={field.handleChange} />
-							</form.Fieldset>
-						)}
-					/>
-					<form.AppField
-						name="password"
-						children={(field) => (
-							<form.Fieldset label={t("password")}>
-								<Input type="password" value={field.state.value} onChange={field.handleChange} />
-							</form.Fieldset>
-						)}
-					/>
+			<form.Form form={form} className="flex flex-col w-full *:animate-top-in">
+				<form.AppField
+					name="email"
+					children={(field) => (
+						<form.Fieldset label={t("email")}>
+							<Input type="email" value={field.state.value} onChange={field.handleChange} />
+						</form.Fieldset>
+					)}
+				/>
+				<form.AppField
+					name="password"
+					children={(field) => (
+						<form.Fieldset label={t("password")}>
+							<Input type="password" value={field.state.value} onChange={field.handleChange} />
+						</form.Fieldset>
+					)}
+				/>
 
-					<p className="text-sm mb-4">By registering you agree with our terms and conditions</p>
+				<p className="text-sm mb-4">By registering you agree with our terms and conditions</p>
 
-					<form.Submit className="w-full">{t("register")}</form.Submit>
-					<div className="mb-4 text-center text-sm text-foreground-active mt-6">
-						<Trans
-							t={t}
-							i18nKey="link-login"
-							components={{
-								target: (
-									<Link to="/login" className="underline ml-1">
-										{t("login")}
-									</Link>
-								),
-							}}
-						/>
-					</div>
+				<form.Submit className="w-full">{t("register")}</form.Submit>
+
+				<div className="mb-4 text-center text-sm text-foreground-active mt-6">
+					<Trans
+						t={t}
+						i18nKey="link-login"
+						components={{
+							target: (
+								<Link to="/login" className="underline ml-1">
+									{t("login")}
+								</Link>
+							),
+						}}
+					/>
 				</div>
-			</form.AppForm>
+			</form.Form>
 		</>
 	);
 }

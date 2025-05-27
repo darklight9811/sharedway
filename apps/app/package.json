@@ -9,8 +9,10 @@
 		"verify": "biome check --error-on-warnings ./src"
 	},
 	"dependencies": {
-		"@react-router/express": "^7.6.0",
-		"@react-router/node": "^7.6.0",
+		"@repo/ds": "workspace:*",
+		"@repo/domains": "workspace:*",
+		"@react-router/express": "^7.6.1",
+		"@react-router/node": "^7.6.1",
 		"compression": "^1.8.0",
 		"express": "^5.1.0",
 		"hono": "^4.7.10",
@@ -18,11 +20,11 @@
 		"morgan": "^1.10.0",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
-		"react-router": "^7.6.0",
+		"react-router": "^7.6.1",
 		"react-router-hono-server": "^2.13.0"
 	},
 	"devDependencies": {
-		"@react-router/dev": "^7.6.0",
+		"@react-router/dev": "^7.6.1",
 		"@tailwindcss/vite": "^4.1.7",
 		"@types/compression": "^1.8.0",
 		"@types/express": "^5.0.2",

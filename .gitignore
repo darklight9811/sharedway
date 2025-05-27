@@ -6,6 +6,7 @@ out
 dist
 *.tgz
 .react-router
+.turbo
 
 # code coverage
 coverage

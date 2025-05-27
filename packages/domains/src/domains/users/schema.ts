@@ -1,4 +1,4 @@
-import { v } from "@/ds/v";
+import { v } from "@repo/ds/v";
 
 export const userFormSchema = v.formData({
 	type: v.enum(["user", "admin", "dev"]).default("user"),

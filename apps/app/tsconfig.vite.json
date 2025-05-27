@@ -5,6 +5,9 @@
     "src/app/**/*",
     "src/app/**/.server/**/*",
     "src/app/**/.client/**/*",
+    "src/routes",
+    "src/root.tsx",
+    "src/routes.ts",
   ],
   "compilerOptions": {
     "composite": true,

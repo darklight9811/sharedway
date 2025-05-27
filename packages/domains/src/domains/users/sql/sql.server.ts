@@ -1,7 +1,7 @@
+import type { PaginationSchema } from "@repo/domains/app/schema";
+import type { UserSchema } from "@repo/domains/users/schema";
 import { count, eq, or } from "drizzle-orm";
 
-import type { PaginationSchema } from "@/domains/app/schema";
-import type { UserSchema } from "@/domains/users/schema";
 import { db } from "../../../utils/db";
 import { users } from "./table.server";
 

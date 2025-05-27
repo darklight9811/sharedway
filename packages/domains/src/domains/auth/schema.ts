@@ -1,4 +1,4 @@
-import { v } from "@/ds/v";
+import { v } from "@repo/ds/v";
 
 export const registerSchema = v.object({
 	name: v.string().min(2).optional(),

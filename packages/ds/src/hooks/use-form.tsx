@@ -7,12 +7,34 @@ export const { fieldContext, formContext, useFormContext, useFieldContext } = cr
 export const { useAppForm } = createFormHook({
 	fieldComponents: {},
 	formComponents: {
+		Form({
+			children,
+			form,
+			...props
+		}: React.ComponentProps<"form"> & {
+			form: { handleSubmit(): void; AppForm: React.ComponentType<{ children?: React.ReactNode }> };
+		}) {
+			return (
+				<form.AppForm>
+					<form
+						{...props}
+						onSubmit={(e) => {
+							e.preventDefault();
+							e.stopPropagation();
+							form.handleSubmit();
+						}}
+					>
+						{children}
+					</form>
+				</form.AppForm>
+			);
+		},
 		Submit(props: React.ComponentProps<"button">) {
 			const form = useFormContext();
 
 			return (
 				<form.Subscribe selector={(state) => state.isSubmitting}>
-					{(isSubmitting) => <Button {...props} disabled={isSubmitting} />}
+					{(isSubmitting) => <Button {...props} type="submit" disabled={isSubmitting} />}
 				</form.Subscribe>
 			);
 		},
@@ -23,6 +45,7 @@ export const { useAppForm } = createFormHook({
 				<fieldset>
 					{props.label && <label htmlFor={field.name}>{props.label}</label>}
 					{props.children}
+					{!field.state.meta.isValid && <em>{field.state.meta.errors.join(",")}</em>}
 				</fieldset>
 			);
 		},
