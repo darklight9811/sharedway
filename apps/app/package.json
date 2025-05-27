@@ -9,13 +9,14 @@
 		"verify": "biome check --error-on-warnings ./src"
 	},
 	"dependencies": {
-		"@repo/ds": "workspace:*",
-		"@repo/domains": "workspace:*",
 		"@react-router/express": "^7.6.1",
 		"@react-router/node": "^7.6.1",
+		"@repo/domains": "workspace:*",
+		"@repo/ds": "workspace:*",
 		"compression": "^1.8.0",
 		"express": "^5.1.0",
 		"hono": "^4.7.10",
+		"i18next-fs-backend": "^2.6.0",
 		"isbot": "^5.1.28",
 		"morgan": "^1.10.0",
 		"react": "^19.1.0",

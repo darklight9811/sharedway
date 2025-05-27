@@ -4,13 +4,21 @@ import {
 	isRouteErrorResponse,
 	Links,
 	type LinksFunction,
+	type LoaderFunctionArgs,
 	Meta,
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	useLoaderData,
 } from "react-router";
 
 import "./app.css";
+
+import { useTranslation } from "@repo/ds/lib/localization";
+import { Toaster } from "@repo/ds/ui/toast";
+import { StrictMode } from "react";
+
+import i18next from "./utils/i19next.server";
 
 export const links: LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -25,12 +33,31 @@ export const links: LinksFunction = () => [
 	},
 ];
 
+export async function loader({ request }: LoaderFunctionArgs) {
+	const locale = await i18next.getLocale(request);
+	return { locale };
+}
+
+export const handle = {
+	i18n: "general",
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
+	const { locale } = useLoaderData<typeof loader>();
+
+	const { i18n } = useTranslation();
+
 	return (
-		<html lang="en">
+		<html lang={locale} dir={i18n.dir()}>
 			<head>
 				<meta charSet="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover"
+				/>
+				<meta name="mobile-web-app-capable" content="yes" />
+				<meta name="apple-mobile-web-app-capable" content="yes" />
+				<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 				<Meta />
 				<Links />
 			</head>
@@ -45,9 +72,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<Outlet />
-		</QueryClientProvider>
+		<StrictMode>
+			<QueryClientProvider client={queryClient}>
+				<Toaster />
+				<Outlet />
+			</QueryClientProvider>
+		</StrictMode>
 	);
 }
 
