@@ -4,7 +4,6 @@
     "": {
       "name": "sharedway",
       "dependencies": {
-        "i18next-fs-backend": "^2.6.0",
         "turbo": "^2.5.3",
       },
       "devDependencies": {

@@ -4,7 +4,7 @@ import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import superjson from "superjson";
 
-import type { AppRouter } from "./server";
+import type { AppRouter } from "../server";
 
 function makeQueryClient() {
 	return new QueryClient({

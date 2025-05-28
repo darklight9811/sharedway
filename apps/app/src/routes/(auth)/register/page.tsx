@@ -1,5 +1,5 @@
-import { AuthRegister } from "@repo/domains/auth/components";
-import { trpc } from "@repo/domains/client";
+import { trpc } from "@repo/domains";
+import { AuthRegister } from "@repo/domains/auth";
 import { useMutation } from "@tanstack/react-query";
 
 export default function RegisterPage() {

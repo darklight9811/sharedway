@@ -1,4 +1,4 @@
-import { queryClient } from "@repo/domains/app/query";
+import { queryClient } from "@repo/domains/app";
 import { QueryClientProvider } from "@tanstack/react-query";
 import {
 	isRouteErrorResponse,

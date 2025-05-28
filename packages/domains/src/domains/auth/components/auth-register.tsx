@@ -22,9 +22,7 @@ export function AuthRegister(props: AuthRegisterProps) {
 		},
 		onSubmit: ({ value }) => props.onSubmit?.(value),
 	});
-	const { t } = useTranslation("general", {
-		keyPrefix: "auth",
-	});
+	const { t } = useTranslation("auth");
 
 	return (
 		<>

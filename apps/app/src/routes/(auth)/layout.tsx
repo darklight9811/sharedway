@@ -1,4 +1,5 @@
-import { env } from "@repo/domains/app/env";
+import { env } from "@repo/domains/app";
+import { Footer } from "@repo/ds/template/footer";
 import { Outlet } from "react-router";
 
 export default function Layout() {
@@ -9,7 +10,10 @@ export default function Layout() {
 					<img alt="logo" height={20} src="/images/logo/favicon.svg" width={20} /> {env.name}
 				</span>
 
-				<Outlet />
+				<div className="bg-white rounded-lg p-8 shadow outline">
+					<img alt="logo" height={20} src="/images/logo/favicon.svg" className="size-20 mx-auto mb-6" />
+					<Outlet />
+				</div>
 
 				<img
 					alt="logo"
@@ -19,7 +23,7 @@ export default function Layout() {
 					width={800}
 				/>
 			</div>
-			{/* <Footer className="bottom-0" /> */}
+			<Footer className="bottom-0" />
 		</>
 	);
 }

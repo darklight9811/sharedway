@@ -1,4 +1,4 @@
-import { AuthRegister } from "@repo/domains/auth/components";
+import { AuthRegister } from "@repo/domains/auth";
 import type { LoaderFunctionArgs } from "react-router";
 
 export function meta() {
