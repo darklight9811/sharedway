@@ -1,14 +1,14 @@
 import { useAppForm } from "@repo/ds/hooks/use-form";
-import { Trans, useTranslation } from "@repo/ds/lib/localization";
+import { useTranslation } from "@repo/ds/lib/localization";
 import { Alert, AlertDescription } from "@repo/ds/ui/alert";
 import { Input } from "@repo/ds/ui/input";
-import { Link } from "react-router";
 
 import { type RegisterSchema, registerSchema } from "../schema";
 
 export interface AuthRegisterProps {
 	onSubmit?(props: RegisterSchema): void;
 	errors?: { message: string }[];
+	children?: React.ReactNode;
 }
 
 export function AuthRegister(props: AuthRegisterProps) {
@@ -51,23 +51,7 @@ export function AuthRegister(props: AuthRegisterProps) {
 					)}
 				/>
 
-				<p className="text-sm mb-4">By registering you agree with our terms and conditions</p>
-
-				<form.Submit className="w-full">{t("register")}</form.Submit>
-
-				<div className="mb-4 text-center text-sm text-foreground-active mt-6">
-					<Trans
-						t={t}
-						i18nKey="link-login"
-						components={{
-							target: (
-								<Link to="/login" className="underline ml-1">
-									{t("login")}
-								</Link>
-							),
-						}}
-					/>
-				</div>
+				{props.children}
 			</form.Form>
 		</>
 	);

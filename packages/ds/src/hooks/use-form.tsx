@@ -4,6 +4,16 @@ import { Button } from "../components/ui/button";
 
 export const { fieldContext, formContext, useFormContext, useFieldContext } = createFormHookContexts();
 
+export function Submit(props: React.ComponentProps<"button">) {
+	const form = useFormContext();
+
+	return (
+		<form.Subscribe selector={(state) => state.isSubmitting}>
+			{(isSubmitting) => <Button {...props} type="submit" disabled={isSubmitting} />}
+		</form.Subscribe>
+	);
+}
+
 export const { useAppForm } = createFormHook({
 	fieldComponents: {},
 	formComponents: {
@@ -29,15 +39,7 @@ export const { useAppForm } = createFormHook({
 				</form.AppForm>
 			);
 		},
-		Submit(props: React.ComponentProps<"button">) {
-			const form = useFormContext();
-
-			return (
-				<form.Subscribe selector={(state) => state.isSubmitting}>
-					{(isSubmitting) => <Button {...props} type="submit" disabled={isSubmitting} />}
-				</form.Subscribe>
-			);
-		},
+		Submit,
 		Fieldset(props: { children: React.ReactNode; label?: string }) {
 			const field = useFieldContext();
 

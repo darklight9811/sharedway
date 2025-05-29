@@ -14,7 +14,6 @@
 	},
 	"devDependencies": {
 		"@faker-js/faker": "^9.8.0",
-		"@types/bun": "latest",
 		"@types/pg": "^8.15.2",
 		"drizzle-kit": "^0.31.1",
 		"tailwindcss": "^4.1.8",
@@ -36,7 +35,6 @@
 		"lucide-react": "^0.503.0",
 		"pg": "^8.16.0",
 		"react": "^19.1.0",
-		"react-hook-form": "^7.56.4",
 		"superjson": "^2.2.2",
 		"uploadthing": "^7.7.2",
 		"zod-form-data": "^2.0.7"

@@ -1,16 +1,14 @@
 import { useAppForm } from "@repo/ds/hooks/use-form";
-import { Trans, useTranslation } from "@repo/ds/lib/localization";
+import { useTranslation } from "@repo/ds/lib/localization";
 import { Alert, AlertDescription } from "@repo/ds/ui/alert";
 import { Input } from "@repo/ds/ui/input";
-import { Link } from "react-router";
 
 import { type LoginSchema, loginSchema } from "../schema";
 
 export interface AuthLoginProps {
 	onSubmit?(props: LoginSchema): void;
 	errors?: { message: string }[];
-	disableForgot?: boolean;
-	disableRegister?: boolean;
+	children?: React.ReactNode;
 }
 
 export function AuthLogin(props: AuthLoginProps) {
@@ -24,9 +22,7 @@ export function AuthLogin(props: AuthLoginProps) {
 		},
 		onSubmit: ({ value }) => props.onSubmit?.(value),
 	});
-	const { t } = useTranslation("general", {
-		keyPrefix: "auth",
-	});
+	const { t } = useTranslation("auth");
 
 	return (
 		<>
@@ -54,29 +50,7 @@ export function AuthLogin(props: AuthLoginProps) {
 					)}
 				/>
 
-				{props.disableForgot !== true && (
-					<Link to="/forgot" className="mt-4 mb-8 text-sm text-foreground-active font-medium underline">
-						{t("forgot")}
-					</Link>
-				)}
-
-				<form.Submit className="w-full">{t("login")}</form.Submit>
-
-				{props.disableRegister !== true && (
-					<div className="mt-4 text-center text-sm mb-2 text-foreground-active">
-						<Trans
-							t={t}
-							i18nKey="link-register"
-							components={{
-								target: (
-									<Link key="register" to="/register" className="underline ml-1">
-										{t("register")}
-									</Link>
-								),
-							}}
-						/>
-					</div>
-				)}
+				{props.children}
 			</form.Form>
 		</>
 	);

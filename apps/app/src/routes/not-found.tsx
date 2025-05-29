@@ -1,12 +1,5 @@
-import { authService } from "@repo/domains/auth/service.server";
 import { buttonVariants } from "@repo/ds/ui/button";
 import { Link } from "react-router";
-
-export async function loader({ request }: { request: Request }) {
-	const user = await authService.session(request.headers);
-
-	return { user };
-}
 
 export default function NotFoundPage() {
 	return (

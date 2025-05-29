@@ -4,11 +4,11 @@
 	"packageManager": "bun@1.2.15",
 	"scripts": {
 		"dev": "bun --bun turbo dev --",
-		"verify": "turbo verify --",
+		"verify": "bun --bun turbo verify --",
+		"lint": "bun --bun turbo lint --",
 		"ds": "cd packages/ds && bun",
 		"deps": "taze -I -r",
 		"symlink": "symlink-dir ./public ./apps/app/public",
-		"env": "dotenvx run -f .env.local -f .env --log-level=error --",
 		"postinstall": "bun run symlink"
 	},
 	"workspaces": [
