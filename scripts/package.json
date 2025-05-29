@@ -10,7 +10,7 @@
 		"./*": "./src/*.ts"
 	},
 	"devDependencies": {
-		"@types/bun": "^1.2.14",
+		"@types/bun": "^1.2.15",
 		"@types/lcov-parse": "^1.0.2"
 	},
 	"dependencies": {

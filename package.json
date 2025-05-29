@@ -1,7 +1,7 @@
 {
 	"name": "sharedway",
 	"private": true,
-	"packageManager": "bun@1.2.14",
+	"packageManager": "bun@1.2.15",
 	"scripts": {
 		"dev": "bun --bun turbo dev --",
 		"verify": "turbo verify --",
