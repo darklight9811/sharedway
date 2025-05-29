@@ -1,5 +1,4 @@
-import { Field } from "@repo/ds/form/field";
-import { Form } from "@repo/ds/form/form";
+import { useAppForm } from "@repo/ds/hooks/use-form";
 import { Input } from "@repo/ds/ui/input";
 import { useTranslation } from "react-i18next";
 
@@ -15,13 +14,33 @@ interface Props {
 
 export function UserForm(props: Props) {
 	const { t } = useTranslation("profile");
+	const form = useAppForm({
+		defaultValues: props.data,
+		validators: {
+			onSubmit: userFormSchema,
+		},
+	});
 
 	return (
-		<Form onSubmit={props.onSubmit} schema={userFormSchema} data={props.data} className={props.className}>
-			<Field name="name" label={t("form.name")} render={({ field }) => <Input {...field} />} />
-			<Field name="email" label={t("form.email")} render={({ field }) => <Input type="email" {...field} />} />
+		<form.Form form={form} className={props.className}>
+			<form.AppField
+				name="name"
+				children={(field) => (
+					<form.Fieldset label={t("form.name")}>
+						<Input value={field.state.value} onChange={field.handleChange} />
+					</form.Fieldset>
+				)}
+			/>
+			<form.AppField
+				name="email"
+				children={(field) => (
+					<form.Fieldset label={t("form.email")}>
+						<Input type="email" value={field.state.value} onChange={field.handleChange} />
+					</form.Fieldset>
+				)}
+			/>
 
 			{props.children}
-		</Form>
+		</form.Form>
 	);
 }

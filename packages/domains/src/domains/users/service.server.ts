@@ -1,6 +1,5 @@
-import type { PaginationSchema } from "@repo/domains/app/schema";
-import type { UserSchema } from "@repo/domains/users/schema";
-
+import type { PaginationSchema } from "../app/schema";
+import type { UserSchema } from "./schema";
 import { userSQL } from "./sql/sql.server";
 
 export const userService = {

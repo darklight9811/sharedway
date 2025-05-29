@@ -9,9 +9,9 @@ export const users = c.table("users", {
 	name: c.varchar().notNull(),
 	image: c.varchar(),
 	email: c.varchar().notNull().unique(),
-	email_verified: c.boolean().default(false).notNull(),
+	emailVerified: c.boolean().default(false).notNull(),
 	is_anonymous: c.boolean().default(false).notNull(),
 
-	date_created: c.timestamp().notNull().defaultNow(),
-	date_updated: c.timestamp(),
+	createdAt: c.timestamp().notNull().defaultNow(),
+	updatedAt: c.timestamp(),
 });

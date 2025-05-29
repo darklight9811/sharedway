@@ -36,7 +36,7 @@ export function AuthLogin(props: AuthLoginProps) {
 				</Alert>
 			)}
 
-			<form.Form className="flex flex-col w-full *:animate-top-in">
+			<form.Form form={form} className="flex flex-col w-full *:animate-top-in">
 				<form.AppField
 					name="email"
 					children={(field) => (

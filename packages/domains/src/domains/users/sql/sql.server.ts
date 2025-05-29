@@ -1,8 +1,8 @@
-import type { PaginationSchema } from "@repo/domains/app/schema";
-import type { UserSchema } from "@repo/domains/users/schema";
 import { count, eq, or } from "drizzle-orm";
 
 import { db } from "../../../utils/db";
+import type { PaginationSchema } from "../../app/schema";
+import type { UserSchema } from "../schema";
 import { users } from "./table.server";
 
 /**
@@ -20,7 +20,7 @@ export const userSQL = {
 			db.query.users.findMany({
 				limit: pagination.limit,
 				offset: pagination.limit * (pagination.page - 1),
-				orderBy: (table, { desc }) => [desc(table.date_created)],
+				orderBy: (table, { desc }) => [desc(table.createdAt)],
 			}),
 			db
 				.select({ count: count() })

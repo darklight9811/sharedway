@@ -16,7 +16,7 @@ export const c = {
 	int: integer,
 	relations,
 	stamp: () => ({
-		date_created: timestamp().notNull().defaultNow(),
-		date_updated: timestamp(),
+		createdAt: timestamp().notNull().defaultNow(),
+		updatedAt: timestamp(),
 	}),
 };
