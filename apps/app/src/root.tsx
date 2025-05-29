@@ -12,7 +12,7 @@ import {
 	useLoaderData,
 } from "react-router";
 
-import "./app.css";
+import "@repo/ds/style";
 
 import { useTranslation } from "@repo/ds/lib/localization";
 import { Toaster } from "@repo/ds/ui/toast";

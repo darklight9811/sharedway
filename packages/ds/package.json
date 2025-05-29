@@ -10,7 +10,8 @@
 		"./*": "./src/components/*.tsx",
 		"./lib/*": "./src/lib/*.ts",
 		"./hooks/*": "./src/hooks/*.tsx",
-		"./v": "./src/lib/v/index.ts"
+		"./v": "./src/lib/v/index.ts",
+		"./style": "./src/style.css"
 	},
 	"devDependencies": {
 		"shadcn": "^2.5.0"
