@@ -5,7 +5,8 @@
 	"type": "module",
 	"exports": {
 		".": "./src/domains/index.ts",
-		"./*": "./src/domains/*/index.ts"
+		"./*": "./src/domains/*/index.ts",
+		"./server": "./src/server.ts"
 	},
 	"license": "MIT",
 	"scripts": {
@@ -22,8 +23,8 @@
 	},
 	"dependencies": {
 		"@repo/ds": "workspace:*",
-		"@tanstack/react-query": "^5.77.2",
-		"@tanstack/react-query-devtools": "^5.77.2",
+		"@tanstack/react-query": "^5.79.0",
+		"@tanstack/react-query-devtools": "^5.79.0",
 		"@trpc/client": "^11.1.4",
 		"@trpc/server": "^11.1.4",
 		"@trpc/tanstack-react-query": "^11.1.4",

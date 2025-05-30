@@ -4,7 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "react-router build",
-		"dev": "bun --bun vite",
+		"dev": "bun --env-file=../../.env --env-file=../../.env.local --bun vite",
 		"start": "bun ./build/server/index.js",
 		"verify": "biome check --error-on-warnings ./src"
 	},

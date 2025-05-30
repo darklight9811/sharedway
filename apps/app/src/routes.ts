@@ -1,4 +1,4 @@
-import { index, layout, type RouteConfig, route } from "@react-router/dev/routes";
+import { layout, type RouteConfig, route } from "@react-router/dev/routes";
 
 export default [
 	layout("routes/(auth)/layout.tsx", [
@@ -8,4 +8,7 @@ export default [
 
 	// catch-all
 	route("/*", "./routes/not-found.tsx", { id: "not-found" }),
+
+	// api
+	route("/api/trpc/*", "./routes/api/trpc/route.ts"),
 ] satisfies RouteConfig;
