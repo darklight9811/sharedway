@@ -43,8 +43,6 @@ export const { useAppForm } = createFormHook({
 		Fieldset(props: { children: React.ReactNode; label?: string }) {
 			const field = useFieldContext();
 
-			console.log(field.state.meta);
-
 			return (
 				<fieldset>
 					{props.label && <label htmlFor={field.name}>{props.label}</label>}

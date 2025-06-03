@@ -1,6 +1,5 @@
-import { z } from "zod";
+import { z } from "zod/v4";
 
-export * from "zod";
-export { file, formData, numeric, text, zfd } from "zod-form-data";
+export * from "zod/v4";
 
 export const id = () => z.string();

@@ -15,7 +15,7 @@
 	},
 	"devDependencies": {
 		"@faker-js/faker": "^9.8.0",
-		"@types/pg": "^8.15.2",
+		"@types/pg": "^8.15.4",
 		"drizzle-kit": "^0.31.1",
 		"tailwindcss": "^4.1.8",
 		"typescript": "^5.8.3",
@@ -23,21 +23,21 @@
 	},
 	"dependencies": {
 		"@repo/ds": "workspace:*",
-		"@tanstack/react-query": "^5.79.0",
-		"@tanstack/react-query-devtools": "^5.79.0",
-		"@trpc/client": "^11.1.4",
-		"@trpc/server": "^11.1.4",
-		"@trpc/tanstack-react-query": "^11.1.4",
+		"@tanstack/react-query": "^5.80.2",
+		"@tanstack/react-query-devtools": "^5.80.2",
+		"@trpc/client": "^11.2.0",
+		"@trpc/server": "^11.2.0",
+		"@trpc/tanstack-react-query": "^11.2.0",
 		"@uploadthing/react": "^7.3.1",
 		"better-auth": "^1.2.8",
 		"cookie": "^1.0.2",
 		"drizzle-cuid2": "1.0.5",
-		"drizzle-orm": "^0.44.0",
+		"drizzle-orm": "^0.44.1",
 		"lucide-react": "^0.503.0",
 		"pg": "^8.16.0",
 		"react": "^19.1.0",
 		"superjson": "^2.2.2",
 		"uploadthing": "^7.7.2",
-		"zod-form-data": "^2.0.7"
+		"zod-form-data": "^3.0.0"
 	}
 }
