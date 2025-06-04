@@ -6,7 +6,8 @@
 	"exports": {
 		".": "./src/domains/index.ts",
 		"./*": "./src/domains/*/index.ts",
-		"./server": "./src/server.ts"
+		"./server": "./src/server.ts",
+		"./utils/*": "./src/utils/*.ts"
 	},
 	"license": "MIT",
 	"scripts": {
@@ -37,7 +38,6 @@
 		"pg": "^8.16.0",
 		"react": "^19.1.0",
 		"superjson": "^2.2.2",
-		"uploadthing": "^7.7.2",
-		"zod-form-data": "^3.0.0"
+		"uploadthing": "^7.7.2"
 	}
 }

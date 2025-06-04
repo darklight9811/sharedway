@@ -35,6 +35,13 @@ export const links: LinksFunction = () => [
 		rel: "icon",
 		type: "image/svg+xml",
 		href: "/images/logo/favicon.svg",
+		media: "(prefers-color-scheme: light)",
+	},
+	{
+		rel: "icon",
+		type: "image/svg+xml",
+		href: "/images/logo/favicon-light.svg",
+		media: "(prefers-color-scheme: dark)",
 	},
 ];
 

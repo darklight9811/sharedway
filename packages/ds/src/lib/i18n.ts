@@ -1,4 +1,4 @@
-export default {
+export const i18n = {
 	interpolation: {
 		escapeValue: false,
 	},
@@ -12,3 +12,5 @@ export default {
 	defaultNS: "general",
 	ns: ["general"],
 };
+
+export default i18n;
