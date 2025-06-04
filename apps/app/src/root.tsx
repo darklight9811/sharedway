@@ -1,4 +1,4 @@
-import { queryClient } from "@repo/domains/app";
+import { Navbar, queryClient } from "@repo/domains/app";
 import { QueryClientProvider } from "@tanstack/react-query";
 import {
 	isRouteErrorResponse,
@@ -61,7 +61,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	const { i18n } = useTranslation();
 
 	return (
-		<html lang={locale} dir={i18n.dir()}>
+		<html lang={locale} dir={i18n.dir()} className="h-full scroll-smooth">
 			<head>
 				<meta charSet="utf-8" />
 				<meta
@@ -74,8 +74,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Meta />
 				<Links />
 			</head>
-			<body>
-				{children}
+			<body className="flex flex-col h-full">
+				<div className="grow w-full flex h-screen">
+					<div id="content" className="flex flex-col w-full grow relative *:animate-fade-in">
+						{children}
+					</div>
+				</div>
 				<ScrollRestoration />
 				<Scripts />
 			</body>
@@ -88,6 +92,7 @@ export default function App() {
 		<StrictMode>
 			<QueryClientProvider client={queryClient}>
 				<Toaster />
+				<Navbar />
 				<Outlet />
 				<Footer />
 			</QueryClientProvider>
