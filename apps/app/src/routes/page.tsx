@@ -1,7 +1,10 @@
+import { metadata } from "@repo/domains/utils/metadata";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@repo/ds/accordion";
 import { buttonVariants } from "@repo/ds/button";
 import { ArrowRight, Code, Handshake, Users } from "lucide-react";
 import { Link } from "react-router";
+
+export const meta = metadata({});
 
 export default function HomePage() {
 	return (
