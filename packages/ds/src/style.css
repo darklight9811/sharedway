@@ -8,15 +8,15 @@
 
 :root {
 	--background: oklch(1 0 0);
-	--foreground: oklch(0.145 0 0);
+	--foreground: oklch(20.77% 0.04 265.75);
 	--card: oklch(1 0 0);
 	--card-foreground: oklch(0.145 0 0);
 	--popover: oklch(1 0 0);
 	--popover-foreground: oklch(0.145 0 0);
-	--primary: oklch(0.205 0 0);
-	--primary-foreground: oklch(0.985 0 0);
+	--primary: hsl(208 87% 67%);
+	--primary-foreground: hsl(210 40% 98%);
 	--secondary: oklch(0.97 0 0);
-	--secondary-foreground: oklch(0.205 0 0);
+	--secondary-foreground: hsl(198 38% 78%);
 	--muted: oklch(0.97 0 0);
 	--muted-foreground: oklch(0.556 0 0);
 	--accent: oklch(0.97 0 0);

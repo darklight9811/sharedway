@@ -15,6 +15,7 @@ import {
 import "@repo/ds/style";
 
 import { useTranslation } from "@repo/ds/lib/localization";
+import { Footer } from "@repo/ds/template/footer";
 import { Toaster } from "@repo/ds/ui/toast";
 import { StrictMode } from "react";
 
@@ -88,6 +89,7 @@ export default function App() {
 			<QueryClientProvider client={queryClient}>
 				<Toaster />
 				<Outlet />
+				<Footer />
 			</QueryClientProvider>
 		</StrictMode>
 	);
