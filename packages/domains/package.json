@@ -34,6 +34,7 @@
 		"cookie": "^1.0.2",
 		"drizzle-cuid2": "1.0.5",
 		"drizzle-orm": "^0.44.1",
+		"drizzle-zod": "^0.8.2",
 		"lucide-react": "^0.503.0",
 		"pg": "^8.16.0",
 		"react": "^19.1.0",
