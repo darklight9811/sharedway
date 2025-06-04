@@ -1,7 +1,7 @@
+import { Alert, AlertDescription } from "@repo/ds/alert";
 import { useAppForm } from "@repo/ds/hooks/use-form";
+import { Input } from "@repo/ds/input";
 import { useTranslation } from "@repo/ds/lib/localization";
-import { Alert, AlertDescription } from "@repo/ds/ui/alert";
-import { Input } from "@repo/ds/ui/input";
 
 import { type RegisterSchema, registerSchema } from "../schema";
 

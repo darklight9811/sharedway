@@ -1,6 +1,6 @@
 import { createFormHook, createFormHookContexts } from "@tanstack/react-form";
 
-import { Button } from "../components/ui/button";
+import { Button } from "../components/button";
 
 export const { fieldContext, formContext, useFormContext, useFieldContext } = createFormHookContexts();
 

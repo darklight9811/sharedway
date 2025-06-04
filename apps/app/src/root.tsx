@@ -14,9 +14,9 @@ import {
 
 import "@repo/ds/style";
 
+import { Footer } from "@repo/domains/app";
 import { useTranslation } from "@repo/ds/lib/localization";
-import { Footer } from "@repo/ds/template/footer";
-import { Toaster } from "@repo/ds/ui/toast";
+import { Toaster } from "@repo/ds/toast";
 import { StrictMode } from "react";
 
 import i18next from "./utils/i19next.server";

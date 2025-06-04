@@ -1,5 +1,5 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@repo/ds/ui/accordion";
-import { buttonVariants } from "@repo/ds/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@repo/ds/accordion";
+import { buttonVariants } from "@repo/ds/button";
 import { ArrowRight, Code, Handshake, Users } from "lucide-react";
 import { Link } from "react-router";
 

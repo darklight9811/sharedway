@@ -1,5 +1,4 @@
-import { env } from "@repo/domains/app";
-import { Footer } from "@repo/ds/template/footer";
+import { env, Footer } from "@repo/domains/app";
 import { Outlet } from "react-router";
 
 export default function Layout() {

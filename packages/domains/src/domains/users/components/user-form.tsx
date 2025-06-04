@@ -1,5 +1,5 @@
 import { useAppForm } from "@repo/ds/hooks/use-form";
-import { Input } from "@repo/ds/ui/input";
+import { Input } from "@repo/ds/input";
 import { useTranslation } from "react-i18next";
 
 import { type UserFormSchema, userFormSchema } from "../schema";

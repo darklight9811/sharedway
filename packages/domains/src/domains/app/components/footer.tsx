@@ -1,9 +1,8 @@
 import { env } from "@repo/domains/app";
+import { useTranslation } from "@repo/ds/lib/localization";
+import { cn } from "@repo/ds/lib/utils";
 import { MailIcon } from "lucide-react";
 import { Link } from "react-router";
-
-import { useTranslation } from "../../lib/localization";
-import { cn } from "../../lib/utils";
 
 export interface Props {
 	className?: string;

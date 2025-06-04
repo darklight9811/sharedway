@@ -1,4 +1,4 @@
-import { buttonVariants } from "@repo/ds/ui/button";
+import { buttonVariants } from "@repo/ds/button";
 import { Link } from "react-router";
 
 export default function NotFoundPage() {
