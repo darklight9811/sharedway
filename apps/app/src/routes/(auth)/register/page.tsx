@@ -12,13 +12,13 @@ import { trpc } from "@repo/domains";
 export const meta = metadata({ title: "Register" });
 
 export default function RegisterPage() {
-	const { mutateAsync: register } = useMutation(trpc.auth.register.mutationOptions());
+	const { mutateAsync: register, error } = useMutation(trpc.auth.register.mutationOptions());
 	const { t } = useTranslation("general", {
 		keyPrefix: "auth",
 	});
 
 	return (
-		<AuthRegister onSubmit={register}>
+		<AuthRegister onSubmit={register} errors={error}>
 			<p className="text-sm mb-4">By registering you agree with our terms and conditions</p>
 
 			<Submit className="w-full">{t("register")}</Submit>

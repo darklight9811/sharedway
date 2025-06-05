@@ -18,7 +18,7 @@ export const accounts = c.table("accounts", {
 	id: c.id().defaultRandom().primaryKey(),
 
 	userId: c.id("userId").references(() => users.id, { onDelete: "cascade" }),
-	accontId: c.varchar().notNull(),
+	accountId: c.varchar().notNull(),
 	providerId: c.varchar().notNull(),
 	scope: c.varchar(),
 

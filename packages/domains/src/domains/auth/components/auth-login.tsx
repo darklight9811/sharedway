@@ -1,4 +1,4 @@
-import { Alert, AlertDescription } from "@repo/ds/alert";
+import { ErrorAlert } from "@repo/ds/alert";
 import { useAppForm } from "@repo/ds/hooks/use-form";
 import { Input } from "@repo/ds/input";
 import { useTranslation } from "@repo/ds/lib/localization";
@@ -7,7 +7,7 @@ import { type LoginSchema, loginSchema } from "../schema";
 
 export interface AuthLoginProps {
 	onSubmit?(props: LoginSchema): void;
-	errors?: { message: string }[];
+	errors?: { message: string }[] | { message: string } | null;
 	children?: React.ReactNode;
 }
 
@@ -26,11 +26,7 @@ export function AuthLogin(props: AuthLoginProps) {
 
 	return (
 		<>
-			{props.errors && (
-				<Alert variant="destructive" className="animate-top-in my-2">
-					<AlertDescription>{props.errors.at(0)?.message}</AlertDescription>
-				</Alert>
-			)}
+			<ErrorAlert error={props.errors} />
 
 			<form.Form form={form} className="flex flex-col w-full *:animate-top-in">
 				<form.AppField

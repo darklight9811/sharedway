@@ -103,11 +103,11 @@ export function Navbar() {
 							</DropdownMenu>
 						) : (
 							<>
-								<Link to="/sign-in" className="hidden md:inline">
+								<Link to="/login" className="hidden md:inline">
 									{t("login")}
 								</Link>
 								<Link
-									to="/sign-up"
+									to="/register"
 									className={buttonVariants({
 										variant: "outline",
 										className: "gap-2",

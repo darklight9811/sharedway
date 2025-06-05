@@ -10,7 +10,7 @@ const alertVariants = cva(
 			variant: {
 				default: "bg-card text-card-foreground",
 				destructive:
-					"text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
+					"text-destructive border-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
 			},
 		},
 		defaultVariants: {
@@ -46,4 +46,19 @@ function AlertDescription({ className, ...props }: React.ComponentProps<"div">) 
 	);
 }
 
-export { Alert, AlertTitle, AlertDescription };
+function ErrorAlert({
+	className,
+	...props
+}: React.ComponentProps<"div"> & { error?: { message: string }[] | { message: string } | null }) {
+	if (!props.error) return null;
+
+	return (
+		<Alert variant="destructive" className="animate-top-in mb-4">
+			<AlertDescription>
+				{Array.isArray(props.error) ? props.error.at(0)?.message : props.error.message}
+			</AlertDescription>
+		</Alert>
+	);
+}
+
+export { Alert, AlertTitle, AlertDescription, ErrorAlert };

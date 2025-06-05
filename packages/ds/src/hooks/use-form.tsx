@@ -2,6 +2,7 @@ import { createFormHook, createFormHookContexts } from "@tanstack/react-form";
 import type { ComponentProps } from "react";
 
 import { Button } from "../components/button";
+import { Label } from "../components/label";
 
 export const { fieldContext, formContext, useFormContext, useFieldContext } = createFormHookContexts();
 
@@ -46,9 +47,15 @@ export const { useAppForm } = createFormHook({
 
 			return (
 				<fieldset>
-					{props.label && <label htmlFor={field.name}>{props.label}</label>}
+					{props.label && (
+						<Label className="pb-2" htmlFor={field.name}>
+							{props.label}
+						</Label>
+					)}
 					{props.children}
-					{!field.state.meta.isValid && <em>{field.state.meta.errors.map((t) => t.message).join(", ")}</em>}
+					<p className="mt-2 text-sm font-medium text-destructive h-5" role="alert">
+						{field.state.meta.errors.map((t) => t.message).join(", ")}
+					</p>
 				</fieldset>
 			);
 		},

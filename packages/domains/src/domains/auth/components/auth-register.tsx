@@ -1,4 +1,4 @@
-import { Alert, AlertDescription } from "@repo/ds/alert";
+import { ErrorAlert } from "@repo/ds/alert";
 import { useAppForm } from "@repo/ds/hooks/use-form";
 import { Input } from "@repo/ds/input";
 import { useTranslation } from "@repo/ds/lib/localization";
@@ -7,7 +7,7 @@ import { type RegisterSchema, registerSchema } from "../schema";
 
 export interface AuthRegisterProps {
 	onSubmit?(props: RegisterSchema): void;
-	errors?: { message: string }[];
+	errors?: { message: string }[] | { message: string } | null;
 	children?: React.ReactNode;
 }
 
@@ -28,11 +28,8 @@ export function AuthRegister(props: AuthRegisterProps) {
 		<>
 			<h1 className="text-xl text-foreground-active mb-8 animate-top-in">{t("register")}</h1>
 
-			{props.errors && (
-				<Alert variant="destructive" className="animate-top-in">
-					<AlertDescription>{props.errors.at(0)?.message}</AlertDescription>
-				</Alert>
-			)}
+			<ErrorAlert error={props.errors} />
+
 			<form.Form form={form} className="flex flex-col w-full *:animate-top-in">
 				<form.AppField
 					name="email"

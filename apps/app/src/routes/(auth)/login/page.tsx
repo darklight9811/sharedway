@@ -12,13 +12,13 @@ import { trpc } from "@repo/domains";
 export const meta = metadata({ title: "Login" });
 
 export default function RegisterPage() {
-	const { mutateAsync: login } = useMutation(trpc.auth.login.mutationOptions());
+	const { mutateAsync: login, error } = useMutation(trpc.auth.login.mutationOptions());
 	const { t } = useTranslation("general", {
 		keyPrefix: "auth",
 	});
 
 	return (
-		<AuthLogin onSubmit={login}>
+		<AuthLogin onSubmit={login} errors={error}>
 			<Link to="/forgot" className="mt-4 mb-8 text-sm text-foreground-active font-medium underline">
 				{t("forgot")}
 			</Link>

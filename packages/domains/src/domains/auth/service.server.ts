@@ -1,3 +1,5 @@
+import { TRPCError } from "@trpc/server";
+
 import { db } from "../../utils/db";
 import { auth } from "./helpers/auth.server";
 import type { LoginSchema, RegisterSchema } from "./schema";
@@ -9,9 +11,9 @@ export const authService = {
 				headers,
 			})
 			.then((t) =>
-				t?.user ? db.query.users.findFirst({ where: (table, { eq }) => eq(table.id, t.user.id) }) : undefined,
+				t?.user ? db.query.users.findFirst({ where: (table, { eq }) => eq(table.id, t.user.id) }) : null,
 			)
-			.catch(() => undefined);
+			.catch(() => null);
 	},
 
 	async register(payload: RegisterSchema) {
@@ -23,6 +25,8 @@ export const authService = {
 			asResponse: true,
 		});
 
+		if (!response.ok) throw new TRPCError({ ...(await response.json()), code: "BAD_REQUEST" });
+
 		return response.headers.get("set-cookie");
 	},
 
@@ -31,6 +35,8 @@ export const authService = {
 			body: payload,
 			asResponse: true,
 		});
+
+		if (!response.ok) throw new TRPCError({ ...(await response.json()), code: "BAD_REQUEST" });
 
 		return response.headers.get("set-cookie");
 	},
