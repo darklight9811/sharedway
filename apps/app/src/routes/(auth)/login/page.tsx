@@ -1,9 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 import { Submit } from "@repo/ds/hooks/use-form";
 import { Trans, useTranslation } from "@repo/ds/lib/localization";
 
+import { queryClient } from "@repo/domains/app";
 import { AuthLogin } from "@repo/domains/auth";
 import { metadata } from "@repo/domains/utils/metadata";
 
@@ -12,7 +13,18 @@ import { trpc } from "@repo/domains";
 export const meta = metadata({ title: "Login" });
 
 export default function RegisterPage() {
-	const { mutateAsync: login, error } = useMutation(trpc.auth.login.mutationOptions());
+	const navigate = useNavigate();
+	const { mutateAsync: login, error } = useMutation(
+		trpc.auth.login.mutationOptions({
+			onSuccess(data) {
+				console.log(data);
+				if (data) {
+					queryClient.invalidateQueries();
+					navigate("/");
+				}
+			},
+		}),
+	);
 	const { t } = useTranslation("general", {
 		keyPrefix: "auth",
 	});

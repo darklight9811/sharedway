@@ -7,6 +7,8 @@ export const authRouter = t.router({
 		const response = await authService.register(input);
 
 		ctx.cookie.set("token", response.token);
+
+		return response.user;
 	}),
 
 	login: t.route.input(loginSchema).mutation(async ({ input, ctx }) => {
@@ -14,7 +16,7 @@ export const authRouter = t.router({
 
 		ctx.cookie.set("token", response.token);
 
-		return response;
+		return response.user;
 	}),
 
 	session: t.route.query(({ ctx }) => {

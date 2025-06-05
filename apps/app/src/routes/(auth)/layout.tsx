@@ -1,6 +1,10 @@
-import { Outlet } from "react-router";
+import { type LoaderFunction, Outlet, redirect } from "react-router";
 
 import { env, Footer } from "@repo/domains/app";
+
+export const loader: LoaderFunction = async ({ request }) => {
+	if (request.headers.get("cookie")?.includes("token")) return redirect("/");
+};
 
 export default function Layout() {
 	return (
