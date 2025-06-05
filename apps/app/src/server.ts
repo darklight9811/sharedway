@@ -19,6 +19,8 @@ const apiRoutes = new Hono().all("/trpc/*", async (c) => {
 			}),
 	});
 
+	console.log(c.req.raw.headers);
+
 	for (const [key, value] of c.req.raw.headers) {
 		if (["set-cookie"].includes(key.toLowerCase())) response.headers.append(key, value);
 	}

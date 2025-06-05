@@ -1,5 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { bearer } from "better-auth/plugins/bearer";
 
 import { db } from "../../../utils/db";
 import { env } from "../../app/env";
@@ -9,6 +10,8 @@ import { accounts, sessions, verifications } from "../sql/table.server";
 export const auth = betterAuth({
 	baseURL: `${env.app_url}/auth`,
 	trustedOrigins: [`${process.env.APP_URL!}`, "http://localhost:3000"],
+
+	plugins: [bearer()],
 
 	secret: env.secret,
 	database: drizzleAdapter(db, {
@@ -22,7 +25,6 @@ export const auth = betterAuth({
 		usePlural: true,
 	}),
 	advanced: {
-		cookiePrefix: undefined,
 		cookieOptions: {
 			httpOnly: true,
 			sameSite: "lax",

@@ -5,10 +5,12 @@ import { auth } from "./helpers/auth.server";
 import type { LoginSchema, RegisterSchema } from "./schema";
 
 export const authService = {
-	session(headers: Headers) {
+	session(token?: string | Headers | null) {
+		if (!token) return null;
+
 		return auth.api
 			.getSession({
-				headers,
+				headers: typeof token === "string" ? new Headers({ Authorization: `Bearer ${token}` }) : token,
 			})
 			.then((t) =>
 				t?.user ? db.query.users.findFirst({ where: (table, { eq }) => eq(table.id, t.user.id) }) : null,
@@ -22,31 +24,30 @@ export const authService = {
 				...payload,
 				name: payload.name || payload.email.split("@")[0],
 			},
-			asResponse: true,
 		});
 
-		if (!response.ok) throw new TRPCError({ ...(await response.json()), code: "BAD_REQUEST" });
+		if (!response.token) throw new TRPCError({ code: "BAD_REQUEST", message: "register_failed" });
 
-		return response.headers.get("set-cookie");
+		return response;
 	},
 
 	async login(payload: LoginSchema) {
 		const response = await auth.api.signInEmail({
 			body: payload,
-			asResponse: true,
 		});
 
-		if (!response.ok) throw new TRPCError({ ...(await response.json()), code: "BAD_REQUEST" });
+		if (!response.token) throw new TRPCError({ code: "BAD_REQUEST", message: "login_failed" });
 
-		return response.headers.get("set-cookie");
+		return response;
 	},
 
-	async logout(header: Headers) {
+	async logout(token?: string | Headers | null) {
+		if (!token) return null;
+
 		const response = await auth.api.signOut({
-			headers: header,
-			asResponse: true,
+			headers: typeof token === "string" ? new Headers({ Authorization: `Bearer ${token}` }) : token,
 		});
 
-		return response.headers.get("set-cookie");
+		return response;
 	},
 };
