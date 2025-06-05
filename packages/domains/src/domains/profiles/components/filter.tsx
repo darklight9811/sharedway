@@ -6,7 +6,7 @@ import { Button } from "@repo/ds/button";
 import { CalendarInput } from "@repo/ds/calendar-input";
 import { useAppForm } from "@repo/ds/hooks/use-form";
 import { Input } from "@repo/ds/input";
-import { parseToDate, stringifyDate } from "@repo/ds/lib/date";
+import { stringifyDate } from "@repo/ds/lib/date";
 import { useTranslation } from "@repo/ds/lib/localization";
 
 interface Props {
@@ -21,7 +21,7 @@ export function Filter(props: Props) {
 		defaultValues: {
 			...props.data,
 			q: (props.data?.q as string) || "",
-			date_disappeared: parseToDate(props.data?.date_disappeared as string),
+			date_disappeared: { from: new Date(), to: new Date() } as { from: Date | undefined; to?: Date } | undefined,
 		},
 		onSubmit({ value }) {
 			if (timer.current) clearTimeout(timer.current);
@@ -56,7 +56,7 @@ export function Filter(props: Props) {
 				name="date_disappeared"
 				children={(field) => (
 					<form.Fieldset label={t("date_disappeared")}>
-						<CalendarInput mode="range" selected={field.state.value} onChange={field.handleChange} />
+						<CalendarInput mode="range" selected={field.state.value} onSelect={field.handleChange} />
 					</form.Fieldset>
 				)}
 			/>

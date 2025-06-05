@@ -5,8 +5,10 @@ export const paginationSchema = v
 		page: v.coerce.number().default(1),
 		limit: v.coerce.number().default(25),
 		q: v.coerce.string().optional(),
+		sort: v.enum(["asc", "desc"]).default("asc"),
+		order: v.string().optional(),
 	})
-	.default({});
+	.default({ limit: 25, page: 1, sort: "asc" });
 
 export type PaginationSchema = v.infer<typeof paginationSchema>;
 
@@ -18,12 +20,4 @@ export function paginatedSchema<Response extends ZodType>(schema: Response) {
 			items: v.number(),
 		})
 		.and(paginationSchema);
-}
-
-export function dataSchema<Response extends ZodType>(schema: Response) {
-	return v
-		.object({
-			data: schema,
-		})
-		.transform((d) => d.data);
 }

@@ -33,7 +33,6 @@ export default function Page() {
 			<main className="w-full flex flex-col justify-between relative">
 				<Sort
 					className="flex gap-2 bg-white rounded-[24px] *:m-0 p-2 shadow sticky top-[72px] z-[11]"
-					data={pagination}
 					order={{
 						name: t("new.general.name"),
 						date_created: t("date_created"),

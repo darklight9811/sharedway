@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import type { ComponentProps } from "react";
 import type { DayPicker } from "react-day-picker";
@@ -18,7 +17,12 @@ export function CalendarInput({ modal, ...props }: Props) {
 				<Button className="w-full justify-start px-3 gap-2" variant="outline">
 					<CalendarIcon />
 
-					{props.selected && format(props.selected as Date, "dd/MM/yyyy")}
+					{(() => {
+						if (props.mode !== "range") return props.selected?.toLocaleString().split(",")[0];
+						if (!props.selected?.to) return props.selected?.from?.toLocaleString().split(",")[0];
+
+						return `${props.selected?.from?.toLocaleString().split(",")[0]}-${props.selected?.to?.toLocaleString().split(",")[0]}`;
+					})()}
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent>
