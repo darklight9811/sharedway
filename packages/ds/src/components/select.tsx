@@ -4,7 +4,12 @@ import type * as React from "react";
 
 import { cn } from "../lib/utils";
 
-function Select({ ...props }: React.ComponentProps<typeof SelectPrimitive.Root>) {
+function Select<Value extends string = string>({
+	...props
+}: Omit<React.ComponentProps<typeof SelectPrimitive.Root>, "value" | "onValueChange"> & {
+	value?: Value;
+	onValueChange?: (value: Value) => void;
+}) {
 	return <SelectPrimitive.Root data-slot="select" {...props} />;
 }
 

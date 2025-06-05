@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
 
 import { Alert, AlertDescription, AlertTitle } from "@repo/ds/alert";
@@ -16,6 +16,7 @@ export const meta = metadata({ title: "Novo desaparecido" });
 export default function Page() {
 	const { t } = useTranslation("profiles");
 	const { data: user } = useQuery(trpc.auth.session.queryOptions());
+	const { mutateAsync: createProfile } = useMutation(trpc.profiles.store.mutationOptions());
 
 	if (!user) {
 		return (
@@ -62,7 +63,7 @@ export default function Page() {
 		<main className="grow flex flex-col justify-center items-center my-16 px-2">
 			<h1 className="w-full max-w-5xl text-3xl font-bold mb-4 px-2">{t("create-title")}</h1>
 
-			<ProfileForm>
+			<ProfileForm onSubmit={createProfile}>
 				<Link to="/profiles" className={buttonVariants({ variant: "outline" })}>
 					{t("back")}
 				</Link>

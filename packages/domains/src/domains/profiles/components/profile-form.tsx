@@ -22,9 +22,9 @@ export function ProfileForm(props: Props) {
 	const { t } = useTranslation("profiles.new");
 	const [page, setpage] = useState("general");
 	const form = useAppForm({
-		defaultValues: props.data || {
+		defaultValues: (props.data as InsertProfileSchema) || {
 			contact: { options: [{ type: "phone" }] },
-			date_disappeared: new Date(),
+			disappearedAt: new Date(),
 		},
 		validators: {
 			onSubmit: insertProfileSchema,
@@ -68,7 +68,7 @@ export function ProfileForm(props: Props) {
 								)}
 							/>
 							<form.AppField
-								name="date_disappeared"
+								name="disappearedAt"
 								children={(field) => (
 									<form.Fieldset label={t("date_disappeared")}>
 										<CalendarInput selected={field.state.value} onSelect={field.handleChange} />
@@ -135,8 +135,49 @@ export function ProfileForm(props: Props) {
 					/>
 				</TabsContent>
 
-				{/*<ProfileFormPictures />
-				<ProfileFormLocation />*/}
+				{/*<ProfileFormPictures />*/}
+
+				<TabsContent value="location" className="grow flex flex-wrap gap-4 justify-between">
+					<h2 className="text-2xl mb-4 w-full">{t("location.title")}</h2>
+
+					<form.AppField
+						name="addresses[0].district"
+						children={(field) => (
+							<form.Fieldset label={t("location.district")}>
+								<Input value={field.state.value} onChange={field.handleChange} />
+							</form.Fieldset>
+						)}
+					/>
+
+					<form.AppField
+						name="addresses[0].city"
+						children={(field) => (
+							<form.Fieldset label={t("location.city")}>
+								<Input value={field.state.value} onChange={field.handleChange} />
+							</form.Fieldset>
+						)}
+					/>
+
+					{/* <Field
+						label={t("location.state")}
+						required
+						name="addresses.0.state"
+						className="w-full md:w-2/5"
+						render={({ field }) => {
+							return (
+								<AsyncSelect
+									{...field}
+									action={states}
+									t={{
+										empty: "Nenhum estado encontrado",
+										placeholder: "Escolha um estado",
+										loading: "Carregando",
+									}}
+								/>
+							);
+						}}
+					/> */}
+				</TabsContent>
 
 				<TabsContent value="contact" className="grow">
 					<h2 className="text-2xl mb-4 w-full">{t("contact.title")}</h2>
@@ -147,7 +188,7 @@ export function ProfileForm(props: Props) {
 						children={(field) => (
 							<>
 								{field.state.value?.map((_, i) => (
-									<div className="flex gap-4 w-full" key={`contact.options[${i}]`}>
+									<div className="flex gap-4 w-full mb-4" key={`contact.options[${i}]`}>
 										<form.AppField
 											name={`contact.options[${i}].type`}
 											children={(field) => (
@@ -187,7 +228,10 @@ export function ProfileForm(props: Props) {
 										</Button>
 									</div>
 								))}
-								<Button className="w-full my-4" onClick={() => field.pushValue({})}>
+								<Button
+									className="w-full my-4"
+									onClick={() => field.pushValue({ type: "phone", value: "" })}
+								>
 									Add
 								</Button>
 							</>

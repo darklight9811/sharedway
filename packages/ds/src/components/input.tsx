@@ -2,12 +2,15 @@ import type * as React from "react";
 
 import { cn } from "../lib/utils";
 
-function Input({
+function Input<Value extends string | number>({
 	className,
 	type,
 	onChange,
 	...props
-}: Omit<React.ComponentProps<"input">, "onChange"> & { onChange?: (value: string, field: unknown) => void }) {
+}: Omit<React.ComponentProps<"input">, "onChange" | "value"> & {
+	value?: Value;
+	onChange?: (value: Value, field: unknown) => void;
+}) {
 	return (
 		<input
 			type={type}
@@ -18,7 +21,7 @@ function Input({
 				"aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
 				className,
 			)}
-			onChange={(e) => onChange?.(e.target.value, e)}
+			onChange={(e) => onChange?.(e.target.value as Value, e)}
 			{...props}
 		/>
 	);

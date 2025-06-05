@@ -6,11 +6,12 @@ import { Button } from "./button";
 import { Calendar } from "./calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
-export type Props = ComponentProps<typeof DayPicker> & {
+export function CalendarInput({
+	modal,
+	...props
+}: ComponentProps<typeof DayPicker> & {
 	modal?: boolean;
-};
-
-export function CalendarInput({ modal, ...props }: Props) {
+}) {
 	return (
 		<Popover modal={modal}>
 			<PopoverTrigger asChild>

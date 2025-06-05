@@ -12,6 +12,9 @@
 			},
 			"correctness": {
 				"noChildrenProp": "off"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "off"
 			}
 		}
 	},
