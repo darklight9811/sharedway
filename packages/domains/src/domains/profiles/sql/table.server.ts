@@ -6,7 +6,7 @@ export const profileType = c.enum("profile_types", ["human", "animal"]);
 export const profiles = c.table("profiles", {
 	id: c.id().defaultRandom().primaryKey(),
 
-	type: profileType().notNull(),
+	type: profileType().notNull().default("human"),
 	name: c.varchar().notNull(),
 	description: c.text(),
 	data: c.json().default({}).$type<{ age: number; race: string; gender: "male" | "female" | "other" }>().notNull(),

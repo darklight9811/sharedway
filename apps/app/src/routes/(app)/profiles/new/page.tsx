@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
 
-import { Alert } from "@repo/ds/alert";
+import { Alert, AlertDescription, AlertTitle } from "@repo/ds/alert";
 import { Button, buttonVariants } from "@repo/ds/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@repo/ds/dialog";
 import { useTranslation } from "@repo/ds/lib/localization";
 
+import { ProfileForm } from "@repo/domains/profiles";
 import { metadata } from "@repo/domains/utils/metadata";
 
 import { trpc } from "@repo/domains";
@@ -61,14 +62,14 @@ export default function Page() {
 		<main className="grow flex flex-col justify-center items-center my-16 px-2">
 			<h1 className="w-full max-w-5xl text-3xl font-bold mb-4 px-2">{t("create-title")}</h1>
 
-			{/* <ProfileForm onSubmit={store}>
-				<Link href="/profiles" className={buttonVariants({ variant: "outline" })}>
+			<ProfileForm>
+				<Link to="/profiles" className={buttonVariants({ variant: "outline" })}>
 					{t("back")}
 				</Link>
 				<Button type="submit" variant="dark" className="w-full md:max-w-[180px]">
 					{t("create")}
 				</Button>
-			</ProfileForm> */}
+			</ProfileForm>
 
 			<Dialog defaultOpen>
 				<DialogContent>
@@ -82,12 +83,13 @@ export default function Page() {
 					</p>
 
 					<Alert variant="destructive">
-						<p>De acordo com o código penal DECRETO-LEI No 2.848, DE 7 DE DEZEMBRO DE 1940:</p>
-						<br />
-						<p>
+						<AlertTitle>Atenção!</AlertTitle>
+
+						<AlertDescription>
+							<p>De acordo com o código penal DECRETO-LEI No 2.848, DE 7 DE DEZEMBRO DE 1940:</p>
 							Art. 340 - Provocar a ação de autoridade, comunicando-lhe a ocorrência de crime ou de
 							contravenção que sabe não se ter verificado.
-						</p>
+						</AlertDescription>
 					</Alert>
 
 					<DialogFooter>
