@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@repo/ds/tabs";
 import { Textarea } from "@repo/ds/textarea";
 
+import ImageUploader from "../../assets/components/image-uploader";
 import { type InsertProfileSchema, insertProfileSchema } from "../schema";
 
 interface Props {
