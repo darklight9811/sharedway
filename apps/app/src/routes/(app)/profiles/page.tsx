@@ -9,6 +9,7 @@ import { useTranslation } from "@repo/ds/lib/localization";
 import { Pagination } from "@repo/ds/pagination";
 
 import { paginationSchema } from "@repo/domains/app";
+import { Filter, Sort } from "@repo/domains/profiles";
 import { metadata } from "@repo/domains/utils/metadata";
 
 import { trpc } from "@repo/domains";
@@ -27,18 +28,18 @@ export default function Page() {
 					{t("profiles")} - {t("filter")}
 				</h5>
 
-				{/* <Filter data={props.searchParams} /> */}
+				<Filter data={pagination} />
 			</aside>
 			<main className="w-full flex flex-col justify-between relative">
-				{/* <Sort
+				<Sort
 					className="flex gap-2 bg-white rounded-[24px] *:m-0 p-2 shadow sticky top-[72px] z-[11]"
-					data={props.searchParams}
+					data={pagination}
 					order={{
 						name: t("new.general.name"),
 						date_created: t("date_created"),
 						date_disappeared: t("date_disappeared"),
 					}}
-				/> */}
+				/>
 				<div className="flex mb-auto flex-wrap justify-between gap-4 my-4">
 					{list?.[0].map((profile) => {
 						return <Card key={profile.id} {...profile} />;

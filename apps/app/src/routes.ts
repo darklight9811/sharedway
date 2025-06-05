@@ -8,7 +8,10 @@ export default [
 		route("/login", "routes/(auth)/login/page.tsx"),
 	]),
 
-	...prefix("/profiles", [route("/", "./routes/(app)/profiles/page.tsx")]),
+	...prefix("/profiles", [
+		route("/", "./routes/(app)/profiles/page.tsx"),
+		route("/new", "./routes/(app)/profiles/new/page.tsx"),
+	]),
 
 	// catch-all
 	route("/*", "./routes/not-found.tsx", { id: "not-found" }),

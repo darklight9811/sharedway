@@ -1,10 +1,11 @@
 import { createFormHook, createFormHookContexts } from "@tanstack/react-form";
+import type { ComponentProps } from "react";
 
 import { Button } from "../components/button";
 
 export const { fieldContext, formContext, useFormContext, useFieldContext } = createFormHookContexts();
 
-export function Submit(props: React.ComponentProps<"button">) {
+export function Submit(props: ComponentProps<typeof Button>) {
 	const form = useFormContext();
 
 	return (
