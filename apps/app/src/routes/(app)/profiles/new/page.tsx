@@ -6,7 +6,11 @@ import { Button, buttonVariants } from "@repo/ds/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@repo/ds/dialog";
 import { useTranslation } from "@repo/ds/lib/localization";
 
+import { metadata } from "@repo/domains/utils/metadata";
+
 import { trpc } from "@repo/domains";
+
+export const meta = metadata({ title: "Novo desaparecido" });
 
 export default function Page() {
 	const { t } = useTranslation("profiles");

@@ -11,7 +11,7 @@ import {
 	useLoaderData,
 } from "react-router";
 
-import { Navbar, queryClient } from "@repo/domains/app";
+import { queryClient } from "@repo/domains/app";
 
 import "@repo/ds/style";
 
@@ -19,8 +19,6 @@ import { StrictMode } from "react";
 
 import { useTranslation } from "@repo/ds/lib/localization";
 import { Toaster } from "@repo/ds/toast";
-
-import { Footer } from "@repo/domains/app";
 
 import i18next from "./utils/i19next.server";
 
@@ -95,9 +93,7 @@ export default function App() {
 		<StrictMode>
 			<QueryClientProvider client={queryClient}>
 				<Toaster />
-				<Navbar />
 				<Outlet />
-				<Footer />
 			</QueryClientProvider>
 		</StrictMode>
 	);
