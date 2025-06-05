@@ -1,9 +1,10 @@
-import starti18n from "@repo/ds/lib/localization";
 import i18next from "i18next";
 import { StrictMode, startTransition } from "react";
 import { hydrateRoot } from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
 import { HydratedRouter } from "react-router/dom";
+
+import starti18n from "@repo/ds/lib/localization";
 
 async function hydrate() {
 	await starti18n();

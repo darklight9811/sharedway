@@ -25,11 +25,19 @@
 							":BUN:",
 							":NODE:",
 							":BLANK_LINE:",
-							":PACKAGE:",
-							":PACKAGE_WITH_PROTOCOL:",
+							[
+								":PACKAGE:",
+								"!@repo/**"
+							],
+							[
+								":PACKAGE_WITH_PROTOCOL:",
+								"!@repo/**"
+							],
 							":URL:",
 							":BLANK_LINE:",
-							"@repo/*",
+							"@repo/ds/**",
+							":BLANK_LINE:",
+							"@repo/domains/**",
 							":BLANK_LINE:",
 							"modules/**/*",
 							":ALIAS:",

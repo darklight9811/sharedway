@@ -1,5 +1,6 @@
-import { i18n } from "@repo/ds/lib/i18n";
 import type { LoaderFunction, MetaFunction } from "react-router";
+
+import { i18n } from "@repo/ds/lib/i18n";
 
 import { env } from "../domains/app";
 

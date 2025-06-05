@@ -1,5 +1,6 @@
-import { buttonVariants } from "@repo/ds/button";
 import { Link } from "react-router";
+
+import { buttonVariants } from "@repo/ds/button";
 
 export default function NotFoundPage() {
 	return (

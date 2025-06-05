@@ -1,10 +1,13 @@
-import { trpc } from "@repo/domains";
-import { AuthRegister } from "@repo/domains/auth";
-import { metadata } from "@repo/domains/utils/metadata";
-import { Submit } from "@repo/ds/hooks/use-form";
-import { Trans, useTranslation } from "@repo/ds/lib/localization";
 import { useMutation } from "@tanstack/react-query";
 import { Link } from "react-router";
+
+import { Submit } from "@repo/ds/hooks/use-form";
+import { Trans, useTranslation } from "@repo/ds/lib/localization";
+
+import { AuthRegister } from "@repo/domains/auth";
+import { metadata } from "@repo/domains/utils/metadata";
+
+import { trpc } from "@repo/domains";
 
 export const meta = metadata({ title: "Register" });
 

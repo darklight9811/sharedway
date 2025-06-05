@@ -1,4 +1,3 @@
-import { Navbar, queryClient } from "@repo/domains/app";
 import { QueryClientProvider } from "@tanstack/react-query";
 import {
 	isRouteErrorResponse,
@@ -12,12 +11,16 @@ import {
 	useLoaderData,
 } from "react-router";
 
+import { Navbar, queryClient } from "@repo/domains/app";
+
 import "@repo/ds/style";
 
-import { Footer } from "@repo/domains/app";
+import { StrictMode } from "react";
+
 import { useTranslation } from "@repo/ds/lib/localization";
 import { Toaster } from "@repo/ds/toast";
-import { StrictMode } from "react";
+
+import { Footer } from "@repo/domains/app";
 
 import i18next from "./utils/i19next.server";
 

@@ -1,5 +1,6 @@
-import type v from "@repo/ds/lib/v/index";
 import { createInsertSchema, createUpdateSchema } from "drizzle-zod";
+
+import type v from "@repo/ds/lib/v/index";
 
 import { profiles } from "./sql/table.server";
 

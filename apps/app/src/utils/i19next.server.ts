@@ -1,8 +1,9 @@
 import { resolve } from "node:path";
 
-import i18n from "@repo/ds/lib/i18n";
 import { createCookie } from "react-router";
 import { RemixI18Next } from "remix-i18next/server";
+
+import i18n from "@repo/ds/lib/i18n";
 
 export const localeCookie = createCookie("lng", {
 	path: "/",
