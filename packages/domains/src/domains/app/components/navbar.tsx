@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { ArrowRight, Plus, User } from "lucide-react";
+import { ArrowRight, LoaderIcon, Plus, User } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 
@@ -12,7 +12,7 @@ import { trpc } from "../..";
 
 export function Navbar() {
 	const { t } = useTranslation();
-	const { data: user } = useQuery(trpc.auth.session.queryOptions());
+	const { data: user, isLoading } = useQuery(trpc.auth.session.queryOptions());
 	const ref = useRef<HTMLDivElement>(null);
 	const [shadow, setShadow] = useState<"initial" | "scroll" | "none">("initial");
 	const { mutateAsync: signOut } = useMutation(trpc.auth.logout.mutationOptions());
@@ -66,59 +66,63 @@ export function Navbar() {
 						</Link>
 					</div>
 
-					<div className="flex gap-4 items-center">
-						{user ? (
-							<DropdownMenu>
-								<DropdownMenuTrigger className="text-sm flex gap-2 items-center rounded-3xl">
-									{user.image ? (
-										<img
-											alt="user logo"
-											className="rounded-full"
-											height={30}
-											src={user.image}
-											width={30}
-										/>
-									) : (
-										<div className="w-[30px] h-[30px] bg-slate-200 rounded-full flex justify-center items-center">
-											<User />
-										</div>
-									)}
-								</DropdownMenuTrigger>
+					{isLoading ? (
+						<LoaderIcon className="animate-spin" />
+					) : (
+						<div className="flex gap-4 items-center">
+							{user ? (
+								<DropdownMenu>
+									<DropdownMenuTrigger className="text-sm flex gap-2 items-center rounded-3xl">
+										{user.image ? (
+											<img
+												alt="user logo"
+												className="rounded-full"
+												height={30}
+												src={user.image}
+												width={30}
+											/>
+										) : (
+											<div className="w-[30px] h-[30px] bg-slate-200 rounded-full flex justify-center items-center">
+												<User />
+											</div>
+										)}
+									</DropdownMenuTrigger>
 
-								<DropdownMenuContent className="mr-2">
-									<DropdownMenuItem>
-										<Link className="w-full" to="/profiles/current">
-											{t("list")}
-										</Link>
-									</DropdownMenuItem>
-									<DropdownMenuItem>
-										<Link className="w-full" to="/profile">
-											{t("profile")}
-										</Link>
-									</DropdownMenuItem>
-									<DropdownMenuItem asChild className="w-full" onClick={() => signOut()}>
-										{t("logout")}
-									</DropdownMenuItem>
-								</DropdownMenuContent>
-							</DropdownMenu>
-						) : (
-							<>
-								<Link to="/login" className="hidden md:inline">
-									{t("login")}
-								</Link>
-								<Link
-									to="/register"
-									className={buttonVariants({
-										variant: "outline",
-										className: "gap-2",
-									})}
-								>
-									{t("signin")}
-									<ArrowRight size="14" className="text-foreground/50" />
-								</Link>
-							</>
-						)}
-					</div>
+									<DropdownMenuContent className="mr-2">
+										<DropdownMenuItem>
+											<Link className="w-full" to="/profiles/current">
+												{t("list")}
+											</Link>
+										</DropdownMenuItem>
+										<DropdownMenuItem>
+											<Link className="w-full" to="/profile">
+												{t("profile")}
+											</Link>
+										</DropdownMenuItem>
+										<DropdownMenuItem asChild className="w-full" onClick={() => signOut()}>
+											{t("logout")}
+										</DropdownMenuItem>
+									</DropdownMenuContent>
+								</DropdownMenu>
+							) : (
+								<>
+									<Link to="/login" className="hidden md:inline">
+										{t("login")}
+									</Link>
+									<Link
+										to="/register"
+										className={buttonVariants({
+											variant: "outline",
+											className: "gap-2",
+										})}
+									>
+										{t("signin")}
+										<ArrowRight size="14" className="text-foreground/50" />
+									</Link>
+								</>
+							)}
+						</div>
+					)}
 				</div>
 			</nav>
 			<div className="pt-[6vh]" />
