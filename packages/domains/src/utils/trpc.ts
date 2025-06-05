@@ -1,7 +1,7 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import cookie from "cookie";
 import superjson from "superjson";
-import { ZodError } from "zod";
+import { ZodError } from "zod/v4";
 
 import { auth } from "../domains/auth/helpers/auth.server";
 import type { UserSchema } from "../domains/users/schema";
@@ -76,6 +76,6 @@ export const protectedProcedure = trpc.procedure.use(({ ctx, next }) => {
 
 export const t = {
 	router: trpc.router,
-	route: trpc.procedure,
+	route: publicProcedure,
 	protected: protectedProcedure,
 };

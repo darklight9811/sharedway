@@ -10,7 +10,8 @@ export const authService = {
 			})
 			.then((t) =>
 				t?.user ? db.query.users.findFirst({ where: (table, { eq }) => eq(table.id, t.user.id) }) : undefined,
-			);
+			)
+			.catch(() => undefined);
 	},
 
 	async register(payload: RegisterSchema) {

@@ -12,7 +12,4 @@ export default [
 
 	// catch-all
 	route("/*", "./routes/not-found.tsx", { id: "not-found" }),
-
-	// api
-	route("/api/trpc/*", "./routes/api/trpc/route.ts"),
 ] satisfies RouteConfig;

@@ -7,7 +7,7 @@ export const authRouter = t.router({
 
 	login: t.route.input(loginSchema).mutation(({ input }) => authService.login(input)),
 
-	session: t.protected.query(({ ctx }) => authService.session(ctx.headers)),
+	session: t.route.query(({ ctx }) => authService.session(ctx.headers)),
 
 	logout: t.protected.mutation(async ({ ctx }) => {
 		await authService.logout(ctx.headers);
