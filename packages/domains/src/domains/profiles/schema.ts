@@ -6,8 +6,10 @@ export const insertProfileSchema = v.object({
 	description: v.string().optional(),
 	disappearedAt: v.date(),
 
+	pictures: v.array(v.string()),
+
 	data: v.object({
-		age: v.coerce.number(),
+		age: v.number(),
 		race: v.string().optional(),
 		gender: v.enum(["male", "female", "other"]),
 	}),

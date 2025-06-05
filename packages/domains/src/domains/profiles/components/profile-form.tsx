@@ -6,6 +6,7 @@ import { CalendarInput } from "@repo/ds/calendar-input";
 import { useAppForm } from "@repo/ds/hooks/use-form";
 import { Input } from "@repo/ds/input";
 import { useTranslation } from "@repo/ds/lib/localization";
+import { NumberInput } from "@repo/ds/number-input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@repo/ds/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@repo/ds/tabs";
 import { Textarea } from "@repo/ds/textarea";
@@ -82,7 +83,7 @@ export function ProfileForm(props: Props) {
 								name="data.age"
 								children={(field) => (
 									<form.Fieldset label={t("general.age")}>
-										<Input value={field.state.value} onChange={field.handleChange} />
+										<NumberInput value={field.state.value} onChange={field.handleChange} />
 									</form.Fieldset>
 								)}
 							/>
@@ -135,7 +136,16 @@ export function ProfileForm(props: Props) {
 					/>
 				</TabsContent>
 
-				{/*<ProfileFormPictures />*/}
+				<TabsContent value="pictures" className="grow">
+					<h2 className="text-2xl mb-4">{t("pictures.title")}</h2>
+
+					<form.AppField
+						name="pictures"
+						children={(field) => {
+							return <ImageUploader max={5} {...field} />;
+						}}
+					/>
+				</TabsContent>
 
 				<TabsContent value="location" className="grow flex flex-wrap gap-4 justify-between">
 					<h2 className="text-2xl mb-4 w-full">{t("location.title")}</h2>
